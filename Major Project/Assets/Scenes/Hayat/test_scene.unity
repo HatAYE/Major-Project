@@ -327,6 +327,7 @@ GameObject:
   - component: {fileID: 882466510}
   - component: {fileID: 882466509}
   - component: {fileID: 882466508}
+  - component: {fileID: 882466512}
   m_Layer: 6
   m_Name: Square
   m_TagString: Moveable
@@ -446,6 +447,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!255 &882466512
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882466507}
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: -3.81}
+  m_DampingRatio: 0
+  m_Frequency: 0
 --- !u!1 &1421097490
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +501,8 @@ MonoBehaviour:
   playerSpeed: 5
   jumpForce: 15
   fallMultiplier: 9
-  pullForce: 20
+  isHoldingObject: 0
+  grabbingDistance: 1
   crouchSpeed: 3
   crouchColliderHeight: 2
 --- !u!50 &1421097492

@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class Controls : MonoBehaviour
 {
-    [SerializeField] int playerSpeed;
+    [SerializeField] float playerSpeed;
+    RaycastHit2D hit;
     Rigidbody2D rb;
     bool isMoving = false;
+    bool movingRight;
+    bool movingLeft;
     private BoxCollider2D boxCollider;
 
     #region jumping variables
-    [SerializeField] int jumpForce;
-    [SerializeField] int fallMultiplier;
+    [SerializeField] float jumpForce;
+    [SerializeField] float fallMultiplier;
     int jumpCount;
     #endregion
     #region push and pull variables
-    bool isHoldingObject;
+    [SerializeField] bool isHoldingObject;
     Vector2 holdOffset; 
-    public float pullForce = 30f;
+    public float grabbingDistance;
     private GameObject holdObject;
-    Rigidbody2D moveableRb;
+    //Rigidbody2D moveableRb;
     #endregion
     #region crouch variables
     public float crouchSpeed;
@@ -32,15 +35,11 @@ public class Controls : MonoBehaviour
     }
     void Update()
     {
+        if (movingLeft) hit = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, grabbingDistance, LayerMask.GetMask("Obstacle"));
+        else if (movingRight) hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, grabbingDistance, LayerMask.GetMask("Obstacle"));
         Movement();
         Jumping();
         PushingAndPulling();
-        //Crouch();
-        if (isHoldingObject && holdObject != null) // Check if we're holding an object and it's not null
-        {
-            Vector2 targetPosition = (Vector2)transform.position + holdOffset;
-            holdObject.transform.position = Vector2.MoveTowards(holdObject.transform.position, targetPosition, pullForce * Time.fixedDeltaTime);
-        }
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -57,16 +56,25 @@ public class Controls : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            if (!isCrouching) rb.velocity = new Vector2(-playerSpeed, rb.velocity.y);
+            movingRight = false;
+            movingLeft = true;
+            if (!isCrouching)
+            {
+                rb.velocity = new Vector2(-playerSpeed, rb.velocity.y);
+                Debug.Log("tryna move left");
+            }
             isMoving = true;
             if (isCrouching) rb.velocity = new Vector2(-crouchSpeed, rb.velocity.y);
+            
         }
         else if (Input.GetKey(KeyCode.D))
         {
+            movingRight=true;
+            movingLeft = false;
             if (!isCrouching) rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
             isMoving = true;
             if (isCrouching) rb.velocity = new Vector2(-crouchSpeed, rb.velocity.y);
-
+            hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, 1.5f, LayerMask.GetMask("Obstacle"));
         }
     }
 
@@ -82,38 +90,31 @@ public class Controls : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, -fallMultiplier);
         }
     }
-
     void PushingAndPulling()
     {
         
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey(KeyCode.E))
         {
-            if (!isHoldingObject)
+            if (!isHoldingObject && hit.collider!=null && hit.collider.gameObject.tag== "Moveable")
             {
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1f);
-                foreach (Collider2D collider in colliders)
-                {
-                    if (collider.gameObject.CompareTag("Moveable"))
-                    {
-                        holdObject = collider.gameObject;
-                        isHoldingObject = true;
-                        holdOffset = (Vector2)holdObject.transform.position - (Vector2)transform.position;
-                        moveableRb = holdObject.GetComponent<Rigidbody2D>();
-                        if (moveableRb != null)
-                        {
-                            moveableRb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
-                            moveableRb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
-                        }
-                        break;
-                    }
-                }
+                isHoldingObject = true;
+                holdObject=hit.collider.gameObject;
+                holdObject.GetComponent<Rigidbody2D>().constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+                holdObject.GetComponent<Rigidbody2D>().constraints &= ~RigidbodyConstraints2D.FreezePositionY;
+                holdObject.GetComponent<FixedJoint2D>().enabled = true;
+                holdObject.GetComponent<FixedJoint2D>().connectedBody=this.GetComponent<Rigidbody2D>();
             }
-            else
+            
+        }
+        else
+        {
+            if (holdObject != null)
             {
-                moveableRb.constraints = RigidbodyConstraints2D.FreezeAll;
-                holdObject = null;
-                isHoldingObject = false;
+                holdObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+                holdObject.GetComponent<FixedJoint2D>().enabled = false;
             }
+            holdObject = null;
+            isHoldingObject = false;
         }
     }
     
@@ -131,12 +132,14 @@ public class Controls : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1f);
 
-        foreach (Collider2D collider in colliders)
+        if (movingRight)
         {
-            Gizmos.DrawWireSphere(collider.transform.position, 2f);
+            Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.right * transform.localScale.x * grabbingDistance);
         }
-
+        else if (movingLeft)
+        {
+            Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.left * transform.localScale.x * grabbingDistance);
+        }
     }
 }
