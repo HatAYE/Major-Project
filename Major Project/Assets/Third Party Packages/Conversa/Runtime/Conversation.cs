@@ -55,6 +55,7 @@ namespace Conversa.Runtime
 
 		public void Validate()
 		{
+			string idiotMaggot = version.ToString();
 			Sanitizer.UpdateJumpNodes(this);
 
 			var nodesRemovedCount = nodes.RemoveAll(node => !IsValidNode(node));
