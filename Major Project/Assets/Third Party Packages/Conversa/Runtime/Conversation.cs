@@ -12,7 +12,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace Conversa.Runtime
 {
 	[MovedFrom(true, null, "Assembly-CSharp")]
-	[CreateAssetMenu(fileName = "New conversation", menuName = "Conversa/Conversation", order = 0)]
+	[CreateAssetMenu(fileName = "New conversation", menuName = "Conversa/Conversation")]
 	public class Conversation : ScriptableObject
 	{
 		[SerializeReference] private string version = "1.0";

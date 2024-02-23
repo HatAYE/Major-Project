@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Conversa.Runtime
 {
-    [CreateAssetMenu(fileName = "Actor", menuName = "Conversa/Actor", order = 0)]
+    [CreateAssetMenu(fileName = "Actor", menuName = "Conversa/Actor")]
     public class Actor : ScriptableObject
     {
         [SerializeField] private string displayName;

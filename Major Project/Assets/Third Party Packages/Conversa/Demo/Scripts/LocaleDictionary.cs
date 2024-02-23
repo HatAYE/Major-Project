@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Conversa.Demo
 {
-	[CreateAssetMenu(menuName = "Conversa/Demo/Locale Dictionary")]
+	//[CreateAssetMenu(menuName = "Conversa/Demo/Locale Dictionary")]
 	public class LocaleDictionary : ScriptableObject
 	{
 		[SerializeField] private LocaleDictionaryEntry[] entries;

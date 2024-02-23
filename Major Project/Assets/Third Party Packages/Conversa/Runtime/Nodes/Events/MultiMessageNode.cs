@@ -59,7 +59,7 @@ namespace Conversa.Runtime.Nodes
 			}
 
 			var e = new ActorMessageEvent(actor, messages[index], ProcessIndex(conversation, conversationEvents, index + 1));
-			conversationEvents.OnConversationEvent.Invoke(e);
+			conversationEvents.OnConversationEvent?.Invoke(e);
 		};
 
 

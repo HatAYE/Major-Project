@@ -2,6 +2,10 @@
 using UnityEngine;
 using VInspector;
 
+/// <summary>
+/// Enables or disables a GameObject using the Interaction system, optionally allowing an animation to play beforehand.
+/// </summary>
+
 public class ToggleInteractable : Interactable
 {
     [SerializeField] bool selfToggle;
