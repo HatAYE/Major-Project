@@ -4,34 +4,50 @@ using UnityEngine;
 
 public class Controls : MonoBehaviour
 {
-    [SerializeField] float playerSpeed;
     RaycastHit2D hit;
     Rigidbody2D rb;
+    private BoxCollider2D boxCollider;
+    SpriteRenderer spriteRenderer;
+
+    #region movement variables
+    [SerializeField] float playerSpeed;
     bool isMoving = false;
     bool movingRight;
     bool movingLeft;
-    private BoxCollider2D boxCollider;
+    #endregion
 
     #region jumping variables
     [SerializeField] float jumpForce;
-    [SerializeField] float fallMultiplier;
     int jumpCount;
     #endregion
+
     #region push and pull variables
-    [SerializeField] bool isHoldingObject;
-    Vector2 holdOffset; 
+    bool isHoldingObject;
     public float grabbingDistance;
     private GameObject holdObject;
-    //Rigidbody2D moveableRb;
     #endregion
+
     #region crouch variables
-    public float crouchSpeed;
-    public float crouchColliderHeight;
-    bool isCrouching;
+    [SerializeField] bool isCrouching;
+    [SerializeField] Sprite[] standingAndCrouchingSprites = new Sprite[2];
+    float crouchSpeed;
+    Vector2 crouchHeight;
+    Vector2 normalHeight;
+    RaycastHit2D crouchRay;
+    [SerializeField] LayerMask aboveObject;
     #endregion
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite= standingAndCrouchingSprites[0];
+
+        boxCollider= GetComponent<BoxCollider2D>();
+        normalHeight = boxCollider.size;
+        crouchHeight = boxCollider.size / 2;
+
+        crouchSpeed = playerSpeed / 2;
     }
     void Update()
     {
@@ -40,6 +56,7 @@ public class Controls : MonoBehaviour
         Movement();
         Jumping();
         PushingAndPulling();
+        Crouch();
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -58,23 +75,26 @@ public class Controls : MonoBehaviour
         {
             movingRight = false;
             movingLeft = true;
-            if (!isCrouching)
-            {
-                rb.velocity = new Vector2(-playerSpeed, rb.velocity.y);
-                Debug.Log("tryna move left");
-            }
             isMoving = true;
-            if (isCrouching) rb.velocity = new Vector2(-crouchSpeed, rb.velocity.y);
+
+            if (!isCrouching)
+              rb.velocity = new Vector2(-playerSpeed, rb.velocity.y);
+
+            if (isCrouching) 
+                rb.velocity = new Vector2(-crouchSpeed, rb.velocity.y);
             
         }
         else if (Input.GetKey(KeyCode.D))
         {
             movingRight=true;
             movingLeft = false;
-            if (!isCrouching) rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
             isMoving = true;
-            if (isCrouching) rb.velocity = new Vector2(-crouchSpeed, rb.velocity.y);
-            hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, 1.5f, LayerMask.GetMask("Obstacle"));
+
+            if (!isCrouching) 
+                rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
+
+            if (isCrouching)
+                rb.velocity = new Vector2(crouchSpeed, rb.velocity.y);
         }
     }
 
@@ -82,12 +102,8 @@ public class Controls : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount == 0 && !isHoldingObject)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.AddForce(new Vector2 (0, jumpForce));
             jumpCount++;
-        }
-        if (rb.velocity.y < 0 )
-        {
-            rb.velocity = new Vector2(rb.velocity.x, -fallMultiplier);
         }
     }
     void PushingAndPulling()
@@ -120,13 +136,26 @@ public class Controls : MonoBehaviour
     
     void Crouch()
     {
+        crouchRay= Physics2D.Raycast(transform.position, Vector2.up * transform.localScale.x, 1.5f, aboveObject);
+        Debug.Log(crouchRay.collider);
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            boxCollider.size = new Vector2(boxCollider.size.x, crouchColliderHeight);
-        }
-        else
-        {
-            boxCollider.size = new Vector2(boxCollider.size.x, 1f);  
+            if (!isCrouching)
+            {
+                boxCollider.size = crouchHeight;
+                spriteRenderer.sprite = standingAndCrouchingSprites[1];
+                isCrouching = true;
+            }
+            else
+            {
+                if (crouchRay.collider == null)
+                {
+                    boxCollider.size = normalHeight;
+                    spriteRenderer.sprite = standingAndCrouchingSprites[0];
+                    isCrouching = false;
+                }
+                else if (crouchRay.collider.gameObject.layer != aboveObject) return;
+            }
         }
     }
     void OnDrawGizmos()
@@ -141,5 +170,6 @@ public class Controls : MonoBehaviour
         {
             Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.left * transform.localScale.x * grabbingDistance);
         }
+        Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.up * transform.localScale.x* 1.5f);
     }
 }
