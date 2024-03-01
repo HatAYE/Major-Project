@@ -23,7 +23,6 @@ public class Controls : MonoBehaviour
 
     #region push and pull variables
     bool isHoldingObject;
-    public float grabbingDistance;
     private GameObject holdObject;
     #endregion
 
@@ -35,6 +34,10 @@ public class Controls : MonoBehaviour
     Vector2 normalHeight;
     RaycastHit2D crouchRay;
     [SerializeField] LayerMask aboveObject;
+    #endregion
+
+    #region sprinting variables
+    float sprintingSpeed;
     #endregion
     void Start()
     {
@@ -48,11 +51,12 @@ public class Controls : MonoBehaviour
         crouchHeight = boxCollider.size / 2;
 
         crouchSpeed = playerSpeed / 2;
+        sprintingSpeed = playerSpeed * 2;
     }
     void Update()
     {
-        if (movingLeft) hit = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, grabbingDistance, LayerMask.GetMask("Obstacle"));
-        else if (movingRight) hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, grabbingDistance, LayerMask.GetMask("Obstacle"));
+        if (movingLeft) hit = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, 1f, LayerMask.GetMask("Obstacle"));
+        else if (movingRight) hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, 1f, LayerMask.GetMask("Obstacle"));
         Movement();
         Jumping();
         PushingAndPulling();
@@ -78,7 +82,13 @@ public class Controls : MonoBehaviour
             isMoving = true;
 
             if (!isCrouching)
-              rb.velocity = new Vector2(-playerSpeed, rb.velocity.y);
+            {
+                if (Input.GetKey (KeyCode.LeftShift))
+                {
+                    rb.velocity = new Vector2(-sprintingSpeed, rb.velocity.y);
+                }
+                else rb.velocity = new Vector2(-playerSpeed, rb.velocity.y);
+            }
 
             if (isCrouching) 
                 rb.velocity = new Vector2(-crouchSpeed, rb.velocity.y);
@@ -90,8 +100,14 @@ public class Controls : MonoBehaviour
             movingLeft = false;
             isMoving = true;
 
-            if (!isCrouching) 
-                rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
+            if (!isCrouching)
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    rb.velocity = new Vector2(sprintingSpeed, rb.velocity.y);
+                }
+                else rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
+            }
 
             if (isCrouching)
                 rb.velocity = new Vector2(crouchSpeed, rb.velocity.y);
@@ -137,7 +153,6 @@ public class Controls : MonoBehaviour
     void Crouch()
     {
         crouchRay= Physics2D.Raycast(transform.position, Vector2.up * transform.localScale.x, 1.5f, aboveObject);
-        Debug.Log(crouchRay.collider);
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             if (!isCrouching)
@@ -164,11 +179,11 @@ public class Controls : MonoBehaviour
 
         if (movingRight)
         {
-            Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.right * transform.localScale.x * grabbingDistance);
+            Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.right * transform.localScale.x * 1f);
         }
         else if (movingLeft)
         {
-            Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.left * transform.localScale.x * grabbingDistance);
+            Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.left * transform.localScale.x * 1f);
         }
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.up * transform.localScale.x* 1.5f);
     }
