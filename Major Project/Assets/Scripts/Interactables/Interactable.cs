@@ -10,6 +10,7 @@ public abstract class Interactable : MonoBehaviour
     protected InteractionHandler interactionHandler;
     [SerializeField] bool singleInteraction;
     bool interacted;
+    protected bool SingleInteraction { get; private set; }
 
     void Awake()
     {
@@ -34,19 +35,24 @@ public abstract class Interactable : MonoBehaviour
     /// </summary>
     protected abstract void Interact();
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.gameObject == interactionHandler.gameObject)
+        if (collision.gameObject == interactionHandler.gameObject)
         {
             interactionHandler.RegisterInteractable(this);
         }
     }
 
-    void OnTriggerExit(Collider other) 
+    void OnTriggerExit2D(Collider2D collision)
     {
-        if (other.gameObject == interactionHandler.gameObject)
+        if (collision.gameObject == interactionHandler.gameObject)
         {
             interactionHandler.UnregisterInteractable(this);
         }
+    }
+
+    private void OnDisable()
+    {
+        interactionHandler?.UnregisterInteractable(this);
     }
 }
