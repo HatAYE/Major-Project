@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAreaDetection : MonoBehaviour
 {
-    [SerializeField] EnemyStateMachine enemy;
+    [SerializeField] SirenStateMachine enemy;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
