@@ -136,9 +136,9 @@ GameObject:
   - component: {fileID: 238336544}
   - component: {fileID: 238336548}
   - component: {fileID: 238336549}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Square (1)
-  m_TagString: Moveable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -259,8 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a39b976778f8a242a888c0b88cad0e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  singleInteraction: 0
-  dialogueController: {fileID: 0}
+  singleInteraction: 1
+  dialogueController: {fileID: 238336548}
 --- !u!1 &416848596
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,9 +927,9 @@ GameObject:
   - component: {fileID: 771772624}
   - component: {fileID: 771772623}
   - component: {fileID: 771772626}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Square (4)
-  m_TagString: Moveable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1791,9 +1791,9 @@ GameObject:
   - component: {fileID: 1457691632}
   - component: {fileID: 1457691631}
   - component: {fileID: 1457691634}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Square (3)
-  m_TagString: Moveable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2250,9 +2250,9 @@ GameObject:
   - component: {fileID: 1994908440}
   - component: {fileID: 1994908439}
   - component: {fileID: 1994908442}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Square (2)
-  m_TagString: Moveable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

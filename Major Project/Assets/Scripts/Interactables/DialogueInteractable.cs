@@ -1,4 +1,3 @@
-using Conversa.Runtime.Events;
 using UnityEngine;
 
 public class DialogueInteractable : Interactable
@@ -18,10 +17,7 @@ public class DialogueInteractable : Interactable
     {
         dialogueController.BeginDialogue();
         interactionHandler.UnregisterInteractable(this);
-        dialogueController.runner.OnConversationEvent.AddListener((e) => 
-        { 
-            if (e is EndEvent && !SingleInteraction) { ReRegister(); } 
-        });
+        if (!SingleInteraction) { dialogueController.OnDialogueEnd += ReRegister; }
     }
 
     void ReRegister()
