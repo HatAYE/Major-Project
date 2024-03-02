@@ -2,11 +2,14 @@
 using Conversa.Runtime;
 using Conversa.Runtime.Events;
 using Conversa.Runtime.Interfaces;
+using System;
 using UnityEngine;
 
 public class DialogueController : MonoBehaviour
 {
     [SerializeField] Conversation conversation;
+    public Action<string> OnEventTrigger;
+    public Action OnDialogueEnd;
     DialogueUI dialogueUI;
     public ConversationRunner runner;
 
@@ -68,14 +71,14 @@ public class DialogueController : MonoBehaviour
 
     private void HandleChoice(ChoiceEvent e) => dialogueUI.ShowChoice(e.Actor, e.Message, e.Options);
 
-    private static void HandleUserEvent(UserEvent userEvent)
+    private void HandleUserEvent(UserEvent userEvent)
     {
-        // I don't even know man. This passes in a string, and I'm supposed to use that to help me invoke an event somehow?
-        // Leaving this blank until I figure out a way to do this besides hardcoding.
+        OnEventTrigger?.Invoke(userEvent.Name);
     }
 
     private void HandleEnd()
     {
         dialogueUI.Hide();
+        OnDialogueEnd?.Invoke();
     }
 }

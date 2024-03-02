@@ -66,7 +66,7 @@ public class DialogueUI : MonoBehaviour
 
     private void UpdateImage(Sprite sprite)
     {
-        characterImage.enabled = sprite != null;
+        characterImage.gameObject.SetActive(sprite != null);
         characterImage.sprite = sprite;
     }
 
