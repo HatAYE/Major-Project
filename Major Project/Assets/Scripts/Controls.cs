@@ -68,10 +68,6 @@ public class Controls : MonoBehaviour
         {
             jumpCount = 0;
         }
-        if (collision.gameObject.layer== LayerMask.NameToLayer("Obstacle") && !isHoldingObject)
-        {
-            rb.velocity= Vector2.zero;
-        }
     }
     void Movement()
     {
@@ -172,6 +168,15 @@ public class Controls : MonoBehaviour
                 else if (crouchRay.collider.gameObject.layer != aboveObject) return;
             }
         }
+    }
+
+    void DeflectingShield()
+    {
+        //IF PLAYER SQUIRES THE SHIELD EXECUTE THIS
+        //SHIELD MUST BE HELD TO BE USED
+        //WHEN A PROJECTILE COMES IN CONTACT WITH THE SHIELD, CAST FORCE ON THE PROJECTILE AND MAKE IT MOVE OPPOSITE TO YOUR DIRECTION
+
+
     }
     void OnDrawGizmos()
     {
