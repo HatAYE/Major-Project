@@ -61,10 +61,11 @@ public class Controls : MonoBehaviour
         Jumping();
         PushingAndPulling();
         Crouch();
+        DeflectingShield();
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") || collision.gameObject.CompareTag("Moveable"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Moveable"))
         {
             jumpCount = 0;
         }
@@ -120,7 +121,6 @@ public class Controls : MonoBehaviour
     }
     void PushingAndPulling()
     {
-        
         if (Input.GetKey(KeyCode.E))
         {
             if (!isHoldingObject && hit.collider!=null && hit.collider.gameObject.tag== "Moveable")
@@ -175,7 +175,11 @@ public class Controls : MonoBehaviour
         //IF PLAYER SQUIRES THE SHIELD EXECUTE THIS
         //SHIELD MUST BE HELD TO BE USED
         //WHEN A PROJECTILE COMES IN CONTACT WITH THE SHIELD, CAST FORCE ON THE PROJECTILE AND MAKE IT MOVE OPPOSITE TO YOUR DIRECTION
-
+        if (Input.GetKey(KeyCode.J))
+        {
+            transform.GetChild(1).gameObject.SetActive(true);
+        }
+        else transform.GetChild(1).gameObject.SetActive(false);
 
     }
     void OnDrawGizmos()

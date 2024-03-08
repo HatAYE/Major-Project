@@ -79,17 +79,17 @@ public class SirenStateMachine : MonoBehaviour
         TransitionToState(EnemyState.Attacking);
     }
 
-    int i = 1;
+    bool attacked;
     void AttackingState()
     {
         //THROW  3 PROJECTILES IN A STRAIGHT LINE 3 TIMES, PAUSING IN BETWEEN EACH
         //ONCE COMPLETED, TRANSITION TO FINAL DIALOGUE
          
         Vector2 attackDirection = player.transform.position;
-        if (i==1)
+        if (!attacked)
         {
             StartCoroutine(AttackRoutine(attackDirection));
-            i--;
+            attacked=true;
         }
     }
     bool gaveHeart=false;
@@ -117,7 +117,7 @@ public class SirenStateMachine : MonoBehaviour
 
 
     [SerializeField] GameObject attackPrefab;
-    IEnumerator AttackRoutine(Vector2 direction)
+    IEnumerator AttackRoutine(Vector3 direction)
     {
         for (int i = 0; i < 3; i++)
         {
@@ -125,22 +125,13 @@ public class SirenStateMachine : MonoBehaviour
             for (int j = 0; j < 3; j++)
             {
                 GameObject projectile = Instantiate(attackPrefab, transform.position, Quaternion.identity);
+                Vector2 targetDirection = (direction - projectile.transform.position).normalized;
 
-                Vector2 startPosition = projectile.transform.position;
-                Vector2 targetPosition = direction;
-
-                float elapsedTime = 0f;
-                float duration = 0.8f;
-
-                while (elapsedTime < duration)
-                {
-                    projectile.transform.position = Vector2.Lerp(startPosition, targetPosition + new Vector2(5,0), elapsedTime / duration);
-                    elapsedTime += Time.deltaTime;
-                    yield return null;
-                }
-
-                Destroy(projectile);
-                yield return new WaitForSeconds(0.5f);
+                Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
+                projectileRb.velocity = targetDirection * 8;
+                projectile.GetComponent<Projectile>().parentEnemy = gameObject;
+                
+                yield return new WaitForSeconds(1f);
             }
             yield return new WaitForSeconds(1);
         }
