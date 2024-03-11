@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: Siren_Dialogue
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: 9f82608f-3962-43bf-bbe2-4109a4e4841b
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: 100
+      y: 100
+      width: 100
+      height: 100
+    name: Start
+  nodes:
+  - id: 0
+  - id: 1
+  edges:
+  - id: 2
+  properties:
+  - id: 3
+  - id: 4
+  - id: 5
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 40fcdb0b-fd04-4705-99ad-239c6341f1e3
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1321.6
+          y: -111.2
+          width: 208
+          height: 148.8
+        actor: Siren
+        actorProfile: {fileID: 11400000, guid: 248564487092e3945ac69afb6d1c3d6a, type: 2}
+        useActorProfile: 1
+        message: You stumbled on my evil lair huehueuhe
+    00000001:
+      type: {class: ConditionalNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 89f0ce36-c5d4-43e0-814e-01aec2f5c145
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1119.2
+          y: -212.8
+          width: 156
+          height: 100.8
+    00000002:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 89f0ce36-c5d4-43e0-814e-01aec2f5c145
+          port: true
+        input:
+          node: 40fcdb0b-fd04-4705-99ad-239c6341f1e3
+          port: previous
+    00000003:
+      type: {class: ActorProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 2a750137-84a1-4b19-bc56-503059dd6007
+        name: Actor
+        value: {fileID: 0}
+        initialValue: {fileID: 11400000, guid: 248564487092e3945ac69afb6d1c3d6a, type: 2}
+    00000004:
+      type: {class: BooleanProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: cc613a43-025a-4c35-99be-f914b4f2517f
+        name: intro dialogue
+        value: 0
+        initialValue: 0
+    00000005:
+      type: {class: EventProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 03f6986d-30ef-42e5-b430-d5d0840bdcf9
+        name: New event
