@@ -54,16 +54,14 @@ public class DialogueController : MonoBehaviour
     private void HandleActorMessageEvent(ActorMessageEvent evt)
     {
         var charName = evt.Actor == null ? "" : evt.Actor.DisplayName;
-        var avatar = evt.Actor is Character character ? character.Avatar :
-             evt.Actor is DemoActor demoActor ? demoActor.Avatar : null;
+        var avatar = evt.Actor is Character character ? character.Avatar : evt.Actor is DemoActor demoActor ? demoActor.Avatar : null;
         dialogueUI.ShowMessage(charName, evt.Message, evt.Advance, avatar);
     }
 
     private void HandleActorChoiceEvent(ActorChoiceEvent evt)
     {
         var charName = evt.Actor == null ? "" : evt.Actor.DisplayName;
-        var avatar = evt.Actor is Character character ? character.Avatar :
-             evt.Actor is DemoActor demoActor ? demoActor.Avatar : null;
+        var avatar = evt.Actor is Character character ? character.Avatar : evt.Actor is DemoActor demoActor ? demoActor.Avatar : null;
         dialogueUI.ShowChoice(charName, evt.Message, evt.Options, avatar);
     }
 

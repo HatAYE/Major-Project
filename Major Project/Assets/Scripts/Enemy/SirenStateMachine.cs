@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 public enum EnemyState
 {
@@ -14,6 +12,9 @@ public class SirenStateMachine : MonoBehaviour
 {
     public EnemyState currentState;
     GameObject player;
+    [SerializeField] DialogueController startingDialogue;
+    [SerializeField] DialogueController endingDialogue;
+
     void Start()
     {
         TransitionToState(EnemyState.Idle);
@@ -29,6 +30,7 @@ public class SirenStateMachine : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             TransitionToState(EnemyState.FinalDialogue);
+            currentState = EnemyState.FinalDialogue;
         }
         switch (currentState)
         {
@@ -75,8 +77,12 @@ public class SirenStateMachine : MonoBehaviour
         }
 
         //PLAY DIALOGUE
-        //ONCE COMPLETED, TRANSITION TO ATTACKING
-        TransitionToState(EnemyState.Attacking);
+        if (startingDialogue != null)
+        {
+            startingDialogue.BeginDialogue();
+            //ONCE COMPLETED, TRANSITION TO ATTACKING
+            startingDialogue.OnDialogueEnd += () => TransitionToState(EnemyState.Attacking);
+        }
     }
 
     bool attacked;
@@ -92,11 +98,17 @@ public class SirenStateMachine : MonoBehaviour
             attacked=true;
         }
     }
+
     bool gaveHeart=false;
     void FinalDialogue()
     {
         //PLAY DIALOGUE
-        //PLAY ANIMATION OF SIREN GIVING A HEART
+        if (endingDialogue != null)
+        {
+            endingDialogue.BeginDialogue();
+            //PLAY ANIMATION OF SIREN GIVING A HEART
+            //endingDialogue.OnDialogueEnd += () => the function/line to play the animation;
+        }
         //GIVE PLAYER A HEART
         if (!gaveHeart)
         {
@@ -136,5 +148,4 @@ public class SirenStateMachine : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
     }
-
 }
