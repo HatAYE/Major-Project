@@ -7,9 +7,13 @@ public class Projectile : MonoBehaviour
     public GameObject parentEnemy;
     public bool gotDeflected;
     GameObject player;
+    Rigidbody2D rb;
+    public Rigidbody2D Rb { get => rb; }
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        rb = player.GetComponent<Rigidbody2D>();
     }
 
     private void Update()
