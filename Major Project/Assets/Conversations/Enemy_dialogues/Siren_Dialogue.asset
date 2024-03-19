@@ -25,12 +25,11 @@ MonoBehaviour:
   nodes:
   - id: 0
   - id: 1
-  edges:
   - id: 2
-  properties:
+  edges:
   - id: 3
   - id: 4
-  - id: 5
+  properties: []
   stickyNotes: []
   groups: []
   references:
@@ -60,6 +59,20 @@ MonoBehaviour:
           width: 156
           height: 100.8
     00000002:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 289.6
+          y: 100
+          width: 208
+          height: 134.4
+        actor: siren
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: hi im gonna eat you
+    00000003:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
@@ -68,22 +81,12 @@ MonoBehaviour:
         input:
           node: 40fcdb0b-fd04-4705-99ad-239c6341f1e3
           port: previous
-    00000003:
-      type: {class: ActorProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
-      data:
-        <Guid>k__BackingField: 2a750137-84a1-4b19-bc56-503059dd6007
-        name: Actor
-        value: {fileID: 0}
-        initialValue: {fileID: 11400000, guid: 248564487092e3945ac69afb6d1c3d6a, type: 2}
     00000004:
-      type: {class: BooleanProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
-        <Guid>k__BackingField: cc613a43-025a-4c35-99be-f914b4f2517f
-        name: intro dialogue
-        value: 0
-        initialValue: 0
-    00000005:
-      type: {class: EventProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
-      data:
-        <Guid>k__BackingField: 03f6986d-30ef-42e5-b430-d5d0840bdcf9
-        name: New event
+        output:
+          node: 9f82608f-3962-43bf-bbe2-4109a4e4841b
+          port: next
+        input:
+          node: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
+          port: previous

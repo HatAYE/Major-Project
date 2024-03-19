@@ -19,11 +19,11 @@ public class Shield : MonoBehaviour
     {
         if (collision.gameObject.name.StartsWith("Projectile"))
         {            
-            Vector2 direction = collision.gameObject.GetComponent<Projectile>().parentEnemy.transform.position + new Vector3 (0,3.5f,0);
+            Vector2 direction = (collision.gameObject.GetComponent<Projectile>().parentEnemy.transform.position - collision.transform.position).normalized;
             Rigidbody2D projectileRigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
             if (projectileRigidbody != null)
             {
-                projectileRigidbody.velocity = direction;
+                projectileRigidbody.velocity = direction*12;
             }
             collision.gameObject.GetComponent<Projectile>().gotDeflected = true;
         }

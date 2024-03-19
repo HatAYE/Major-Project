@@ -14,12 +14,21 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        float distanceThreshold = 0.1f; // Adjust the threshold as needed
-
-        if (Vector2.Distance(transform.position, player.transform.position) < distanceThreshold)
+        if (Vector2.Distance(transform.position, player.transform.position) < 1)
         {
             if(!gotDeflected)
             Destroy(gameObject);
+        }
+
+        if (Vector2.Distance(transform.position, player.transform.position) >20)
+            Destroy(gameObject);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject==parentEnemy.gameObject)
+        {
+            if(gotDeflected)
+            parentEnemy.GetComponent<FlyingEnemy>().gotHit = true;
         }
     }
 }

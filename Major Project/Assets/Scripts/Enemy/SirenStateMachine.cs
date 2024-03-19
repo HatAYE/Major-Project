@@ -1,3 +1,4 @@
+using Conversa.Runtime;
 using System.Collections;
 using UnityEngine;
 public enum EnemyState
@@ -12,8 +13,10 @@ public class SirenStateMachine : MonoBehaviour
 {
     public EnemyState currentState;
     GameObject player;
-    [SerializeField] DialogueController startingDialogue;
-    [SerializeField] DialogueController endingDialogue;
+    [SerializeField] GameObject attackPrefab;
+    [SerializeField] Conversation startingConvo;
+    [SerializeField] Conversation endingConvo;
+    [SerializeField] DialogueController dialogueController;
 
     void Start()
     {
@@ -23,15 +26,6 @@ public class SirenStateMachine : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            TransitionToState(EnemyState.Attacking);
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            TransitionToState(EnemyState.FinalDialogue);
-            currentState = EnemyState.FinalDialogue;
-        }
         switch (currentState)
         {
             case EnemyState.Idle:
@@ -69,52 +63,79 @@ public class SirenStateMachine : MonoBehaviour
 
     void DialogueState()
     {
-        GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
+        /*GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
 
         foreach (GameObject door in doors)
         {
             //play door closing animation
-        }
+        }*/
 
-        //PLAY DIALOGUE
-        if (startingDialogue != null)
+        StartCoroutine(BeginDialogue());
+    }
+
+    IEnumerator BeginDialogue()
+    {
+        if (dialogueController != null)
         {
-            startingDialogue.BeginDialogue();
-            //ONCE COMPLETED, TRANSITION TO ATTACKING
-            startingDialogue.OnDialogueEnd += () => TransitionToState(EnemyState.Attacking);
+            dialogueController.NewConversation(startingConvo);
+            dialogueController.BeginDialogue();
+            yield return new WaitForSeconds(1);
+            dialogueController.OnDialogueEnd += () => TransitionToState(EnemyState.Attacking);
         }
     }
 
     bool attacked;
     void AttackingState()
     {
-        //THROW  3 PROJECTILES IN A STRAIGHT LINE 3 TIMES, PAUSING IN BETWEEN EACH
-        //ONCE COMPLETED, TRANSITION TO FINAL DIALOGUE
-         
-        Vector2 attackDirection = player.transform.position;
         if (!attacked)
         {
-            StartCoroutine(AttackRoutine(attackDirection));
+            StartCoroutine(AttackRoutine());
             attacked=true;
         }
     }
+    IEnumerator AttackRoutine()
+    {
+        Vector2 attackDirection = player.transform.position;
+        for (int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(1.5f);
+            for (int j = 0; j < 3; j++)
+            {
+                GameObject projectile = Instantiate(attackPrefab, transform.position, Quaternion.identity);
+                Vector2 targetDirection = ((Vector3) attackDirection - projectile.transform.position).normalized;
 
+                Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
+                projectileRb.velocity = targetDirection * 8;
+                projectile.GetComponent<Projectile>().parentEnemy = gameObject;
+
+                yield return new WaitForSeconds(1f);
+            }
+            yield return new WaitForSeconds(1);
+        }
+        
+        TransitionToState(EnemyState.FinalDialogue);
+    }
     bool gaveHeart=false;
     void FinalDialogue()
     {
-        //PLAY DIALOGUE
-        if (endingDialogue != null)
+        StartCoroutine(finalDialogue());
+    }
+    IEnumerator finalDialogue()
+    {
+        if (dialogueController != null)
         {
-            endingDialogue.BeginDialogue();
+            dialogueController.NewConversation(endingConvo);
+             dialogueController.BeginDialogue();
             //PLAY ANIMATION OF SIREN GIVING A HEART
-            //endingDialogue.OnDialogueEnd += () => the function/line to play the animation;
+            dialogueController.OnDialogueEnd += () => TransitionToState(EnemyState.Die);
+            yield return new WaitForSeconds(1);
         }
-        //GIVE PLAYER A HEART
         if (!gaveHeart)
         {
             player.GetComponent<HealthSystem>().hp++;
             gaveHeart = true;
         }
+        //TransitionToState(EnemyState.Die);
     }
     void DieState()
     {
@@ -128,24 +149,6 @@ public class SirenStateMachine : MonoBehaviour
     }
 
 
-    [SerializeField] GameObject attackPrefab;
-    IEnumerator AttackRoutine(Vector3 direction)
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            yield return new WaitForSeconds(1.5f);
-            for (int j = 0; j < 3; j++)
-            {
-                GameObject projectile = Instantiate(attackPrefab, transform.position, Quaternion.identity);
-                Vector2 targetDirection = (direction - projectile.transform.position).normalized;
-
-                Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
-                projectileRb.velocity = targetDirection * 8;
-                projectile.GetComponent<Projectile>().parentEnemy = gameObject;
-                
-                yield return new WaitForSeconds(1f);
-            }
-            yield return new WaitForSeconds(1);
-        }
-    }
+    
+    
 }

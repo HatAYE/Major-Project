@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8165597119610341460}
   - component: {fileID: 8165597119610341463}
   - component: {fileID: 8165597119610341462}
+  - component: {fileID: 8165597119391756632}
   m_Layer: 0
   m_Name: Siren
   m_TagString: Untagged
@@ -96,4 +97,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  startingConvo: {fileID: 11400000, guid: c48801f99ccddf6468c9058c99a7fc02, type: 2}
+  endingConvo: {fileID: 11400000, guid: 335f11779951bd6498987c801ec1b382, type: 2}
+  dialogueController: {fileID: 8165597119391756632}
   attackPrefab: {fileID: 2881932690406791399, guid: 265272d525d37284497065c8101991bd, type: 3}
+--- !u!114 &8165597119391756632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8165597119610341801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f823b73cf9a188f4bbf0fb38a391e31f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conversation: {fileID: 0}
