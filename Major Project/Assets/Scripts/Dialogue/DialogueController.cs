@@ -11,7 +11,7 @@ public class DialogueController : MonoBehaviour
     public Action<string> OnEventTrigger;
     public Action OnDialogueEnd;
     DialogueUI dialogueUI;
-    public ConversationRunner runner;
+    ConversationRunner runner;
 
     private void Awake()
     {
