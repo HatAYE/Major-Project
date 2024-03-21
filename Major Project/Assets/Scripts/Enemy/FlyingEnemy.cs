@@ -3,53 +3,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingEnemy : MonoBehaviour
+public class FlyingEnemy : Enemy
 {
-    public enum EnemyState
-    {
-        Idle,
-        Dialogue,
-        Attacking,
-        Die
-    }
-    GameObject player;
-    [SerializeField] EnemyState currentState;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] DialogueController dialogueController;
+    [SerializeField] float attackPause;
+    [HideInInspector] public bool gotHit;
+    bool startDialogue;
     void Start()
     {
-        currentState = EnemyState.Idle;
-        player = GameObject.FindGameObjectWithTag("Player");
+        base.Start();
     }
 
     void Update()
     {
-        switch (currentState)
-        {
-            case EnemyState.Idle:
-                IdleState();
-                break;
-            case EnemyState.Dialogue:
-                DialogueState();
-                break;
-            case EnemyState.Attacking:
-                AttackingState();
-                break;
-            case EnemyState.Die:
-                DieState();
-                break;
+        base.Update();
+        if (currentState == EnemyState.dialogue1)
+            DialogueState();
 
-            default:
-                break;
+        if (playerInRadius && !startDialogue)
+        {
+            TransitionToState(EnemyState.dialogue1);
+            startDialogue = true;
         }
 
         if (gotHit)
         {
-            currentState=EnemyState.Die;
+            currentState=EnemyState.die;
         }
     }
-
-    void IdleState()
+    protected override void IdleState()
     {
         float amplitude = 0.002f;
         float speed = 1f;
@@ -58,9 +41,9 @@ public class FlyingEnemy : MonoBehaviour
         float newY = initialY + amplitude * Mathf.Sin(speed * Time.time);
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
-
     void DialogueState()
     {
+        startDialogue = false;
         StartCoroutine(Dialogue());
     }
     IEnumerator Dialogue()
@@ -68,19 +51,24 @@ public class FlyingEnemy : MonoBehaviour
         if (dialogueController != null)
         {
             dialogueController.BeginDialogue();
-            dialogueController.OnDialogueEnd += () => currentState = EnemyState.Attacking;
+            dialogueController.OnDialogueEnd += () => currentState = EnemyState.attack;
             yield return new WaitForSeconds(1);
         }
     }
     bool isAttacking;
-    void AttackingState()
+    float attackTimer = 10;
+    protected override void AttackingState()
     {
         if (!isAttacking)
         {
-            StartCoroutine(Attack());
+            attackTimer -= 0.05f;
+            if (attackTimer <= 0)
+            {
+                StartCoroutine(Attack());
+                attackTimer = 0;
+            }
         }
     }
-
     IEnumerator Attack()
     {
         isAttacking = true;
@@ -105,7 +93,7 @@ public class FlyingEnemy : MonoBehaviour
         rightProjectile.GetComponent<Rigidbody2D>().velocity = rightTargetDirection * 8;
         rightProjectile.GetComponent<Projectile>().parentEnemy = gameObject;
         isAttacking = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(attackPause);
         isAttacking = false;
 
     }
@@ -118,18 +106,11 @@ public class FlyingEnemy : MonoBehaviour
             vector.x * sinAngle + vector.y * cosAngle
         );
     }
-    public bool gotHit;
-    void DieState()
+    protected override void DieState()
     {
         //PLAY ANIMATION
+        Destroy(areaDetector);
         Destroy(gameObject);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject == player.gameObject)
-        {
-            currentState = EnemyState.Dialogue;
-        }
-    }
+    
 }

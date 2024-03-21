@@ -1,18 +1,8 @@
 using Conversa.Runtime;
 using System.Collections;
 using UnityEngine;
-public enum EnemyState
+public class SirenStateMachine : Enemy
 {
-    Idle,
-    Dialogue,
-    Attacking,
-    FinalDialogue,
-    Die
-}
-public class SirenStateMachine : MonoBehaviour
-{
-    public EnemyState currentState;
-    GameObject player;
     [SerializeField] GameObject attackPrefab;
     [SerializeField] Conversation startingConvo;
     [SerializeField] Conversation endingConvo;
@@ -20,36 +10,31 @@ public class SirenStateMachine : MonoBehaviour
 
     void Start()
     {
-        TransitionToState(EnemyState.Idle);
-        player = GameObject.FindGameObjectWithTag("Player");
+        base.Start();
     }
 
     void Update()
     {
+        base.Update();
         switch (currentState)
         {
-            case EnemyState.Idle:
-                IdleState();
-                break;
-            case EnemyState.Dialogue:
+            case EnemyState.dialogue1:
                 DialogueState();
                 break;
-            case EnemyState.Attacking:
-                AttackingState();
-                break;
-            case EnemyState.FinalDialogue:
+            case EnemyState.dialogue2:
                 FinalDialogue();
                 break;
-            case EnemyState.Die:
-                DieState(); 
-                break;
-
             default:
                 break;
         }
+        if (playerInRadius)
+        {
+            TransitionToState(EnemyState.dialogue1);
+            playerInRadius = false;
+        }
     }
 
-    void IdleState()
+    protected override void IdleState()
     {
         //PLAY IDLE ANIMATION
 
@@ -70,27 +55,27 @@ public class SirenStateMachine : MonoBehaviour
             //play door closing animation
         }*/
 
-        StartCoroutine(BeginDialogue());
+        StartCoroutine(BeginDialogueCoroutine());
     }
 
-    IEnumerator BeginDialogue()
+    IEnumerator BeginDialogueCoroutine()
     {
         if (dialogueController != null)
         {
             dialogueController.NewConversation(startingConvo);
             dialogueController.BeginDialogue();
+            dialogueController.OnDialogueEnd += () => TransitionToState(EnemyState.attack);
             yield return new WaitForSeconds(1);
-            dialogueController.OnDialogueEnd += () => TransitionToState(EnemyState.Attacking);
         }
     }
 
     bool attacked;
-    void AttackingState()
+    protected override void AttackingState()
     {
         if (!attacked)
         {
             StartCoroutine(AttackRoutine());
-            attacked=true;
+            attacked = true;
         }
     }
     IEnumerator AttackRoutine()
@@ -113,21 +98,21 @@ public class SirenStateMachine : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
         
-        TransitionToState(EnemyState.FinalDialogue);
+        TransitionToState(EnemyState.dialogue2);
     }
     bool gaveHeart=false;
     void FinalDialogue()
     {
-        StartCoroutine(finalDialogue());
+        StartCoroutine(finalDialogueCoroutine());
     }
-    IEnumerator finalDialogue()
+    IEnumerator finalDialogueCoroutine()
     {
         if (dialogueController != null)
         {
             dialogueController.NewConversation(endingConvo);
              dialogueController.BeginDialogue();
             //PLAY ANIMATION OF SIREN GIVING A HEART
-            dialogueController.OnDialogueEnd += () => TransitionToState(EnemyState.Die);
+            dialogueController.OnDialogueEnd += () => TransitionToState(EnemyState.die);
             yield return new WaitForSeconds(1);
         }
         if (!gaveHeart)
@@ -135,20 +120,11 @@ public class SirenStateMachine : MonoBehaviour
             player.GetComponent<HealthSystem>().hp++;
             gaveHeart = true;
         }
-        //TransitionToState(EnemyState.Die);
+        yield return new WaitForSeconds(1.5f);
     }
-    void DieState()
+    protected override void DieState()
     {
         //PLAY POOF ANIMATION
         Destroy(gameObject);
     }
-
-    public void TransitionToState(EnemyState newState)
-    {
-        currentState = newState;
-    }
-
-
-    
-    
 }
