@@ -16,8 +16,8 @@ public class SirenStateMachine : Enemy
 
     void Update()
     {
-        base.Update();
-        switch (currentState)
+        //base.Update();
+        /*switch (currentState)
         {
             case EnemyState.dialogue1:
                 DialogueState();
@@ -27,12 +27,31 @@ public class SirenStateMachine : Enemy
                 break;
             default:
                 break;
-        }
+        }*/
         if (playerInRadius)
         {
-            TransitionToState(EnemyState.dialogue1);
+            //TransitionToState(EnemyState.dialogue1);
+            StartCoroutine(EnemyBehavior());
             playerInRadius = false;
         }
+    }
+
+    IEnumerator EnemyBehavior()
+    {
+        yield return BeginDialogueCoroutine();
+        
+        yield return new WaitUntil(() => currentState == EnemyState.attack);
+
+        // attack logic
+        yield return AttackRoutine();
+
+        // dialogue ending
+        yield return FinalDialogueCoroutine();
+
+        yield return new WaitUntil(() => currentState == EnemyState.die);
+        // go home
+        DieState();
+        // any logic for resuming player control
     }
 
     protected override void IdleState()
@@ -104,9 +123,9 @@ public class SirenStateMachine : Enemy
     bool gaveHeart=false;
     void FinalDialogue()
     {
-        StartCoroutine(finalDialogueCoroutine());
+        StartCoroutine(FinalDialogueCoroutine());
     }
-    IEnumerator finalDialogueCoroutine()
+    IEnumerator FinalDialogueCoroutine()
     {
         if (dialogueController != null)
         {
