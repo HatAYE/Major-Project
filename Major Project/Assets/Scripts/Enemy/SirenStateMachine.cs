@@ -11,6 +11,7 @@ public class SirenStateMachine : Enemy
     void Start()
     {
         base.Start();
+        dialogueController.OnEventTrigger += MangoEater;
     }
 
     void Update()
@@ -121,6 +122,14 @@ public class SirenStateMachine : Enemy
             gaveHeart = true;
         }
         yield return new WaitForSeconds(1.5f);
+    }
+
+    void MangoEater(string eventName)
+    {
+        if (eventName== "ate mango")
+        {
+            Debug.Log("AAAA");
+        }
     }
     protected override void DieState()
     {

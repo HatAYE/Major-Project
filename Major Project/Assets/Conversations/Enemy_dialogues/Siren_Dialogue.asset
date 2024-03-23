@@ -26,39 +26,19 @@ MonoBehaviour:
   - id: 0
   - id: 1
   - id: 2
-  edges:
   - id: 3
+  edges:
   - id: 4
-  properties: []
+  - id: 5
+  - id: 6
+  - id: 7
+  properties:
+  - id: 8
   stickyNotes: []
   groups: []
   references:
     version: 1
     00000000:
-      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
-      data:
-        <Guid>k__BackingField: 40fcdb0b-fd04-4705-99ad-239c6341f1e3
-        <NodeRect>k__BackingField:
-          serializedVersion: 2
-          x: 1321.6
-          y: -111.2
-          width: 208
-          height: 148.8
-        actor: Siren
-        actorProfile: {fileID: 11400000, guid: 248564487092e3945ac69afb6d1c3d6a, type: 2}
-        useActorProfile: 1
-        message: You stumbled on my evil lair huehueuhe
-    00000001:
-      type: {class: ConditionalNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
-      data:
-        <Guid>k__BackingField: 89f0ce36-c5d4-43e0-814e-01aec2f5c145
-        <NodeRect>k__BackingField:
-          serializedVersion: 2
-          x: 1119.2
-          y: -212.8
-          width: 156
-          height: 100.8
-    00000002:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
       data:
         <Guid>k__BackingField: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
@@ -69,18 +49,59 @@ MonoBehaviour:
           width: 208
           height: 134.4
         actor: siren
+        actorProfile: {fileID: 11400000, guid: 7fe69b7c84d010d448228dfb96a6b08d, type: 2}
+        useActorProfile: 1
+        message: hi im gonna eat you
+    00000001:
+      type: {class: ChoiceNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 9fc74f75-fa0c-45d6-832d-e6b20e82cbdf
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 616
+          y: -21.599998
+          width: 208
+          height: 203.20001
+        actor: 
+        actorProfile: {fileID: 11400000, guid: 7fe69b7c84d010d448228dfb96a6b08d, type: 2}
+        useActorProfile: 1
+        message: mango?
+        options:
+        - guid: yes
+          label: Yes
+        - guid: no
+          label: No
+        - guid: c59c70ce-6245-4e71-9d84-13424c2f5c5c
+          label: throw away
+    00000002:
+      type: {class: EventNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 235e15c2-fa62-4ce8-b402-9d23aeaf310f
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 955.2
+          y: 20
+          width: 182.40002
+          height: 100.8
+        stopsFlow: 0
+        eventGuid: f9f86f03-4d00-4681-be5b-c8cf178b6ada
+        eventName: ate mango
+    00000003:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 55342466-d9dd-4637-a52f-ab1b8c8962f9
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1301.6
+          y: -13.599998
+          width: 208
+          height: 134.4
+        actor: player
         actorProfile: {fileID: 0}
         useActorProfile: 0
-        message: hi im gonna eat you
-    00000003:
-      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
-      data:
-        output:
-          node: 89f0ce36-c5d4-43e0-814e-01aec2f5c145
-          port: true
-        input:
-          node: 40fcdb0b-fd04-4705-99ad-239c6341f1e3
-          port: previous
+        message: 'oomf
+
+'
     00000004:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
@@ -90,3 +111,35 @@ MonoBehaviour:
         input:
           node: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
           port: previous
+    00000005:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
+          port: next
+        input:
+          node: 9fc74f75-fa0c-45d6-832d-e6b20e82cbdf
+          port: previous
+    00000006:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 9fc74f75-fa0c-45d6-832d-e6b20e82cbdf
+          port: yes
+        input:
+          node: 235e15c2-fa62-4ce8-b402-9d23aeaf310f
+          port: previous
+    00000007:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 235e15c2-fa62-4ce8-b402-9d23aeaf310f
+          port: next
+        input:
+          node: 55342466-d9dd-4637-a52f-ab1b8c8962f9
+          port: previous
+    00000008:
+      type: {class: EventProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: f9f86f03-4d00-4681-be5b-c8cf178b6ada
+        name: ate mango
