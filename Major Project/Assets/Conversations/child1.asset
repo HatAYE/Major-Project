@@ -1,0 +1,204 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: child1
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: 9aa3dc13-c8c4-4f96-901a-c1a0672a056f
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: 100
+      y: 100
+      width: 100
+      height: 100
+    name: Start
+  nodes:
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
+  - id: 4
+  - id: 5
+  edges:
+  - id: 6
+  - id: 7
+  - id: 8
+  - id: 9
+  - id: 10
+  - id: 11
+  properties:
+  - id: 12
+  - id: 13
+  - id: 14
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 72b9d10c-59d5-434f-b8e2-f804520ceaea
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 248.8
+          y: 65.600006
+          width: 208
+          height: 148.79999
+        actor: Actor name
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: Can you share some of your warmth?
+    00000001:
+      type: {class: ChoiceNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: a335f4c1-7a46-47e1-8d1b-42817201ebf0
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 532.8
+          y: 48
+          width: 208
+          height: 166.4
+        actor: Player
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: 
+        options:
+        - guid: yes
+          label: Share your light
+        - guid: no
+          label: Refuse
+    00000002:
+      type: {class: EventNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 59a86744-dfa0-4806-9ede-8e53ddff3258
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1068
+          y: 14.400002
+          width: 181.59998
+          height: 100.799995
+        stopsFlow: 0
+        eventGuid: a5504e80-ea08-4df7-b9a9-4e2717972abb
+        eventName: shared light
+    00000003:
+      type: {class: EventNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 01bea246-8926-4395-a39e-23e80d4656e5
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1068
+          y: 214.4
+          width: 182.3999
+          height: 100.80002
+        stopsFlow: 0
+        eventGuid: 39cc1347-0c3e-46ec-97db-26f5ef004388
+        eventName: refuse
+    00000004:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: de88c1c3-365a-4691-a6b5-796ae08f59ee
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 780.8
+          y: 14.400002
+          width: 208
+          height: 134.4
+        actor: Actor name
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: Thank you..
+    00000005:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 0f71462f-3b0d-4470-871d-b351856c7d3c
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 780.8
+          y: 180
+          width: 208
+          height: 134.4
+        actor: Actor name
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: . . .
+    00000006:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 9aa3dc13-c8c4-4f96-901a-c1a0672a056f
+          port: next
+        input:
+          node: 72b9d10c-59d5-434f-b8e2-f804520ceaea
+          port: previous
+    00000007:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 72b9d10c-59d5-434f-b8e2-f804520ceaea
+          port: next
+        input:
+          node: a335f4c1-7a46-47e1-8d1b-42817201ebf0
+          port: previous
+    00000008:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: a335f4c1-7a46-47e1-8d1b-42817201ebf0
+          port: yes
+        input:
+          node: de88c1c3-365a-4691-a6b5-796ae08f59ee
+          port: previous
+    00000009:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: de88c1c3-365a-4691-a6b5-796ae08f59ee
+          port: next
+        input:
+          node: 59a86744-dfa0-4806-9ede-8e53ddff3258
+          port: previous
+    0000000A:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: a335f4c1-7a46-47e1-8d1b-42817201ebf0
+          port: no
+        input:
+          node: 0f71462f-3b0d-4470-871d-b351856c7d3c
+          port: previous
+    0000000B:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 0f71462f-3b0d-4470-871d-b351856c7d3c
+          port: next
+        input:
+          node: 01bea246-8926-4395-a39e-23e80d4656e5
+          port: previous
+    0000000C:
+      type: {class: FloatProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 83ca1026-df07-41e3-8b3b-5f9be1286213
+        name: essence
+        value: 0
+        initialValue: 0
+    0000000D:
+      type: {class: EventProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: a5504e80-ea08-4df7-b9a9-4e2717972abb
+        name: shared light
+    0000000E:
+      type: {class: EventProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 39cc1347-0c3e-46ec-97db-26f5ef004388
+        name: refuse
