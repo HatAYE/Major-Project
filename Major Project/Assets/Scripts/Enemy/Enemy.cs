@@ -41,9 +41,9 @@ public abstract class Enemy : MonoBehaviour
     protected abstract void IdleState();
     protected abstract void AttackingState();
     protected abstract void DieState();
+   // protected abstract IEnumerator EnemyBehavior();
     protected void TransitionToState(EnemyState newState)
     {
         currentState = newState;
     }
-
 }
