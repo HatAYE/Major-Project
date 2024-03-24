@@ -13,7 +13,6 @@ public class Controls : MonoBehaviour
 
     #region movement variables
     [SerializeField] float playerSpeed;
-    bool isMoving = false;
     bool movingRight;
     bool movingLeft;
     #endregion
@@ -87,7 +86,6 @@ public class Controls : MonoBehaviour
         {
             movingRight = false;
             movingLeft = true;
-            isMoving = true;
 
             if (!isCrouching)
             {
@@ -106,7 +104,6 @@ public class Controls : MonoBehaviour
         {
             movingRight=true;
             movingLeft = false;
-            isMoving = true;
 
             if (!isCrouching)
             {

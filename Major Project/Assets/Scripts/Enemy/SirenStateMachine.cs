@@ -1,61 +1,59 @@
+using Conversa.Runtime;
 using System.Collections;
 using UnityEngine;
-public enum EnemyState
+public class SirenStateMachine : Enemy
 {
-    Idle,
-    Dialogue,
-    Attacking,
-    FinalDialogue,
-    Die
-}
-public class SirenStateMachine : MonoBehaviour
-{
-    public EnemyState currentState;
-    GameObject player;
-    [SerializeField] DialogueController startingDialogue;
-    [SerializeField] DialogueController endingDialogue;
+    [SerializeField] GameObject attackPrefab;
+    [SerializeField] Conversation startingConvo;
+    [SerializeField] Conversation endingConvo;
+    [SerializeField] DialogueController dialogueController;
 
     void Start()
     {
-        TransitionToState(EnemyState.Idle);
-        player = GameObject.FindGameObjectWithTag("Player");
+        base.Start();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        //base.Update();
+        /*switch (currentState)
         {
-            TransitionToState(EnemyState.Attacking);
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            TransitionToState(EnemyState.FinalDialogue);
-            currentState = EnemyState.FinalDialogue;
-        }
-        switch (currentState)
-        {
-            case EnemyState.Idle:
-                IdleState();
-                break;
-            case EnemyState.Dialogue:
+            case EnemyState.dialogue1:
                 DialogueState();
                 break;
-            case EnemyState.Attacking:
-                AttackingState();
-                break;
-            case EnemyState.FinalDialogue:
+            case EnemyState.dialogue2:
                 FinalDialogue();
                 break;
-            case EnemyState.Die:
-                DieState(); 
-                break;
-
             default:
                 break;
+        }*/
+        if (playerInRadius)
+        {
+            //TransitionToState(EnemyState.dialogue1);
+            StartCoroutine(EnemyBehavior());
+            playerInRadius = false;
         }
     }
 
-    void IdleState()
+    IEnumerator EnemyBehavior()
+    {
+        yield return BeginDialogueCoroutine();
+        
+        yield return new WaitUntil(() => currentState == EnemyState.attack);
+
+        // attack logic
+        yield return AttackRoutine();
+
+        // dialogue ending
+        yield return FinalDialogueCoroutine();
+
+        yield return new WaitUntil(() => currentState == EnemyState.die);
+        // go home
+        DieState();
+        // any logic for resuming player control
+    }
+
+    protected override void IdleState()
     {
         //PLAY IDLE ANIMATION
 
@@ -69,83 +67,84 @@ public class SirenStateMachine : MonoBehaviour
 
     void DialogueState()
     {
-        GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
+        /*GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
 
         foreach (GameObject door in doors)
         {
             //play door closing animation
-        }
+        }*/
 
-        //PLAY DIALOGUE
-        if (startingDialogue != null)
+        StartCoroutine(BeginDialogueCoroutine());
+    }
+
+    IEnumerator BeginDialogueCoroutine()
+    {
+        if (dialogueController != null)
         {
-            startingDialogue.BeginDialogue();
-            //ONCE COMPLETED, TRANSITION TO ATTACKING
-            startingDialogue.OnDialogueEnd += () => TransitionToState(EnemyState.Attacking);
+            dialogueController.NewConversation(startingConvo);
+            dialogueController.BeginDialogue();
+            dialogueController.OnDialogueEnd += () => TransitionToState(EnemyState.attack);
+            yield return new WaitForSeconds(1);
         }
     }
 
     bool attacked;
-    void AttackingState()
+    protected override void AttackingState()
     {
-        //THROW  3 PROJECTILES IN A STRAIGHT LINE 3 TIMES, PAUSING IN BETWEEN EACH
-        //ONCE COMPLETED, TRANSITION TO FINAL DIALOGUE
-         
-        Vector2 attackDirection = player.transform.position;
         if (!attacked)
         {
-            StartCoroutine(AttackRoutine(attackDirection));
-            attacked=true;
+            StartCoroutine(AttackRoutine());
+            attacked = true;
         }
     }
-
-    bool gaveHeart=false;
-    void FinalDialogue()
+    IEnumerator AttackRoutine()
     {
-        //PLAY DIALOGUE
-        if (endingDialogue != null)
-        {
-            endingDialogue.BeginDialogue();
-            //PLAY ANIMATION OF SIREN GIVING A HEART
-            //endingDialogue.OnDialogueEnd += () => the function/line to play the animation;
-        }
-        //GIVE PLAYER A HEART
-        if (!gaveHeart)
-        {
-            player.GetComponent<HealthSystem>().hp++;
-            gaveHeart = true;
-        }
-    }
-    void DieState()
-    {
-        //PLAY POOF ANIMATION
-        Destroy(gameObject);
-    }
-
-    public void TransitionToState(EnemyState newState)
-    {
-        currentState = newState;
-    }
-
-
-    [SerializeField] GameObject attackPrefab;
-    IEnumerator AttackRoutine(Vector3 direction)
-    {
+        Vector2 attackDirection = player.transform.position;
         for (int i = 0; i < 3; i++)
         {
             yield return new WaitForSeconds(1.5f);
             for (int j = 0; j < 3; j++)
             {
                 GameObject projectile = Instantiate(attackPrefab, transform.position, Quaternion.identity);
-                Vector2 targetDirection = (direction - projectile.transform.position).normalized;
+                Vector2 targetDirection = ((Vector3) attackDirection - projectile.transform.position).normalized;
 
                 Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
                 projectileRb.velocity = targetDirection * 8;
                 projectile.GetComponent<Projectile>().parentEnemy = gameObject;
-                
+
                 yield return new WaitForSeconds(1f);
             }
             yield return new WaitForSeconds(1);
         }
+        
+        TransitionToState(EnemyState.dialogue2);
+    }
+    bool gaveHeart=false;
+    void FinalDialogue()
+    {
+        StartCoroutine(FinalDialogueCoroutine());
+    }
+    IEnumerator FinalDialogueCoroutine()
+    {
+        if (dialogueController != null)
+        {
+            dialogueController.NewConversation(endingConvo);
+             dialogueController.BeginDialogue();
+            //PLAY ANIMATION OF SIREN GIVING A HEART
+            dialogueController.OnDialogueEnd += () => TransitionToState(EnemyState.die);
+            yield return new WaitForSeconds(1);
+        }
+        if (!gaveHeart)
+        {
+            player.GetComponent<HealthSystem>().hp++;
+            gaveHeart = true;
+        }
+        yield return new WaitForSeconds(1.5f);
+    }
+    protected override void DieState()
+    {
+        //PLAY POOF ANIMATION
+        Destroy(areaDetector);
+        Destroy(gameObject);
     }
 }

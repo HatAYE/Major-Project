@@ -6,11 +6,11 @@ public class Shield : MonoBehaviour
     {
         if (collision.TryGetComponent(out Projectile projectile))
         {            
-            Vector2 direction = projectile.parentEnemy.transform.position + new Vector3 (0,3.5f,0);
+            Vector2 direction = (projectile.parentEnemy.transform.position - collision.transform.position).normalized;
             Rigidbody2D projectileRigidbody = projectile.Rb;
             if (projectileRigidbody != null)
             {
-                projectileRigidbody.velocity = direction;
+                projectileRigidbody.velocity = direction*12;
             }
             projectile.gotDeflected = true;
         }

@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: npc0
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: f4cec207-86eb-49e5-968b-3c288fe1d1d2
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: 31.2
+      y: 110.399994
+      width: 86.4
+      height: 40
+    name: Start
+  nodes:
+  - id: 0
+  edges:
+  - id: 1
+  properties: []
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 64e394bf-029a-40ca-880c-137ec9a546ef
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 181.59999
+          y: 66.399994
+          width: 208
+          height: 134.4
+        actor: Actor name
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: Enter your message here
+    00000001:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: f4cec207-86eb-49e5-968b-3c288fe1d1d2
+          port: next
+        input:
+          node: 64e394bf-029a-40ca-880c-137ec9a546ef
+          port: previous

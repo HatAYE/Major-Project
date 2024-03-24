@@ -25,7 +25,11 @@ public class DialogueController : MonoBehaviour
         runner.ResetProperties();
         runner.Begin();
     }
-
+    public void NewConversation(Conversation conversation)
+    {
+        runner = new ConversationRunner(conversation);
+        runner.OnConversationEvent.AddListener(HandleConversationEvent);
+    }
     void HandleConversationEvent(IConversationEvent e)
     {
         switch (e)
