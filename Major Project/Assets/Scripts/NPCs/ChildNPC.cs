@@ -1,6 +1,3 @@
-using Conversa.Runtime;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ChildNPC : MonoBehaviour
@@ -8,18 +5,15 @@ public class ChildNPC : MonoBehaviour
     Controls pl;
     DialogueController dialogueController;
     bool gaveEssence;
+
     void Start()
     {
         pl= FindObjectOfType<Controls>();
-        dialogueController = GetComponent<DialogueController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        dialogueController = GetComponent<DialogueInteractable>().DialogueController;
         dialogueController.OnEventTrigger += SharedLight;
         dialogueController.OnEventTrigger += Refused;
     }
+
     void SharedLight(string eventName)
     {
         if (eventName== "shared light")

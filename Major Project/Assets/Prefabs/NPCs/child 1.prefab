@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3655658865793346018}
   - component: {fileID: 3655658865793346045}
   - component: {fileID: 3655658865793346044}
-  - component: {fileID: 3655658865793346047}
   - component: {fileID: 3655658865793346016}
   - component: {fileID: 3655658865793346019}
   m_Layer: 0
@@ -99,19 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   singleInteraction: 1
-  dialogueController: {fileID: 3655658865793346047}
---- !u!114 &3655658865793346047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3655658865793346046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f823b73cf9a188f4bbf0fb38a391e31f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   conversation: {fileID: 11400000, guid: cd6454b09a51a5741808380675ad872d, type: 2}
 --- !u!114 &3655658865793346016
 MonoBehaviour:

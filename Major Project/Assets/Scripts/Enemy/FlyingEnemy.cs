@@ -6,16 +6,18 @@ using UnityEngine;
 public class FlyingEnemy : Enemy
 {
     [SerializeField] GameObject projectilePrefab;
-    [SerializeField] DialogueController dialogueController;
+    [SerializeField] Conversation conversation;
     [SerializeField] float attackPause;
     [HideInInspector] public bool gotHit;
+    DialogueController controller;
     bool startDialogue;
-    void Start()
+    protected override void Start()
     {
         base.Start();
+        controller = new DialogueController(conversation);
     }
 
-    void Update()
+    protected override void Update()
     {
         base.Update();
         if (currentState == EnemyState.dialogue1)
@@ -48,10 +50,10 @@ public class FlyingEnemy : Enemy
     }
     IEnumerator Dialogue()
     {
-        if (dialogueController != null)
+        if (controller != null)
         {
-            dialogueController.BeginDialogue();
-            dialogueController.OnDialogueEnd += () => currentState = EnemyState.attack;
+            controller.BeginDialogue();
+            controller.OnDialogueEnd += () => currentState = EnemyState.attack;
             yield return new WaitForSeconds(1);
         }
     }
@@ -112,5 +114,4 @@ public class FlyingEnemy : Enemy
         Destroy(areaDetector);
         Destroy(gameObject);
     }
-    
 }

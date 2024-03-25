@@ -3,33 +3,32 @@ using Conversa.Runtime;
 using Conversa.Runtime.Events;
 using Conversa.Runtime.Interfaces;
 using System;
-using UnityEngine;
 
-public class DialogueController : MonoBehaviour
+public class DialogueController
 {
-    [SerializeField] Conversation conversation;
     public Action<string> OnEventTrigger;
     public Action OnDialogueEnd;
-    DialogueUI dialogueUI;
     ConversationRunner runner;
 
-    private void Awake()
+    public DialogueController(Conversation conversation)
     {
-        dialogueUI = FindObjectOfType<DialogueUI>();
-        runner = new ConversationRunner(conversation);
-        runner.OnConversationEvent.AddListener(HandleConversationEvent);
+        NewConversation(conversation);
     }
+
+    public DialogueController() { }
 
     public void BeginDialogue()
     {
         runner.ResetProperties();
         runner.Begin();
     }
+
     public void NewConversation(Conversation conversation)
     {
         runner = new ConversationRunner(conversation);
         runner.OnConversationEvent.AddListener(HandleConversationEvent);
     }
+
     void HandleConversationEvent(IConversationEvent e)
     {
         switch (e)
@@ -59,19 +58,19 @@ public class DialogueController : MonoBehaviour
     {
         var charName = evt.Actor == null ? "" : evt.Actor.DisplayName;
         var avatar = evt.Actor is Character character ? character.Avatar : evt.Actor is DemoActor demoActor ? demoActor.Avatar : null;
-        dialogueUI.ShowMessage(charName, evt.Message, evt.Advance, avatar);
+        DialogueUI.Instance.ShowMessage(charName, evt.Message, evt.Advance, avatar);
     }
 
     private void HandleActorChoiceEvent(ActorChoiceEvent evt)
     {
         var charName = evt.Actor == null ? "" : evt.Actor.DisplayName;
         var avatar = evt.Actor is Character character ? character.Avatar : evt.Actor is DemoActor demoActor ? demoActor.Avatar : null;
-        dialogueUI.ShowChoice(charName, evt.Message, evt.Options, avatar);
+        DialogueUI.Instance.ShowChoice(charName, evt.Message, evt.Options, avatar);
     }
 
-    private void HandleMessage(MessageEvent e) => dialogueUI.ShowMessage(e.Actor, e.Message, () => e.Advance());
+    private void HandleMessage(MessageEvent e) => DialogueUI.Instance.ShowMessage(e.Actor, e.Message, () => e.Advance());
 
-    private void HandleChoice(ChoiceEvent e) => dialogueUI.ShowChoice(e.Actor, e.Message, e.Options);
+    private void HandleChoice(ChoiceEvent e) => DialogueUI.Instance.ShowChoice(e.Actor, e.Message, e.Options);
 
     private void HandleUserEvent(UserEvent userEvent)
     {
@@ -80,7 +79,7 @@ public class DialogueController : MonoBehaviour
 
     private void HandleEnd()
     {
-        dialogueUI.Hide();
+        DialogueUI.Instance.Hide();
         OnDialogueEnd?.Invoke();
     }
 }
