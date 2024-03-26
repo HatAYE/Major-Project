@@ -1,23 +1,22 @@
+using Conversa.Runtime;
 using UnityEngine;
 
 public class DialogueInteractable : Interactable
 {
-    [SerializeField] DialogueController dialogueController;
+    [SerializeField] Conversation conversation;
+    public DialogueController DialogueController { get; private set; }
 
-    private void Start()
+    protected override void Awake()
     {
-        dialogueController = dialogueController == null ? GetComponent<DialogueController>() : dialogueController;
-        if (dialogueController == null) 
-        { 
-            Debug.LogError($"No dialogue controller on {gameObject.name}."); 
-        }
+        base.Awake();
+        DialogueController = new DialogueController(conversation);
     }
 
     protected override void Interact()
     {
-        dialogueController.BeginDialogue();
+        DialogueController.BeginDialogue();
         interactionHandler.UnregisterInteractable(this);
-        if (!SingleInteraction) { dialogueController.OnDialogueEnd += ReRegister; }
+        if (!SingleInteraction) { DialogueController.OnDialogueEnd += ReRegister; }
     }
 
     void ReRegister()

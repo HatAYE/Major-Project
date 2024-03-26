@@ -3380,7 +3380,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: child 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3655658865793346047, guid: 82240e3d25ecffe4ca806aa53dd610b6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 82240e3d25ecffe4ca806aa53dd610b6, type: 3}
 --- !u!1001 &7629303061844145260
 PrefabInstance:
@@ -3498,7 +3499,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Siren
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8165597119391756632, guid: 2d0521075c11ab14cb0e9666374ed46d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2d0521075c11ab14cb0e9666374ed46d, type: 3}
 --- !u!114 &8165597119391756633 stripped
 MonoBehaviour:

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3174835080356638121}
   - component: {fileID: 3174835080356638120}
   - component: {fileID: 3174835080356638123}
-  - component: {fileID: 3174835080356638134}
   - component: {fileID: 3174835080356638135}
   - component: {fileID: 3174835080356638132}
   m_Layer: 0
@@ -98,24 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2704c33bc773ff341aca7a9da00eba00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
+  playerInRadius: 0
+  areaDetector: {fileID: 0}
   projectilePrefab: {fileID: 2881932690406791399, guid: 265272d525d37284497065c8101991bd, type: 3}
-  dialogueController: {fileID: 3174835080356638134}
+  conversation: {fileID: 11400000, guid: 63fb5d2b5accc9a4298cd4e7283f7c5b, type: 2}
   attackPause: 2
   gotHit: 0
---- !u!114 &3174835080356638134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3174835080356638122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f823b73cf9a188f4bbf0fb38a391e31f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  conversation: {fileID: 11400000, guid: 63fb5d2b5accc9a4298cd4e7283f7c5b, type: 2}
 --- !u!61 &3174835080356638135
 BoxCollider2D:
   m_ObjectHideFlags: 0

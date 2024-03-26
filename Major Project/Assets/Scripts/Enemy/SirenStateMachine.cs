@@ -6,14 +6,14 @@ public class SirenStateMachine : Enemy
     [SerializeField] GameObject attackPrefab;
     [SerializeField] Conversation startingConvo;
     [SerializeField] Conversation endingConvo;
-    [SerializeField] DialogueController dialogueController;
+    DialogueController dialogueController = new DialogueController();
 
-    void Start()
+    protected override void Start()
     {
         base.Start();
     }
 
-    void Update()
+    protected override void Update()
     {
         if (playerInRadius)
         {

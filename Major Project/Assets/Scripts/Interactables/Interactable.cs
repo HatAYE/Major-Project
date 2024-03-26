@@ -12,7 +12,7 @@ public abstract class Interactable : MonoBehaviour
     bool interacted;
     protected bool SingleInteraction { get => singleInteraction; }
 
-    void Awake()
+    protected virtual void Awake()
     {
         interactionHandler = FindObjectOfType<InteractionHandler>();
     }

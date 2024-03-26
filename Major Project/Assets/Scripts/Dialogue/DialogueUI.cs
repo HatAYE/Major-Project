@@ -15,12 +15,12 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] Button nextLineButton;
     [SerializeField] GameObject choiceOptionButtonPrefab;
 
-    /*public static DialogueUIController Instance { get; private set; }
+    public static DialogueUI Instance { get; private set; }
 
     private void Awake()
     {
         if (Instance == null) { Instance = this; } else { Destroy(this); }
-    }*/
+    }
 
     private void Start()
     {
