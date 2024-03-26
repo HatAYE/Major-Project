@@ -15,21 +15,8 @@ public class SirenStateMachine : Enemy
 
     void Update()
     {
-        //base.Update();
-        /*switch (currentState)
-        {
-            case EnemyState.dialogue1:
-                DialogueState();
-                break;
-            case EnemyState.dialogue2:
-                FinalDialogue();
-                break;
-            default:
-                break;
-        }*/
         if (playerInRadius)
         {
-            //TransitionToState(EnemyState.dialogue1);
             StartCoroutine(EnemyBehavior());
             playerInRadius = false;
         }
@@ -63,18 +50,6 @@ public class SirenStateMachine : Enemy
 
         float newY = initialY + amplitude * Mathf.Sin(speed * Time.time);
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
-    }
-
-    void DialogueState()
-    {
-        /*GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
-
-        foreach (GameObject door in doors)
-        {
-            //play door closing animation
-        }*/
-
-        StartCoroutine(BeginDialogueCoroutine());
     }
 
     IEnumerator BeginDialogueCoroutine()
@@ -120,10 +95,6 @@ public class SirenStateMachine : Enemy
         TransitionToState(EnemyState.dialogue2);
     }
     bool gaveHeart=false;
-    void FinalDialogue()
-    {
-        StartCoroutine(FinalDialogueCoroutine());
-    }
     IEnumerator FinalDialogueCoroutine()
     {
         if (dialogueController != null)

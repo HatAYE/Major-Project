@@ -17,20 +17,25 @@ public class FlyingEnemy : Enemy
 
     void Update()
     {
-        base.Update();
-        if (currentState == EnemyState.dialogue1)
-            DialogueState();
 
         if (playerInRadius && !startDialogue)
         {
-            TransitionToState(EnemyState.dialogue1);
+            StartCoroutine(EnemyBehavior()); ;
             startDialogue = true;
         }
+    }
+    IEnumerator EnemyBehavior()
+    {
+        yield return Dialogue();
 
-        if (gotHit)
+        yield return new WaitUntil(() => currentState == EnemyState.attack);
+
+        while (!gotHit)
         {
-            currentState=EnemyState.die;
+            AttackingState();
+            yield return null;
         }
+            DieState();
     }
     protected override void IdleState()
     {
@@ -43,7 +48,7 @@ public class FlyingEnemy : Enemy
     }
     void DialogueState()
     {
-        startDialogue = false;
+        
         StartCoroutine(Dialogue());
     }
     IEnumerator Dialogue()
@@ -51,11 +56,12 @@ public class FlyingEnemy : Enemy
         if (dialogueController != null)
         {
             dialogueController.BeginDialogue();
+            startDialogue = false;
             dialogueController.OnDialogueEnd += () => currentState = EnemyState.attack;
             yield return new WaitForSeconds(1);
         }
     }
-    bool isAttacking;
+    [SerializeField] bool isAttacking;
     float attackTimer = 10;
     protected override void AttackingState()
     {
@@ -71,6 +77,7 @@ public class FlyingEnemy : Enemy
     }
     IEnumerator Attack()
     {
+        Debug.Log("aa");
         isAttacking = true;
         Vector2 attackDirection = player.transform.position;
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
@@ -92,7 +99,6 @@ public class FlyingEnemy : Enemy
         GameObject rightProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         rightProjectile.GetComponent<Rigidbody2D>().velocity = rightTargetDirection * 8;
         rightProjectile.GetComponent<Projectile>().parentEnemy = gameObject;
-        isAttacking = true;
         yield return new WaitForSeconds(attackPause);
         isAttacking = false;
 
@@ -109,6 +115,7 @@ public class FlyingEnemy : Enemy
     protected override void DieState()
     {
         //PLAY ANIMATION
+        currentState = EnemyState.die;
         Destroy(areaDetector);
         Destroy(gameObject);
     }
