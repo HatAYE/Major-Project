@@ -10,7 +10,7 @@ public abstract class Interactable : MonoBehaviour
     [SerializeField] bool singleInteraction;
     protected InteractionHandler interactionHandler;
     bool interacted;
-    public bool active = true;
+    bool active = true;
     protected bool SingleInteraction { get => singleInteraction; }
 
     protected virtual void Awake()
@@ -35,6 +35,11 @@ public abstract class Interactable : MonoBehaviour
     /// The method to be overridden by every class that inherits from Interactable.
     /// </summary>
     protected abstract void Interact();
+
+    public void SetActive(bool value)
+    {
+        active = value;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

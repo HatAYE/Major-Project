@@ -8,7 +8,8 @@ public class ConditionalInteractable : Interactable
 
     private void Start()
     {
-        interactionIfTrue.active = interactionIfFalse.active = false;
+        interactionIfTrue.SetActive(false);
+        interactionIfFalse.SetActive(false);
     }
 
     protected override void Interact()
