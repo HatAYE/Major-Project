@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3174835080356638121}
   - component: {fileID: 3174835080356638120}
   - component: {fileID: 3174835080356638123}
-  - component: {fileID: 3174835080356638135}
   - component: {fileID: 3174835080356638132}
   m_Layer: 0
   m_Name: flying enemy
@@ -103,32 +102,7 @@ MonoBehaviour:
   conversation: {fileID: 11400000, guid: 63fb5d2b5accc9a4298cd4e7283f7c5b, type: 2}
   attackPause: 2
   gotHit: 0
---- !u!61 &3174835080356638135
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3174835080356638122}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -4.1168776, y: -1.7762306}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 11.071367, y: 5.982674}
-  m_EdgeRadius: 0
+  isAttacking: 0
 --- !u!61 &3174835080356638132
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -5,16 +5,16 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using static Enemy;
 
-enum gameStates
+public enum gameStates
 {
     playing,
     paused,
     gameover,
-    inDialogue
+    frozen
 }
 public class GameManager : MonoBehaviour
 {
-    gameStates currenState;
+    static gameStates currenState;
     Controls pl;
     bool isPaused;
     [SerializeField] GameObject pauseMenu;
@@ -28,11 +28,12 @@ public class GameManager : MonoBehaviour
         TogglePause();
         switch(currenState)
         {
-            case gameStates.inDialogue:
-                pl.gameObject.SetActive(false); 
+            case gameStates.frozen:
+                pl.enabled = false;
                 break;
             case gameStates.playing:
                 Time.timeScale = 1;
+                pl.enabled = true;
                 break;
             case gameStates.paused:
             case gameStates.gameover:
