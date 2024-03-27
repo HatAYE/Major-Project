@@ -7,9 +7,10 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    protected InteractionHandler interactionHandler;
     [SerializeField] bool singleInteraction;
+    protected InteractionHandler interactionHandler;
     bool interacted;
+    bool active = true;
     protected bool SingleInteraction { get => singleInteraction; }
 
     protected virtual void Awake()
@@ -35,9 +36,14 @@ public abstract class Interactable : MonoBehaviour
     /// </summary>
     protected abstract void Interact();
 
+    public void SetActive(bool value)
+    {
+        active = value;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == interactionHandler.gameObject && !interacted)
+        if (active && collision.gameObject == interactionHandler.gameObject && !interacted)
         {
             interactionHandler.RegisterInteractable(this);
         }
@@ -45,7 +51,7 @@ public abstract class Interactable : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject == interactionHandler.gameObject)
+        if (active && collision.gameObject == interactionHandler.gameObject)
         {
             interactionHandler.UnregisterInteractable(this);
         }
@@ -53,6 +59,6 @@ public abstract class Interactable : MonoBehaviour
 
     private void OnDisable()
     {
-        interactionHandler?.UnregisterInteractable(this);
+        if (interactionHandler != null) interactionHandler.UnregisterInteractable(this);
     }
 }
