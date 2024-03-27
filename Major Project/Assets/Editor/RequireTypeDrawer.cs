@@ -1,0 +1,25 @@
+using UnityEditor;
+using UnityEngine;
+
+[CustomPropertyDrawer(typeof(RequireTypeAttribute))]
+public class RequireTypeDrawer : PropertyDrawer
+{
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    {
+        if (property.propertyType == SerializedPropertyType.ObjectReference)
+        {
+            RequireTypeAttribute requiredAttribute = (RequireTypeAttribute)attribute;
+            EditorGUI.BeginChangeCheck();
+            var res = EditorGUI.ObjectField(position, label, property.objectReferenceValue, requiredAttribute.requiredType, true);
+            if (EditorGUI.EndChangeCheck())
+            {
+                property.objectReferenceValue = res;
+                property.serializedObject.ApplyModifiedProperties();
+            }
+        }
+        else
+        {
+            EditorGUI.HelpBox(position, $"RequireTypeAttribute is only valid for references", MessageType.Error);
+        }
+    }
+}

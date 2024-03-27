@@ -26,6 +26,7 @@ public class DialogueUI : MonoBehaviour
     {
         dialogueWindow.SetActive(false);
         choiceWindow.SetActive(false);
+        characterImage.gameObject.SetActive(false);
     }
 
     public void ShowMessage(string actor, string message, Action onContinue, Sprite avatar = null)
