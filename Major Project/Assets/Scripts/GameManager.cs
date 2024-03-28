@@ -14,7 +14,7 @@ public enum gameStates
 }
 public class GameManager : MonoBehaviour
 {
-    static gameStates currenState;
+    static public gameStates currenState;
     Controls pl;
     bool isPaused;
     [SerializeField] GameObject pauseMenu;

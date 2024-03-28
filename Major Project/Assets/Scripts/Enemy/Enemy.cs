@@ -14,8 +14,8 @@ public abstract class Enemy : MonoBehaviour
     }
     protected Controls player;
     protected EnemyState currentState=EnemyState.idle;
-    public bool playerInRadius;
-    public GameObject areaDetector;
+    [HideInInspector] public bool playerInRadius;
+    [HideInInspector] public GameObject areaDetector;
 
     protected virtual void Start()
     {

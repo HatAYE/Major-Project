@@ -78,7 +78,6 @@ public class FlyingEnemy : Enemy
     }
     IEnumerator Attack()
     {
-        Debug.Log("aa");
         isAttacking = true;
         Vector2 attackDirection = player.transform.position;
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
