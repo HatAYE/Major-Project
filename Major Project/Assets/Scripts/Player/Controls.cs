@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
@@ -14,7 +15,6 @@ public class Controls : MonoBehaviour
     #region movement variables
     [SerializeField] float playerSpeed;
     bool movingRight;
-    bool movingLeft;
     #endregion
 
     #region jumping variables
@@ -61,9 +61,10 @@ public class Controls : MonoBehaviour
     }
     void Update()
     {
-        if (movingLeft) hit = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, 1f, LayerMask.GetMask("Obstacle"));
-        else if (movingRight) hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, 1f, LayerMask.GetMask("Obstacle"));
-        
+        if (movingRight==false) hit = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, 1f, LayerMask.GetMask("Obstacle"));
+        else hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, 1f, LayerMask.GetMask("Obstacle"));
+
+
         if (essenceText != null)
         essenceText.text = "Essence collected: " + essenceCollected.ToString();
 
@@ -85,7 +86,6 @@ public class Controls : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             movingRight = false;
-            movingLeft = true;
 
             if (!isCrouching)
             {
@@ -103,7 +103,6 @@ public class Controls : MonoBehaviour
         else if (Input.GetKey(KeyCode.D))
         {
             movingRight=true;
-            movingLeft = false;
 
             if (!isCrouching)
             {
@@ -121,7 +120,7 @@ public class Controls : MonoBehaviour
 
     void Jumping()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount == 0 && !isHoldingObject)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount == 0)
         {
             rb.AddForce(new Vector2 (0, jumpForce));
             jumpCount++;
@@ -131,14 +130,15 @@ public class Controls : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.E))
         {
-            if (!isHoldingObject && hit.collider!=null && hit.collider.gameObject.tag== "Moveable")
+            
+            if (!isHoldingObject && hit.collider!=null && hit.collider.TryGetComponent(out Pushable pushable))
             {
                 isHoldingObject = true;
-                holdObject=hit.collider.gameObject;
-                holdObject.GetComponent<Rigidbody2D>().constraints &= ~RigidbodyConstraints2D.FreezePositionX;
-                holdObject.GetComponent<Rigidbody2D>().constraints &= ~RigidbodyConstraints2D.FreezePositionY;
-                holdObject.GetComponent<FixedJoint2D>().enabled = true;
-                holdObject.GetComponent<FixedJoint2D>().connectedBody=this.GetComponent<Rigidbody2D>();
+                holdObject= pushable.gameObject;
+                pushable.beingHeld = true;
+                pushable.rb.mass = pushable.massWhenHeld;
+                pushable.GetComponent<FixedJoint2D>().enabled = true;
+                pushable.GetComponent<FixedJoint2D>().connectedBody=rb;
             }
             
         }
@@ -146,8 +146,8 @@ public class Controls : MonoBehaviour
         {
             if (holdObject != null)
             {
-                holdObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
                 holdObject.GetComponent<FixedJoint2D>().enabled = false;
+                holdObject.GetComponent<Pushable>().beingHeld = false;
             }
             holdObject = null;
             isHoldingObject = false;
@@ -197,7 +197,7 @@ public class Controls : MonoBehaviour
         {
             Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.right * transform.localScale.x * 1f);
         }
-        else if (movingLeft)
+        else
         {
             Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.left * transform.localScale.x * 1f);
         }
