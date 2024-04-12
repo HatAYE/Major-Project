@@ -61,8 +61,8 @@ public class Controls : MonoBehaviour
     }
     void Update()
     {
-        if (movingRight==false) hit = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, 1f, LayerMask.GetMask("Obstacle"));
-        else hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, 1f, LayerMask.GetMask("Obstacle"));
+        if (movingRight==false) hit = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, 1f, LayerMask.GetMask("Pushable"));
+        else hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, 1f, LayerMask.GetMask("Pushable"));
 
 
         if (essenceText != null)
@@ -73,12 +73,24 @@ public class Controls : MonoBehaviour
         PushingAndPulling();
         Crouch();
         DeflectingShield();
+
+        collectedSparepart = false;
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Moveable"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
             jumpCount = 0;
+        }
+    }
+    bool collectedSparepart;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name.StartsWith("Spare part") && !collectedSparepart)
+        {
+            Destroy(collision.gameObject);
+            LevelOneManager.scrapParts ++;
+            collectedSparepart=true;
         }
     }
     void Movement()

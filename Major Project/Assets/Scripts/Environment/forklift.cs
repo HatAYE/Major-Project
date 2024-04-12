@@ -2,62 +2,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class forklift : MonoBehaviour
+public class forklift : MonoBehaviour, IConditional
 {
     [SerializeField] float speed;
     [SerializeField] int numberRequiredToUnlock;
     [SerializeField] GameObject groundPos;
     [SerializeField] GameObject liftPos;
-    bool goingUp;
+    [SerializeField] EventInteractable interactable;
+    [SerializeField] bool goingUp;
     bool unlockedMachine;
-    void Update()
-    {
-        if (unlockedMachine)
-        {
-            StartCoroutine(moveTheFork());
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.TryGetComponent(out Controls player))
-        {
-            if (LevelOneManager.scrapParts== numberRequiredToUnlock)
-            {
-                if (!unlockedMachine)
-                {
-                    LevelOneManager.scrapParts -= numberRequiredToUnlock;
-                    unlockedMachine = true;
-                }
-            }
-        }
-    }
 
+    private void Start()
+    {
+        interactable.action += StartTheForklift;
+    }
+    void StartTheForklift()
+    {
+        StartCoroutine(moveTheFork());
+    }
     IEnumerator moveTheFork()
     {
-        if (goingUp == false)
+        while (true)
         {
-            if (Vector3.Distance(transform.position, liftPos.transform.position) >= 0.1f)
+            if (goingUp == false)
             {
-                transform.position = Vector2.MoveTowards(transform.position, liftPos.transform.position, speed);
-            }
-            else
-            {
-                yield return new WaitForSeconds(2);
-                goingUp = true;
-            }
+                if (Vector3.Distance(transform.position, liftPos.transform.position) >= 0.5f)
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, liftPos.transform.position, speed);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(2);
+                    goingUp = true;
+                }
 
-        }
-        else if (goingUp == true)
-        {
-            if (Vector2.Distance(transform.position, groundPos.transform.position) >= 0.1f)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, groundPos.transform.position, speed);
             }
-            else
+            else if (goingUp == true)
             {
-                yield return new WaitForSeconds(2);
-                goingUp = false;
+                if (Vector2.Distance(transform.position, groundPos.transform.position) >= 0.5f)
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, groundPos.transform.position, speed);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(2);
+                    goingUp = false;
+                }
             }
+            yield return null;
         }
+        
+    }
+
+    public bool Check()
+    {
+        return LevelOneManager.scrapParts == numberRequiredToUnlock;
     }
 }
