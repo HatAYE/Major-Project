@@ -15,6 +15,7 @@ public class Controls : MonoBehaviour
     #region movement variables
     [SerializeField] float playerSpeed;
     bool movingRight;
+    
     #endregion
 
     #region jumping variables
@@ -47,6 +48,7 @@ public class Controls : MonoBehaviour
     #endregion
     void Start()
     {
+
         rb = GetComponent<Rigidbody2D>();
 
         spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -132,7 +134,7 @@ public class Controls : MonoBehaviour
 
     void Jumping()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount == 0)
+        if (Input.GetKeyDown(KeyCode.W) && jumpCount == 0 && !isCrouching)
         {
             rb.AddForce(new Vector2 (0, jumpForce));
             jumpCount++;
@@ -140,7 +142,7 @@ public class Controls : MonoBehaviour
     }
     void PushingAndPulling()
     {
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.Space))
         {
             
             if (!isHoldingObject && hit.collider!=null && hit.collider.TryGetComponent(out Pushable pushable))

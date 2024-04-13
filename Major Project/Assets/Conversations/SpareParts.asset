@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: SpareParts
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: b0280ee7-4e4e-42cd-afcd-4ece0e9ba9de
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: 100
+      y: 100
+      width: 100
+      height: 100
+    name: Start
+  nodes:
+  - id: 0
+  edges:
+  - id: 1
+  properties: []
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 760eb2b8-9749-474b-a854-a2be55c1a490
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 225.59999
+          y: 122.399994
+          width: 208
+          height: 134.4
+        actor: Actor name
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: This machine is missing spare parts..
+    00000001:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: b0280ee7-4e4e-42cd-afcd-4ece0e9ba9de
+          port: next
+        input:
+          node: 760eb2b8-9749-474b-a854-a2be55c1a490
+          port: previous

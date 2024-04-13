@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelTwoManager : MonoBehaviour
 {
     // activate shrinking and enlarging
+    //acitavte health system
 
     void Start()
     {

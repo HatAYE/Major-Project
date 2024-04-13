@@ -19,38 +19,42 @@ public class ShrinkingAndEnlarging : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            //move to previous size
-            if (currentSize==shrinkingSize)
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                return;
+                //move to previous size
+                if (currentSize == shrinkingSize)
+                {
+                    return;
+                }
+                else if (currentSize == regularSize)
+                {
+                    SwitchSize(shrinkingSize);
+                }
+                else if (currentSize == largeSize)
+                {
+                    SwitchSize(regularSize);
+                }
             }
-            else if (currentSize== regularSize)
+            else if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                SwitchSize(shrinkingSize);
-            }
-            else if (currentSize== largeSize)
-            {
-                SwitchSize(regularSize);
+                //move to next size
+                if (currentSize == shrinkingSize)
+                {
+                    SwitchSize(regularSize);
+                }
+                else if (currentSize == regularSize)
+                {
+                    SwitchSize(largeSize);
+                }
+                else if (currentSize == largeSize)
+                {
+                    return;
+                }
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            //move to next size
-            if (currentSize==shrinkingSize)
-            {
-                SwitchSize(regularSize);
-            }
-            else if (currentSize== regularSize)
-            {
-                SwitchSize(largeSize);
-            }
-            else if (currentSize== largeSize)
-            {
-                return;
-            }
-        }
+
     }
     void SwitchSize(Vector2 newSize)
     {
