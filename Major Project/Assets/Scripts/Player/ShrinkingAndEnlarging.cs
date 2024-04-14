@@ -15,8 +15,6 @@ public class ShrinkingAndEnlarging : MonoBehaviour
         shrinkingSize = regularSize / 2f;
         largeSize = regularSize * 2;
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.LeftShift))
