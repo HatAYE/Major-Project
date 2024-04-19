@@ -34,7 +34,7 @@ public class Controls : MonoBehaviour
     float crouchSpeed;
     Vector2 crouchHeight;
     Vector2 normalHeight;
-    RaycastHit2D crouchRay;
+    //RaycastHit2D crouchRay;
     [SerializeField] LayerMask aboveObject;
     #endregion
 
@@ -48,7 +48,7 @@ public class Controls : MonoBehaviour
     #endregion
     void Start()
     {
-
+        center = transform.position;
         rb = GetComponent<Rigidbody2D>();
 
         spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -56,7 +56,7 @@ public class Controls : MonoBehaviour
 
         boxCollider= GetComponent<BoxCollider2D>();
         normalHeight = boxCollider.size;
-        crouchHeight = boxCollider.size / 2;
+        crouchHeight = new Vector2(boxCollider.size.x, boxCollider.size.y / 2f);
 
         crouchSpeed = playerSpeed / 2;
         sprintingSpeed = playerSpeed * 2;
@@ -167,10 +167,11 @@ public class Controls : MonoBehaviour
             isHoldingObject = false;
         }
     }
-    
+    [SerializeField] Vector2 center;
     void Crouch()
     {
-        crouchRay= Physics2D.Raycast(transform.position, Vector2.up * transform.localScale.x, 1.5f, aboveObject);
+        //crouchRay= Physics2D.Raycast(transform.position, Vector2.up * transform.localScale.x, 1.5f, aboveObject);
+        Collider2D crouchCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, 1, 0), new Vector2(boxCollider.size.x, 1), 1f, aboveObject);
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             if (!isCrouching)
@@ -181,13 +182,13 @@ public class Controls : MonoBehaviour
             }
             else
             {
-                if (crouchRay.collider == null)
+                if (crouchCollider == null)
                 {
                     boxCollider.size = normalHeight;
                     spriteRenderer.sprite = standingAndCrouchingSprites[0];
                     isCrouching = false;
                 }
-                else if (crouchRay.collider.gameObject.layer != aboveObject) return;
+                else if (crouchCollider.gameObject.layer == aboveObject) return;
             }
         }
     }
@@ -205,7 +206,7 @@ public class Controls : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.magenta;
 
         if (movingRight)
         {
@@ -216,5 +217,7 @@ public class Controls : MonoBehaviour
             Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.left * transform.localScale.x * 1f);
         }
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.up * transform.localScale.x* 1.5f);
+        if (boxCollider!=null)
+        Gizmos.DrawWireCube(transform.position + new Vector3(0, 1, 0), new Vector3(boxCollider.size.x, 1f, 0f)) ;
     }
 }

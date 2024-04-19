@@ -20,6 +20,7 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         player= FindObjectOfType<Controls>();
+        currentState= EnemyState.idle;
     }
 
     protected virtual void Update()

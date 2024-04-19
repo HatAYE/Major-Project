@@ -7,16 +7,19 @@ public class SirenStateMachine : Enemy
     [SerializeField] Conversation startingConvo;
     [SerializeField] Conversation endingConvo;
     DialogueController dialogueController = new DialogueController();
-
+    GameObject musicTrails;
     protected override void Start()
     {
         base.Start();
+        musicTrails = transform.GetChild(1).gameObject;
+        AudioManager.Instance.PlaySound(gameObject.GetComponent<AudioSource>(), AudioManager.Instance.princessSinging);
     }
 
     protected override void Update()
     {
         if (playerInRadius)
         {
+            
             StartCoroutine(EnemyBehavior());
             playerInRadius = false;
         }
@@ -39,21 +42,25 @@ public class SirenStateMachine : Enemy
         DieState();
         // any logic for resuming player control
     }
-
     protected override void IdleState()
     {
         //PLAY IDLE ANIMATION
 
-        float amplitude = 0.002f;
+        /*float amplitude = 0.002f;
         float speed = 1f;
         float initialY = transform.position.y;
 
         float newY = initialY + amplitude * Mathf.Sin(speed * Time.time);
-        transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+        transform.position = new Vector3(transform.position.x, newY, transform.position.z);*/
+        
     }
 
     IEnumerator BeginDialogueCoroutine()
     {
+        areaDetector.SetActive(false);
+        //fadeout music and trail
+        StartCoroutine(musicTrails.GetComponent<MusicTrail>().VisualFadeout());
+        StartCoroutine(AudioManager.Instance.FadeOut(gameObject.GetComponent<AudioSource>()));
         if (dialogueController != null)
         {
             dialogueController.NewConversation(startingConvo);

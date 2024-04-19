@@ -18,66 +18,29 @@ public class Princess_Behaviour : MonoBehaviour
     #endregion
     #region Music trail fade
     GameObject musicTrail;
-    [SerializeField] float fadeDuration = 2f; 
-    Renderer rendererComponent;
-    Material material;
+    
     #endregion
     void Start()
     {
         pl = FindObjectOfType<HealthSystem>();
         dialogueController = new DialogueController(convo);
         musicTrail = transform.GetChild(0).gameObject;
-        rendererComponent = musicTrail.GetComponent<Renderer>();
-
-        if (rendererComponent != null)
-        {
-            material = rendererComponent.material;
-        }
+        AudioManager.Instance.PlaySound(gameObject.GetComponent<AudioSource>(), AudioManager.Instance.princessSinging);
     }
     IEnumerator StopSinging()
     {
-        Color color = material.color;
-
-        float elapsedTime = 0f;
-        while (elapsedTime < fadeDuration)
-        {
-            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
-
-            color.a = alpha;
-            material.color = color;
-
-            yield return null;
-
-            elapsedTime += Time.deltaTime;
-        }
-        color.a = 0f;
-        material.color = color;
-
-        //FADE OUT AUDIO
-
+        StartCoroutine(musicTrail.GetComponent<MusicTrail>().VisualFadeout());
+        StartCoroutine(AudioManager.Instance.FadeOut(gameObject.GetComponent<AudioSource>()));
+        yield return new WaitForSeconds(1f);
         musicTrail.SetActive(false);
     }
     IEnumerator ResumeSinging()
     {
+        StartCoroutine(musicTrail.GetComponent<MusicTrail>().VisualFadeIn());
+        StartCoroutine(AudioManager.Instance.FadeIn(gameObject.GetComponent<AudioSource>(), AudioManager.Instance.princessSinging));
+        yield return null;
         musicTrail.SetActive(true);
-        //FADE IN AUDIO 
         //PLAY SINGING/IDLE ANIMATION
-        Color color = material.color;
-
-        float elapsedTime = 0f;
-        while (elapsedTime < fadeDuration)
-        {
-            float alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
-
-            color.a = alpha;
-            material.color = color;
-
-            yield return null;
-
-            elapsedTime += Time.deltaTime;
-        }
-        color.a = 1f;
-        material.color = color;
     }
 
     IEnumerator TalkWithPlayer()
