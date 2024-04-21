@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
@@ -46,10 +47,19 @@ public class Controls : MonoBehaviour
     public int essenceCollected;
     [SerializeField] Text essenceText;
     #endregion
+
+    #region Swinging variables
+    HingeJoint2D hj;
+    bool isAttached;
+    Transform attachedTo;
+    GameObject disregard;
+    [SerializeField] float swingingForce;
+    RopeSegment ropeSegment;
+    #endregion
     void Start()
     {
-        center = transform.position;
         rb = GetComponent<Rigidbody2D>();
+        hj= GetComponent<HingeJoint2D>();
 
         spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
         spriteRenderer.sprite= standingAndCrouchingSprites[0];
@@ -75,7 +85,7 @@ public class Controls : MonoBehaviour
         PushingAndPulling();
         Crouch();
         DeflectingShield();
-
+        Swinging();
         collectedSparepart = false;
     }
     void OnCollisionEnter2D(Collision2D collision)
@@ -94,10 +104,32 @@ public class Controls : MonoBehaviour
             LevelOneManager.scrapParts ++;
             collectedSparepart=true;
         }
+        if (!isAttached) 
+        {
+            if (collision.gameObject.name.StartsWith("RopeSegment"))
+            {
+                if (attachedTo!=collision.gameObject.transform.parent)
+                {
+                    if (disregard==null || collision.gameObject.transform.parent.gameObject!=disregard)
+                    {
+                        Attach(collision.gameObject.GetComponent<Rigidbody2D>());
+                    }
+                }
+            }
+        }
+        
     }
+    /*private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name.StartsWith("RopeSegment"))
+        {
+            attachedTo = null;
+        }
+        
+    }*/
     void Movement()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A)&& !isAttached)
         {
             movingRight = false;
 
@@ -114,7 +146,7 @@ public class Controls : MonoBehaviour
                 rb.velocity = new Vector2(-crouchSpeed, rb.velocity.y);
             
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) && !isAttached)
         {
             movingRight=true;
 
@@ -167,7 +199,6 @@ public class Controls : MonoBehaviour
             isHoldingObject = false;
         }
     }
-    [SerializeField] Vector2 center;
     void Crouch()
     {
         //crouchRay= Physics2D.Raycast(transform.position, Vector2.up * transform.localScale.x, 1.5f, aboveObject);
@@ -203,7 +234,94 @@ public class Controls : MonoBehaviour
         else transform.GetChild(1).gameObject.SetActive(false);
     }
 
+    void Swinging()
+    {
+        /*if (Input.GetKey(KeyCode.W) && isAttached)
+        {
+            Slide(1);
+        }*/
+        if (Input.GetKey(KeyCode.D) && isAttached)
+        {
+            rb.AddRelativeForce(new Vector2(1, 0) * swingingForce);
+        }
+        if (Input.GetKey(KeyCode.A) && isAttached)
+        {
+            rb.AddRelativeForce(new Vector2(-1, 0) * swingingForce);
+        }
+        if (Input.GetKey(KeyCode.S) && isAttached)
+        {
+            Slide(-1);
+        }
+        if (Input.GetKeyDown(KeyCode.W) && isAttached)
+        {
+            StartCoroutine(Detach());
+            rb.AddForce(new Vector2(0, jumpForce));
+            jumpCount++;
+        }
+        StartCoroutine(AutomaticSlide());
+            
+    }
+    IEnumerator AutomaticSlide()
+    {
+        if (ropeSegment != null)
+        {
+            if (ropeSegment.connectedBelow != null)
+            {
+                Slide(-1);
+                yield return new WaitForSeconds(5f);
+                //the delay still doesnt work :(
+            }
+        }
+    }
+    void Attach(Rigidbody2D ropeBone)
+    {
+        ropeBone.gameObject.GetComponent<RopeSegment>().isPlayerAttached=true;
+        hj.connectedBody = ropeBone;
+        hj.enabled= true;
+        isAttached = true;
+        attachedTo = ropeBone.gameObject.transform.parent;
+        ropeSegment = ropeBone.gameObject.GetComponent<RopeSegment>();
+    }
 
+    IEnumerator Detach()
+    {
+        hj.connectedBody.gameObject.GetComponent<RopeSegment>().isPlayerAttached = false;
+        isAttached = false;
+        hj.enabled = false;
+        hj.connectedBody = null;
+        yield return new WaitForSeconds(0.5f);
+        attachedTo = null;
+        ropeSegment= null;  
+    }
+    public void Slide(int direction)
+    {
+        RopeSegment myConnection = hj.connectedBody.gameObject.GetComponent<RopeSegment>();
+        GameObject newSeg = null;
+        if(direction>0)
+        {
+            if (myConnection.connectedAbove!=null)
+            {
+                if (myConnection.connectedAbove.gameObject.GetComponent<RopeSegment>() != null)
+                {
+                    newSeg = myConnection.connectedAbove;
+                }
+            }
+        }
+        else
+        {
+            if(myConnection.connectedBelow!=null)
+            {
+                newSeg=myConnection.connectedBelow;
+            }
+        }
+        if (newSeg!=null)
+        {
+            transform.position=newSeg.transform.position;
+            myConnection.isPlayerAttached = false;
+            newSeg.GetComponent<RopeSegment>().isPlayerAttached = true;
+            hj.connectedBody=newSeg.GetComponent<Rigidbody2D>();
+        }
+    }
     void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
