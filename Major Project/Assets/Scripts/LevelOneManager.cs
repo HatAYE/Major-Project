@@ -18,18 +18,18 @@ public class LevelOneManager : MonoBehaviour
     void Start()
     {
         pl=FindObjectOfType<Controls>();
-        /*#region post processing set up
+        #region post processing set up
         postProcessVolume = FindObjectOfType<PostProcessVolume>();
         postProcessVolume.profile.TryGetSettings(out vignette);
         postProcessVolume.profile.TryGetSettings(out depth);
         initialIntensity = vignette.intensity.value;
         initialFocalLength = depth.focalLength.value;
-        #endregion*/
+        #endregion
     }
 
     void Update()
     {
-        //AdjustEffects();   
+        AdjustEffects();   
         if (Input.GetKeyDown(KeyCode.P))
         {
             scrapParts += 5;

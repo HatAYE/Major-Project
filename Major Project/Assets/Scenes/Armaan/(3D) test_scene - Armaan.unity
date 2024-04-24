@@ -37377,6 +37377,7 @@ GameObject:
   - component: {fileID: 726508046}
   - component: {fileID: 726508045}
   - component: {fileID: 726508047}
+  - component: {fileID: 726508048}
   m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -37402,7 +37403,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.97547174, g: 0.9850105, b: 1, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -37443,7 +37444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726508041}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9, y: -0.39916992, z: -8}
+  m_LocalPosition: {x: 41.6, y: -0.29916978, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1656098073}
@@ -37561,6 +37562,18 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &726508048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726508041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2874b3dccd8e7e438a4560cc1ef0f54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &727980340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90411,7 +90424,7 @@ PrefabInstance:
       objectReference: {fileID: -431101807260347608, guid: a75e9fe7b8e6fcb438d350ddf6f681e5, type: 3}
     - target: {fileID: 7890892783078583538, guid: 735efc3707d12e74893cd86f9a3006de, type: 3}
       propertyPath: m_SortingLayer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7890892783078583538, guid: 735efc3707d12e74893cd86f9a3006de, type: 3}
       propertyPath: m_SortingOrder
@@ -90463,11 +90476,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7890892783944322651, guid: 735efc3707d12e74893cd86f9a3006de, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.9
+      value: 41.6
       objectReference: {fileID: 0}
     - target: {fileID: 7890892783944322651, guid: 735efc3707d12e74893cd86f9a3006de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.2
+      value: -3.1
       objectReference: {fileID: 0}
     - target: {fileID: 7890892783944322651, guid: 735efc3707d12e74893cd86f9a3006de, type: 3}
       propertyPath: m_LocalPosition.z
@@ -91733,6 +91746,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 922190656}
     m_Modifications:
+    - target: {fileID: 2014351929713669655, guid: 12649db274cd92c42a4892433ad89d5d, type: 3}
+      propertyPath: m_Points.Array.data[9].x
+      value: 6.4684753
+      objectReference: {fileID: 0}
+    - target: {fileID: 2014351929713669655, guid: 12649db274cd92c42a4892433ad89d5d, type: 3}
+      propertyPath: m_Points.Array.data[9].y
+      value: 1.7784268
+      objectReference: {fileID: 0}
+    - target: {fileID: 2014351929713669655, guid: 12649db274cd92c42a4892433ad89d5d, type: 3}
+      propertyPath: m_Points.Array.data[10].x
+      value: 6.7643356
+      objectReference: {fileID: 0}
+    - target: {fileID: 2014351929713669655, guid: 12649db274cd92c42a4892433ad89d5d, type: 3}
+      propertyPath: m_Points.Array.data[10].y
+      value: 1.5058365
+      objectReference: {fileID: 0}
+    - target: {fileID: 2014351929713669655, guid: 12649db274cd92c42a4892433ad89d5d, type: 3}
+      propertyPath: m_Points.Array.data[11].x
+      value: 6.8185678
+      objectReference: {fileID: 0}
+    - target: {fileID: 2014351929713669655, guid: 12649db274cd92c42a4892433ad89d5d, type: 3}
+      propertyPath: m_Points.Array.data[11].y
+      value: -1.3383999
+      objectReference: {fileID: 0}
     - target: {fileID: 5537316781329735216, guid: 12649db274cd92c42a4892433ad89d5d, type: 3}
       propertyPath: m_Name
       value: 'Bus '

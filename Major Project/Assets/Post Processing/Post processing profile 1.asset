@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: Vignette
+  m_Name: Post processing profile 1
   m_EditorClassIdentifier: 
   settings:
   - {fileID: 3769343805709110273}
@@ -145,7 +145,7 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.4}
   intensity:
     overrideState: 1
-    value: 0.75
+    value: 1
   smoothness:
     overrideState: 1
     value: 1
