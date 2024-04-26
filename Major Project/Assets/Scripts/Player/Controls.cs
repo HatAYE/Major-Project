@@ -26,7 +26,10 @@ public class Controls : MonoBehaviour
 
     #region push and pull variables
     bool isHoldingObject;
-    private GameObject holdObject;
+    bool letGoOfObject;
+    bool justPushed;
+    GameObject holdObject;
+    float pushCoolDown;
     #endregion
 
     #region crouch variables
@@ -129,7 +132,7 @@ public class Controls : MonoBehaviour
     }*/
     void Movement()
     {
-        if (Input.GetKey(KeyCode.A)&& !isAttached)
+        if (Input.GetKey(KeyCode.A)&& !isAttached && !letGoOfObject)
         {
             movingRight = false;
 
@@ -146,7 +149,7 @@ public class Controls : MonoBehaviour
                 rb.velocity = new Vector2(-crouchSpeed, rb.velocity.y);
             
         }
-        else if (Input.GetKey(KeyCode.D) && !isAttached)
+        else if (Input.GetKey(KeyCode.D) && !isAttached && !letGoOfObject)
         {
             movingRight=true;
 
@@ -176,20 +179,23 @@ public class Controls : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            
-            if (!isHoldingObject && hit.collider!=null && hit.collider.TryGetComponent(out Pushable pushable))
+            if (!justPushed)
             {
-                isHoldingObject = true;
-                holdObject= pushable.gameObject;
-                pushable.beingHeld = true;
-                pushable.rb.mass = pushable.massWhenHeld;
-                pushable.GetComponent<FixedJoint2D>().enabled = true;
-                pushable.GetComponent<FixedJoint2D>().connectedBody=rb;
+                if (!isHoldingObject && hit.collider != null && hit.collider.TryGetComponent(out Pushable pushable))
+                {
+                    isHoldingObject = true;
+                    holdObject = pushable.gameObject;
+                    pushable.beingHeld = true;
+                    pushable.rb.mass = pushable.massWhenHeld;
+                    pushable.GetComponent<FixedJoint2D>().enabled = true;
+                    pushable.GetComponent<FixedJoint2D>().connectedBody = rb;
+                    justPushed = true;
+                }
             }
-            
         }
         else
         {
+            
             if (holdObject != null)
             {
                 holdObject.GetComponent<FixedJoint2D>().enabled = false;
@@ -197,6 +203,24 @@ public class Controls : MonoBehaviour
             }
             holdObject = null;
             isHoldingObject = false;
+            
+            if(justPushed)
+            {
+                letGoOfObject = true;
+                if (pushCoolDown <= 1.2f)
+                {
+                    pushCoolDown+=1 *Time.deltaTime;
+                    //unavailable pushing/pulling UI acivated 
+                }
+                else
+                {
+                    justPushed= false;
+                    letGoOfObject= false;
+                    pushCoolDown = 0;
+                    //available pushing/pulling UI acivated
+                }
+            }
+            
         }
     }
     void Crouch()
@@ -227,13 +251,17 @@ public class Controls : MonoBehaviour
     void DeflectingShield()
     {
         //SHIELD WILL BE ACTIVATED ONLY AT CHAPTER 3
-        if (Input.GetKey(KeyCode.J))
+        if (transform.GetChild(1).gameObject!=null)
         {
-            transform.GetChild(1).gameObject.SetActive(true);
+            if (Input.GetKey(KeyCode.J))
+            {
+                transform.GetChild(1).gameObject.SetActive(true);
+            }
+            else transform.GetChild(1).gameObject.SetActive(false);
         }
-        else transform.GetChild(1).gameObject.SetActive(false);
     }
 
+    #region Swinging
     void Swinging()
     {
         /*if (Input.GetKey(KeyCode.W) && isAttached)
@@ -322,6 +350,7 @@ public class Controls : MonoBehaviour
             hj.connectedBody=newSeg.GetComponent<Rigidbody2D>();
         }
     }
+    #endregion
     void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
