@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
-  m_Name: Siren_Dialogue
+  m_Name: SpareParts
   m_EditorClassIdentifier: 
   version: 1.0
   startNode:
-    <Guid>k__BackingField: 9f82608f-3962-43bf-bbe2-4109a4e4841b
+    <Guid>k__BackingField: b0280ee7-4e4e-42cd-afcd-4ece0e9ba9de
     <NodeRect>k__BackingField:
       serializedVersion: 2
       x: 100
@@ -34,23 +34,23 @@ MonoBehaviour:
     00000000:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
       data:
-        <Guid>k__BackingField: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
+        <Guid>k__BackingField: 760eb2b8-9749-474b-a854-a2be55c1a490
         <NodeRect>k__BackingField:
           serializedVersion: 2
-          x: 289.6
-          y: 100
+          x: 225.59999
+          y: 122.399994
           width: 208
           height: 134.4
-        actor: siren
-        actorProfile: {fileID: 11400000, guid: 7fe69b7c84d010d448228dfb96a6b08d, type: 2}
-        useActorProfile: 1
-        message: hi im gonna eat you
+        actor: Actor name
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: This machine is missing spare parts..
     00000001:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
-          node: 9f82608f-3962-43bf-bbe2-4109a4e4841b
+          node: b0280ee7-4e4e-42cd-afcd-4ece0e9ba9de
           port: next
         input:
-          node: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
+          node: 760eb2b8-9749-474b-a854-a2be55c1a490
           port: previous
