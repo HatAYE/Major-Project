@@ -16,7 +16,7 @@ public class Controls : MonoBehaviour
     #region movement variables
     [SerializeField] float playerSpeed;
     bool movingRight;
-    
+    public bool isMoving;
     #endregion
 
     #region jumping variables
@@ -132,27 +132,29 @@ public class Controls : MonoBehaviour
     }*/
     void Movement()
     {
-        if (Input.GetKey(KeyCode.A)&& !isAttached && !letGoOfObject)
+        if (Input.GetKey(KeyCode.A) && !isAttached && !letGoOfObject)
         {
             movingRight = false;
-
+            isMoving = true;
             if (!isCrouching)
             {
-                if (Input.GetKey (KeyCode.LeftShift))
+                if (Input.GetKey(KeyCode.LeftShift))
                 {
                     rb.velocity = new Vector2(-sprintingSpeed, rb.velocity.y);
                 }
                 else rb.velocity = new Vector2(-playerSpeed, rb.velocity.y);
             }
 
-            if (isCrouching) 
+            if (isCrouching)
                 rb.velocity = new Vector2(-crouchSpeed, rb.velocity.y);
-            
+
         }
-        else if (Input.GetKey(KeyCode.D) && !isAttached && !letGoOfObject)
+        else if (Input.GetKeyUp(KeyCode.A))
+            isMoving = false;
+        if (Input.GetKey(KeyCode.D) && !isAttached && !letGoOfObject)
         {
             movingRight=true;
-
+            isMoving = true;
             if (!isCrouching)
             {
                 if (Input.GetKey(KeyCode.LeftShift))
@@ -165,6 +167,8 @@ public class Controls : MonoBehaviour
             if (isCrouching)
                 rb.velocity = new Vector2(crouchSpeed, rb.velocity.y);
         }
+        else if (Input.GetKeyUp(KeyCode.D))
+            isMoving = false;
     }
 
     void Jumping()
