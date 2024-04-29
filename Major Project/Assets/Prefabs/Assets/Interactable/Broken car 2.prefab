@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5375254303794850075}
   - component: {fileID: 5375254303794850077}
   - component: {fileID: 5375254303794850074}
+  - component: {fileID: 290422250}
   m_Layer: 0
   m_Name: Broken car 2
   m_TagString: Ground
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5375254303794850073}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 123.356125, y: -0.53817654, z: -1.4765345}
   m_LocalScale: {x: 1.1235892, y: 0.84024215, z: 1}
   m_Children: []
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -788881483
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 3834205159578764033, guid: e6961677cf8f03544b20c7cf3125d6d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -116,7 +117,7 @@ EdgeCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
@@ -130,8 +131,27 @@ EdgeCollider2D:
   - {x: 1.902359, y: 0.64012766}
   - {x: 2.1296134, y: 0.16657293}
   - {x: 2.477421, y: -0.032057613}
-  - {x: 2.6702209, y: -0.7247204}
+  - {x: 2.576591, y: -0.8017716}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!251 &290422250
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5375254303794850073}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 0
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
