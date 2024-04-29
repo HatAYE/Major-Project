@@ -8,10 +8,13 @@ public class CameraZoomOut : MonoBehaviour
 {
     [SerializeField] float cameraSpeed;
     [SerializeField] Collider2D[] enterAreas;
+    [SerializeField] Collider2D[] secondEntryAreas;
     [SerializeField] Collider2D[] exitAreas;
-    [SerializeField] Transform targetPosition;
-    [SerializeField] float zoomOutSize;
-    [SerializeField] Vector3 targetPosOffset;
+    [SerializeField] Transform rightTargetPosition;
+    [SerializeField] Vector3 rightTargetPosOffset;
+    [SerializeField] Transform leftTargetPosition;
+    [SerializeField] Vector3 leftTargetPosOffset;
+    [SerializeField] float zoomOutSize=100;
     bool zoomedOut;
     float originalCameraSize { get; set; }
     CinemachineVirtualCamera virtualCamera;
@@ -26,20 +29,28 @@ public class CameraZoomOut : MonoBehaviour
     }
     private void Update()
     {
-        for (int i = 0; i < enterAreas.Length; i++)
+        rightTargetPosition.position = transform.position + rightTargetPosOffset;
+        leftTargetPosition.position= transform.position + leftTargetPosOffset;
+        for (int i = 0; i < exitAreas.Length; i++)
         {
             if (zoomedOut)
             {
-                virtualCamera.Follow = targetPosition;
-                enterAreas[i].gameObject.SetActive(false);
+                if (i < enterAreas.Length)
+                {
+                    enterAreas[i].gameObject.SetActive(false);
+                    secondEntryAreas[i].gameObject.SetActive(false);
+                }
                 exitAreas[i].gameObject.SetActive(true);
             }
             else
             {
-                targetPosition.position = transform.position + targetPosOffset;
                 virtualCamera.Follow = gameObject.transform;
                 virtualCamera.m_Lens.FieldOfView = originalCameraSize;
-                enterAreas[i].gameObject.SetActive(true);
+                if (i <enterAreas.Length)
+                {
+                    enterAreas[i].gameObject.SetActive(true);
+                    secondEntryAreas[i].gameObject.SetActive(true);
+                }
                 exitAreas[i].gameObject.SetActive(false);
             }
         }
@@ -51,6 +62,18 @@ public class CameraZoomOut : MonoBehaviour
         foreach (Collider2D enterArea in enterAreas)
         {
             if (other == enterArea)
+            {
+                virtualCamera.Follow = rightTargetPosition;
+                StartCoroutine(ZoomCamera(zoomOutSize));
+                zoomedOut = true;
+                return;
+            }
+        }
+
+        foreach (Collider2D secondEntry in secondEntryAreas)
+        {
+            virtualCamera.Follow = leftTargetPosition;
+            if (other == secondEntry)
             {
                 StartCoroutine(ZoomCamera(zoomOutSize));
                 zoomedOut = true;
@@ -67,6 +90,7 @@ public class CameraZoomOut : MonoBehaviour
                 return;
             }
         }
+        
     }
 
     IEnumerator ZoomCamera(float zoomSize)
@@ -83,9 +107,10 @@ public class CameraZoomOut : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        foreach (Collider2D enterArea in enterAreas)
+        for(int i=0; i < enterAreas.Length; i++)
         {
-            Gizmos.DrawWireCube(enterArea.bounds.center, enterArea.bounds.size);
+            Gizmos.DrawWireCube(enterAreas[i].bounds.center, enterAreas[i].bounds.size);
+            Gizmos.DrawWireCube(secondEntryAreas[i].bounds.center, secondEntryAreas[i].bounds.size);
         }
 
         Gizmos.color = Color.red;
@@ -95,6 +120,7 @@ public class CameraZoomOut : MonoBehaviour
         }
 
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(targetPosition.position, 2f);
+        Gizmos.DrawWireSphere(rightTargetPosition.position, 2f);
+        Gizmos.DrawWireSphere(leftTargetPosition.position, 2f);
     }
 }
