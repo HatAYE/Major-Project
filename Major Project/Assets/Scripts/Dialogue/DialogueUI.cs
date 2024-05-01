@@ -45,11 +45,11 @@ public class DialogueUI : MonoBehaviour
 
     void UpdateGameState()
     {
-        if (dialogueWindow.activeSelf|| choiceWindow.activeSelf)
+        if (dialogueWindow.activeSelf || choiceWindow.activeSelf)
         {
-            //single indilaote
-            //else isplaying
+            GameManager.instance.ChangeState(gameStates.inDialogue);
         }
+        else GameManager.instance.ChangeState(gameStates.playing);
     }
 
     public void ShowChoice(string characterName, string line, List<Option> options, Sprite avatar = null)

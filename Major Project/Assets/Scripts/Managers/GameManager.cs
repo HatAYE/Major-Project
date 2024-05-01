@@ -15,6 +15,7 @@ public enum gameStates
 }
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance { get; private set; }
     static public gameStates currenState;
     Controls pl;
     bool isPaused;
@@ -22,6 +23,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         pl = FindObjectOfType<Controls>();
+        if (instance == null)
+        {
+            instance= this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
     }
 
     void Update()
@@ -46,13 +53,6 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-    void Dialogue()
-    {
-        if(DialogueUI.Instance.inDialogue)
-        {
-            currenState = gameStates.frozen;
-        }
-    }
     void TogglePause()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -68,5 +68,8 @@ public class GameManager : MonoBehaviour
             pauseMenu.gameObject.SetActive(false);
         }
     }
-    
+    public void ChangeState(gameStates state)
+    {
+        currenState = state;
+    }
 }

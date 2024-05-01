@@ -11,15 +11,16 @@ public class LevelOneManager : MonoBehaviour
     static public int scrapParts;
     [SerializeField] Text scrappartText;
     #region post processing
-    [SerializeField] Vignette vignette;
-    [SerializeField] DepthOfField depth;
-    [SerializeField] PostProcessVolume postProcessVolume;
+    Vignette vignette;
+    DepthOfField depth;
+    PostProcessVolume postProcessVolume;
+    float startingFocalStartingValue;
+    float targetFocalLength;
+    [SerializeField] float depthChangeRate;
     [SerializeField] float vignetteChangeRate;
-    [SerializeField] float speedChange;
-    [SerializeField] float targetFocalLength;
-    #endregion
-    float startingValue;
+    float vignetteStartingValue;
     float targetVignette;
+    #endregion
     void Start()
     {
         pl=FindObjectOfType<Controls>();
@@ -33,8 +34,11 @@ public class LevelOneManager : MonoBehaviour
             postProcessVolume.profile.TryGetSettings(out depth);
         }
         #endregion
-        startingValue= vignette.intensity.value;
+        vignetteStartingValue= vignette.intensity.value;
         vignetteChangeRate = vignette.intensity.value / FindObjectsOfType<Essence>().Length;
+
+        startingFocalStartingValue = depth.focalLength.value;
+        depthChangeRate= depth.focalLength.value / FindObjectsOfType<Essence>().Length;
     }
 
     void Update()
@@ -54,8 +58,10 @@ public class LevelOneManager : MonoBehaviour
     bool done;
     void ChangeEffects()
     {
-        startingValue = vignette.intensity.value;
-        targetVignette = startingValue - vignetteChangeRate;
+        vignetteStartingValue = vignette.intensity.value;
+        targetVignette = vignetteStartingValue - vignetteChangeRate;
+        startingFocalStartingValue= depth.focalLength.value;
+        targetFocalLength=startingFocalStartingValue - depthChangeRate;
         StartCoroutine(AdjustEffects());
     }
     float time;
@@ -65,7 +71,8 @@ public class LevelOneManager : MonoBehaviour
         while(time<totalTime)
         {
             time += Time.deltaTime;
-            vignette.intensity.value = Mathf.Lerp(startingValue, targetVignette, time / totalTime);
+            vignette.intensity.value = Mathf.Lerp(vignetteStartingValue, targetVignette, time / totalTime);
+            depth.focalLength.value = Mathf.Lerp(startingFocalStartingValue, targetFocalLength, time /totalTime);
             yield return null;
         }
         time = 0;
