@@ -10,7 +10,8 @@ public enum gameStates
     playing,
     paused,
     gameover,
-    frozen
+    frozen,
+    inDialogue
 }
 public class GameManager : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
         switch(currenState)
         {
             case gameStates.frozen:
+            case gameStates.inDialogue:
                 pl.enabled = false;
                 break;
             case gameStates.playing:
@@ -42,6 +44,13 @@ public class GameManager : MonoBehaviour
 
                 default: 
                 break;
+        }
+    }
+    void Dialogue()
+    {
+        if(DialogueUI.Instance.inDialogue)
+        {
+            currenState = gameStates.frozen;
         }
     }
     void TogglePause()
@@ -59,4 +68,5 @@ public class GameManager : MonoBehaviour
             pauseMenu.gameObject.SetActive(false);
         }
     }
+    
 }

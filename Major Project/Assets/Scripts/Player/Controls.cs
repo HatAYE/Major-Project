@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -49,6 +50,7 @@ public class Controls : MonoBehaviour
     #region Essence variables
     public int essenceCollected;
     [SerializeField] Text essenceText;
+    public Action onEssenceCollection;
     #endregion
 
     #region Swinging variables
@@ -130,6 +132,12 @@ public class Controls : MonoBehaviour
         }
         
     }*/
+    public IEnumerator AddEssence()
+    {
+        essenceCollected++;
+        onEssenceCollection?.Invoke();
+        yield return null;
+    }
     void Movement()
     {
         if (Input.GetKey(KeyCode.A) && !isAttached && !letGoOfObject)

@@ -13,7 +13,7 @@ public class Essence : MonoBehaviour
     {
         if (player.gameObject == collision.gameObject)
         {
-            player.essenceCollected++;
+            StartCoroutine(player.AddEssence());
             Destroy(gameObject);
         }
     }
