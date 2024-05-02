@@ -5,13 +5,23 @@ using static UnityEditor.Progress;
 
 public class CBitems : MonoBehaviour
 {
-    public bool isfalling;
+    [HideInInspector] public bool isfalling;
+    public ConveyerBelt conveyer;
     private void OnTriggerExit2D(Collider2D collision)
     {
+
         if (collision.gameObject.name.StartsWith("Conveyor belt"))
         {
             isfalling = true;
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Destroyer"))
+        {
+            conveyer.items.Remove(gameObject);
+            Destroy(gameObject);
         }
     }
 }

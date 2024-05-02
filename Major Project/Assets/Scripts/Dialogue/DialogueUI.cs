@@ -14,7 +14,7 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI dialogueLine;
     [SerializeField] Button nextLineButton;
     [SerializeField] GameObject choiceOptionButtonPrefab;
-
+    public bool inDialogue => dialogueWindow.activeSelf;
     public static DialogueUI Instance { get; private set; }
 
     private void Awake()
@@ -41,6 +41,15 @@ public class DialogueUI : MonoBehaviour
         nextLineButton.enabled = true;
         nextLineButton.onClick.RemoveAllListeners();
         nextLineButton.onClick.AddListener(() => onContinue());
+    }
+
+    void UpdateGameState()
+    {
+        if (dialogueWindow.activeSelf || choiceWindow.activeSelf)
+        {
+            GameManager.instance.ChangeState(gameStates.inDialogue);
+        }
+        else GameManager.instance.ChangeState(gameStates.playing);
     }
 
     public void ShowChoice(string characterName, string line, List<Option> options, Sprite avatar = null)

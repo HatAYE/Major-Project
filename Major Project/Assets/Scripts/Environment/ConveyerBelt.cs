@@ -8,7 +8,7 @@ public class ConveyerBelt : MonoBehaviour
     [SerializeField] Vector2 direction;
     [SerializeField] GameObject[] prefabs;
     [SerializeField] float instantiatingPause;
-    [SerializeField] List<GameObject> items= new List<GameObject>();
+    public List<GameObject> items= new List<GameObject>();
     bool instantiaed;
     float timer;
     void Update()
@@ -22,6 +22,7 @@ public class ConveyerBelt : MonoBehaviour
         {
             if (timer< 10)
             {
+                item.GetComponent<CBitems>().conveyer = this;
                 if (item.GetComponent<CBitems>().isfalling!=true)
                 {
                     item.GetComponent<Rigidbody2D>().velocity += direction * speed * Time.deltaTime;

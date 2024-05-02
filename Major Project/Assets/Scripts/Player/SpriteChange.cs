@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class SpriteChange : MonoBehaviour
@@ -7,11 +8,23 @@ public class SpriteChange : MonoBehaviour
     [SerializeField] int level { get; set; }
     Controls player;
     Animator animator;
+    [SerializeField] AnimationClip clip;
     //CHANGE ANIMATOR CONTROLLER DEPENDING ON ESSENCE COLLECTED
     void Start()
     {
         player = FindObjectOfType<Controls>();
         animator = GetComponent<Animator>();
+        /*AnimatorController animatorController = animator.runtimeAnimatorController as AnimatorController;
+
+        // Find the state (assuming it's in the first layer and you know the state name)
+        ChildAnimatorState[] state = animatorController.layers[0].stateMachine.states;
+        foreach (var stateItem in state)
+        {
+            if (stateItem.state.name == "Movement")
+            {
+                stateItem.state.motion = clip;
+            }
+        }*/
     }
 
     // Update is called once per frame
@@ -26,5 +39,7 @@ public class SpriteChange : MonoBehaviour
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
         animator.SetBool("canMove", player.isMoving);
+
     }
+
 }

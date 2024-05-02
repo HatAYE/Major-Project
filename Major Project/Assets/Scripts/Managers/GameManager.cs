@@ -10,10 +10,12 @@ public enum gameStates
     playing,
     paused,
     gameover,
-    frozen
+    frozen,
+    inDialogue
 }
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance { get; private set; }
     static public gameStates currenState;
     Controls pl;
     bool isPaused;
@@ -21,6 +23,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         pl = FindObjectOfType<Controls>();
+        if (instance == null)
+        {
+            instance= this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
     }
 
     void Update()
@@ -29,6 +37,7 @@ public class GameManager : MonoBehaviour
         switch(currenState)
         {
             case gameStates.frozen:
+            case gameStates.inDialogue:
                 pl.enabled = false;
                 break;
             case gameStates.playing:
@@ -58,5 +67,9 @@ public class GameManager : MonoBehaviour
             currenState = gameStates.playing;
             pauseMenu.gameObject.SetActive(false);
         }
+    }
+    public void ChangeState(gameStates state)
+    {
+        currenState = state;
     }
 }
