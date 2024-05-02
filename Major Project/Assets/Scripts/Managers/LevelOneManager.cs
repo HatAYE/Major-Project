@@ -9,7 +9,7 @@ public class LevelOneManager : MonoBehaviour
 {
     Controls pl;
     static public int scrapParts;
-    [SerializeField] Text scrappartText;
+    //[SerializeField] Text scrappartText;
     #region post processing
     Vignette vignette;
     DepthOfField depth;
@@ -51,8 +51,8 @@ public class LevelOneManager : MonoBehaviour
         {
             StartCoroutine(AdjustEffects());
         }
-        if (scrappartText != null)
-            scrappartText.text = scrapParts.ToString() +" scrap parts";
+        //if (scrappartText != null)
+           // scrappartText.text = scrapParts.ToString() +" scrap parts";
         
     }
     bool done;
