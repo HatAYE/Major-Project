@@ -16,7 +16,6 @@ public class SpriteChange : MonoBehaviour
         animator = GetComponent<Animator>();
         /*AnimatorController animatorController = animator.runtimeAnimatorController as AnimatorController;
 
-        // Find the state (assuming it's in the first layer and you know the state name)
         ChildAnimatorState[] state = animatorController.layers[0].stateMachine.states;
         foreach (var stateItem in state)
         {

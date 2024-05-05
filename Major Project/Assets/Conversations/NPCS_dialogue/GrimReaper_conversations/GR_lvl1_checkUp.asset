@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: GR_lvl1_checkUp
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: 84c71e6b-b485-4eb4-b322-90172ae3c939
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: 100
+      y: 100
+      width: 100
+      height: 100
+    name: Start
+  nodes:
+  - id: 0
+  - id: 1
+  - id: 2
+  edges:
+  - id: 3
+  - id: 4
+  - id: 5
+  properties:
+  - id: 6
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 7702cda0-5b2f-4e17-86f5-333d69e33791
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 226.4
+          y: 70.399994
+          width: 208.00002
+          height: 163.20001
+        actor: Actor name
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: '*he looks at the fireflies around you and opens his hands to you*'
+    00000001:
+      type: {class: ChoiceNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: f99c8871-8645-48e7-b46f-d3245fcd08be
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 502.40002
+          y: 68
+          width: 208
+          height: 166.4
+        actor: 
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: 
+        options:
+        - guid: yes
+          label: Give him the fireflies
+        - guid: no
+          label: Leave
+    00000002:
+      type: {class: EventNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 0364af73-dd77-45e9-b191-a8bd7fc8edc1
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 775.2
+          y: 118.399994
+          width: 181.59998
+          height: 100.80002
+        stopsFlow: 0
+        eventGuid: 8089be9e-d0ea-44fe-b48b-89406c6e7840
+        eventName: check essence
+    00000003:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 84c71e6b-b485-4eb4-b322-90172ae3c939
+          port: next
+        input:
+          node: 7702cda0-5b2f-4e17-86f5-333d69e33791
+          port: previous
+    00000004:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 7702cda0-5b2f-4e17-86f5-333d69e33791
+          port: next
+        input:
+          node: f99c8871-8645-48e7-b46f-d3245fcd08be
+          port: previous
+    00000005:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: f99c8871-8645-48e7-b46f-d3245fcd08be
+          port: yes
+        input:
+          node: 0364af73-dd77-45e9-b191-a8bd7fc8edc1
+          port: previous
+    00000006:
+      type: {class: EventProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 8089be9e-d0ea-44fe-b48b-89406c6e7840
+        name: check essence
