@@ -44,7 +44,7 @@ public class Fireflies : MonoBehaviour
 
             if (inPlayerRadius)
             {
-                if (Vector3.Distance(transform.position, targetPosition) < 1f)
+                if (Vector3.Distance(transform.position, targetPosition) < .1f)
                 {
                     if (timer <= 0)
                     {
