@@ -3,7 +3,7 @@ using UnityEngine;
 public class Essence : MonoBehaviour
 {
     Controls player;
-    bool collected;
+    public bool collected;
 
     void Start()
     {
@@ -17,7 +17,8 @@ public class Essence : MonoBehaviour
             if (!collected)
             StartCoroutine(player.AddEssence());
             collected = true;
-            Destroy(gameObject);
+            gameObject.GetComponent<Collider2D>().enabled = false;
+            //Destroy(gameObject);
         }
     }
 }

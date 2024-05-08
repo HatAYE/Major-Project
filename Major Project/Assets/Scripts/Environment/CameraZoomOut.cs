@@ -111,7 +111,7 @@ public class CameraZoomOut : MonoBehaviour
         {
             if (enterAreas[i] != null)
                 Gizmos.DrawWireCube(enterAreas[i].bounds.center, enterAreas[i].bounds.size);
-            if (exitAreas[i] != null)
+            if (secondEntryAreas[i] != null)
             Gizmos.DrawWireCube(secondEntryAreas[i].bounds.center, secondEntryAreas[i].bounds.size);
         }
 
