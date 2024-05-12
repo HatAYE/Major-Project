@@ -71,7 +71,7 @@ public class AnimationManager : MonoBehaviour
             }
 
 
-            /*else if (stateItem.state.name == "Jump")
+            else if (stateItem.state.name == "Jump")
             {
                 if (GameManager.instance.currentLevel == 1)
                     stateItem.state.motion = JumpAnis[0];
@@ -81,7 +81,7 @@ public class AnimationManager : MonoBehaviour
 
                 else if (GameManager.instance.currentLevel >= 3)
                     stateItem.state.motion = JumpAnis[5];
-            }*/
+            }
 
 
             else if (stateItem.state.name == "Crouch")

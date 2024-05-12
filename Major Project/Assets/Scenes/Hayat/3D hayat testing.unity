@@ -46989,7 +46989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1258171334
 Transform:
   m_ObjectHideFlags: 0
@@ -68508,6 +68508,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1770699036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1770699038}
+  - component: {fileID: 1770699037}
+  m_Layer: 0
+  m_Name: manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1770699037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770699036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bc3d4259fbb74740a9ac502bde8df9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLevel: 1
+  pauseMenu: {fileID: 0}
+--- !u!4 &1770699038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770699036}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 349.1868, y: -2.7631984, z: -0.9200133}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1782644330
 GameObject:
   m_ObjectHideFlags: 0
@@ -90614,8 +90659,9 @@ GameObject:
   - component: {fileID: 2072707387}
   - component: {fileID: 2072707386}
   - component: {fileID: 2072707385}
+  - component: {fileID: 2072707388}
   m_Layer: 0
-  m_Name: greaper
+  m_Name: reaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90662,7 +90708,6 @@ MonoBehaviour:
   firstConvo: {fileID: 11400000, guid: f767a0aef9a8d194795a7e7704bff6f8, type: 2}
   acceptConvo: {fileID: 11400000, guid: c67342f0dff03604da7db70fd2730675, type: 2}
   rejectConvo: {fileID: 11400000, guid: 15e127f6bd5b55242917fa9b8f1ff7d4, type: 2}
-  playerInRadius: 0
 --- !u!4 &2072707387
 Transform:
   m_ObjectHideFlags: 0
@@ -90678,6 +90723,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2072707388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072707384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a39b976778f8a242a888c0b88cad0e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  singleInteraction: 0
+  conversation: {fileID: 11400000, guid: 43cccc21221704e409efac77e0db1730, type: 2}
 --- !u!1 &2074491166
 GameObject:
   m_ObjectHideFlags: 0
@@ -91762,7 +91821,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7890892783944322655, guid: 735efc3707d12e74893cd86f9a3006de, type: 3}
       propertyPath: essenceCollected
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7890892783944322655, guid: 735efc3707d12e74893cd86f9a3006de, type: 3}
       propertyPath: standingAndCrouchingSprites.Array.data[0]

@@ -316,7 +316,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7400000, guid: d896a89ad35e8be48a9a43b03121e793, type: 2}
   - {fileID: 0}
   CrouchAnis:
   - {fileID: 7400000, guid: 3a8e923f13521074ca47bfbcdd7939f2, type: 2}
@@ -1542,13 +1542,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 6
+  movingRight: 0
   isMoving: 0
   jumpForce: 1300
   isHoldingObject: 0
   isCrouching: 0
-  standingAndCrouchingSprites:
-  - {fileID: -5152207037463767643, guid: ca71b3dea315ac24bbda57b2de6edba4, type: 3}
-  - {fileID: -1223380547400649768, guid: ca71b3dea315ac24bbda57b2de6edba4, type: 3}
   aboveObject:
     serializedVersion: 2
     m_Bits: 72

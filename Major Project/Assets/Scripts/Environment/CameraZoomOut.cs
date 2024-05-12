@@ -106,6 +106,7 @@ public class CameraZoomOut : MonoBehaviour
 
     void OnDrawGizmos()
     {
+        if (!Application.isPlaying) return;
         Gizmos.color = Color.green;
         for(int i=0; i < enterAreas.Length; i++)
         {

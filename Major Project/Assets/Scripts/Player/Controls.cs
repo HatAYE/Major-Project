@@ -12,11 +12,10 @@ public class Controls : MonoBehaviour
     RaycastHit2D hit;
     Rigidbody2D rb;
     private BoxCollider2D boxCollider;
-    SpriteRenderer spriteRenderer;
 
     #region movement variables
     [SerializeField] float playerSpeed;
-    bool movingRight;
+    [HideInInspector] public bool movingRight;
     [HideInInspector] public bool isMoving;
     #endregion
 
@@ -35,7 +34,6 @@ public class Controls : MonoBehaviour
 
     #region crouch variables
     [HideInInspector] public bool isCrouching;
-    [SerializeField] Sprite[] standingAndCrouchingSprites = new Sprite[2];
     float crouchSpeed;
     Vector2 crouchHeight;
     Vector2 colOffset;
@@ -67,9 +65,6 @@ public class Controls : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         hj= GetComponent<HingeJoint2D>();
-
-        spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite= standingAndCrouchingSprites[0];
 
         boxCollider= GetComponent<BoxCollider2D>();
         normalHeight = boxCollider.size;

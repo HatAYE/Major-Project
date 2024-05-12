@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Scripting;
 
 public class GrimReaper : MonoBehaviour
 {
@@ -18,34 +19,59 @@ public class GrimReaper : MonoBehaviour
         player=FindObjectOfType<Controls>();
         controller = new DialogueController(firstConvo);
         controller.OnEventTrigger += CheckEssenceCount;
-
+        controller.OnEventTrigger += TransitionToNextLevel;
+        
     }
 
     // Update is called once per frame
     void Update()
-    {
-
+    {   
     }
+    bool accepted;
     void CheckEssenceCount(string eventName)
     {
-        if (eventName== "check essence")
+        print("mam");
+        if (eventName == "check essence")
         {
-            playerInRadius = true;
+            
+            print("hello");
             if (player.essenceCollected == /*FindObjectsOfType<Essence>().Length*/7)
             {
-                controller.OnDialogueEnd += () =>
-                {
-                    controller.NewConversation(acceptConvo);
-                    controller.BeginDialogue();
-                };
+                print("enough");
+                controller.OnDialogueEnd += () => StartCoroutine(Accept());
             }
             else
             {
-                controller.OnEventTrigger += TransitionToNextLevel;
-                controller.NewConversation(rejectConvo);
-                controller.BeginDialogue();
+                print("not enough");
+                refused = false;
+                controller.OnDialogueEnd += () => StartCoroutine(Refuse());
             }
         }
+    }
+    IEnumerator Accept()
+    {
+        if (!accepted)
+        {
+            controller.NewConversation(acceptConvo);
+
+            controller.BeginDialogue();
+            accepted=true;
+            yield return null;
+        }
+        
+    }
+    bool refused;
+    IEnumerator Refuse()
+    {
+        if (!refused)
+        {
+            controller.NewConversation(rejectConvo);
+            controller.BeginDialogue();
+            refused =true;
+
+            yield return null;
+        }
+        
     }
     bool canTransition;
     void TransitionToNextLevel(string eventName)
@@ -64,12 +90,11 @@ public class GrimReaper : MonoBehaviour
             }
         }
     }
-    [SerializeField] bool playerInRadius;
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out Controls player))
         {
-            if (player.essenceCollected >= 4 && !playerInRadius)
+            if (player.essenceCollected >= 4)
             {
                 player.onEssenceCollection += () =>
                 {
@@ -77,7 +102,6 @@ public class GrimReaper : MonoBehaviour
                     transform.GetChild(0).gameObject.SetActive(true);
                     if (controller != null)
                     {
-                        playerInRadius = true;
                         //play talking animation
                         controller.BeginDialogue();
                         //controller.OnDialogueEnd+= move to next scene

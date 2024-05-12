@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
-  m_Name: GR_lvl1_accept
+  m_Name: recheck
   m_EditorClassIdentifier: 
   version: 1.0
   startNode:
-    <Guid>k__BackingField: 6bd88103-f78e-4d58-9e89-7d367dbae384
+    <Guid>k__BackingField: 930ee508-7d46-43cb-bfe9-2722ff02c041
     <NodeRect>k__BackingField:
       serializedVersion: 2
-      x: -592.8
-      y: 126.399994
-      width: 86.399994
-      height: 40
+      x: 100
+      y: 100
+      width: 100
+      height: 100
     name: Start
   nodes:
   - id: 0
@@ -35,52 +35,52 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: de1c2306-df4a-400d-9a0e-6cf775bc2185
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 232.8
+          y: 72.8
+          width: 208
+          height: 134.40001
+        actor: Actor name
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: im gonna kms
+    00000001:
       type: {class: EventNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
       data:
-        <Guid>k__BackingField: 355d658b-b7d5-4bae-95e8-73a8d5703995
+        <Guid>k__BackingField: 9e917211-0738-42b6-a376-3afdf3b8502f
         <NodeRect>k__BackingField:
           serializedVersion: 2
-          x: -153.6
-          y: 89.600006
-          width: 182.40001
-          height: 100.79999
+          x: 508.80002
+          y: 72.8
+          width: 181.6
+          height: 100.8
         stopsFlow: 0
-        eventGuid: cd624d39-e004-470e-866b-f180ba4f44df
-        eventName: transition
-    00000001:
-      type: {class: MultiMessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
-      data:
-        <Guid>k__BackingField: fbeb46df-83e2-488b-ab60-ab46721a0d44
-        <NodeRect>k__BackingField:
-          serializedVersion: 2
-          x: -459.19998
-          y: 89.600006
-          width: 208
-          height: 153.6
-        actor: {fileID: 0}
-        messages:
-        - '*he claps*'
-        - You may proceed :D
+        eventGuid: 93fb568d-4f1e-4bf3-b879-f5bf526297c4
+        eventName: check essence
     00000002:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
-          node: 6bd88103-f78e-4d58-9e89-7d367dbae384
+          node: 930ee508-7d46-43cb-bfe9-2722ff02c041
           port: next
         input:
-          node: fbeb46df-83e2-488b-ab60-ab46721a0d44
+          node: de1c2306-df4a-400d-9a0e-6cf775bc2185
           port: previous
     00000003:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
-          node: fbeb46df-83e2-488b-ab60-ab46721a0d44
+          node: de1c2306-df4a-400d-9a0e-6cf775bc2185
           port: next
         input:
-          node: 355d658b-b7d5-4bae-95e8-73a8d5703995
+          node: 9e917211-0738-42b6-a376-3afdf3b8502f
           port: previous
     00000004:
       type: {class: EventProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
       data:
-        <Guid>k__BackingField: cd624d39-e004-470e-866b-f180ba4f44df
-        name: transition
+        <Guid>k__BackingField: 93fb568d-4f1e-4bf3-b879-f5bf526297c4
+        name: check essence

@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class SpriteChange : MonoBehaviour
 {
-    [SerializeField] int level { get; set; }
     Controls player;
     Animator animator;
     [SerializeField] AnimationClip clip;
-    //CHANGE ANIMATOR CONTROLLER DEPENDING ON ESSENCE COLLECTED
+    bool facingRight;
     void Start()
     {
         player = FindObjectOfType<Controls>();
@@ -17,14 +16,17 @@ public class SpriteChange : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z) *1 ;
-        }
-        else if (Input.GetKeyUp(KeyCode.A))
+        if (!player.movingRight && !facingRight)
         {
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            facingRight = true;
         }
+        else if (player.movingRight &&facingRight)
+        {
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            facingRight= false;
+        }
+
         if (Input.GetKeyDown(KeyCode.W))
         {
             animator.SetTrigger("jumped");
