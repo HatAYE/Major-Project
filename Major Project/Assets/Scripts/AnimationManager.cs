@@ -10,13 +10,13 @@ public class AnimationManager : MonoBehaviour
     Animator animator;
     ChildAnimatorState[] states;
 
-    public AnimationClip[] IdleAnis= new AnimationClip[6];
-    public AnimationClip[] MovementAnis = new AnimationClip[6];
-    public AnimationClip[] JumpAnis = new AnimationClip[6];
-    public AnimationClip[] CrouchAnis = new AnimationClip[6];
-    public AnimationClip[] CrouchMovementAnis = new AnimationClip[6];
-    public AnimationClip[] PushAndPullAnis = new AnimationClip[6];
-    public AnimationClip[] CrouchPushAndPullAnis = new AnimationClip[6];
+    public AnimationClip[] IdleAnis= new AnimationClip[5];
+    public AnimationClip[] MovementAnis = new AnimationClip[5];
+    public AnimationClip[] JumpAnis = new AnimationClip[5];
+    public AnimationClip[] CrouchAnis = new AnimationClip[5];
+    public AnimationClip[] CrouchMovementAnis = new AnimationClip[5];
+    public AnimationClip[] PushAndPullAnis = new AnimationClip[5];
+    public AnimationClip[] CrouchPushAndPullAnis = new AnimationClip[5];
     void Start()
     {
         if (instance == null)
@@ -32,149 +32,103 @@ public class AnimationManager : MonoBehaviour
 
         states = animatorController.layers[0].stateMachine.states;
 
-        UpdateCostume();
 
         if (GameManager.instance.currentLevel==1)
         {
             player.onEssenceCollection += EssenceCostumeChange;
         }
+        else
+        {
+            SetCostume();
+            player.onEssenceCollection -= EssenceCostumeChange;
+        }
     }
 
     
-    void UpdateCostume()
+    void SetCostume()
     {
         foreach (var stateItem in states)
         {
-            /*if (stateItem.state.name == "Idle")
+            if (stateItem.state.name == "Idle")
             {
-                if (GameManager.instance.currentLevel==1)
-                stateItem.state.motion = IdleAnis[0];
-                
-                else if (GameManager.instance.currentLevel == 2)
-                    stateItem.state.motion = IdleAnis[6];
-
-                else if (GameManager.instance.currentLevel >= 3)
                     stateItem.state.motion = IdleAnis[5];
             }
 
 
-            else*/ if (stateItem.state.name == "Movement")
+            else if (stateItem.state.name == "Movement")
             {
-                if (GameManager.instance.currentLevel == 1)
-                    stateItem.state.motion = MovementAnis[0];
-
-                else if (GameManager.instance.currentLevel == 2)
-                    stateItem.state.motion = MovementAnis[6];
-
-                else if (GameManager.instance.currentLevel >= 3)
                     stateItem.state.motion = MovementAnis[5];
             }
 
 
             else if (stateItem.state.name == "Jump")
             {
-                if (GameManager.instance.currentLevel == 1)
-                    stateItem.state.motion = JumpAnis[0];
-
-                else if (GameManager.instance.currentLevel == 2)
-                    stateItem.state.motion = JumpAnis[6];
-
-                else if (GameManager.instance.currentLevel >= 3)
-                    stateItem.state.motion = JumpAnis[5];
+                stateItem.state.motion = JumpAnis[5];
             }
 
 
             else if (stateItem.state.name == "Crouch")
             {
-                if (GameManager.instance.currentLevel == 1)
-                    stateItem.state.motion = CrouchAnis[0];
-
-                else if (GameManager.instance.currentLevel == 2)
-                    stateItem.state.motion = CrouchAnis[6];
-
-                else if (GameManager.instance.currentLevel >= 3)
                     stateItem.state.motion = CrouchAnis[5];
             }
 
 
             else if (stateItem.state.name == "Crouch movement")
             {
-                if (GameManager.instance.currentLevel == 1)
-                    stateItem.state.motion = CrouchMovementAnis[0];
-
-                else if (GameManager.instance.currentLevel == 2)
-                    stateItem.state.motion = CrouchMovementAnis[6];
-
-                else if (GameManager.instance.currentLevel >= 3)
                     stateItem.state.motion = CrouchMovementAnis[5];
             }
 
 
             /*else if (stateItem.state.name == "Push and pull")
             {
-                if (GameManager.instance.currentLevel == 1)
-                    stateItem.state.motion = PushAndPullAnis[0];
-
-                else if (GameManager.instance.currentLevel == 2)
-                    stateItem.state.motion = PushAndPullAnis[6];
-
-                else if (GameManager.instance.currentLevel >= 3)
                     stateItem.state.motion = PushAndPullAnis[5];
             }
 
 
             else if (stateItem.state.name == "Crouch push and pull")
             {
-                if (GameManager.instance.currentLevel == 1)
-                    stateItem.state.motion = CrouchPushAndPullAnis[0];
-
-                else if (GameManager.instance.currentLevel == 2)
-                    stateItem.state.motion = CrouchPushAndPullAnis[6];
-
-                else if (GameManager.instance.currentLevel >= 3)
                     stateItem.state.motion = CrouchPushAndPullAnis[5];
             }
             /*else if (stateItem.state.name == "Swinging")
             {
-            if (GameManager.instance.currentLevel==1)
-                stateItem.state.motion = PushAndPullAnis[0];
+                stateItem.state.motion = PushAndPullAnis[5];
             }*/
         }
     }
-    [SerializeField] int aniIndex=0;
+    int aniIndex=0;
     void EssenceCostumeChange()
     {
         if (aniIndex<5)
         {
             foreach (var stateItem in states)
             {
-                /*if (stateItem.state.name == "Idle")
+                if (stateItem.state.name == "Idle")
                 {
                         stateItem.state.motion = IdleAnis[aniIndex];
                 }
 
-                else*/if (stateItem.state.name == "Movement")
-                    {
+                else if (stateItem.state.name == "Movement")
+                {
                         stateItem.state.motion = MovementAnis[aniIndex];
-                    }
+                }
 
 
-                /*else if (stateItem.state.name == "Jump")
+                else if (stateItem.state.name == "Jump")
                 {
                         stateItem.state.motion = JumpAnis[aniIndex];
-                }*/
+                }
 
 
                 else if (stateItem.state.name == "Crouch")
-                    {
-                        stateItem.state.motion = CrouchAnis[aniIndex];
-                    }
+                {
+                    stateItem.state.motion = CrouchAnis[aniIndex];
+                }
 
 
-                    else if (stateItem.state.name == "Crouch movement")
-                    {
-                        stateItem.state.motion = CrouchMovementAnis[aniIndex];
-                    }
+                else if (stateItem.state.name == "Crouch movement")
+                {
+                    stateItem.state.motion = CrouchMovementAnis[aniIndex];
+                }
 
 
                 /* else if (stateItem.state.name == "Push and pull")

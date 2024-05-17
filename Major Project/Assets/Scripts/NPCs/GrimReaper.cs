@@ -9,40 +9,39 @@ using UnityEngine.Scripting;
 
 public class GrimReaper : MonoBehaviour
 {
+    int essences;
     Controls player;
     DialogueController controller;
     [SerializeField] Conversation firstConvo;
     [SerializeField] Conversation acceptConvo;
     [SerializeField] Conversation rejectConvo;
+    [SerializeField] Conversation interactionConvo;
+    bool refused;
+    bool accepted;
+    [SerializeField] bool canInteract;
     void Start()
     {
         player=FindObjectOfType<Controls>();
         controller = new DialogueController(firstConvo);
         controller.OnEventTrigger += CheckEssenceCount;
         controller.OnEventTrigger += TransitionToNextLevel;
-        
+        essences = FindObjectsOfType<Essence>().Length;
     }
 
     // Update is called once per frame
     void Update()
     {   
     }
-    bool accepted;
     void CheckEssenceCount(string eventName)
     {
-        print("mam");
         if (eventName == "check essence")
         {
-            
-            print("hello");
-            if (player.essenceCollected == /*FindObjectsOfType<Essence>().Length*/7)
+            if (player.essenceCollected == essences)
             {
-                print("enough");
                 controller.OnDialogueEnd += () => StartCoroutine(Accept());
             }
             else
             {
-                print("not enough");
                 refused = false;
                 controller.OnDialogueEnd += () => StartCoroutine(Refuse());
             }
@@ -53,22 +52,23 @@ public class GrimReaper : MonoBehaviour
         if (!accepted)
         {
             controller.NewConversation(acceptConvo);
-
+            canInteract = false;
             controller.BeginDialogue();
             accepted=true;
+            controller.OnDialogueEnd += () => canInteract = true;
             yield return null;
         }
         
     }
-    bool refused;
     IEnumerator Refuse()
     {
         if (!refused)
         {
             controller.NewConversation(rejectConvo);
+            canInteract = false;
             controller.BeginDialogue();
             refused =true;
-
+            controller.OnDialogueEnd += () => canInteract = true;
             yield return null;
         }
         
@@ -94,7 +94,7 @@ public class GrimReaper : MonoBehaviour
     {
         if (collision.TryGetComponent(out Controls player))
         {
-            if (player.essenceCollected >= 4)
+            if (canInteract==false)
             {
                 player.onEssenceCollection += () =>
                 {
@@ -104,12 +104,24 @@ public class GrimReaper : MonoBehaviour
                     {
                         //play talking animation
                         controller.BeginDialogue();
+                        controller.OnDialogueEnd += () => canInteract = true;
                         //controller.OnDialogueEnd+= move to next scene
                         //play blinding light, next scene should start with player falling down a rabbit hole
                     }
                 };
-                
             }
+            else
+            {
+                if (Input.GetKey(KeyCode.E))
+                {
+                    if (controller != null)
+                    {
+                        controller.NewConversation(interactionConvo);
+                        controller.BeginDialogue();
+                    }
+                }
+            }
+            
         }
     }
 }

@@ -90659,7 +90659,6 @@ GameObject:
   - component: {fileID: 2072707387}
   - component: {fileID: 2072707386}
   - component: {fileID: 2072707385}
-  - component: {fileID: 2072707388}
   m_Layer: 0
   m_Name: reaper
   m_TagString: Untagged
@@ -90708,6 +90707,8 @@ MonoBehaviour:
   firstConvo: {fileID: 11400000, guid: f767a0aef9a8d194795a7e7704bff6f8, type: 2}
   acceptConvo: {fileID: 11400000, guid: c67342f0dff03604da7db70fd2730675, type: 2}
   rejectConvo: {fileID: 11400000, guid: 15e127f6bd5b55242917fa9b8f1ff7d4, type: 2}
+  interactionConvo: {fileID: 11400000, guid: 88ad37b4e903fbf4aad7d326437fccdd, type: 2}
+  canInteract: 0
 --- !u!4 &2072707387
 Transform:
   m_ObjectHideFlags: 0
@@ -90723,20 +90724,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2072707388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072707384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a39b976778f8a242a888c0b88cad0e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  singleInteraction: 0
-  conversation: {fileID: 11400000, guid: 43cccc21221704e409efac77e0db1730, type: 2}
 --- !u!1 &2074491166
 GameObject:
   m_ObjectHideFlags: 0
