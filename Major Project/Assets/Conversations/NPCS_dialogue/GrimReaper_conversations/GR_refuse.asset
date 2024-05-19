@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
-  m_Name: DeathReaper
+  m_Name: GR_refuse
   m_EditorClassIdentifier: 
   version: 1.0
   startNode:
-    <Guid>k__BackingField: 6bd88103-f78e-4d58-9e89-7d367dbae384
+    <Guid>k__BackingField: 268e59c8-9729-4f16-bdfa-1802cba28ebf
     <NodeRect>k__BackingField:
       serializedVersion: 2
       x: 100
@@ -32,27 +32,25 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      type: {class: MultiMessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
       data:
-        <Guid>k__BackingField: 04a72b69-a0f1-465b-afd7-eec72c14cb0c
+        <Guid>k__BackingField: 82be8fc4-75f0-420e-be81-2273d42052d6
         <NodeRect>k__BackingField:
           serializedVersion: 2
-          x: 280.80002
-          y: 65.600006
-          width: 208
-          height: 148.79999
-        actor: Actor name
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
-        message: 'hi
-
-'
+          x: 242.4
+          y: 80
+          width: 208.00002
+          height: 167.20001
+        actor: {fileID: 0}
+        messages:
+        - '*he shakes his head*'
+        - You need to go back and look further
     00000001:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
-          node: 6bd88103-f78e-4d58-9e89-7d367dbae384
+          node: 268e59c8-9729-4f16-bdfa-1802cba28ebf
           port: next
         input:
-          node: 04a72b69-a0f1-465b-afd7-eec72c14cb0c
+          node: 82be8fc4-75f0-420e-be81-2273d42052d6
           port: previous

@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: GR_lvl1_convo1 1
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: 6bd88103-f78e-4d58-9e89-7d367dbae384
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: -536.8
+      y: 146.4
+      width: 86.399994
+      height: 40
+    name: Start
+  nodes:
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
+  edges:
+  - id: 4
+  - id: 5
+  - id: 6
+  - id: 7
+  properties:
+  - id: 8
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MultiMessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 144681a3-3862-408b-8576-d4a5ed6efc51
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: -404.8
+          y: 105.600006
+          width: 208
+          height: 120.79999
+        actor: {fileID: 0}
+        messages:
+        - There you are!
+        - You can't hear me well right now but that doesn't matter
+    00000001:
+      type: {class: ChoiceNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 76d7fa91-72d5-4456-990f-2cb058e1bf3e
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: -116
+          y: 107.2
+          width: 208
+          height: 166.40001
+        actor: 
+        actorProfile: {fileID: 11400000, guid: dd26e9b85d6c1fd43bc57e85cc12a809, type: 2}
+        useActorProfile: 1
+        message: 
+        options:
+        - guid: yes
+          label: Show him your fireflies
+        - guid: no
+          label: Leave
+    00000002:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 0763b241-7d09-4cd8-b8f3-bb127679c44c
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 150.4
+          y: 166.4
+          width: 208.00002
+          height: 134.4
+        actor: Actor name
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: '*he counts your fireflies*'
+    00000003:
+      type: {class: EventNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 2e08c2e4-039d-407c-b4fc-7df3db825f9a
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 407.2
+          y: 166.4
+          width: 182.40002
+          height: 100.80002
+        stopsFlow: 0
+        eventGuid: 6b9a5721-735d-45ae-82e4-97b18c20d47f
+        eventName: check essence
+    00000004:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 144681a3-3862-408b-8576-d4a5ed6efc51
+          port: next
+        input:
+          node: 76d7fa91-72d5-4456-990f-2cb058e1bf3e
+          port: previous
+    00000005:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 76d7fa91-72d5-4456-990f-2cb058e1bf3e
+          port: yes
+        input:
+          node: 0763b241-7d09-4cd8-b8f3-bb127679c44c
+          port: previous
+    00000006:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 6bd88103-f78e-4d58-9e89-7d367dbae384
+          port: next
+        input:
+          node: 144681a3-3862-408b-8576-d4a5ed6efc51
+          port: previous
+    00000007:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 0763b241-7d09-4cd8-b8f3-bb127679c44c
+          port: next
+        input:
+          node: 2e08c2e4-039d-407c-b4fc-7df3db825f9a
+          port: previous
+    00000008:
+      type: {class: EventProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 6b9a5721-735d-45ae-82e4-97b18c20d47f
+        name: check essence

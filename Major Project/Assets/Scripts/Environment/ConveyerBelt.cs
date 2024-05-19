@@ -43,4 +43,11 @@ public class ConveyerBelt : MonoBehaviour
         yield return new WaitForSeconds(instantiatingPause);
         instantiaed= false;
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent(out Controls player))
+        {
+            player.transform.position+= new Vector3(direction.x, direction.y, 0)*Time.deltaTime;
+        }
+    }
 }

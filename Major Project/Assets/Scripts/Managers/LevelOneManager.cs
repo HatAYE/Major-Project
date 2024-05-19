@@ -76,8 +76,5 @@ public class LevelOneManager : MonoBehaviour
             yield return null;
         }
         time = 0;
-        
-        //vignette.intensity.value = Mathf.Clamp01(initialIntensity - (pl.essenceCollected * 0.09f));
-        //depth.focalLength.value = Mathf.Clamp(initialFocalLength - (pl.essenceCollected * 13), 20, initialFocalLength);
     }
 }

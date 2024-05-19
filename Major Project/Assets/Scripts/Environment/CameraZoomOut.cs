@@ -106,10 +106,13 @@ public class CameraZoomOut : MonoBehaviour
 
     void OnDrawGizmos()
     {
+        if (!Application.isPlaying) return;
         Gizmos.color = Color.green;
         for(int i=0; i < enterAreas.Length; i++)
         {
-            Gizmos.DrawWireCube(enterAreas[i].bounds.center, enterAreas[i].bounds.size);
+            if (enterAreas[i] != null)
+                Gizmos.DrawWireCube(enterAreas[i].bounds.center, enterAreas[i].bounds.size);
+            if (secondEntryAreas[i] != null)
             Gizmos.DrawWireCube(secondEntryAreas[i].bounds.center, secondEntryAreas[i].bounds.size);
         }
 

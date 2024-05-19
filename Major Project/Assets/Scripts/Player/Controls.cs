@@ -12,12 +12,11 @@ public class Controls : MonoBehaviour
     RaycastHit2D hit;
     Rigidbody2D rb;
     private BoxCollider2D boxCollider;
-    SpriteRenderer spriteRenderer;
 
     #region movement variables
     [SerializeField] float playerSpeed;
-    bool movingRight;
-    public bool isMoving;
+    [HideInInspector] public bool movingRight;
+    [HideInInspector] public bool isMoving;
     #endregion
 
     #region jumping variables
@@ -26,7 +25,7 @@ public class Controls : MonoBehaviour
     #endregion
 
     #region push and pull variables
-    bool isHoldingObject;
+    [HideInInspector] public bool isHoldingObject;
     bool letGoOfObject;
     bool justPushed;
     GameObject holdObject;
@@ -34,11 +33,12 @@ public class Controls : MonoBehaviour
     #endregion
 
     #region crouch variables
-    [SerializeField] bool isCrouching;
-    [SerializeField] Sprite[] standingAndCrouchingSprites = new Sprite[2];
+    [HideInInspector] public bool isCrouching;
     float crouchSpeed;
     Vector2 crouchHeight;
+    Vector2 colOffset;
     Vector2 normalHeight;
+    Vector2 normalColOffset;
     //RaycastHit2D crouchRay;
     [SerializeField] LayerMask aboveObject;
     #endregion
@@ -66,12 +66,11 @@ public class Controls : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         hj= GetComponent<HingeJoint2D>();
 
-        spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite= standingAndCrouchingSprites[0];
-
         boxCollider= GetComponent<BoxCollider2D>();
         normalHeight = boxCollider.size;
-        crouchHeight = new Vector2(boxCollider.size.x, boxCollider.size.y / 2f);
+        //crouchHeight = new Vector2(boxCollider.size.x, boxCollider.size.y / 2f);
+        crouchHeight = new Vector2(boxCollider.size.x, 1.18f);
+        colOffset = new Vector2(boxCollider.offset.x, -0.1262648f);
 
         crouchSpeed = playerSpeed / 2;
         sprintingSpeed = playerSpeed * 2;
@@ -207,7 +206,6 @@ public class Controls : MonoBehaviour
         }
         else
         {
-            
             if (holdObject != null)
             {
                 holdObject.GetComponent<FixedJoint2D>().enabled = false;
@@ -239,12 +237,13 @@ public class Controls : MonoBehaviour
     {
         //crouchRay= Physics2D.Raycast(transform.position, Vector2.up * transform.localScale.x, 1.5f, aboveObject);
         Collider2D crouchCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, 1, 0), new Vector2(boxCollider.size.x, 1), 1f, aboveObject);
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C))
         {
             if (!isCrouching)
             {
                 boxCollider.size = crouchHeight;
-                spriteRenderer.sprite = standingAndCrouchingSprites[1];
+                boxCollider.offset = colOffset;
+                //spriteRenderer.sprite = standingAndCrouchingSprites[1];
                 isCrouching = true;
             }
             else
@@ -252,7 +251,8 @@ public class Controls : MonoBehaviour
                 if (crouchCollider == null)
                 {
                     boxCollider.size = normalHeight;
-                    spriteRenderer.sprite = standingAndCrouchingSprites[0];
+                    boxCollider.offset = normalColOffset;
+                    //spriteRenderer.sprite = standingAndCrouchingSprites[0];
                     isCrouching = false;
                 }
                 else if (crouchCollider.gameObject.layer == aboveObject) return;
