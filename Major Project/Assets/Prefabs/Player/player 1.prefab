@@ -477,7 +477,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 9036147661852194167, guid: b2ff40b9ea047e54ca9bda6419996547, type: 3}
+  m_Sprite: {fileID: -7943117089789246206, guid: 001045cc9eb179d4ab95df8e5b774446, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -564,18 +564,30 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 6635d815ef68e504fa598ecadcd4a373, type: 2}
   - {fileID: 7400000, guid: e9e52dd6b76d5d840be267d6430270f0, type: 2}
   - {fileID: 7400000, guid: bf19a3486a1c3d344bc55d273019cf00, type: 2}
+  HoldingObjectAnis:
+  - {fileID: 7400000, guid: be2c2e29e7fb4cb40a21df1043058d3a, type: 2}
+  - {fileID: 7400000, guid: 2f14de69e006be74a91095332050c86a, type: 2}
+  - {fileID: 7400000, guid: 991733beb8d715149a0852a60ceee4a4, type: 2}
+  - {fileID: 7400000, guid: 84a972104bedfcb45b50c8d7970de1fd, type: 2}
+  - {fileID: 7400000, guid: c4075255ac4f87241b0d4761b7eeb470, type: 2}
   PushAndPullAnis:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7400000, guid: 8c0565ae0ca5d7a44b0e73adb5ad8e72, type: 2}
+  - {fileID: 7400000, guid: 4f4e5c66a87b99f40b2a358abc1a9e75, type: 2}
+  - {fileID: 7400000, guid: dccd0f7d0284f4b45bd09e3e53e0523d, type: 2}
+  - {fileID: 7400000, guid: f93fde2efd45ada43b7b0c52b255bdfe, type: 2}
+  - {fileID: 7400000, guid: 16fcf869d8f416c418d0b4f8c18ce1ee, type: 2}
   CrouchPushAndPullAnis:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7400000, guid: 46c6612c340d1b841b5636085b0215e1, type: 2}
+  - {fileID: 7400000, guid: 0e7f566943c095b479c4a4f67dbe8801, type: 2}
+  - {fileID: 7400000, guid: 91a704584d5ee7d4dba0add62f9aa52b, type: 2}
+  - {fileID: 7400000, guid: 97fb4a17331092f4bab4fd4f0796076b, type: 2}
+  - {fileID: 7400000, guid: fb32f33c58f4f5e4bb183cb204c7790d, type: 2}
+  CrouchPushAndPullMovementAnis:
+  - {fileID: 7400000, guid: 10ebb942544ec03438510650fccf9b2c, type: 2}
+  - {fileID: 7400000, guid: 6a1659d61ddf52247a5784f579facf3c, type: 2}
+  - {fileID: 7400000, guid: 94a8b1156e777c74e9ecbc57a695efd6, type: 2}
+  - {fileID: 7400000, guid: cd37a30ccf33a184dbf8cb8c8e40f221, type: 2}
+  - {fileID: 7400000, guid: ec91df273499d584ca7b98eccddaf834, type: 2}
 --- !u!1 &6324549862984417847
 GameObject:
   m_ObjectHideFlags: 0

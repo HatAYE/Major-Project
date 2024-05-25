@@ -16,15 +16,18 @@ public class SpriteChange : MonoBehaviour
     }
     void Update()
     {
-        if (!player.movingRight && !facingRight)
+        if (!player.isHoldingObject)
         {
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-            facingRight = true;
-        }
-        else if (player.movingRight &&facingRight)
-        {
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-            facingRight= false;
+            if (!player.movingRight && !facingRight)
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                facingRight = true;
+            }
+            else if (player.movingRight && facingRight)
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                facingRight = false;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.W))

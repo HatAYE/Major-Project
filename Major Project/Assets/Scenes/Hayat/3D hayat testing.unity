@@ -2799,7 +2799,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 148295391}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2874b3dccd8e7e438a4560cc1ef0f54, type: 3}
   m_Name: 
@@ -5193,7 +5193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7072272281593081562, guid: eb85a1944508f9f43a14775d904afafd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7072272281593081564, guid: eb85a1944508f9f43a14775d904afafd, type: 3}
       propertyPath: m_RootOrder
@@ -5239,6 +5239,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7072272281593081565, guid: eb85a1944508f9f43a14775d904afafd, type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 063638ba4ca60e9488c8960f73a04373, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb85a1944508f9f43a14775d904afafd, type: 3}
 --- !u!1 &337100387
@@ -90708,7 +90712,6 @@ MonoBehaviour:
   acceptConvo: {fileID: 11400000, guid: c67342f0dff03604da7db70fd2730675, type: 2}
   rejectConvo: {fileID: 11400000, guid: 15e127f6bd5b55242917fa9b8f1ff7d4, type: 2}
   interactionConvo: {fileID: 11400000, guid: 88ad37b4e903fbf4aad7d326437fccdd, type: 2}
-  canInteract: 0
 --- !u!4 &2072707387
 Transform:
   m_ObjectHideFlags: 0
@@ -91808,7 +91811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7890892783944322655, guid: 735efc3707d12e74893cd86f9a3006de, type: 3}
       propertyPath: essenceCollected
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7890892783944322655, guid: 735efc3707d12e74893cd86f9a3006de, type: 3}
       propertyPath: standingAndCrouchingSprites.Array.data[0]

@@ -55,7 +55,6 @@ public class LevelOneManager : MonoBehaviour
            // scrappartText.text = scrapParts.ToString() +" scrap parts";
         
     }
-    bool done;
     void ChangeEffects()
     {
         vignetteStartingValue = vignette.intensity.value;
