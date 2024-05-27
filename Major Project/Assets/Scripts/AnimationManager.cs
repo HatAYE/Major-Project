@@ -15,8 +15,11 @@ public class AnimationManager : MonoBehaviour
     public AnimationClip[] JumpAnis = new AnimationClip[5];
     public AnimationClip[] CrouchAnis = new AnimationClip[5];
     public AnimationClip[] CrouchMovementAnis = new AnimationClip[5];
+    public AnimationClip[] HoldingObjectAnis = new AnimationClip[5];
     public AnimationClip[] PushAndPullAnis = new AnimationClip[5];
     public AnimationClip[] CrouchPushAndPullAnis = new AnimationClip[5];
+    public AnimationClip[] CrouchPushAndPullMovementAnis = new AnimationClip[5];
+    int aniIndex=0;
     void Start()
     {
         if (instance == null)
@@ -35,122 +38,77 @@ public class AnimationManager : MonoBehaviour
 
         if (GameManager.instance.currentLevel==1)
         {
+            SetCostume(0);
             player.onEssenceCollection += EssenceCostumeChange;
         }
         else
         {
-            SetCostume();
+            SetCostume(5);
             player.onEssenceCollection -= EssenceCostumeChange;
         }
     }
 
     
-    void SetCostume()
+    void SetCostume(int spriteIndex)
     {
         foreach (var stateItem in states)
         {
             if (stateItem.state.name == "Idle")
             {
-                    stateItem.state.motion = IdleAnis[5];
+                    stateItem.state.motion = IdleAnis[spriteIndex];
             }
-
 
             else if (stateItem.state.name == "Movement")
             {
-                    stateItem.state.motion = MovementAnis[5];
+                    stateItem.state.motion = MovementAnis[spriteIndex];
             }
-
 
             else if (stateItem.state.name == "Jump")
             {
-                stateItem.state.motion = JumpAnis[5];
+                stateItem.state.motion = JumpAnis[spriteIndex];
             }
-
 
             else if (stateItem.state.name == "Crouch")
             {
-                    stateItem.state.motion = CrouchAnis[5];
+                    stateItem.state.motion = CrouchAnis[spriteIndex];
             }
-
 
             else if (stateItem.state.name == "Crouch movement")
             {
-                    stateItem.state.motion = CrouchMovementAnis[5];
+                    stateItem.state.motion = CrouchMovementAnis[spriteIndex];
             }
 
-
-            /*else if (stateItem.state.name == "Push and pull")
+            else if (stateItem.state.name == "Crouch push and pull still")
             {
-                    stateItem.state.motion = PushAndPullAnis[5];
+                stateItem.state.motion = CrouchPushAndPullAnis[spriteIndex];
             }
 
-
-            else if (stateItem.state.name == "Crouch push and pull")
+            else if (stateItem.state.name == "Crouch push and pull movement")
             {
-                    stateItem.state.motion = CrouchPushAndPullAnis[5];
+                stateItem.state.motion = CrouchPushAndPullMovementAnis[spriteIndex];
+            }
+
+            else if (stateItem.state.name == "Push and Pull Movement")
+            {
+                    stateItem.state.motion = PushAndPullAnis[spriteIndex];
+            }
+
+            else if (stateItem.state.name == "Holding Object")
+            {
+                    stateItem.state.motion = HoldingObjectAnis[spriteIndex];
             }
             /*else if (stateItem.state.name == "Swinging")
             {
-                stateItem.state.motion = PushAndPullAnis[5];
+                stateItem.state.motion = PushAndPullAnis[spriteIndex];
             }*/
         }
     }
-    int aniIndex=0;
     void EssenceCostumeChange()
     {
         if (aniIndex<5)
         {
-            foreach (var stateItem in states)
-            {
-                if (stateItem.state.name == "Idle")
-                {
-                        stateItem.state.motion = IdleAnis[aniIndex];
-                }
-
-                else if (stateItem.state.name == "Movement")
-                {
-                        stateItem.state.motion = MovementAnis[aniIndex];
-                }
-
-
-                else if (stateItem.state.name == "Jump")
-                {
-                        stateItem.state.motion = JumpAnis[aniIndex];
-                }
-
-
-                else if (stateItem.state.name == "Crouch")
-                {
-                    stateItem.state.motion = CrouchAnis[aniIndex];
-                }
-
-
-                else if (stateItem.state.name == "Crouch movement")
-                {
-                    stateItem.state.motion = CrouchMovementAnis[aniIndex];
-                }
-
-
-                /* else if (stateItem.state.name == "Push and pull")
-                 {
-                         stateItem.state.motion = PushAndPullAnis[aniIndex];
-                 }
-
-
-                 else if (stateItem.state.name == "Crouch push and pull")
-                 {
-                         stateItem.state.motion = CrouchPushAndPullAnis[aniIndex];
-                 }
-                 /*else if (stateItem.state.name == "Swinging")
-                 {
-                     stateItem.state.motion = PushAndPullAnis[aniIndex];
-                 }*/
-            }
+            SetCostume(aniIndex);
         }
-            aniIndex++;
-    }
-    void Update()
-    {
-        
+        aniIndex++;
     }
 }

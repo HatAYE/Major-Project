@@ -217,6 +217,7 @@ public class Controls : MonoBehaviour
             if(justPushed)
             {
                 letGoOfObject = true;
+                isMoving = false;
                 if (pushCoolDown <= 1.2f)
                 {
                     pushCoolDown+=1 *Time.deltaTime;

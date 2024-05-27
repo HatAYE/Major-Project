@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.Scripting;
 
 public class GrimReaper : MonoBehaviour
@@ -18,7 +19,12 @@ public class GrimReaper : MonoBehaviour
     [SerializeField] Conversation interactionConvo;
     bool refused;
     bool accepted;
-    [SerializeField] bool canInteract;
+    bool canInteract;
+
+    PostProcessVolume postProcessVolume;
+    Bloom bloom;
+    float target = 50f;
+    float changeRate=70;
     void Start()
     {
         player=FindObjectOfType<Controls>();
@@ -26,6 +32,14 @@ public class GrimReaper : MonoBehaviour
         controller.OnEventTrigger += CheckEssenceCount;
         controller.OnEventTrigger += TransitionToNextLevel;
         essences = FindObjectsOfType<Essence>().Length;
+
+        #region post processing set up
+        postProcessVolume = FindObjectOfType<PostProcessVolume>();
+        if (postProcessVolume != null)
+        {
+            postProcessVolume.profile.TryGetSettings(out bloom);
+        }
+        #endregion
     }
 
     // Update is called once per frame
@@ -80,15 +94,34 @@ public class GrimReaper : MonoBehaviour
         {
             if (!canTransition)
             {
-                print(":D");
                 controller.OnDialogueEnd += () =>
                 {
+                    ChangeEffects();
                     //transitiion to lvl 2;
-                    print("it works");
                 };
                 canTransition = true;
             }
         }
+    }
+
+    void ChangeEffects()
+    {
+        target = 0 + changeRate;
+        StartCoroutine(AdjustEffects());
+        print("1");
+    }
+    float time;
+    float totalTime=4;
+    IEnumerator AdjustEffects()
+    {
+        while (time < totalTime)
+        {
+            time += Time.deltaTime;
+            bloom.intensity.value = Mathf.Lerp(0, target, time / totalTime);
+            yield return null;
+        }
+        time = 0;
+        print("2");
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
