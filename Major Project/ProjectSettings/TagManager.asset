@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Destroyer
+  - Moveable
   layers:
   - Default
   - TransparentFX
@@ -66,6 +67,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2205654213
+    locked: 0
+  - name: Player 2
+    uniqueID: 2566817167
     locked: 0
   - name: Ground_Front 1
     uniqueID: 175864847
