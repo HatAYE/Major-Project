@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour , IResettable
 {
     public enum EnemyState
     {
@@ -46,5 +46,16 @@ public abstract class Enemy : MonoBehaviour
     protected void TransitionToState(EnemyState newState)
     {
         currentState = newState;
+    }
+
+    public void ResetState()
+    {
+        gameObject.SetActive(true);
+        currentState=EnemyState.idle;
+        Animator animator = GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.SetTrigger("Idle");
+        }
     }
 }

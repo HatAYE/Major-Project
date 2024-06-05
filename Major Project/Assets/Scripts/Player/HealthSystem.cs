@@ -10,10 +10,13 @@ public class HealthSystem : MonoBehaviour
 
     [SerializeField] Image[] HPUI;
     [SerializeField] Sprite[] HPSprites;
+    [SerializeField] Transform respawnPoint;
+
     void Start()
     {
-        
+
     }
+
 
     // Update is called once per frame
     void Update()
@@ -21,6 +24,11 @@ public class HealthSystem : MonoBehaviour
         if (currentHealth>hp)
         {
             currentHealth = hp;
+        }
+
+        if(currentHealth<= 0)
+        {
+            Respawn();
         }
 
         for (int i = 0; i < HPUI.Length; i++)
@@ -38,4 +46,15 @@ public class HealthSystem : MonoBehaviour
             else HPUI[i].enabled=false;
         }
     }
+
+    private void Respawn()
+    {
+        transform.position = respawnPoint.position;
+    }
+
+    public void SetRespawnPoint(Transform newRespawnPoint)
+    {
+        respawnPoint = newRespawnPoint;
+    }
+
 }
