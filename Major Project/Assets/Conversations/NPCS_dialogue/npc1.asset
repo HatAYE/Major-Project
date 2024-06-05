@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: npc1
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: 9dfce62f-097e-495f-a2f2-85b182b15127
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: 100
+      y: 100
+      width: 100
+      height: 100
+    name: Start
+  nodes:
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
+  - id: 4
+  edges:
+  - id: 5
+  - id: 6
+  - id: 7
+  - id: 8
+  - id: 9
+  properties: []
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: cc12ee86-694c-4bfc-85e2-6a47c44b533b
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 260.80002
+          y: 72.8
+          width: 208
+          height: 134.40001
+        actor: npc1
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: hello
+    00000001:
+      type: {class: MultiMessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: a1317ed9-deda-4089-b71b-8dd2f56cf022
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 519.2
+          y: 72.8
+          width: 208
+          height: 154.40001
+        actor: {fileID: 0}
+        messages:
+        - 'how r u '
+        - hope good
+    00000002:
+      type: {class: ChoiceNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: b72de135-2d1f-4ec6-adcf-f80c2a414f36
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 862.4
+          y: 56.800003
+          width: 207.99994
+          height: 165.59999
+        actor: 
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: 
+        options:
+        - guid: yes
+          label: Yes
+        - guid: no
+          label: No
+    00000003:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 3fc187e4-5d33-41b3-81e1-62c21eaf63ec
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1125.6
+          y: 5.5999985
+          width: 208
+          height: 134.4
+        actor: Actor name
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: good
+    00000004:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: aff215c8-28c4-4454-b176-0c4763dabc0d
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1125.6
+          y: 204.79999
+          width: 208
+          height: 149.6
+        actor: Actor name
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: 'nooo
+
+'
+    00000005:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 9dfce62f-097e-495f-a2f2-85b182b15127
+          port: next
+        input:
+          node: cc12ee86-694c-4bfc-85e2-6a47c44b533b
+          port: previous
+    00000006:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: cc12ee86-694c-4bfc-85e2-6a47c44b533b
+          port: next
+        input:
+          node: a1317ed9-deda-4089-b71b-8dd2f56cf022
+          port: previous
+    00000007:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: a1317ed9-deda-4089-b71b-8dd2f56cf022
+          port: next
+        input:
+          node: b72de135-2d1f-4ec6-adcf-f80c2a414f36
+          port: previous
+    00000008:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: b72de135-2d1f-4ec6-adcf-f80c2a414f36
+          port: yes
+        input:
+          node: 3fc187e4-5d33-41b3-81e1-62c21eaf63ec
+          port: previous
+    00000009:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: b72de135-2d1f-4ec6-adcf-f80c2a414f36
+          port: no
+        input:
+          node: aff215c8-28c4-4454-b176-0c4763dabc0d
+          port: previous

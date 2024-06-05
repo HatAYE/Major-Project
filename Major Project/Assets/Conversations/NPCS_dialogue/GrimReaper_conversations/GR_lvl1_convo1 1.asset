@@ -48,7 +48,7 @@ MonoBehaviour:
           y: 105.600006
           width: 208
           height: 120.79999
-        actor: {fileID: 0}
+        actor: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
         messages:
         - There you are!
         - You can't hear me well right now but that doesn't matter
@@ -82,8 +82,8 @@ MonoBehaviour:
           width: 208.00002
           height: 134.4
         actor: Actor name
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
+        useActorProfile: 1
         message: '*he counts your fireflies*'
     00000003:
       type: {class: EventNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}

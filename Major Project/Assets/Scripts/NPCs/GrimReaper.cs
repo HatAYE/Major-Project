@@ -131,15 +131,13 @@ public class GrimReaper : MonoBehaviour
             {
                 player.onEssenceCollection += () =>
                 {
-                    //poof animation
                     transform.GetChild(0).gameObject.SetActive(true);
+                    transform.GetChild(0).GetComponent<Animator>().SetTrigger("appear");
                     if (controller != null)
                     {
                         //play talking animation
                         controller.BeginDialogue();
                         controller.OnDialogueEnd += () => canInteract = true;
-                        //controller.OnDialogueEnd+= move to next scene
-                        //play blinding light, next scene should start with player falling down a rabbit hole
                     }
                 };
             }

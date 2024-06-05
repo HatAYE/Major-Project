@@ -47,8 +47,8 @@ MonoBehaviour:
           width: 208.00002
           height: 163.20001
         actor: Actor name
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
+        useActorProfile: 1
         message: '*he looks at the fireflies around you and opens his hands to you*'
     00000001:
       type: {class: ChoiceNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
