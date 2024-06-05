@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
@@ -21,10 +23,21 @@ public class LevelOneManager : MonoBehaviour
     float vignetteStartingValue;
     float targetVignette;
     #endregion
+
+    Light2D pinlight;
+    float startRadiusValue=5.5f;
+    float targetRadiusValue;
+    float radiusChangeRate = 5.5f;
+
+    float startingIntensitiy = 1;
+    float targetIntensitiy;
+    float intensityChangeRate = 0.1f;
+
     void Start()
     {
         pl=FindObjectOfType<Controls>();
         postProcessVolume = FindObjectOfType<PostProcessVolume>();
+        pinlight = pl.GetComponentInChildren<Light2D>();
         #region post processing set up
         pl.onEssenceCollection += ChangeEffects;
         if (postProcessVolume!= null)
@@ -34,11 +47,14 @@ public class LevelOneManager : MonoBehaviour
             postProcessVolume.profile.TryGetSettings(out depth);
         }
         #endregion
-        vignetteStartingValue= vignette.intensity.value;
-        vignetteChangeRate = vignette.intensity.value / FindObjectsOfType<Essence>().Length;
+
+        #region post processing setup
+        //vignetteStartingValue = vignette.intensity.value;
+        //vignetteChangeRate = vignette.intensity.value / FindObjectsOfType<Essence>().Length;
 
         startingFocalStartingValue = depth.focalLength.value;
         depthChangeRate= depth.focalLength.value / FindObjectsOfType<Essence>().Length;
+        #endregion
     }
 
     void Update()
@@ -57,21 +73,32 @@ public class LevelOneManager : MonoBehaviour
     }
     void ChangeEffects()
     {
-        vignetteStartingValue = vignette.intensity.value;
-        targetVignette = vignetteStartingValue - vignetteChangeRate;
+        //vignetteStartingValue = vignette.intensity.value;
+        //targetVignette = vignetteStartingValue - vignetteChangeRate;
         startingFocalStartingValue= depth.focalLength.value;
         targetFocalLength=startingFocalStartingValue - depthChangeRate;
+
+        startRadiusValue = pinlight.pointLightOuterRadius;
+        targetRadiusValue = pinlight.pointLightOuterRadius + radiusChangeRate;
+
+        startingIntensitiy = pinlight.intensity;
+        targetIntensitiy = pinlight.intensity + intensityChangeRate;
+
         StartCoroutine(AdjustEffects());
     }
     float time;
     [SerializeField] float totalTime;
     IEnumerator AdjustEffects()
     {
+        
         while(time<totalTime)
         {
             time += Time.deltaTime;
-            vignette.intensity.value = Mathf.Lerp(vignetteStartingValue, targetVignette, time / totalTime);
+            //vignette.intensity.value = Mathf.Lerp(vignetteStartingValue, targetVignette, time / totalTime);
             depth.focalLength.value = Mathf.Lerp(startingFocalStartingValue, targetFocalLength, time /totalTime);
+            pinlight.pointLightOuterRadius = Mathf.Lerp(startRadiusValue, targetRadiusValue, time / totalTime);
+            pinlight.intensity = Mathf.Lerp(startingIntensitiy, targetIntensitiy, time / totalTime);
+
             yield return null;
         }
         time = 0;
