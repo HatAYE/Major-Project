@@ -28,12 +28,19 @@ MonoBehaviour:
   - id: 2
   - id: 3
   - id: 4
-  edges:
   - id: 5
   - id: 6
   - id: 7
+  edges:
   - id: 8
   - id: 9
+  - id: 10
+  - id: 11
+  - id: 12
+  - id: 13
+  - id: 14
+  - id: 15
+  - id: 16
   properties: []
   stickyNotes: []
   groups: []
@@ -52,7 +59,7 @@ MonoBehaviour:
         actor: npc1
         actorProfile: {fileID: 0}
         useActorProfile: 0
-        message: hello
+        message: Ahh..., another wanderer
     00000001:
       type: {class: MultiMessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
       data:
@@ -65,27 +72,29 @@ MonoBehaviour:
           height: 154.40001
         actor: {fileID: 0}
         messages:
-        - 'how r u '
-        - hope good
+        - still confused aren't you?
+        - where am I?
+        - 'any memories from past? '
+        - where do I go?
     00000002:
       type: {class: ChoiceNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
       data:
         <Guid>k__BackingField: b72de135-2d1f-4ec6-adcf-f80c2a414f36
         <NodeRect>k__BackingField:
           serializedVersion: 2
-          x: 862.4
-          y: 56.800003
-          width: 207.99994
-          height: 165.59999
-        actor: 
+          x: 826
+          y: 73
+          width: 208
+          height: 166
+        actor: npc1
         actorProfile: {fileID: 0}
         useActorProfile: 0
-        message: 
+        message: do you remember why you are here?
         options:
         - guid: yes
-          label: Yes
-        - guid: no
           label: No
+        - guid: no
+          label: Who are you?
     00000003:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
       data:
@@ -96,10 +105,10 @@ MonoBehaviour:
           y: 5.5999985
           width: 208
           height: 134.4
-        actor: Actor name
+        actor: npc1
         actorProfile: {fileID: 0}
         useActorProfile: 0
-        message: good
+        message: 'well.., we all are brought back to places like these '
     00000004:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
       data:
@@ -110,13 +119,53 @@ MonoBehaviour:
           y: 204.79999
           width: 208
           height: 149.6
-        actor: Actor name
+        actor: npc1
         actorProfile: {fileID: 0}
         useActorProfile: 0
-        message: 'nooo
-
-'
+        message: I'm not that different from you
     00000005:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: dfd743a6-ff09-4c4e-8f51-c095ae4ee0c0
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1628
+          y: 6
+          width: 208
+          height: 150
+        actor: npc1
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: a purpose that keeps us moving ahead
+    00000006:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: dcdc10fa-ea02-470b-a035-6a171a54badd
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1918
+          y: 6
+          width: 208
+          height: 135
+        actor: npc1
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: and so should you
+    00000007:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 05520825-9aca-4114-b4eb-c6efd388c4db
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1396
+          y: 205
+          width: 208
+          height: 135
+        actor: npc1
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: I too have a purpose here
+    00000008:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
@@ -125,7 +174,7 @@ MonoBehaviour:
         input:
           node: cc12ee86-694c-4bfc-85e2-6a47c44b533b
           port: previous
-    00000006:
+    00000009:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
@@ -134,7 +183,7 @@ MonoBehaviour:
         input:
           node: a1317ed9-deda-4089-b71b-8dd2f56cf022
           port: previous
-    00000007:
+    0000000A:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
@@ -143,7 +192,7 @@ MonoBehaviour:
         input:
           node: b72de135-2d1f-4ec6-adcf-f80c2a414f36
           port: previous
-    00000008:
+    0000000B:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
@@ -152,7 +201,7 @@ MonoBehaviour:
         input:
           node: 3fc187e4-5d33-41b3-81e1-62c21eaf63ec
           port: previous
-    00000009:
+    0000000C:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
@@ -160,4 +209,40 @@ MonoBehaviour:
           port: no
         input:
           node: aff215c8-28c4-4454-b176-0c4763dabc0d
+          port: previous
+    0000000D:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 3fc187e4-5d33-41b3-81e1-62c21eaf63ec
+          port: next
+        input:
+          node: dfd743a6-ff09-4c4e-8f51-c095ae4ee0c0
+          port: previous
+    0000000E:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: dfd743a6-ff09-4c4e-8f51-c095ae4ee0c0
+          port: next
+        input:
+          node: dcdc10fa-ea02-470b-a035-6a171a54badd
+          port: previous
+    0000000F:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: aff215c8-28c4-4454-b176-0c4763dabc0d
+          port: next
+        input:
+          node: 05520825-9aca-4114-b4eb-c6efd388c4db
+          port: previous
+    00000010:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 05520825-9aca-4114-b4eb-c6efd388c4db
+          port: next
+        input:
+          node: dfd743a6-ff09-4c4e-8f51-c095ae4ee0c0
           port: previous
