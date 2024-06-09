@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class CameraZoomOut : MonoBehaviour
 {
-    [SerializeField] float cameraSpeed;
+    [SerializeField] float totalTime;
     [SerializeField] Collider2D[] enterAreas;
     [SerializeField] Collider2D[] secondEntryAreas;
     [SerializeField] Collider2D[] exitAreas;
     [SerializeField] Transform rightTargetPosition;
     [SerializeField] Vector3 rightTargetPosOffset;
-    [SerializeField] Transform leftTargetPosition;
     [SerializeField] Vector3 leftTargetPosOffset;
+    [SerializeField] Transform leftTargetPosition;
     [SerializeField] float zoomOutSize=100;
     bool zoomedOut;
     float originalCameraSize { get; set; }
@@ -72,9 +72,9 @@ public class CameraZoomOut : MonoBehaviour
 
         foreach (Collider2D secondEntry in secondEntryAreas)
         {
-            virtualCamera.Follow = leftTargetPosition;
             if (other == secondEntry)
             {
+                virtualCamera.Follow = leftTargetPosition;
                 StartCoroutine(ZoomCamera(zoomOutSize));
                 zoomedOut = true;
                 return;
@@ -92,16 +92,21 @@ public class CameraZoomOut : MonoBehaviour
         }
         
     }
-
+    float time;
     IEnumerator ZoomCamera(float zoomSize)
     {
-        while (Mathf.Abs(virtualCamera.m_Lens.FieldOfView - zoomSize) > 0.01f)
+        while (time < totalTime)
         {
-            virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, zoomSize, cameraSpeed * Time.deltaTime);
+            time += Time.deltaTime;
+            while (Mathf.Abs(virtualCamera.m_Lens.FieldOfView - zoomSize) > 0.01f)
+            {
+                virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, zoomSize, time/totalTime);
 
 
-            yield return null;
+                yield return null;
+            }
         }
+        time = 0;
     }
 
     void OnDrawGizmos()
