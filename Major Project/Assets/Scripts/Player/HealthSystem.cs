@@ -10,7 +10,7 @@ public class HealthSystem : MonoBehaviour
 
     [SerializeField] Image[] HPUI;
     [SerializeField] Sprite[] HPSprites;
-    [SerializeField] Transform respawnPoint;
+    
 
     void Start()
     {
@@ -28,7 +28,7 @@ public class HealthSystem : MonoBehaviour
 
         if(currentHealth<= 0)
         {
-            Respawn();
+            GetComponent<Controls>().Respawn();
         }
 
         for (int i = 0; i < HPUI.Length; i++)
@@ -47,14 +47,6 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    private void Respawn()
-    {
-        transform.position = respawnPoint.position;
-    }
-
-    public void SetRespawnPoint(Transform newRespawnPoint)
-    {
-        respawnPoint = newRespawnPoint;
-    }
+    
 
 }
