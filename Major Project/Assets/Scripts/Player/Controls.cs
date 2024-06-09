@@ -12,6 +12,11 @@ public class Controls : MonoBehaviour
     RaycastHit2D hit;
     Rigidbody2D rb;
     private BoxCollider2D boxCollider;
+    [SerializeField] KeyCode left=KeyCode.A;
+    [SerializeField] KeyCode right=KeyCode.D;
+    [SerializeField] KeyCode jump;
+    [SerializeField] KeyCode pushAndPull;
+    [SerializeField] KeyCode crouch;
 
     #region movement variables
     [SerializeField] float playerSpeed;
@@ -139,6 +144,14 @@ public class Controls : MonoBehaviour
         }
         
     }*/
+    void ResetPlayerBools()
+    {
+        isMoving=false;
+        isCrouching=false;
+        isHoldingObject = false;
+        letGoOfObject = false;
+        justPushed = false;
+    }
     public IEnumerator AddEssence()
     {
         essenceCollected++;
@@ -147,6 +160,7 @@ public class Controls : MonoBehaviour
     }
     public void Respawn()
     {
+        ResetPlayerBools();
         transform.position = respawnPoint.position;
     }
 
@@ -156,7 +170,7 @@ public class Controls : MonoBehaviour
     }
     void Movement()
     {
-        if (Input.GetKey(KeyCode.A) && !isAttached && !letGoOfObject)
+        if (Input.GetKey(left) && !isAttached && !letGoOfObject)
         {
             movingRight = false;
             isMoving = true;
@@ -173,7 +187,7 @@ public class Controls : MonoBehaviour
                 rb.velocity = new Vector2(-crouchSpeed, rb.velocity.y);
 
         }
-        else if (Input.GetKeyUp(KeyCode.A))
+        else if (Input.GetKeyUp(right))
             isMoving = false;
         if (Input.GetKey(KeyCode.D) && !isAttached && !letGoOfObject)
         {
@@ -197,7 +211,7 @@ public class Controls : MonoBehaviour
 
     void Jumping()
     {
-        if (Input.GetKeyDown(KeyCode.W) && jumpCount == 0 && !isCrouching)
+        if (Input.GetKeyDown(jump) && jumpCount == 0 && !isCrouching)
         {
             rb.AddForce(new Vector2 (0, jumpForce));
             jumpCount++;
@@ -205,7 +219,7 @@ public class Controls : MonoBehaviour
     }
     void PushingAndPulling()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(pushAndPull))
         {
             if (!justPushed)
             {
@@ -255,7 +269,7 @@ public class Controls : MonoBehaviour
     {
         //crouchRay= Physics2D.Raycast(transform.position, Vector2.up * transform.localScale.x, 1.5f, aboveObject);
         Collider2D crouchCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, 1, 0), new Vector2(boxCollider.size.x, 1), 1f, aboveObject);
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(crouch) || Input.GetKeyDown(KeyCode.C))
         {
             if (!isCrouching)
             {
