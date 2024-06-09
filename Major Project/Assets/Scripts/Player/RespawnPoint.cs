@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class RespawnPoint : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.TryGetComponent(out Controls player))
         {
-            HealthSystem player = other.GetComponent<HealthSystem>();
             if (player != null)
             {
                 player.SetRespawnPoint(this.transform);

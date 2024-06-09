@@ -122,6 +122,7 @@ public class SirenStateMachine : Enemy
     protected override void DieState()
     {
         //PLAY POOF ANIMATION
+        attacked=false;
         Destroy(areaDetector);
         Destroy(gameObject);
     }

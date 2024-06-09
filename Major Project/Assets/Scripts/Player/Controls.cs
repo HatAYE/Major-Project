@@ -61,6 +61,10 @@ public class Controls : MonoBehaviour
     [SerializeField] float swingingForce;
     RopeSegment ropeSegment;
     #endregion
+
+    #region Respawning
+    [SerializeField] Transform respawnPoint;
+    #endregion
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -108,6 +112,10 @@ public class Controls : MonoBehaviour
             LevelOneManager.scrapParts ++;
             collectedSparepart=true;
         }
+        if (collision.gameObject.CompareTag("Destroyer"))
+        {
+            Respawn();
+        }
         if (!isAttached) 
         {
             if (collision.gameObject.name.StartsWith("RopeSegment"))
@@ -136,6 +144,15 @@ public class Controls : MonoBehaviour
         essenceCollected++;
         onEssenceCollection?.Invoke();
         yield return null;
+    }
+    public void Respawn()
+    {
+        transform.position = respawnPoint.position;
+    }
+
+    public void SetRespawnPoint(Transform newRespawnPoint)
+    {
+        respawnPoint = newRespawnPoint;
     }
     void Movement()
     {
