@@ -35,6 +35,7 @@ public class Controls : MonoBehaviour
     bool justPushed;
     GameObject holdObject;
     float pushCoolDown;
+    [SerializeField] float pushTimer;
     #endregion
 
     #region crouch variables
@@ -249,7 +250,7 @@ public class Controls : MonoBehaviour
             {
                 letGoOfObject = true;
                 isMoving = false;
-                if (pushCoolDown <= 1.2f)
+                if (pushCoolDown <= pushTimer)
                 {
                     pushCoolDown+=1 *Time.deltaTime;
                     //unavailable pushing/pulling UI acivated 
