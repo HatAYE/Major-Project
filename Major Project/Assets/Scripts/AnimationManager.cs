@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
+/*using UnityEditor.Animations;
 using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
@@ -100,7 +100,7 @@ public class AnimationManager : MonoBehaviour
             /*else if (stateItem.state.name == "Swinging")
             {
                 stateItem.state.motion = PushAndPullAnis[spriteIndex];
-            }*/
+            }
         }
     }
     void EssenceCostumeChange()
@@ -112,3 +112,4 @@ public class AnimationManager : MonoBehaviour
         aniIndex++;
     }
 }
+*/
