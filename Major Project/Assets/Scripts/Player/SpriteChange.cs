@@ -29,7 +29,7 @@ public class SpriteChange : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(player.jump))
         {
             animator.SetTrigger("jumped");
         }

@@ -14,7 +14,7 @@ public class Controls : MonoBehaviour
     private BoxCollider2D boxCollider;
     [SerializeField] KeyCode left=KeyCode.A;
     [SerializeField] KeyCode right=KeyCode.D;
-    [SerializeField] KeyCode jump;
+    public KeyCode jump;
     [SerializeField] KeyCode pushAndPull;
     [SerializeField] KeyCode crouch;
 
