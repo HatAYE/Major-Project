@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class SpriteChange : MonoBehaviour
@@ -30,7 +29,7 @@ public class SpriteChange : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(player.jump))
         {
             animator.SetTrigger("jumped");
         }

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
@@ -8,7 +7,8 @@ public class AnimationManager : MonoBehaviour
     public static AnimationManager instance { get; set; }
     Controls player;
     Animator animator;
-    ChildAnimatorState[] states;
+    //ChildAnimatorState[] states;
+    AnimatorOverrideController animatorOverrideController;
 
     public AnimationClip[] IdleAnis= new AnimationClip[5];
     public AnimationClip[] MovementAnis = new AnimationClip[5];
@@ -31,10 +31,11 @@ public class AnimationManager : MonoBehaviour
 
         player=FindObjectOfType<Controls>();
         animator = GetComponent<Animator>();
-        AnimatorController animatorController = animator.runtimeAnimatorController as AnimatorController;
+        //AnimatorController animatorController = animator.runtimeAnimatorController as AnimatorController;
 
-        states = animatorController.layers[0].stateMachine.states;
-
+        // states = animatorController.layers[0].stateMachine.states;
+        animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+        animator.runtimeAnimatorController = animatorOverrideController;
 
         if (GameManager.instance.currentLevel==1)
         {
@@ -51,7 +52,7 @@ public class AnimationManager : MonoBehaviour
     
     void SetCostume(int spriteIndex)
     {
-        foreach (var stateItem in states)
+        /*foreach (var stateItem in states)
         {
             if (stateItem.state.name == "Idle")
             {
@@ -100,8 +101,24 @@ public class AnimationManager : MonoBehaviour
             /*else if (stateItem.state.name == "Swinging")
             {
                 stateItem.state.motion = PushAndPullAnis[spriteIndex];
-            }*/
-        }
+            }
+
+        }*/
+        List<KeyValuePair<AnimationClip, AnimationClip>> overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>();
+
+        // Add animation clips to the override list
+        overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(IdleAnis[0], IdleAnis[spriteIndex]));
+        overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(MovementAnis[0], MovementAnis[spriteIndex]));
+        overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(JumpAnis[0], JumpAnis[spriteIndex]));
+        overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(CrouchAnis[0], CrouchAnis[spriteIndex]));
+        overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(CrouchMovementAnis[0], CrouchMovementAnis[spriteIndex]));
+        overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(HoldingObjectAnis[0], HoldingObjectAnis[spriteIndex]));
+        overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(PushAndPullAnis[0], PushAndPullAnis[spriteIndex]));
+        overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(CrouchPushAndPullAnis[0], CrouchPushAndPullAnis[spriteIndex]));
+        overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(CrouchPushAndPullMovementAnis[0], CrouchPushAndPullMovementAnis[spriteIndex]));
+
+        // Apply the overrides
+        animatorOverrideController.ApplyOverrides(overrides);
     }
     void EssenceCostumeChange()
     {
