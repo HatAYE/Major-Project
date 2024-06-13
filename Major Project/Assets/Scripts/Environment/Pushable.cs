@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 public class Pushable : MonoBehaviour
 {
     public float massWhenHeld;
+    public bool gotLetGo;
     float initialMass;
     [HideInInspector] public bool beingHeld;
     [HideInInspector] public Rigidbody2D rb;
+    Controls player;
 
     void Start()
     {
         rb=GetComponent<Rigidbody2D>();
+        player= FindObjectOfType<Controls>();
         initialMass= rb.mass;
     }
 
@@ -22,6 +26,19 @@ public class Pushable : MonoBehaviour
         {
             if (rb.velocity== Vector2.zero)
             rb.mass = initialMass;
+        }
+        if (gotLetGo)
+        {
+            if (rb.velocity != Vector2.zero)
+            {
+                Physics2D.IgnoreCollision(GetComponent<Collider2D>(), player.GetComponent<Collider2D>(), true);
+            }
+            else
+            {
+                Physics2D.IgnoreCollision(GetComponent<Collider2D>(), player.GetComponent<Collider2D>(), false);
+                gotLetGo = false;
+            }
+
         }
     }
 }
