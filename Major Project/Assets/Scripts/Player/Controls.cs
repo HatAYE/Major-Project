@@ -35,7 +35,6 @@ public class Controls : MonoBehaviour
     bool justPushed;
     GameObject holdObject;
     float pushCoolDown;
-    [SerializeField] float pushTimer;
     #endregion
 
     #region crouch variables
@@ -222,8 +221,8 @@ public class Controls : MonoBehaviour
     {
         if (Input.GetKey(pushAndPull))
         {
-            if (!justPushed)
-            {
+            //if (!justPushed)
+           // {
                 if (!isHoldingObject && hit.collider != null && hit.collider.TryGetComponent(out Pushable pushable))
                 {
                     isHoldingObject = true;
@@ -234,7 +233,7 @@ public class Controls : MonoBehaviour
                     pushable.GetComponent<FixedJoint2D>().connectedBody = rb;
                     justPushed = true;
                 }
-            }
+           // }
         }
         else
         {
@@ -242,15 +241,16 @@ public class Controls : MonoBehaviour
             {
                 holdObject.GetComponent<FixedJoint2D>().enabled = false;
                 holdObject.GetComponent<Pushable>().beingHeld = false;
+                holdObject.GetComponent<Pushable>().gotLetGo = true;
             }
             holdObject = null;
             isHoldingObject = false;
-            
-            if(justPushed)
+            /*if (justPushed)
             {
                 letGoOfObject = true;
-                isMoving = false;
-                if (pushCoolDown <= pushTimer)
+                //isMoving = false;
+
+                if (pushCoolDown <= 1.2f)
                 {
                     pushCoolDown+=1 *Time.deltaTime;
                     //unavailable pushing/pulling UI acivated 
@@ -262,7 +262,7 @@ public class Controls : MonoBehaviour
                     pushCoolDown = 0;
                     //available pushing/pulling UI acivated
                 }
-            }
+            }*/
             
         }
     }

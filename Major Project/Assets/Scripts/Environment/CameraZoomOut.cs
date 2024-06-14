@@ -18,19 +18,17 @@ public class CameraZoomOut : MonoBehaviour
     bool zoomedOut;
     float originalCameraSize { get; set; }
     CinemachineVirtualCamera virtualCamera;
-    //when u enter trigger, move camera to position
-    //when you exit, move camera to original postiion
-    //FIX THE CAMERA FREEZE WHEN IT ZOOMES OUT
 
     void Start()
     {
         virtualCamera= FindObjectOfType<CinemachineVirtualCamera>();
         originalCameraSize = virtualCamera.m_Lens.FieldOfView;
+        virtualCamera.Follow = transform;
     }
     private void Update()
     {
-        rightTargetPosition.position = transform.position + rightTargetPosOffset;
-        leftTargetPosition.position= transform.position + leftTargetPosOffset;
+        /*rightTargetPosition.position = transform.position + rightTargetPosOffset;
+        leftTargetPosition.position= transform.position + leftTargetPosOffset;*/
         for (int i = 0; i < exitAreas.Length; i++)
         {
             if (zoomedOut)
@@ -44,8 +42,8 @@ public class CameraZoomOut : MonoBehaviour
             }
             else
             {
-                virtualCamera.Follow = gameObject.transform;
-                virtualCamera.m_Lens.FieldOfView = originalCameraSize;
+                //virtualCamera.Follow = gameObject.transform;
+                //virtualCamera.m_Lens.FieldOfView = originalCameraSize;
                 if (i <enterAreas.Length)
                 {
                     enterAreas[i].gameObject.SetActive(true);
@@ -63,8 +61,8 @@ public class CameraZoomOut : MonoBehaviour
         {
             if (other == enterArea)
             {
-                virtualCamera.Follow = rightTargetPosition;
-                StartCoroutine(ZoomCamera(zoomOutSize));
+                //virtualCamera.Follow = rightTargetPosition;
+                StartCoroutine(ZoomCamera(zoomOutSize, rightTargetPosition));
                 zoomedOut = true;
                 return;
             }
@@ -74,8 +72,8 @@ public class CameraZoomOut : MonoBehaviour
         {
             if (other == secondEntry)
             {
-                virtualCamera.Follow = leftTargetPosition;
-                StartCoroutine(ZoomCamera(zoomOutSize));
+                //virtualCamera.Follow = leftTargetPosition;
+                StartCoroutine(ZoomCamera(zoomOutSize, leftTargetPosition));
                 zoomedOut = true;
                 return;
             }
@@ -85,29 +83,41 @@ public class CameraZoomOut : MonoBehaviour
         {
             if (other == exitArea)
             {
-                StartCoroutine(ZoomCamera(originalCameraSize));
+                StartCoroutine(ZoomCamera(originalCameraSize, transform));
                 zoomedOut = false;
                 return;
             }
         }
         
     }
-    float time;
-    IEnumerator ZoomCamera(float zoomSize)
+    //float time;
+    IEnumerator ZoomCamera(float targetZoom, Transform followTarget)
+    {
+        float startZoom = virtualCamera.m_Lens.FieldOfView;
+        float elapsedTime = 0f;
+
+        virtualCamera.Follow = followTarget;
+
+        while (elapsedTime < totalTime)
+        {
+            elapsedTime += Time.deltaTime;
+            virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(startZoom, targetZoom, elapsedTime / totalTime);
+            yield return null;
+        }
+
+        virtualCamera.m_Lens.FieldOfView = targetZoom;
+        zoomedOut = targetZoom == zoomOutSize;
+    }
+    /*IEnumerator ZoomCamera(float zoomSize)
     {
         while (time < totalTime)
         {
             time += Time.deltaTime;
-            while (Mathf.Abs(virtualCamera.m_Lens.FieldOfView - zoomSize) > 0.01f)
-            {
-                virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, zoomSize, time/totalTime);
-
-
-                yield return null;
-            }
+            virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, zoomSize, time / totalTime);
+            yield return null;
         }
         time = 0;
-    }
+    }*/
 
     void OnDrawGizmos()
     {
