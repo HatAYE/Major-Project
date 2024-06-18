@@ -33,7 +33,7 @@ public class DialogueUI : MonoBehaviour
     {
         choiceWindow.SetActive(false);
         dialogueWindow.SetActive(true);
-
+        UpdateGameState();
         UpdateImage(avatar);
         characterName.text = actor;
         dialogueLine.text = message;
@@ -86,5 +86,6 @@ public class DialogueUI : MonoBehaviour
         choiceWindow.SetActive(false);
         characterImage.sprite = null;
         characterImage.gameObject.SetActive(false);
+        UpdateGameState();
     }
 }
