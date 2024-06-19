@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RespawnPoint : MonoBehaviour
 {
+    public List<Pushable> pushableObjects = new List<Pushable>();
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.TryGetComponent(out Controls player))

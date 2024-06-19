@@ -168,6 +168,10 @@ public class Controls : MonoBehaviour
     {
         ResetPlayerBools();
         transform.position = respawnPoint.position;
+        foreach(Pushable obj in respawnPoint.gameObject.GetComponent<RespawnPoint>().pushableObjects)
+        {
+            obj.transform.position = obj.originalPosition;
+        }
         if (GameManager.instance.pauseMenu.activeSelf)
         {
             GameManager.instance.TogglePause();

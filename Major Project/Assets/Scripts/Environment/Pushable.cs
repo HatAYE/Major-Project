@@ -10,6 +10,7 @@ public class Pushable : MonoBehaviour
     float initialMass;
     [HideInInspector] public bool beingHeld;
     [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public Vector3 originalPosition;
     Controls player;
 
     void Start()
@@ -17,6 +18,7 @@ public class Pushable : MonoBehaviour
         rb=GetComponent<Rigidbody2D>();
         player= FindObjectOfType<Controls>();
         initialMass= rb.mass;
+        originalPosition = transform.position;
     }
 
     // Update is called once per frame
