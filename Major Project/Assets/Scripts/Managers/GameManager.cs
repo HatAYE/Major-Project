@@ -39,11 +39,11 @@ public class GameManager : MonoBehaviour
         {
             case gameStates.frozen:
             case gameStates.inDialogue:
-                pl.enabled = false;
+                pl.controlsAvaialble = false;
                 break;
             case gameStates.playing:
                 Time.timeScale = 1;
-                pl.enabled = true;
+                pl.controlsAvaialble = true;
                 break;
             case gameStates.paused:
             case gameStates.gameover:

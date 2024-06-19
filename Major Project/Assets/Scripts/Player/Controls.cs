@@ -11,6 +11,7 @@ public class Controls : MonoBehaviour
 {
     RaycastHit2D hit;
     Rigidbody2D rb;
+    public bool controlsAvaialble;
     private BoxCollider2D boxCollider;
     [SerializeField] KeyCode left=KeyCode.A;
     [SerializeField] KeyCode right=KeyCode.D;
@@ -26,15 +27,15 @@ public class Controls : MonoBehaviour
 
     #region jumping variables
     [SerializeField] float jumpForce;
+    [HideInInspector] public bool canjump;
     int jumpCount;
     #endregion
 
     #region push and pull variables
     [HideInInspector] public bool isHoldingObject;
     bool letGoOfObject;
-    bool justPushed;
     GameObject holdObject;
-    float pushCoolDown;
+    [SerializeField] float pushingRange=.8f;
     #endregion
 
     #region crouch variables
@@ -68,14 +69,14 @@ public class Controls : MonoBehaviour
     #endregion
 
     #region Respawning
-    [SerializeField] Transform respawnPoint;
+    Transform respawnPoint;
     #endregion
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         hj= GetComponent<HingeJoint2D>();
-
-        boxCollider= GetComponent<BoxCollider2D>();
+        controlsAvaialble = true;
+        boxCollider = GetComponent<BoxCollider2D>();
         normalHeight = boxCollider.size;
         //crouchHeight = new Vector2(boxCollider.size.x, boxCollider.size.y / 2f);
         crouchHeight = new Vector2(boxCollider.size.x, 1.18f);
@@ -86,19 +87,24 @@ public class Controls : MonoBehaviour
     }
     void Update()
     {
-        if (movingRight==false) hit = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, 1f, LayerMask.GetMask("Pushable"));
-        else hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, 1f, LayerMask.GetMask("Pushable"));
+        if (movingRight==false) hit = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, pushingRange, LayerMask.GetMask("Pushable"));
+        else hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, pushingRange, LayerMask.GetMask("Pushable"));
 
 
         if (essenceText != null)
         essenceText.text = "Essence collected: " + essenceCollected.ToString();
-
-        Movement();
-        Jumping();
-        PushingAndPulling();
-        Crouch();
-        DeflectingShield();
-        Swinging();
+        if (controlsAvaialble)
+        {
+            Movement();
+            Jumping();
+            PushingAndPulling();
+            Crouch();
+            DeflectingShield();
+            Swinging();
+            canjump = true;
+        }
+        else ResetPlayerBools();
+        
         collectedSparepart = false;
     }
     void OnCollisionEnter2D(Collision2D collision)
@@ -150,7 +156,7 @@ public class Controls : MonoBehaviour
         isCrouching=false;
         isHoldingObject = false;
         letGoOfObject = false;
-        justPushed = false;
+        canjump = false;
     }
     public IEnumerator AddEssence()
     {
@@ -187,9 +193,9 @@ public class Controls : MonoBehaviour
                 rb.velocity = new Vector2(-crouchSpeed, rb.velocity.y);
 
         }
-        else if (Input.GetKeyUp(right))
+        else if (Input.GetKeyUp(left))
             isMoving = false;
-        if (Input.GetKey(KeyCode.D) && !isAttached && !letGoOfObject)
+        if (Input.GetKey(right) && !isAttached && !letGoOfObject)
         {
             movingRight=true;
             isMoving = true;
@@ -205,7 +211,7 @@ public class Controls : MonoBehaviour
             if (isCrouching)
                 rb.velocity = new Vector2(crouchSpeed, rb.velocity.y);
         }
-        else if (Input.GetKeyUp(KeyCode.D))
+        else if (Input.GetKeyUp(right))
             isMoving = false;
     }
 
@@ -221,19 +227,15 @@ public class Controls : MonoBehaviour
     {
         if (Input.GetKey(pushAndPull))
         {
-            //if (!justPushed)
-           // {
-                if (!isHoldingObject && hit.collider != null && hit.collider.TryGetComponent(out Pushable pushable))
-                {
-                    isHoldingObject = true;
-                    holdObject = pushable.gameObject;
-                    pushable.beingHeld = true;
-                    pushable.rb.mass = pushable.massWhenHeld;
-                    pushable.GetComponent<FixedJoint2D>().enabled = true;
-                    pushable.GetComponent<FixedJoint2D>().connectedBody = rb;
-                    justPushed = true;
-                }
-           // }
+            if (!isHoldingObject && hit.collider != null && hit.collider.TryGetComponent(out Pushable pushable))
+            {
+                isHoldingObject = true;
+                holdObject = pushable.gameObject;
+                pushable.beingHeld = true;
+                pushable.rb.mass = pushable.massWhenHeld;
+                pushable.GetComponent<FixedJoint2D>().enabled = true;
+                pushable.GetComponent<FixedJoint2D>().connectedBody = rb;
+            }
         }
         else
         {
@@ -245,25 +247,6 @@ public class Controls : MonoBehaviour
             }
             holdObject = null;
             isHoldingObject = false;
-            /*if (justPushed)
-            {
-                letGoOfObject = true;
-                //isMoving = false;
-
-                if (pushCoolDown <= 1.2f)
-                {
-                    pushCoolDown+=1 *Time.deltaTime;
-                    //unavailable pushing/pulling UI acivated 
-                }
-                else
-                {
-                    justPushed= false;
-                    letGoOfObject= false;
-                    pushCoolDown = 0;
-                    //available pushing/pulling UI acivated
-                }
-            }*/
-            
         }
     }
     void Crouch()
@@ -402,11 +385,11 @@ public class Controls : MonoBehaviour
 
         if (movingRight)
         {
-            Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.right * transform.localScale.x * 1f);
+            Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.right * transform.localScale.x * pushingRange);
         }
         else
         {
-            Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.left * transform.localScale.x * 1f);
+            Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.left * transform.localScale.x * pushingRange);
         }
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.up * transform.localScale.x* 1.5f);
         if (boxCollider!=null)
