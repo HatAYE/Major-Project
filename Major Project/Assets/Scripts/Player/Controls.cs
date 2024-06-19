@@ -69,7 +69,7 @@ public class Controls : MonoBehaviour
     #endregion
 
     #region Respawning
-    Transform respawnPoint;
+    [SerializeField] Transform respawnPoint;
     #endregion
     void Start()
     {
@@ -168,6 +168,10 @@ public class Controls : MonoBehaviour
     {
         ResetPlayerBools();
         transform.position = respawnPoint.position;
+        if (GameManager.instance.pauseMenu.activeSelf)
+        {
+            GameManager.instance.TogglePause();
+        }
     }
 
     public void SetRespawnPoint(Transform newRespawnPoint)

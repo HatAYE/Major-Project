@@ -10,7 +10,7 @@ public class UIAnimator : MonoBehaviour
     [SerializeField] List<Sprite> sprites;
     [SerializeField] float speed;
     int spriteIndex;
-    void Start()
+    void OnEnable()
     {
         StartCoroutine(StartAnim());
     }
@@ -19,13 +19,14 @@ public class UIAnimator : MonoBehaviour
     {
         while (true)
         {
-            print("ds");
-            yield return new WaitForSeconds(speed);
-            spriteIndex++;
-            if (spriteIndex <= sprites.Count)
+            yield return new WaitForSecondsRealtime(speed);
+            if (spriteIndex >= sprites.Count)
                 spriteIndex = 0;
             else
+            {
                 image.sprite = sprites[spriteIndex];
+                spriteIndex++;
+            }
         }
     }
 }
