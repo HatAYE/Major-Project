@@ -73,6 +73,7 @@ public class Controls : MonoBehaviour
     #endregion
     void Start()
     {
+        essenceText = GameObject.Find("no. of essence").GetComponent<Text>();
         rb = GetComponent<Rigidbody2D>();
         hj= GetComponent<HingeJoint2D>();
         controlsAvaialble = true;
@@ -92,7 +93,7 @@ public class Controls : MonoBehaviour
 
 
         if (essenceText != null)
-        essenceText.text = "Essence collected: " + essenceCollected.ToString();
+        essenceText.text = essenceCollected.ToString();
         if (controlsAvaialble)
         {
             Movement();
