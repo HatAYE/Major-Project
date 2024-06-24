@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: InnerDialogue0
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: fee711f3-8c91-4691-a8ea-0da53d9af783
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: 100
+      y: 100
+      width: 100
+      height: 100
+    name: Start
+  nodes:
+  - id: 0
+  edges:
+  - id: 1
+  properties: []
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: c9144438-83a0-4bc1-82f0-178771c997c8
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 236.8
+          y: 57.600006
+          width: 208
+          height: 164
+        actor: 
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: The firefly brightens up your vision.. perhaps you could find more
+          of them
+    00000001:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: fee711f3-8c91-4691-a8ea-0da53d9af783
+          port: next
+        input:
+          node: c9144438-83a0-4bc1-82f0-178771c997c8
+          port: previous
