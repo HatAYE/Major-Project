@@ -26,9 +26,14 @@ public class GameManager : MonoBehaviour
     #region Pause menu variables
     bool isPaused;
     public GameObject pauseMenu;
-    [SerializeField] Button resumeButton;
-    [SerializeField] Button restartButton;
-    [SerializeField] Button exitButton;
+    GameObject audioPauseMenu;
+    GameObject pauseButtons;
+    Button resumeButton;
+    Button restartButton;
+    Button exitButton;
+    Button restartCheckPointButton;
+    Button audioSettingsButton;
+    Button audioBackButton;
     #endregion
     void Awake()
     {
@@ -59,6 +64,8 @@ public class GameManager : MonoBehaviour
     {
         pl = FindObjectOfType<Controls>();
         pauseMenu = GameObject.Find("Pause menu");
+        audioPauseMenu = GameObject.Find("Audio settings buttons");
+        pauseButtons = GameObject.Find("Pause buttons");
         if (pauseMenu != null)
         {
             AssignButtons();
@@ -99,10 +106,16 @@ public class GameManager : MonoBehaviour
         resumeButton = GameObject.Find("resume").GetComponent<Button>();
         restartButton= GameObject.Find("Restart level").GetComponent<Button>();
         exitButton = GameObject.Find("Exit").GetComponent<Button>();
+        restartCheckPointButton = GameObject.Find("Restart from last checkpoint").GetComponent<Button>();
+        audioSettingsButton= GameObject.Find("Audio settings").GetComponent<Button>();
+        //audioBackButton= GameObject.Find("Back audio button").GetComponent<Button>();
 
         resumeButton.onClick.AddListener(TogglePause);
         restartButton.onClick.AddListener(RestartLevel);
         exitButton.onClick.AddListener(ExitGame);
+        restartCheckPointButton.onClick.AddListener(pl.Respawn);
+        audioSettingsButton.onClick.AddListener(OpenAudioMenu);
+        //audioBackButton.onClick.AddListener(ExitAudioMenu);
     }
     public void TogglePause()
     {
@@ -131,6 +144,20 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    void OpenAnotherMenu(GameObject closingObject, GameObject openingObject)
+    {
+        closingObject.SetActive(false);
+        openingObject.SetActive(true);
+    }
+    public void OpenAudioMenu()
+    {
+        OpenAnotherMenu(pauseButtons, audioPauseMenu);
+    }
+
+    public void ExitAudioMenu()
+    {
+        OpenAnotherMenu(audioPauseMenu, pauseButtons);
+    }
     public void ChangeState(gameStates state)
     {
         currenState = state;

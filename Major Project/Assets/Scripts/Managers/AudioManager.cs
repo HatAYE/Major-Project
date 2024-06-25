@@ -1,16 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
-    AudioSource source;
+    AudioSource musicSource;
+    AudioSource SFXSource;
+    [SerializeField] AudioMixer audioMixer;
 
-    public AudioClip princessSinging;
     float masterVolume = 1.0f;
     float musicFadeDuration = 1.0f;
-    void Start()
+
+    [Header (">>>       Levels soundtracks      <<<")]
+    public AudioClip lvl1Soundtrack;
+    public AudioClip lvl2Soundtrack;
+    public AudioClip lvl3Soundtrack;
+    public AudioClip lvl4Soundtrack;
+
+    [Header(">>>      Menus      <<<")] 
+    public AudioClip mainMenuAudio;
+
+    [Header(">>>      Player Controls      <<<")]
+    public AudioClip[] grassSoundEffects;
+    public AudioClip jumpGrassSoundEffect;
+    public AudioClip landGrassSoundEffect;
+    public AudioClip[] woodSoundEffects;
+    public AudioClip jumpWoodSoundEffects;
+    public AudioClip landWoodSoundEffects;
+
+    public AudioClip pushAndPullGrass;
+    public AudioClip pushAndPullWood;
+
+    public AudioClip crouchingSoundEffect;
+
+    [Header(">>>      Princesses and sirens      <<<")] 
+    public AudioClip princessSinging;
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -22,19 +49,51 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    void Start()
+    {
 
-    // Update is called once per frame
+        musicSource = transform.GetChild(0).GetComponent<AudioSource>();
+        SFXSource= transform.GetChild(1).GetComponent<AudioSource>();
+
+        if (GameManager.instance.currentLevel == 0)
+        {
+            PlaySound(musicSource, mainMenuAudio);
+        }
+        else if (GameManager.instance.currentLevel==1)
+        {
+            PlaySound(musicSource, lvl1Soundtrack);
+        }
+        else if (GameManager.instance.currentLevel==2)
+        {
+            PlaySound(musicSource, lvl2Soundtrack);
+        }
+        else if (GameManager.instance.currentLevel == 3)
+        {
+            PlaySound(musicSource, lvl3Soundtrack);
+        }
+        else if (GameManager.instance.currentLevel == 4)
+        {
+            PlaySound(musicSource, lvl4Soundtrack);
+        }
+    }
+
     void Update()
     {
         
     }
 
+    public void SetMusicVolume(float level)
+    {
+
+    }
+
+    public void SetSFXVolume(float level)
+    {
+
+    }
+
     public void PlaySound(AudioSource audioSource, AudioClip audioClip)
     {
-        if (audioSource == null)
-        {
-            source = GetComponent<AudioSource>();
-        }
         audioSource.clip = audioClip;
         audioSource.volume = masterVolume;
         audioSource.Play();
@@ -45,8 +104,6 @@ public class AudioManager : MonoBehaviour
     }
     public IEnumerator FadeIn(AudioSource audioSource, AudioClip audioClip)
     {
-        if (audioSource == null) 
-            source = GetComponent<AudioSource>();
 
         audioSource.volume = 0;
         audioSource.clip = audioClip;
@@ -63,14 +120,12 @@ public class AudioManager : MonoBehaviour
     {
         float startVolume = audioSource.volume;
 
-        // Fade out gradually
         while (audioSource.volume > 0)
         {
             audioSource.volume -= startVolume * Time.deltaTime / musicFadeDuration;
             yield return null;
         }
 
-        // Ensure volume is set to 0
         audioSource.volume = 0;
         audioSource.Stop();
     }
