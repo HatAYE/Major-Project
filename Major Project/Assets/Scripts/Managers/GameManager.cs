@@ -70,7 +70,6 @@ public class GameManager : MonoBehaviour
         {
             AssignButtons();
             pauseMenu.SetActive(false);
-            print("not active");
         }
         ChangeState(gameStates.playing);
         //currentLevel = SceneManager.GetActiveScene().buildIndex+1;
@@ -107,15 +106,15 @@ public class GameManager : MonoBehaviour
         resumeButton = GameObject.Find("resume").GetComponent<Button>();
         restartButton= GameObject.Find("Restart level").GetComponent<Button>();
         exitButton = GameObject.Find("Exit").GetComponent<Button>();
-        //restartCheckPointButton = GameObject.Find("Restart from last checkpoint").GetComponent<Button>();
-        //audioSettingsButton= GameObject.Find("Audio settings").GetComponent<Button>();
+        restartCheckPointButton = GameObject.Find("Restart from last checkpoint").GetComponent<Button>();
+        audioSettingsButton= GameObject.Find("Audio settings").GetComponent<Button>();
         //audioBackButton= GameObject.Find("Back audio button").GetComponent<Button>();
 
         resumeButton.onClick.AddListener(TogglePause);
         restartButton.onClick.AddListener(RestartLevel);
         exitButton.onClick.AddListener(ExitGame);
-        //restartCheckPointButton.onClick.AddListener(pl.Respawn);
-        //audioSettingsButton.onClick.AddListener(OpenAudioMenu);
+        restartCheckPointButton.onClick.AddListener(pl.Respawn);
+        audioSettingsButton.onClick.AddListener(OpenAudioMenu);
         //audioBackButton.onClick.AddListener(ExitAudioMenu);
     }
     public void TogglePause()
