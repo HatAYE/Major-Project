@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Rendering;
 
 public class AudioManager : MonoBehaviour
 {
@@ -11,6 +10,7 @@ public class AudioManager : MonoBehaviour
     AudioSource SFXSource;
     [SerializeField] AudioMixer audioMixer;
 
+    float masterVolume = 1.0f;
     float musicFadeDuration = 1.0f;
 
     [Header (">>>       Levels soundtracks      <<<")]
@@ -76,26 +76,32 @@ public class AudioManager : MonoBehaviour
             PlaySound(musicSource, lvl4Soundtrack);
         }
     }
-    public void SetMusicVolume(float volume)
+
+    void Update()
     {
-        audioMixer.SetFloat("MusicVolume", volume);
+        
     }
 
-    public void SetSFXVolume(float volume)
+    public void SetMusicVolume(float level)
     {
-        audioMixer.SetFloat("SFXVolume", volume);
 
     }
-    public void SetMasterVolume(float volume)
+
+    public void SetSFXVolume(float level)
     {
-        audioMixer.SetFloat("MasterVolume", volume);
+
     }
+
     public void PlaySound(AudioSource audioSource, AudioClip audioClip)
     {
         audioSource.clip = audioClip;
+        audioSource.volume = masterVolume;
         audioSource.Play();
     }
-    
+    public void SetMasterVolume(float volume)
+    {
+        masterVolume = Mathf.Clamp01(volume);
+    }
     public IEnumerator FadeIn(AudioSource audioSource, AudioClip audioClip)
     {
 
