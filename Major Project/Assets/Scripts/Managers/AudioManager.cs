@@ -10,7 +10,6 @@ public class AudioManager : MonoBehaviour
     public AudioSource SFXSource;
     [SerializeField] AudioMixer audioMixer;
 
-    float masterVolume = 1.0f;
     float musicFadeDuration = 1.0f;
 
     [Header (">>>       Levels soundtracks      <<<")]
