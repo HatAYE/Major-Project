@@ -70,10 +70,12 @@ public class Controls : MonoBehaviour
 
     #region Respawning
     [SerializeField] Transform respawnPoint;
+    PauseMenu pauseMenu;
     #endregion
     void Start()
     {
         essenceText = GameObject.Find("no. of essence").GetComponent<Text>();
+        pauseMenu= FindObjectOfType<PauseMenu>();
         rb = GetComponent<Rigidbody2D>();
         hj= GetComponent<HingeJoint2D>();
         controlsAvaialble = true;
@@ -173,9 +175,9 @@ public class Controls : MonoBehaviour
         {
             obj.transform.position = obj.originalPosition;
         }
-        if (GameManager.instance.pauseMenu.activeSelf)
+        if (pauseMenu.pauseMenuObj.activeSelf)
         {
-            GameManager.instance.TogglePause();
+            pauseMenu.TogglePause();
         }
     }
 

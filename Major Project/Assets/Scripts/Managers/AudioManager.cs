@@ -6,8 +6,8 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
-    AudioSource musicSource;
-    AudioSource SFXSource;
+    public AudioSource musicSource;
+    public AudioSource SFXSource;
     [SerializeField] AudioMixer audioMixer;
 
     float masterVolume = 1.0f;
@@ -82,25 +82,24 @@ public class AudioManager : MonoBehaviour
         
     }
 
-    public void SetMusicVolume(float level)
+    public void SetMusicVolume(float volume)
     {
-
+        audioMixer.SetFloat("MusicVolume", volume);
     }
 
-    public void SetSFXVolume(float level)
+    public void SetSFXVolume(float volume)
     {
-
+        audioMixer.SetFloat("SFXVolume", volume);
+    }
+    public void SetMasterVolume(float volume)
+    {
+        audioMixer.SetFloat("MasterVolume", volume);
     }
 
     public void PlaySound(AudioSource audioSource, AudioClip audioClip)
     {
         audioSource.clip = audioClip;
-        audioSource.volume = masterVolume;
         audioSource.Play();
-    }
-    public void SetMasterVolume(float volume)
-    {
-        masterVolume = Mathf.Clamp01(volume);
     }
     public IEnumerator FadeIn(AudioSource audioSource, AudioClip audioClip)
     {

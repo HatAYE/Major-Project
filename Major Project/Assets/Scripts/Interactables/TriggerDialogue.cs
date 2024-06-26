@@ -20,7 +20,6 @@ public class TriggerDialogue : MonoBehaviour
         {
             if (controller != null)
             {
-                print("oka");
                 controller.BeginDialogue();
                 if (singleInteraction)
                 controller.OnDialogueEnd += () => Destroy(gameObject);
