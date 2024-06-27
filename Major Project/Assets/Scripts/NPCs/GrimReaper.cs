@@ -121,7 +121,6 @@ public class GrimReaper : MonoBehaviour
             yield return null;
         }
         time = 0;
-        print("2");
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
