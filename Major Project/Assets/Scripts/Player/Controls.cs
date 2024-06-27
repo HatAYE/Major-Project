@@ -112,8 +112,9 @@ public class Controls : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") && jumpCount> 0)
         {
+            AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.jumpWoodSoundEffects);
             jumpCount = 0;
         }
     }
@@ -268,6 +269,7 @@ public class Controls : MonoBehaviour
         {
             if (!isCrouching)
             {
+                AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.crouchingSoundEffect);
                 boxCollider.size = crouchHeight;
                 boxCollider.offset = colOffset;
                 //spriteRenderer.sprite = standingAndCrouchingSprites[1];

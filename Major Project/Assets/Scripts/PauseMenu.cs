@@ -85,6 +85,7 @@ public class PauseMenu : MonoBehaviour
         {
             isPaused = false;
             GameManager.instance.ChangeState(gameStates.playing);
+            ExitAudioMenu();
             pauseMenuObj.gameObject.SetActive(false);
         }
     }
