@@ -45,6 +45,15 @@ public class GameManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Initialize();
+        /*var brain = Camera.main.GetComponent<Cinemachine.CinemachineBrain>();
+        var vcam = FindObjectOfType<Cinemachine.CinemachineVirtualCamera>();
+        var cam= FindObjectOfType<Camera>();
+
+        if (brain == null)
+        {
+            vcam.m_Lens.OrthographicSize = 8;
+            cam.orthographicSize = 8;
+        }*/
     }
 
     public void Initialize()
