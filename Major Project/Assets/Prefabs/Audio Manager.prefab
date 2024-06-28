@@ -45,12 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c656ceef3946e468d423e2c6096079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicSource: {fileID: 0}
+  SFXSource: {fileID: 0}
   audioMixer: {fileID: 0}
   lvl1Soundtrack: {fileID: 8300000, guid: 82e443eeba4fc104e8a5eaee66572c20, type: 3}
   lvl2Soundtrack: {fileID: 0}
   lvl3Soundtrack: {fileID: 0}
   lvl4Soundtrack: {fileID: 0}
-  mainMenuAudio: {fileID: 0}
+  mainMenuAudio: {fileID: 8300000, guid: 1a7b9df52f3da6d4ea3b829ffabea2dd, type: 3}
   grassSoundEffects:
   - {fileID: 8300000, guid: 6dfab2e730fea1740a9ec6deb6b74d8c, type: 3}
   - {fileID: 8300000, guid: 009ff24bfe9ea1242957538cfa6d6419, type: 3}
@@ -113,7 +115,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

@@ -45,43 +45,39 @@ public class GameManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Initialize();
-        /*var brain = Camera.main.GetComponent<Cinemachine.CinemachineBrain>();
-        var vcam = FindObjectOfType<Cinemachine.CinemachineVirtualCamera>();
-        var cam= FindObjectOfType<Camera>();
-
-        if (brain == null)
-        {
-            vcam.m_Lens.OrthographicSize = 8;
-            cam.orthographicSize = 8;
-        }*/
     }
 
     public void Initialize()
     {
         pl = FindObjectOfType<Controls>();
+        currentLevel = SceneManager.GetActiveScene().buildIndex;
+        AudioManager.Instance.CheckLevel();
         ChangeState(gameStates.playing);
-        //currentLevel = SceneManager.GetActiveScene().buildIndex+1;
+
     }
 
     void Update()
     {
-        switch(currenState)
+        if (pl != null)
         {
-            case gameStates.frozen:
-            case gameStates.inDialogue:
-                pl.controlsAvaialble = false;
-                break;
-            case gameStates.playing:
-                Time.timeScale = 1;
-                pl.controlsAvaialble = true;
-                break;
-            case gameStates.paused:
-            case gameStates.gameover:
-                Time.timeScale = 0;
-                break;
+            switch (currenState)
+            {
+                case gameStates.frozen:
+                case gameStates.inDialogue:
+                    pl.controlsAvaialble = false;
+                    break;
+                case gameStates.playing:
+                    Time.timeScale = 1;
+                    pl.controlsAvaialble = true;
+                    break;
+                case gameStates.paused:
+                case gameStates.gameover:
+                    Time.timeScale = 0;
+                    break;
 
-                default: 
-                break;
+                default:
+                    break;
+            }
         }
     }
     public void ChangeState(gameStates state)
