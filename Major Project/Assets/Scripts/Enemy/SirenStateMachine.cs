@@ -8,11 +8,13 @@ public class SirenStateMachine : Enemy
     [SerializeField] Conversation endingConvo;
     DialogueController dialogueController = new DialogueController();
     GameObject musicTrails;
+    Animator animator;
     protected override void Start()
     {
         base.Start();
         musicTrails = transform.GetChild(1).gameObject;
         AudioManager.Instance.PlaySound(gameObject.GetComponent<AudioSource>(), AudioManager.Instance.princessSinging);
+        animator = GetComponent<Animator>();
     }
 
     protected override void Update()
@@ -61,6 +63,7 @@ public class SirenStateMachine : Enemy
         //fadeout music and trail
         StartCoroutine(musicTrails.GetComponent<MusicTrail>().FadeOutMusicTrails());
         StartCoroutine(AudioManager.Instance.FadeOut(gameObject.GetComponent<AudioSource>()));
+        animator.SetTrigger("idle");
         if (dialogueController != null)
         {
             dialogueController.NewConversation(startingConvo);
@@ -87,13 +90,14 @@ public class SirenStateMachine : Enemy
             yield return new WaitForSeconds(1.5f);
             for (int j = 0; j < 3; j++)
             {
+                animator.SetTrigger("attack");
                 GameObject projectile = Instantiate(attackPrefab, transform.position, Quaternion.identity);
                 Vector2 targetDirection = ((Vector3) attackDirection - projectile.transform.position).normalized;
 
                 Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
                 projectileRb.velocity = targetDirection * 8;
                 projectile.GetComponent<Projectile>().parentEnemy = gameObject;
-
+                animator.SetTrigger("idle");
                 yield return new WaitForSeconds(1f);
             }
             yield return new WaitForSeconds(1);
@@ -104,6 +108,7 @@ public class SirenStateMachine : Enemy
     bool gaveHeart=false;
     IEnumerator FinalDialogueCoroutine()
     {
+        animator.SetTrigger("idle");
         if (dialogueController != null)
         {
             dialogueController.NewConversation(endingConvo);
@@ -117,12 +122,13 @@ public class SirenStateMachine : Enemy
             player.GetComponent<HealthSystem>().hp++;
             gaveHeart = true;
         }
+        animator.SetTrigger("poof");
         yield return new WaitForSeconds(1.5f);
     }
     protected override void DieState()
     {
-        //PLAY POOF ANIMATION
-        attacked=false;
+        
+        attacked =false;
         Destroy(areaDetector);
         Destroy(gameObject);
     }
