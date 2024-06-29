@@ -74,7 +74,7 @@ public class Controls : MonoBehaviour
     #endregion
     void Start()
     {
-        essenceText = GameObject.Find("no. of essence").GetComponent<Text>();
+        //essenceText = GameObject.Find("no. of essence").GetComponent<Text>();
         pauseMenu= FindObjectOfType<PauseMenu>();
         rb = GetComponent<Rigidbody2D>();
         hj= GetComponent<HingeJoint2D>();

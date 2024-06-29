@@ -59,7 +59,7 @@ public class SirenStateMachine : Enemy
     {
         areaDetector.SetActive(false);
         //fadeout music and trail
-        StartCoroutine(musicTrails.GetComponent<MusicTrail>().VisualFadeout());
+        StartCoroutine(musicTrails.GetComponent<MusicTrail>().FadeOutMusicTrails());
         StartCoroutine(AudioManager.Instance.FadeOut(gameObject.GetComponent<AudioSource>()));
         if (dialogueController != null)
         {
