@@ -21,6 +21,7 @@ public abstract class Enemy : MonoBehaviour , IResettable
     {
         player= FindObjectOfType<Controls>();
         currentState= EnemyState.idle;
+        player.inCombat = false;
     }
 
     protected virtual void Update()
@@ -28,12 +29,15 @@ public abstract class Enemy : MonoBehaviour , IResettable
         switch (currentState)
         {
             case EnemyState.idle:
+                player.inCombat = false;
                 IdleState();
                 break;
             case EnemyState.attack:
+                player.inCombat= true;
                 AttackingState();
                 break;
             case EnemyState.die:
+                player.inCombat = false;
                 DieState();
                 break;
         }

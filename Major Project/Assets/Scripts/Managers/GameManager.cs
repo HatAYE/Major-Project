@@ -14,12 +14,12 @@ public enum gameStates
     paused,
     gameover,
     frozen,
-    inDialogue
+    inDialogue,
 }
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; set; }
-    static public gameStates currenState;
+    public static gameStates currenState;
     public int currentLevel;
     Controls pl;
     void Awake()

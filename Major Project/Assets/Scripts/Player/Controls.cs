@@ -11,14 +11,14 @@ public class Controls : MonoBehaviour
 {
     RaycastHit2D hit;
     Rigidbody2D rb;
-    public bool controlsAvaialble;
+    [HideInInspector] public bool controlsAvaialble;
     private BoxCollider2D boxCollider;
     [SerializeField] KeyCode left=KeyCode.A;
     [SerializeField] KeyCode right=KeyCode.D;
     public KeyCode jump;
     [SerializeField] KeyCode pushAndPull;
     [SerializeField] KeyCode crouch;
-
+    [HideInInspector] public bool inCombat=false;
     #region movement variables
     [SerializeField] float playerSpeed;
     [HideInInspector] public bool movingRight;
@@ -74,7 +74,7 @@ public class Controls : MonoBehaviour
     #endregion
     void Start()
     {
-        //essenceText = GameObject.Find("no. of essence").GetComponent<Text>();
+        essenceText = GameObject.Find("no. of essence").GetComponent<Text>();
         pauseMenu= FindObjectOfType<PauseMenu>();
         rb = GetComponent<Rigidbody2D>();
         hj= GetComponent<HingeJoint2D>();

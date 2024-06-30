@@ -32,10 +32,11 @@ public class SirenStateMachine : Enemy
         yield return BeginDialogueCoroutine();
         
         yield return new WaitUntil(() => currentState == EnemyState.attack);
-
+        player.inCombat = true;
         // attack logic
         yield return AttackRoutine();
 
+        player.inCombat = false;
         // dialogue ending
         yield return FinalDialogueCoroutine();
 
@@ -62,6 +63,7 @@ public class SirenStateMachine : Enemy
         areaDetector.SetActive(false);
         //fadeout music and trail
         StartCoroutine(musicTrails.GetComponent<MusicTrail>().FadeOutMusicTrails());
+        musicTrails.gameObject.SetActive(false);
         StartCoroutine(AudioManager.Instance.FadeOut(gameObject.GetComponent<AudioSource>()));
         animator.SetTrigger("idle");
         if (dialogueController != null)
@@ -119,7 +121,7 @@ public class SirenStateMachine : Enemy
         }
         if (!gaveHeart)
         {
-            player.GetComponent<HealthSystem>().hp++;
+            StartCoroutine(player.AddEssence());
             gaveHeart = true;
         }
         animator.SetTrigger("poof");

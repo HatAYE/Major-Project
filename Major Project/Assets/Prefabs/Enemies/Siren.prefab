@@ -446,6 +446,7 @@ GameObject:
   - component: {fileID: 8165597119610341462}
   - component: {fileID: 1678652446}
   - component: {fileID: 1800289813}
+  - component: {fileID: 4945606260848781916}
   m_Layer: 0
   m_Name: Siren
   m_TagString: Untagged
@@ -509,7 +510,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: -7207328834200896043, guid: bf513495d52303b408a48d17612da71e, type: 3}
+  m_Sprite: {fileID: 5175848440157864391, guid: bb2759a356fdc614e83d7f097d27da8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -643,7 +644,7 @@ Animator:
   m_GameObject: {fileID: 8165597119610341801}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 38ef73c26807ae44c920120985df2aff, type: 2}
+  m_Controller: {fileID: 22100000, guid: f751c4658908f644287560b26c707a18, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -654,3 +655,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &4945606260848781916
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8165597119610341801}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.0658852, y: 0.41708565}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 20.499998, y: 20.499998}
+    newSize: {x: 20.499998, y: 20.499998}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 9.099661, y: 21.334171}
+  m_EdgeRadius: 0
