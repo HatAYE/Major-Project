@@ -7,11 +7,14 @@ public class PlayerAudio : MonoBehaviour
 {
     Controls player;
 
-    public LayerMask woodLayer;
+    /*public LayerMask woodLayer;
     public LayerMask grassLayer;
-    [SerializeField] float stepInterval = 0.5f;
     bool isCoroutineRunning = false;
-    bool pushingCroutineRunning;
+    bool pushingCroutineRunning;*/
+    [SerializeField] float stepInterval = 0.5f;
+    RaycastHit2D hit;
+    [SerializeField] float rayLength = 3.0f;
+    string groundLayer;
     void Start()
     {
         player=GetComponent<Controls>();
@@ -20,22 +23,40 @@ public class PlayerAudio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.isMoving && !isCoroutineRunning && player.isHoldingObject)
+        hit = Physics2D.Raycast(transform.position, Vector2.down, rayLength);
+
+        Debug.DrawRay(transform.position, Vector2.down * rayLength, Color.blue);
+        groundLayer = GroundLayer();
+        print(groundLayer);
+        if (player.isMoving && !player.isHoldingObject)
         {
-            StartCoroutine(PlayFootstepSounds());
+            if (groundLayer== "grass")
+            {
+                StartCoroutine(PlaySoundEffect(player.isMoving,AudioManager.Instance.SFXSource, AudioManager.Instance.grassSoundEffects[Random.Range(0, AudioManager.Instance.grassSoundEffects.Length)], stepInterval));
+            }
+            else if (groundLayer==  "wood")
+            {
+                StartCoroutine(PlaySoundEffect(player.isMoving, AudioManager.Instance.SFXSource, AudioManager.Instance.grassSoundEffects[Random.Range(0, AudioManager.Instance.grassSoundEffects.Length)], stepInterval));
+            }
         }
-        else if (!player.isMoving)
+        /*else if (!player.isMoving)
         {
             StopCoroutine(PlayFootstepSounds());
-        }
+        }*/
 
-        if(player.isHoldingObject && !pushingCroutineRunning)
+        if(player.isMoving && player.isHoldingObject)
         {
-            StartCoroutine(PushingAudio());
-
+            if (groundLayer == "grass")
+            {
+                StartCoroutine(PlaySoundEffect(player.isHoldingObject,AudioManager.Instance.SFXSource, AudioManager.Instance.grassSoundEffects[Random.Range(0, AudioManager.Instance.grassSoundEffects.Length)],stepInterval));
+            }
+            else if (groundLayer == "wood")
+            {
+                StartCoroutine(PlaySoundEffect(player.isHoldingObject, AudioManager.Instance.SFXSource, AudioManager.Instance.grassSoundEffects[Random.Range(0, AudioManager.Instance.grassSoundEffects.Length)],stepInterval));
+            }
         }
 
-        if (Input.GetKeyDown(player.jump) && player.canjump == true)
+        /*if (Input.GetKeyDown(player.jump) && player.canjump == true)
         {
             Collider2D groundCollider = GetGroundCollider();
 
@@ -54,7 +75,7 @@ public class PlayerAudio : MonoBehaviour
             pushingCroutineRunning = true;
             while (player.isHoldingObject)
             {
-                AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.pushAndPullGrass);
+                AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.pushAndPullWood);
                 yield return new WaitForSeconds(stepInterval + (AudioManager.Instance.SFXSource.clip != null ? AudioManager.Instance.SFXSource.clip.length : 0f));
             }
             pushingCroutineRunning = false;
@@ -62,6 +83,7 @@ public class PlayerAudio : MonoBehaviour
 
         IEnumerator PlayFootstepSounds()
         {
+            print("hr");
             isCoroutineRunning = true;
             while (player.isMoving)
             {
@@ -93,7 +115,34 @@ public class PlayerAudio : MonoBehaviour
             }
 
             return null;
-        }
+        }*/
 
     }
+    IEnumerator PlaySoundEffect(bool condition, AudioSource source, AudioClip clip, float pauseInterval)
+    {
+        while (condition)
+        {
+            AudioManager.Instance.PlaySound(source, clip);
+            yield return new WaitForSeconds(pauseInterval + (source.clip != null ? source.clip.length : 0f));
+        }
+    }
+    string GroundLayer()
+    {
+        
+
+        // Check if the raycast hit an object
+        if (hit.collider != null)
+        {
+            return LayerMask.LayerToName(hit.collider.gameObject.layer);
+        }
+
+        return "None";
+    }
+
+    /*private void OnDrawGizmos()
+    {
+        Color color = Color.blue;
+
+        Gizmos.DrawLine(transform.position, Vector2.down * rayLength);
+    }*/
 }
