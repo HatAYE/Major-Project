@@ -4,45 +4,67 @@ using UnityEngine;
 
 public class MusicTrail : MonoBehaviour
 {
-    [SerializeField] Sprite[] trials;
+    [SerializeField] GameObject[] trails;
     SpriteRenderer spriteRenderer;
-    Animation animationPlayer;
     Controls pl;
 
-    float fadeDuration = 0.4f;
-    Renderer rendererComponent;
-    Material material;
+    float fadeDuration = 1f;
     void Start()
     {
         pl = FindObjectOfType<Controls>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        if (GetComponent<Animation>() != null)
-            animationPlayer = GetComponent<Animation>();
+        pl.onEssenceCollection += UpdateMusicTrail;
 
-        rendererComponent = GetComponent<Renderer>();
-
-        if (rendererComponent != null)
-        {
-            material = rendererComponent.material;
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < pl.essenceCollected +1; i++)
+        /*for (int i = 0; i < pl.essenceCollected +1; i++)
         {
-            if (i >= trials.Length)
+            if (i >= trails.Length)
             {
                 break;
             }
-            spriteRenderer.sprite = trials[i];
-            //animationPlayer.GetClip()
+            spriteRenderer.sprite = trails[i].GetComponent<Sprite>();
+        }*/
+    }
+    int trailIndex;
+    void UpdateMusicTrail()
+    {
+        if (trailIndex < trails.Length)
+        {
+            if (trails[trailIndex] != null)
+            {
+                StartCoroutine(VisualFadeIn(trails[trailIndex].GetComponent<SpriteRenderer>()));
+                trailIndex++;
+            }
+        }
+        else
+        {
+            pl.onEssenceCollection -= UpdateMusicTrail;
         }
     }
-    public IEnumerator VisualFadeIn()
+
+    public IEnumerator FadeInMusicTrails()
     {
-        Color color = material.color;
+        for (int i = 0; i < trailIndex; i++)
+        {
+            StartCoroutine(VisualFadeIn(trails[i].GetComponent<SpriteRenderer>()));
+        }
+        yield return null;
+    }
+    public IEnumerator FadeOutMusicTrails()
+    {
+        for (int i = 0; i < trailIndex; i++)
+        {
+            StartCoroutine(VisualFadeout(trails[i].GetComponent<SpriteRenderer>()));
+        }
+        yield return null;
+    }
+    public IEnumerator VisualFadeIn(SpriteRenderer spriteRenderer)
+    {
+        Color color = spriteRenderer.color;
 
         float elapsedTime = 0f;
         while (elapsedTime < fadeDuration)
@@ -50,18 +72,18 @@ public class MusicTrail : MonoBehaviour
             float alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
 
             color.a = alpha;
-            material.color = color;
+            spriteRenderer.color = color;
 
             yield return null;
 
             elapsedTime += Time.deltaTime;
         }
         color.a = 1f;
-        material.color = color;
+        spriteRenderer.color = color;
     }  
-    public IEnumerator VisualFadeout()
+    public IEnumerator VisualFadeout(SpriteRenderer spriteRenderer)
     {
-        Color color = material.color;
+        Color color = spriteRenderer.color;
 
         float elapsedTime = 0f;
         while (elapsedTime < fadeDuration)
@@ -69,14 +91,14 @@ public class MusicTrail : MonoBehaviour
             float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
 
             color.a = alpha;
-            material.color = color;
+            spriteRenderer.color = color;
 
             yield return null;
 
             elapsedTime += Time.deltaTime;
         }
         color.a = 0f;
-        material.color = color;
+        spriteRenderer.color = color;
         yield return new WaitForSeconds(1f);
     } 
 }

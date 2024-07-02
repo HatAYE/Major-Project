@@ -20,7 +20,7 @@ public class PauseMenu : MonoBehaviour
     #region audio buttons
     GameObject audioPauseMenu;
     Button audioSettingsButton;
-    [SerializeField] Button audioBackButton;
+    Button audioBackButton;
 
     Slider masterSlider;
     Slider musicSlider;

@@ -11,14 +11,14 @@ public class Controls : MonoBehaviour
 {
     RaycastHit2D hit;
     Rigidbody2D rb;
-    public bool controlsAvaialble;
+    [HideInInspector] public bool controlsAvaialble;
     private BoxCollider2D boxCollider;
     [SerializeField] KeyCode left=KeyCode.A;
     [SerializeField] KeyCode right=KeyCode.D;
     public KeyCode jump;
     [SerializeField] KeyCode pushAndPull;
     [SerializeField] KeyCode crouch;
-
+    [HideInInspector] public bool inCombat=false;
     #region movement variables
     [SerializeField] float playerSpeed;
     [HideInInspector] public bool movingRight;
@@ -81,7 +81,6 @@ public class Controls : MonoBehaviour
         controlsAvaialble = true;
         boxCollider = GetComponent<BoxCollider2D>();
         normalHeight = boxCollider.size;
-        //crouchHeight = new Vector2(boxCollider.size.x, boxCollider.size.y / 2f);
         crouchHeight = new Vector2(boxCollider.size.x, 1.18f);
         colOffset = new Vector2(boxCollider.offset.x, -0.1262648f);
 
@@ -272,7 +271,6 @@ public class Controls : MonoBehaviour
                 AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.crouchingSoundEffect);
                 boxCollider.size = crouchHeight;
                 boxCollider.offset = colOffset;
-                //spriteRenderer.sprite = standingAndCrouchingSprites[1];
                 isCrouching = true;
             }
             else
@@ -281,7 +279,6 @@ public class Controls : MonoBehaviour
                 {
                     boxCollider.size = normalHeight;
                     boxCollider.offset = normalColOffset;
-                    //spriteRenderer.sprite = standingAndCrouchingSprites[0];
                     isCrouching = false;
                 }
                 else if (crouchCollider.gameObject.layer == aboveObject) return;

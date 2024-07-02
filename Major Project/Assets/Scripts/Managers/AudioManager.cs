@@ -53,16 +53,20 @@ public class AudioManager : MonoBehaviour
 
         musicSource = transform.GetChild(0).GetComponent<AudioSource>();
         SFXSource= transform.GetChild(1).GetComponent<AudioSource>();
+        CheckLevel();
+    }
 
+    public void CheckLevel()
+    {
         if (GameManager.instance.currentLevel == 0)
         {
             PlaySound(musicSource, mainMenuAudio);
         }
-        else if (GameManager.instance.currentLevel==1)
+        else if (GameManager.instance.currentLevel == 1)
         {
             PlaySound(musicSource, lvl1Soundtrack);
         }
-        else if (GameManager.instance.currentLevel==2)
+        else if (GameManager.instance.currentLevel == 2)
         {
             PlaySound(musicSource, lvl2Soundtrack);
         }
@@ -74,11 +78,6 @@ public class AudioManager : MonoBehaviour
         {
             PlaySound(musicSource, lvl4Soundtrack);
         }
-    }
-
-    void Update()
-    {
-        
     }
 
     public void SetMusicVolume(float volume)

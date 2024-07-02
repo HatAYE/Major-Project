@@ -29,17 +29,15 @@ public class Princess_Behaviour : MonoBehaviour
     }
     IEnumerator StopSinging()
     {
-        StartCoroutine(musicTrail.GetComponent<MusicTrail>().VisualFadeout());
+        StartCoroutine(musicTrail.GetComponent<MusicTrail>().FadeOutMusicTrails());
         StartCoroutine(AudioManager.Instance.FadeOut(gameObject.GetComponent<AudioSource>()));
         yield return new WaitForSeconds(1f);
-        musicTrail.SetActive(false);
     }
     IEnumerator ResumeSinging()
     {
-        StartCoroutine(musicTrail.GetComponent<MusicTrail>().VisualFadeIn());
+        StartCoroutine(musicTrail.GetComponent<MusicTrail>().FadeInMusicTrails());
         StartCoroutine(AudioManager.Instance.FadeIn(gameObject.GetComponent<AudioSource>(), AudioManager.Instance.princessSinging));
         yield return null;
-        musicTrail.SetActive(true);
         //PLAY SINGING/IDLE ANIMATION
     }
 

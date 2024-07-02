@@ -52,58 +52,6 @@ public class AnimationManager : MonoBehaviour
     
     void SetCostume(int spriteIndex)
     {
-        /*foreach (var stateItem in states)
-        {
-            if (stateItem.state.name == "Idle")
-            {
-                    stateItem.state.motion = IdleAnis[spriteIndex];
-            }
-
-            else if (stateItem.state.name == "Movement")
-            {
-                    stateItem.state.motion = MovementAnis[spriteIndex];
-            }
-
-            else if (stateItem.state.name == "Jump")
-            {
-                stateItem.state.motion = JumpAnis[spriteIndex];
-            }
-
-            else if (stateItem.state.name == "Crouch")
-            {
-                    stateItem.state.motion = CrouchAnis[spriteIndex];
-            }
-
-            else if (stateItem.state.name == "Crouch movement")
-            {
-                    stateItem.state.motion = CrouchMovementAnis[spriteIndex];
-            }
-
-            else if (stateItem.state.name == "Crouch push and pull still")
-            {
-                stateItem.state.motion = CrouchPushAndPullAnis[spriteIndex];
-            }
-
-            else if (stateItem.state.name == "Crouch push and pull movement")
-            {
-                stateItem.state.motion = CrouchPushAndPullMovementAnis[spriteIndex];
-            }
-
-            else if (stateItem.state.name == "Push and Pull Movement")
-            {
-                    stateItem.state.motion = PushAndPullAnis[spriteIndex];
-            }
-
-            else if (stateItem.state.name == "Holding Object")
-            {
-                    stateItem.state.motion = HoldingObjectAnis[spriteIndex];
-            }
-            /*else if (stateItem.state.name == "Swinging")
-            {
-                stateItem.state.motion = PushAndPullAnis[spriteIndex];
-            }
-
-        }*/
         List<KeyValuePair<AnimationClip, AnimationClip>> overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>();
 
         // Add animation clips to the override list
@@ -117,7 +65,6 @@ public class AnimationManager : MonoBehaviour
         overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(CrouchPushAndPullAnis[0], CrouchPushAndPullAnis[spriteIndex]));
         overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(CrouchPushAndPullMovementAnis[0], CrouchPushAndPullMovementAnis[spriteIndex]));
 
-        // Apply the overrides
         animatorOverrideController.ApplyOverrides(overrides);
     }
     void EssenceCostumeChange()
