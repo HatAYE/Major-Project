@@ -28,6 +28,8 @@ public class Controls : MonoBehaviour
     #region jumping variables
     [SerializeField] float jumpForce;
     [HideInInspector] public bool canjump;
+     public bool isfalling;
+     public bool isGrounded=true;
     int jumpCount;
     #endregion
 
@@ -113,7 +115,8 @@ public class Controls : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground") && jumpCount> 0)
         {
-            AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.jumpWoodSoundEffects);
+            isGrounded = true;
+            isfalling = false;
             jumpCount = 0;
         }
     }
@@ -230,8 +233,14 @@ public class Controls : MonoBehaviour
     {
         if (Input.GetKeyDown(jump) && jumpCount == 0 && !isCrouching)
         {
-            rb.AddForce(new Vector2 (0, jumpForce));
+            isGrounded = false;
+            rb.AddForce(new Vector2(0, jumpForce));
             jumpCount++;
+        }
+
+        if (jumpCount > 0 && rb.velocity.y < -0.1)
+        {
+            isfalling = true;
         }
     }
     void PushingAndPulling()

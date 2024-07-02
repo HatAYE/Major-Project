@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 6324549861527460386}
   - component: {fileID: 6324549861527460387}
   - component: {fileID: 9038116688445735802}
+  - component: {fileID: 6966439377142431845}
   m_Layer: 0
   m_Name: player 1
   m_TagString: Player
@@ -216,6 +217,8 @@ MonoBehaviour:
   isMoving: 0
   jumpForce: 1300
   canjump: 0
+  isfalling: 0
+  isGrounded: 0
   isHoldingObject: 0
   pushingRange: 0.8
   isCrouching: 0
@@ -346,6 +349,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2efe7fa379f6f43ab364bcff256185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6966439377142431845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6324549861527460396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f947c448dc698bb45a9d028024aace5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepInterval: 0.1
+  audioLayers:
+    serializedVersion: 2
+    m_Bits: 768
+  rayLength: 3
 --- !u!1 &6324549861676633405
 GameObject:
   m_ObjectHideFlags: 0
