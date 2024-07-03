@@ -16,11 +16,11 @@ public class CameraZoomOut : MonoBehaviour
     bool zoomedOut;
     float originalCameraSize { get; set; }
     CinemachineVirtualCamera virtualCamera;
-
+    Coroutine currentCoroutine;
     void Start()
     {
         virtualCamera= FindObjectOfType<CinemachineVirtualCamera>();
-        originalCameraSize = virtualCamera.m_Lens.OrthographicSize;
+        originalCameraSize = virtualCamera.m_Lens.FieldOfView;
         virtualCamera.Follow = transform;
     }
     private void Update()
@@ -53,11 +53,14 @@ public class CameraZoomOut : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+       
         foreach (Collider2D enterArea in enterAreas)
         {
             if (other == enterArea)
             {
-                StartCoroutine(ZoomCamera(zoomOutSize, rightTargetPosition));
+                if (currentCoroutine != null)
+                    StopCoroutine(currentCoroutine);
+                currentCoroutine = StartCoroutine(ZoomCamera(zoomOutSize, rightTargetPosition));
                 zoomedOut = true;
                 return;
             }
@@ -67,7 +70,9 @@ public class CameraZoomOut : MonoBehaviour
         {
             if (other == secondEntry)
             {
-                StartCoroutine(ZoomCamera(zoomOutSize, leftTargetPosition));
+                if (currentCoroutine != null)
+                    StopCoroutine(currentCoroutine);
+                currentCoroutine = StartCoroutine(ZoomCamera(zoomOutSize, leftTargetPosition));
                 zoomedOut = true;
                 return;
             }
@@ -77,7 +82,9 @@ public class CameraZoomOut : MonoBehaviour
         {
             if (other == exitArea)
             {
-                StartCoroutine(ZoomCamera(originalCameraSize, transform));
+                if (currentCoroutine != null)
+                    StopCoroutine(currentCoroutine);
+                currentCoroutine = StartCoroutine(ZoomCamera(originalCameraSize, transform));
                 zoomedOut = false;
                 return;
             }
@@ -86,7 +93,7 @@ public class CameraZoomOut : MonoBehaviour
     }
     IEnumerator ZoomCamera(float targetZoom, Transform followTarget)
     {
-        float startZoom = virtualCamera.m_Lens.OrthographicSize;
+        float startZoom = virtualCamera.m_Lens.FieldOfView;
         float elapsedTime = 0f;
 
         virtualCamera.Follow = followTarget;
@@ -94,11 +101,11 @@ public class CameraZoomOut : MonoBehaviour
         while (elapsedTime < totalTime)
         {
             elapsedTime += Time.deltaTime;
-            virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(startZoom, targetZoom, elapsedTime / totalTime);
+            virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(startZoom, targetZoom, elapsedTime / totalTime);
             yield return null;
         }
 
-        virtualCamera.m_Lens.OrthographicSize = targetZoom;
+        virtualCamera.m_Lens.FieldOfView = targetZoom;
         zoomedOut = targetZoom == zoomOutSize;
     }
 

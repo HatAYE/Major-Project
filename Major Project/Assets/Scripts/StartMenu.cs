@@ -5,6 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
+    static bool introPlayed;
+    [SerializeField] GameObject intro;
+    void Start()
+    {
+        
+        if (!introPlayed)
+        {
+            intro.gameObject.SetActive(true);
+            introPlayed = true;
+        }
+        else
+        {
+            intro.gameObject.SetActive(false);
+        }
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene(1);
