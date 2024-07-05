@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class Fireflies : MonoBehaviour
 {
-    float fireflyRadius = 1.5f;
+    [SerializeField] float fireflyRadius = 1.5f;
     [SerializeField] float fireflySpeed = 0.7f;
-    float playerRadius=1.5f;
+    [SerializeField] float playerRadius=1.5f;
+    float followingSpeed;
 
     Vector3 initialPosition;
     Vector3 targetPosition;
@@ -15,12 +16,13 @@ public class Fireflies : MonoBehaviour
     float timer;
     [SerializeField] float timeBetweenTargets = 1f;
     bool followingPlayer;
-    bool inPlayerRadius;
+    [SerializeField] bool inPlayerRadius;
     Controls player;
     void Start()
     {
         initialPosition = transform.position;
         player= FindObjectOfType<Controls>();
+        followingSpeed = fireflySpeed * 0.5f;
         SetRandomTargetPosition();
     }
 
@@ -33,7 +35,8 @@ public class Fireflies : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, player.transform.position) > 1f && !inPlayerRadius)
             {
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, fireflySpeed * Time.deltaTime *5);
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, followingSpeed * Time.deltaTime *5);
+                print("normal");
                 inPlayerRadius = false;
                 SetRandomTargetPosition();
             }
@@ -54,8 +57,8 @@ public class Fireflies : MonoBehaviour
                 }
                     transform.position = Vector3.MoveTowards(transform.position, targetPosition, fireflySpeed * Time.deltaTime);
                     timer -= Time.deltaTime;
-
-                if (Vector3.Distance(transform.position, player.transform.position) > 1f)
+                print("speed");
+                if (Vector3.Distance(transform.position, player.transform.position) > 10f)
                 {
                     inPlayerRadius= false;
                 }
@@ -83,6 +86,7 @@ public class Fireflies : MonoBehaviour
         if (followingPlayer)
         {
             targetPosition = (Vector2)player.transform.position + Random.insideUnitCircle * playerRadius;
+            print("firefly is on player radius");
         }
         else
         {

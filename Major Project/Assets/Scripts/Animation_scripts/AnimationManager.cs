@@ -7,9 +7,7 @@ public class AnimationManager : MonoBehaviour
     public static AnimationManager instance { get; set; }
     Controls player;
     Animator animator;
-    //ChildAnimatorState[] states;
-    AnimatorOverrideController animatorOverrideController;
-
+    [SerializeField] AnimatorOverrideController[] animatorOverrideController= new AnimatorOverrideController[5];
     public AnimationClip[] IdleAnis= new AnimationClip[5];
     public AnimationClip[] MovementAnis = new AnimationClip[5];
     public AnimationClip[] JumpAnis = new AnimationClip[5];
@@ -34,8 +32,8 @@ public class AnimationManager : MonoBehaviour
         //AnimatorController animatorController = animator.runtimeAnimatorController as AnimatorController;
 
         // states = animatorController.layers[0].stateMachine.states;
-        animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
-        animator.runtimeAnimatorController = animatorOverrideController;
+        //animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+        //animator.runtimeAnimatorController = animatorOverrideController;
 
         if (GameManager.instance.currentLevel==1)
         {
@@ -44,13 +42,17 @@ public class AnimationManager : MonoBehaviour
         }
         else
         {
-            SetCostume(5);
+            SetCostume(4);
             player.onEssenceCollection -= EssenceCostumeChange;
         }
     }
 
-    
-    void SetCostume(int spriteIndex)
+    void SetCostume(int controllerNumber)
+    {
+        animator.runtimeAnimatorController=animatorOverrideController[controllerNumber];
+    }
+
+    /*void SetCostume(int spriteIndex)
     {
         List<KeyValuePair<AnimationClip, AnimationClip>> overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>();
 
@@ -66,7 +68,7 @@ public class AnimationManager : MonoBehaviour
         overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(CrouchPushAndPullMovementAnis[0], CrouchPushAndPullMovementAnis[spriteIndex]));
 
         animatorOverrideController.ApplyOverrides(overrides);
-    }
+    }*/
     void EssenceCostumeChange()
     {
         if (aniIndex<5)

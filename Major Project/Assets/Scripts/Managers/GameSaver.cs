@@ -28,7 +28,6 @@ public class GameSaver : MonoBehaviour
         string currentSceneName = SceneManager.GetActiveScene().name;
         PlayerPrefs.SetString("LastScene", currentSceneName);
         PlayerPrefs.Save();
-        Debug.Log("Progress saved for scene: " + currentSceneName);
 
     }
 }

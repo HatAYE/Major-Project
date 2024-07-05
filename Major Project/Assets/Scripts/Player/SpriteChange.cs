@@ -6,7 +6,6 @@ public class SpriteChange : MonoBehaviour
 {
     Controls player;
     Animator animator;
-    [SerializeField] AnimationClip clip;
     bool facingRight;
     void Start()
     {
@@ -37,6 +36,7 @@ public class SpriteChange : MonoBehaviour
         animator.SetBool("canMove", player.isMoving);
         animator.SetBool("canCrouch", player.isCrouching);
         animator.SetBool("canPushAndPull", player.isHoldingObject);
+        animator.SetBool("isFalling", player.isfalling);
     }
 
 }

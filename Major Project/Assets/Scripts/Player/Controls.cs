@@ -88,12 +88,13 @@ public class Controls : MonoBehaviour
 
         crouchSpeed = playerSpeed / 2;
         sprintingSpeed = playerSpeed * 2;
+
+        isGrounded = true;
     }
     void Update()
     {
         if (movingRight==false) hit = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, pushingRange, LayerMask.GetMask("Pushable"));
         else hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, pushingRange, LayerMask.GetMask("Pushable"));
-
 
         if (essenceText != null)
         essenceText.text = essenceCollected.ToString();
@@ -118,6 +119,17 @@ public class Controls : MonoBehaviour
             isGrounded = true;
             isfalling = false;
             jumpCount = 0;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            if (rb.velocity.y < 0)
+            {
+                isGrounded = false;
+                isfalling = true;
+            }
         }
     }
     bool collectedSparepart;
@@ -238,10 +250,11 @@ public class Controls : MonoBehaviour
             jumpCount++;
         }
 
-        if (jumpCount > 0 && rb.velocity.y < -0.1)
+        if (!isGrounded && rb.velocity.y <= 0)
         {
             isfalling = true;
         }
+        if(isGrounded) isfalling=false;
     }
     void PushingAndPulling()
     {
