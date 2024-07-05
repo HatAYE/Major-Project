@@ -26,10 +26,10 @@ public class HealthSystem : MonoBehaviour
             currentHealth = hp;
         }
 
-        if(currentHealth<= 0)
+       /*  if(currentHealth<= 0)
         {
             GetComponent<Controls>().Respawn();
-        }
+        } */
 
         for (int i = 0; i < HPUI.Length; i++)
         {
