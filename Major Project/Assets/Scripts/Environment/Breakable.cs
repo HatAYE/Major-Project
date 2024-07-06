@@ -15,7 +15,6 @@ public class Breakable : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Trigger entered: " + collision.gameObject.name);
         if (collision.isTrigger)
         {
             if (collision.TryGetComponent(out Controls player))
