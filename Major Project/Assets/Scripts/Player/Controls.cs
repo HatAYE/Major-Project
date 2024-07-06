@@ -114,6 +114,7 @@ public class Controls : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
+        print(collision.gameObject.name);
         if (collision.gameObject.CompareTag("Ground") && jumpCount> 0)
         {
             isGrounded = true;
@@ -135,6 +136,7 @@ public class Controls : MonoBehaviour
     bool collectedSparepart;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        print(collision.gameObject.name);
         if (collision.gameObject.name.StartsWith("Spare part") && !collectedSparepart)
         {
             Destroy(collision.gameObject);
