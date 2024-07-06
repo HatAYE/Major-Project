@@ -33,6 +33,7 @@ public class ShrinkingAndEnlarging : MonoBehaviour
                 else if (currentSize == largeSize)
                 {
                     SwitchSize(regularSize);
+                    GetComponent<Controls>().currentPushingRange = GetComponent<Controls>().originalPushingRange;
                 }
             }
             else if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -41,10 +42,12 @@ public class ShrinkingAndEnlarging : MonoBehaviour
                 if (currentSize == shrinkingSize)
                 {
                     SwitchSize(regularSize);
+                    GetComponent<Controls>().currentPushingRange = GetComponent<Controls>().originalPushingRange;
                 }
                 else if (currentSize == regularSize)
                 {
                     SwitchSize(largeSize);
+                    GetComponent<Controls>().currentPushingRange = GetComponent<Controls>().enlargedPushingRange;
                 }
                 else if (currentSize == largeSize)
                 {

@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.Serialization;
 using UnityEngine;
+using VInspector;
 
 public class Pushable : MonoBehaviour
 {
     public float massWhenHeld;
-    public bool gotLetGo;
+    [HideInInspector] public bool gotLetGo;
     float initialMass;
     [HideInInspector] public bool beingHeld;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Vector3 originalPosition;
     Controls player;
 
+    public bool conditionalOnSize;
     void Start()
     {
         rb=GetComponent<Rigidbody2D>();

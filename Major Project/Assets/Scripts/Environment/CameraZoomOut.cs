@@ -109,7 +109,7 @@ public class CameraZoomOut : MonoBehaviour
         zoomedOut = targetZoom == zoomOutSize;
     }
 
-    void OnDrawGizmos()
+    /*void OnDrawGizmos()
     {
         if (!Application.isPlaying) return;
         Gizmos.color = Color.green;
@@ -130,5 +130,5 @@ public class CameraZoomOut : MonoBehaviour
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(rightTargetPosition.position, 2f);
         Gizmos.DrawWireSphere(leftTargetPosition.position, 2f);
-    }
+    }*/
 }
