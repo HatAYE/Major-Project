@@ -48,8 +48,13 @@ MonoBehaviour:
   musicSource: {fileID: 0}
   SFXSource: {fileID: 0}
   audioMixer: {fileID: 24100000, guid: 0aebad16196ecc14e80841c07c57c5dd, type: 2}
-  lvl1Soundtrack: {fileID: 8300000, guid: 82e443eeba4fc104e8a5eaee66572c20, type: 3}
-  lvl2Soundtrack: {fileID: 0}
+  lvl1Soundtrack: {fileID: 8300000, guid: 819cbc2c28b871b408055471bcc3c4a5, type: 3}
+  lvl2Soundtrack:
+  - {fileID: 8300000, guid: 8010f2ac0c35eaa478ae6e57c19e6b81, type: 3}
+  - {fileID: 8300000, guid: 06a91a960c95b384faf5dccf5d54eebe, type: 3}
+  - {fileID: 8300000, guid: 2a40c8e8116a2dd40a985106d0942b74, type: 3}
+  - {fileID: 8300000, guid: 87fe1bbcac2542943ad64e6af4477f3c, type: 3}
+  - {fileID: 8300000, guid: f66f0884e92ca734db584deff96605b8, type: 3}
   lvl3Soundtrack: {fileID: 0}
   lvl4Soundtrack: {fileID: 0}
   mainMenuAudio: {fileID: 8300000, guid: 6d860d3a8ab1a6f4badf4bbc0d43c146, type: 3}
@@ -69,6 +74,23 @@ MonoBehaviour:
   pushAndPullGrass: {fileID: 8300000, guid: 1a5757e2baf617a439c7f11ad7ce03c7, type: 3}
   pushAndPullWood: {fileID: 8300000, guid: 6e7cb5f0b1e9f534b960b530d2527aa3, type: 3}
   crouchingSoundEffect: {fileID: 8300000, guid: 8b9d3960bbc57f94babc944d8e70e304, type: 3}
+  muffled: 1
+  muffledGrassSoundEffects:
+  - {fileID: 8300000, guid: 2492d744b65e9f04d89cfadfdc14e3a2, type: 3}
+  - {fileID: 8300000, guid: 5d256a1a8194cfb4a88530c422f736e8, type: 3}
+  - {fileID: 8300000, guid: deef8968460ac6a479e0771fb02ad776, type: 3}
+  muffledJumpGrassSoundEffect: {fileID: 8300000, guid: 6c048348a485b43449242d1ef933b135, type: 3}
+  muffledLandGrassSoundEffect: {fileID: 8300000, guid: f1dd1d58cf8543641987d4fa9cf170b7, type: 3}
+  muffledWoodSoundEffects:
+  - {fileID: 8300000, guid: 0ea1955dd9b378f4e8468e8c8c202861, type: 3}
+  - {fileID: 8300000, guid: a70852612f45ebf47ae960bdb5d22bf8, type: 3}
+  - {fileID: 8300000, guid: 24490a1aa9c560740ac9e174882c5d3d, type: 3}
+  - {fileID: 8300000, guid: ac3c5de65aca4a04e9884e27df788a28, type: 3}
+  muffledJumpWoodSoundEffects: {fileID: 8300000, guid: 3cb5092a4850ed843a1e442e0adf9396, type: 3}
+  muffledLandWoodSoundEffects: {fileID: 8300000, guid: 666026ef734f6234897d9d9c54ffc8f2, type: 3}
+  muffledPushAndPullGrass: {fileID: 8300000, guid: c7342707321674f409bb9ef9668bf383, type: 3}
+  muffledPushAndPullWood: {fileID: 8300000, guid: 58daa461e2c9401419260bc42f368a22, type: 3}
+  muffledCrouchingSoundEffect: {fileID: 8300000, guid: 3829de7a9ea3ea147becc7c68917d8d1, type: 3}
   princessSinging: {fileID: 8300000, guid: c831db2fb0ac2fb47bf7c0ab443f0796, type: 3}
 --- !u!1 &8440616821268793858
 GameObject:

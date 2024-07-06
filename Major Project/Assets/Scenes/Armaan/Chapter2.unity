@@ -40692,7 +40692,6 @@ GameObject:
   m_Component:
   - component: {fileID: 726508044}
   - component: {fileID: 726508043}
-  - component: {fileID: 726508042}
   - component: {fileID: 726508046}
   - component: {fileID: 726508045}
   - component: {fileID: 726508047}
@@ -40705,14 +40704,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &726508042
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 726508041}
-  m_Enabled: 1
 --- !u!20 &726508043
 Camera:
   m_ObjectHideFlags: 0
@@ -51529,6 +51520,7 @@ MonoBehaviour:
   beingHeld: 0
   rb: {fileID: 0}
   originalPosition: {x: 0, y: 0, z: 0}
+  conditionalOnSize: 0
 --- !u!1 &1970232327
 GameObject:
   m_ObjectHideFlags: 0
@@ -52555,7 +52547,7 @@ GameObject:
   - component: {fileID: 8171416884788463977}
   m_Layer: 6
   m_Name: pushable object (2)
-  m_TagString: Moveable
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52689,6 +52681,7 @@ MonoBehaviour:
   beingHeld: 0
   rb: {fileID: 0}
   originalPosition: {x: 0, y: 0, z: 0}
+  conditionalOnSize: 0
 --- !u!114 &8171416884788463977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52706,3 +52699,4 @@ MonoBehaviour:
   beingHeld: 0
   rb: {fileID: 0}
   originalPosition: {x: 0, y: 0, z: 0}
+  conditionalOnSize: 0
