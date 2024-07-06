@@ -219,7 +219,9 @@ MonoBehaviour:
   isfalling: 0
   isGrounded: 0
   isHoldingObject: 0
-  pushingRange: 0.8
+  originalPushingRange: 0.8
+  currentPushingRange: 0
+  enlargedPushingRange: 1
   isCrouching: 0
   aboveObject:
     serializedVersion: 2
@@ -250,8 +252,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   HPSprites:
-  - {fileID: -943624381097332495, guid: 328a8e35cf7975c419a8b89ad16990c2, type: 3}
-  - {fileID: -2297991535248738155, guid: 328a8e35cf7975c419a8b89ad16990c2, type: 3}
+  - {fileID: 1564688358316481467, guid: 99d630ff7d63b7a44b4658f934b18f36, type: 3}
+  - {fileID: 5726080727020278575, guid: 99d630ff7d63b7a44b4658f934b18f36, type: 3}
 --- !u!114 &6324549861527460390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,7 +645,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24d437ae86f20b408705e9b3d331718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
 --- !u!114 &6324549862376438015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,6 +657,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d48153c1d6eb447876ed16064b818c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animatorOverrideController:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   IdleAnis:
   - {fileID: 7400000, guid: 5600ce05720dc1f4f82b6e61f1a94336, type: 2}
   - {fileID: 7400000, guid: cfcac810672d55f409e73edc084ee7f8, type: 2}

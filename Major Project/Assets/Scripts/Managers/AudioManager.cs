@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using VInspector;
 
 public class AudioManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class AudioManager : MonoBehaviour
 
     [Header (">>>       Levels soundtracks      <<<")]
     public AudioClip lvl1Soundtrack;
-    public AudioClip lvl2Soundtrack;
+    public AudioClip[] lvl2Soundtrack;
     public AudioClip lvl3Soundtrack;
     public AudioClip lvl4Soundtrack;
 
@@ -34,8 +35,26 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip crouchingSoundEffect;
 
+    [SerializeField] bool muffled;
+    [ShowIf(nameof(muffled))]
+    [Header(">>>      Muffled soundeffects      <<<")]
+    [SerializeField] public AudioClip[] muffledGrassSoundEffects;
+    [SerializeField] public AudioClip muffledJumpGrassSoundEffect;
+    [SerializeField] public AudioClip muffledLandGrassSoundEffect;
+    [SerializeField] public AudioClip[] muffledWoodSoundEffects;
+    [SerializeField] public AudioClip muffledJumpWoodSoundEffects;
+    [SerializeField] public AudioClip muffledLandWoodSoundEffects;
+
+    [SerializeField] public AudioClip muffledPushAndPullGrass;
+    [SerializeField] public AudioClip muffledPushAndPullWood;
+
+    [SerializeField] public AudioClip muffledCrouchingSoundEffect;
+    [EndIf]
+
     [Header(">>>      Princesses and sirens      <<<")] 
     public AudioClip princessSinging;
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -66,10 +85,10 @@ public class AudioManager : MonoBehaviour
         {
             PlaySound(musicSource, lvl1Soundtrack);
         }
-        else if (GameManager.instance.currentLevel == 2)
+        /*else if (GameManager.instance.currentLevel == 2)
         {
             PlaySound(musicSource, lvl2Soundtrack);
-        }
+        }*/
         else if (GameManager.instance.currentLevel == 3)
         {
             PlaySound(musicSource, lvl3Soundtrack);
@@ -126,4 +145,28 @@ public class AudioManager : MonoBehaviour
         audioSource.volume = 0;
         audioSource.Stop();
     }
+    /*public IEnumerator FadeTransition(AudioSource audioSource, AudioClip newClip, float fadeDuration)
+    {
+        float startVolume = audioSource.volume;
+
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            audioSource.volume = Mathf.Lerp(startVolume, 0, t / fadeDuration);
+            yield return null;
+        }
+
+        audioSource.volume = 0;
+        audioSource.Stop();
+
+        audioSource.clip = newClip;
+        audioSource.Play();
+
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            audioSource.volume = Mathf.Lerp(0, startVolume, t / fadeDuration);
+            yield return null;
+        }
+
+        audioSource.volume = startVolume;
+    }*/
 }
