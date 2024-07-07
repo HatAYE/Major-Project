@@ -2982,11 +2982,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6324549861527460393, guid: 64092d3a64eb2a44d8b5523de72a17ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 296.3
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6324549861527460393, guid: 64092d3a64eb2a44d8b5523de72a17ae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.8
+      value: -7.9
       objectReference: {fileID: 0}
     - target: {fileID: 6324549861527460393, guid: 64092d3a64eb2a44d8b5523de72a17ae, type: 3}
       propertyPath: m_LocalPosition.z
@@ -41538,7 +41538,6 @@ GameObject:
   m_Component:
   - component: {fileID: 726508044}
   - component: {fileID: 726508043}
-  - component: {fileID: 726508042}
   - component: {fileID: 726508046}
   - component: {fileID: 726508045}
   - component: {fileID: 726508047}
@@ -41551,14 +41550,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &726508042
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 726508041}
-  m_Enabled: 1
 --- !u!20 &726508043
 Camera:
   m_ObjectHideFlags: 0
@@ -41610,7 +41601,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726508041}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 296.3, y: -0.9991698, z: -8}
+  m_LocalPosition: {x: 11, y: -5.0991697, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1656098073}

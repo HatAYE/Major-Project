@@ -1,12 +1,8 @@
 using Conversa.Runtime;
-using Conversa.Runtime.Nodes;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.PostProcessing;
-using UnityEngine.Scripting;
+using UnityEngine.Rendering.Universal;
 
 public class GrimReaper : MonoBehaviour
 {
@@ -21,8 +17,8 @@ public class GrimReaper : MonoBehaviour
     bool accepted;
     bool canInteract;
 
-    PostProcessVolume postProcessVolume;
-    Bloom bloom;
+    [SerializeField] Volume postProcessVolume;
+    Bloom bloomEffect;
     float target = 50f;
     float changeRate=70;
     void Start()
@@ -34,15 +30,16 @@ public class GrimReaper : MonoBehaviour
         essences = FindObjectsOfType<Essence>().Length;
 
         #region post processing set up
-        postProcessVolume = FindObjectOfType<PostProcessVolume>();
         if (postProcessVolume != null)
         {
-            postProcessVolume.profile.TryGetSettings(out bloom);
+            if (postProcessVolume.profile.TryGet<Bloom>(out Bloom bloom))
+            {
+                bloomEffect = bloom;
+            }
         }
         #endregion
     }
 
-    // Update is called once per frame
     void Update()
     {   
     }
@@ -108,7 +105,7 @@ public class GrimReaper : MonoBehaviour
     {
         target = 0 + changeRate;
         StartCoroutine(AdjustEffects());
-        print("1");
+        
     }
     float time;
     float totalTime=4;
@@ -117,7 +114,7 @@ public class GrimReaper : MonoBehaviour
         while (time < totalTime)
         {
             time += Time.deltaTime;
-            bloom.intensity.value = Mathf.Lerp(0, target, time / totalTime);
+            bloomEffect.intensity.value = Mathf.Lerp(0, target, time / totalTime);
             yield return null;
         }
         time = 0;

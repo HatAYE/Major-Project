@@ -1,18 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.Experimental.Rendering.Universal;
-using UnityEngine.Rendering.PostProcessing;
-using UnityEngine.UI;
 
 public class LevelOneManager : MonoBehaviour
 {
     Controls pl;
     static public int scrapParts;
     //[SerializeField] Text scrappartText;
-    #region post processing
+    /*#region post processing
     Vignette vignette;
     DepthOfField depth;
     PostProcessVolume postProcessVolume;
@@ -22,7 +17,7 @@ public class LevelOneManager : MonoBehaviour
     [SerializeField] float vignetteChangeRate;
     float vignetteStartingValue;
     float targetVignette;
-    #endregion
+    #endregion*/
 
     Light2D pinlight;
     float startRadiusValue=5.5f;
@@ -36,25 +31,25 @@ public class LevelOneManager : MonoBehaviour
     void Start()
     {
         pl=FindObjectOfType<Controls>();
-        postProcessVolume = FindObjectOfType<PostProcessVolume>();
+        //postProcessVolume = FindObjectOfType<PostProcessVolume>();
         pinlight = pl.GetComponentInChildren<Light2D>();
         #region post processing set up
         pl.onEssenceCollection += ChangeEffects;
-        if (postProcessVolume!= null)
+        /*if (postProcessVolume!= null)
         {
             postProcessVolume.profile.TryGetSettings(out vignette);
 
             postProcessVolume.profile.TryGetSettings(out depth);
-        }
+        }*/
         #endregion
 
-        #region post processing setup
+        /*#region post processing setup
         //vignetteStartingValue = vignette.intensity.value;
         //vignetteChangeRate = vignette.intensity.value / FindObjectsOfType<Essence>().Length;
 
-        startingFocalStartingValue = depth.focalLength.value;
-        depthChangeRate= depth.focalLength.value / FindObjectsOfType<Essence>().Length;
-        #endregion
+        //startingFocalStartingValue = depth.focalLength.value;
+        //depthChangeRate= depth.focalLength.value / FindObjectsOfType<Essence>().Length;
+        #endregion*/
     }
 
     void Update()
@@ -75,8 +70,8 @@ public class LevelOneManager : MonoBehaviour
     {
         //vignetteStartingValue = vignette.intensity.value;
         //targetVignette = vignetteStartingValue - vignetteChangeRate;
-        startingFocalStartingValue= depth.focalLength.value;
-        targetFocalLength=startingFocalStartingValue - depthChangeRate;
+        //startingFocalStartingValue= depth.focalLength.value;
+        //targetFocalLength=startingFocalStartingValue - depthChangeRate;
 
         startRadiusValue = pinlight.pointLightOuterRadius;
         targetRadiusValue = pinlight.pointLightOuterRadius + radiusChangeRate;
@@ -95,7 +90,7 @@ public class LevelOneManager : MonoBehaviour
         {
             time += Time.deltaTime;
             //vignette.intensity.value = Mathf.Lerp(vignetteStartingValue, targetVignette, time / totalTime);
-            depth.focalLength.value = Mathf.Lerp(startingFocalStartingValue, targetFocalLength, time /totalTime);
+            //depth.focalLength.value = Mathf.Lerp(startingFocalStartingValue, targetFocalLength, time /totalTime);
             pinlight.pointLightOuterRadius = Mathf.Lerp(startRadiusValue, targetRadiusValue, time / totalTime);
             pinlight.intensity = Mathf.Lerp(startingIntensitiy, targetIntensitiy, time / totalTime);
 
