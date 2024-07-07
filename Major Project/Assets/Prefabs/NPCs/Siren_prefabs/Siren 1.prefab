@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 7254320403197897204}
   - component: {fileID: 7254320402942043135}
   - component: {fileID: 2110515579947791443}
+  - component: {fileID: 4803345581886537178}
   m_Layer: 0
   m_Name: Siren 1
   m_TagString: Untagged
@@ -209,6 +210,7 @@ MonoBehaviour:
   attackPrefab: {fileID: 2881932690406791399, guid: 265272d525d37284497065c8101991bd, type: 3}
   startingConvo: {fileID: 11400000, guid: c48801f99ccddf6468c9058c99a7fc02, type: 2}
   endingConvo: {fileID: 11400000, guid: 335f11779951bd6498987c801ec1b382, type: 2}
+  rightTrigger: {fileID: 4803345581886537178}
 --- !u!82 &7254320403197897204
 AudioSource:
   m_ObjectHideFlags: 0
@@ -335,11 +337,11 @@ BoxCollider2D:
   m_GameObject: {fileID: 1584847785371849795}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 93d2cd4808656af46b2930c93ef63857, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.37072945, y: 0.74148417}
+  m_Offset: {x: -0.37072945, y: 1.9}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -350,7 +352,33 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.080109, y: 16.977943}
+  m_Size: {x: 8.080109, y: 18.9}
+  m_EdgeRadius: 0
+--- !u!61 &4803345581886537178
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584847785371849795}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 23.781189, y: 1.6000004}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 20.499998, y: 20.499998}
+    newSize: {x: 20.499998, y: 20.499998}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 30.592384, y: 28.42}
   m_EdgeRadius: 0
 --- !u!1 &4356138163246789120
 GameObject:

@@ -6,6 +6,7 @@ public class SirenStateMachine : Enemy
     [SerializeField] GameObject attackPrefab;
     [SerializeField] Conversation startingConvo;
     [SerializeField] Conversation endingConvo;
+    [SerializeField] Collider2D rightTrigger;
     DialogueController dialogueController = new DialogueController();
     GameObject musicTrails;
     Animator animator;
@@ -26,7 +27,7 @@ public class SirenStateMachine : Enemy
             playerInRadius = false;
         }
     }
-
+    
     IEnumerator EnemyBehavior()
     {
         yield return BeginDialogueCoroutine();
@@ -126,6 +127,21 @@ public class SirenStateMachine : Enemy
         }
         animator.SetTrigger("poof");
         yield return new WaitForSeconds(1.5f);
+    }
+    bool flipped;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject == player.gameObject)
+        {
+            if (collision = rightTrigger)
+            {
+                if(!flipped)
+                {
+                    transform.localScale = new Vector3(transform.localScale.x*-1, transform.localScale.y, transform.localScale.z);
+                    flipped = true;
+                }
+            }
+        }
     }
     protected override void DieState()
     {

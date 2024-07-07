@@ -51,6 +51,7 @@ public class Princess_Behaviour : MonoBehaviour
                 if (!gaveHeart)
                 {
                     pl.hp++;
+                    pl.currentHealth++;
                     gaveHeart=true;
                     StartCoroutine(ResumeSinging());
                 }

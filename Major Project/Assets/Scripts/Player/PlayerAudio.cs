@@ -17,6 +17,11 @@ public class PlayerAudio : MonoBehaviour
     void Start()
     {
         player=GetComponent<Controls>();
+        if(GameManager.instance.currentLevel==2)
+        {
+            player.onEssenceCollection += UpdateSoundtrack;
+        }
+        else player.onEssenceCollection-= UpdateSoundtrack;
     }
 
     // Update is called once per frame
@@ -57,11 +62,19 @@ public class PlayerAudio : MonoBehaviour
         if (!landed)
         {
             if (groundLayer == "wood")
-                AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.landWoodSoundEffects);
+            {
+                if(GameManager.instance.currentLevel==1)
+                    AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.muffledLandWoodSoundEffects);
+
+                else AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.landWoodSoundEffects);
+            }
 
             else if (groundLayer == "grass")
             {
-                AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.landGrassSoundEffect);
+                if (GameManager.instance.currentLevel == 1)
+                    AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.muffledLandGrassSoundEffect);
+
+                else AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.landGrassSoundEffect);
             }
             landed = true;
         }
@@ -76,11 +89,19 @@ public class PlayerAudio : MonoBehaviour
         while (player.isHoldingObject && player.isMoving && !player.isfalling)
         {
             if (groundLayer == "wood")
-                AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.pushAndPullWood);
+            {
+                if (GameManager.instance.currentLevel == 1)
+                    AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.muffledPushAndPullWood);
+
+                else AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.pushAndPullWood);
+            }
 
             else if (groundLayer == "grass")
             {
-                AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.pushAndPullGrass);
+                if (GameManager.instance.currentLevel == 1)
+                    AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.muffledPushAndPullGrass);
+
+                else AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.pushAndPullGrass);
             }
 
             yield return new WaitForSeconds(stepInterval + (AudioManager.Instance.SFXSource.clip != null ? AudioManager.Instance.SFXSource.clip.length : 0f));
@@ -95,11 +116,18 @@ public class PlayerAudio : MonoBehaviour
         {
             if (groundLayer == "wood")
             {
+                if (GameManager.instance.currentLevel == 1)
+                    AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.woodSoundEffects[Random.Range(0, AudioManager.Instance.muffledWoodSoundEffects.Length)]);
+
+                else
                 AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.woodSoundEffects[Random.Range(0, AudioManager.Instance.woodSoundEffects.Length)]);
             }
             if (groundLayer == "grass")
             {
-                AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.grassSoundEffects[Random.Range(0, AudioManager.Instance.grassSoundEffects.Length)]);
+                if (GameManager.instance.currentLevel == 1)
+                    AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.grassSoundEffects[Random.Range(0, AudioManager.Instance.muffledGrassSoundEffects.Length)]);
+
+                else AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.grassSoundEffects[Random.Range(0, AudioManager.Instance.grassSoundEffects.Length)]);
             }
 
             yield return new WaitForSeconds(stepInterval + (AudioManager.Instance.SFXSource.clip != null ? AudioManager.Instance.SFXSource.clip.length : 0f));
@@ -116,6 +144,15 @@ public class PlayerAudio : MonoBehaviour
             }
         }
         return "None";
+    }
+    int audioIndex;
+    void UpdateSoundtrack()
+    {
+        if (audioIndex<5)
+        {
+            AudioManager.Instance.PlaySound(AudioManager.Instance.musicSource, AudioManager.Instance.lvl2Soundtrack[audioIndex]);
+        }
+        audioIndex++;
     }
 }
 

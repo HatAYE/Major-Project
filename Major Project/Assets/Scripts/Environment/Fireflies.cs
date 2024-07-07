@@ -36,7 +36,6 @@ public class Fireflies : MonoBehaviour
             if (Vector3.Distance(transform.position, player.transform.position) > 1f && !inPlayerRadius)
             {
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, followingSpeed * Time.deltaTime *5);
-                print("normal");
                 inPlayerRadius = false;
                 SetRandomTargetPosition();
             }
@@ -57,7 +56,6 @@ public class Fireflies : MonoBehaviour
                 }
                     transform.position = Vector3.MoveTowards(transform.position, targetPosition, fireflySpeed * Time.deltaTime);
                     timer -= Time.deltaTime;
-                print("speed");
                 if (Vector3.Distance(transform.position, player.transform.position) > 10f)
                 {
                     inPlayerRadius= false;
@@ -86,7 +84,6 @@ public class Fireflies : MonoBehaviour
         if (followingPlayer)
         {
             targetPosition = (Vector2)player.transform.position + Random.insideUnitCircle * playerRadius;
-            print("firefly is on player radius");
         }
         else
         {
