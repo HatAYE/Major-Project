@@ -128,18 +128,18 @@ public class SirenStateMachine : Enemy
         animator.SetTrigger("poof");
         yield return new WaitForSeconds(1.5f);
     }
-    bool flipped;
+    //bool flipped;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject == player.gameObject)
         {
             if (collision = rightTrigger)
             {
-                if(!flipped)
-                {
+                //if(!flipped)
+                //{
                     transform.localScale = new Vector3(transform.localScale.x*-1, transform.localScale.y, transform.localScale.z);
-                    flipped = true;
-                }
+                    //flipped = true;
+                //}
             }
         }
     }

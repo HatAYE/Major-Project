@@ -6,6 +6,7 @@ public class CBitems : MonoBehaviour
 {
     [HideInInspector] public bool isfalling;
     public ConveyerBelt conveyer;
+    [HideInInspector] public bool playerOnItem;
     private void OnTriggerExit2D(Collider2D collision)
     {
 
@@ -23,4 +24,19 @@ public class CBitems : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            playerOnItem = true;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerOnItem = false;
+        }
+    }
 }
+

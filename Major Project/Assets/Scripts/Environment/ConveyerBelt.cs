@@ -5,12 +5,18 @@ using UnityEngine;
 public class ConveyerBelt : MonoBehaviour
 {
     [SerializeField] float speed;
-    [SerializeField] Vector2 direction;
+    [SerializeField] Vector3 direction;
     [SerializeField] GameObject[] prefabs;
     [SerializeField] float instantiatingPause;
     public List<GameObject> items= new List<GameObject>();
     bool instantiaed;
     float timer;
+    Controls player;
+
+    private void Start()
+    {
+        player=FindObjectOfType<Controls>();
+    }
     void Update()
     {
         timer += 0.5f;
@@ -25,7 +31,12 @@ public class ConveyerBelt : MonoBehaviour
                 item.GetComponent<CBitems>().conveyer = this;
                 if (item.GetComponent<CBitems>().isfalling!=true)
                 {
-                    item.GetComponent<Rigidbody2D>().velocity += direction * speed * Time.deltaTime;
+                    //item.GetComponent<Rigidbody2D>().velocity += direction * speed * Time.deltaTime;
+                    item.transform.position += direction * speed * Time.deltaTime;
+                    if (item.GetComponent <CBitems>().playerOnItem==true)
+                    {
+                        player.transform.position += direction * speed * Time.deltaTime;
+                    }
                 }
                 timer = 0;
             }
