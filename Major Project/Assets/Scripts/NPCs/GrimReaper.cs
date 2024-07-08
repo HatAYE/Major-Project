@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class GrimReaper : MonoBehaviour
 {
@@ -94,7 +95,6 @@ public class GrimReaper : MonoBehaviour
                 controller.OnDialogueEnd += () =>
                 {
                     ChangeEffects();
-                    //transitiion to lvl 2;
                 };
                 canTransition = true;
             }
@@ -118,6 +118,7 @@ public class GrimReaper : MonoBehaviour
             yield return null;
         }
         time = 0;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {

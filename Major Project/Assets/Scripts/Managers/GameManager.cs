@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     {
         pl = FindObjectOfType<Controls>();
         if (pl != null) pl.essenceCollected = 0;
-        //currentLevel = SceneManager.GetActiveScene().buildIndex;
+        currentLevel = SceneManager.GetActiveScene().buildIndex;
         AudioManager.Instance.CheckLevel();
         ChangeState(gameStates.playing);
 
