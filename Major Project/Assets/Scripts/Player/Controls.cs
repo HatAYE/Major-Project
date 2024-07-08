@@ -214,12 +214,13 @@ public class Controls : MonoBehaviour
             isMoving = true;
             if (!isCrouching)
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+               /* if (Input.GetKey(KeyCode.LeftShift))
                 {
                     rb.velocity = new Vector2(-sprintingSpeed, rb.velocity.y);
                 }
-                else rb.velocity = new Vector2(-playerSpeed, rb.velocity.y);
-            }
+                else */
+                rb.velocity = new Vector2(-playerSpeed, rb.velocity.y); 
+            } 
 
             if (isCrouching)
                 rb.velocity = new Vector2(-crouchSpeed, rb.velocity.y);
@@ -233,11 +234,13 @@ public class Controls : MonoBehaviour
             isMoving = true;
             if (!isCrouching)
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+               /* if (Input.GetKey(KeyCode.LeftShift))
                 {
                     rb.velocity = new Vector2(sprintingSpeed, rb.velocity.y);
                 }
-                else rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
+                else */
+                rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
+                
             }
 
             if (isCrouching)

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GrimReaper : MonoBehaviour
 {
-    int essences;
+    [SerializeField] int essences;
     Controls player;
     DialogueController controller;
     [SerializeField] Conversation firstConvo;
@@ -21,14 +21,14 @@ public class GrimReaper : MonoBehaviour
     [SerializeField] Volume postProcessVolume;
     Bloom bloomEffect;
     float target = 50f;
-    float changeRate=70;
+    float changeRate= 30;
     void Start()
     {
         player=FindObjectOfType<Controls>();
         controller = new DialogueController(firstConvo);
         controller.OnEventTrigger += CheckEssenceCount;
         controller.OnEventTrigger += TransitionToNextLevel;
-        essences = FindObjectsOfType<Essence>().Length;
+      //  essences = FindObjectsOfType<Essence>().Length;
 
         #region post processing set up
         if (postProcessVolume != null)
@@ -48,7 +48,7 @@ public class GrimReaper : MonoBehaviour
     {
         if (eventName == "check essence")
         {
-            if (player.essenceCollected == essences)
+            if (player.essenceCollected >= essences)
             {
                 controller.OnDialogueEnd += () => StartCoroutine(Accept());
             }
