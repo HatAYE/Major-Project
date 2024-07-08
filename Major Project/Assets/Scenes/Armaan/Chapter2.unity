@@ -6586,11 +6586,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6324549861527460393, guid: 64092d3a64eb2a44d8b5523de72a17ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 239.7
+      value: -129.14
       objectReference: {fileID: 0}
     - target: {fileID: 6324549861527460393, guid: 64092d3a64eb2a44d8b5523de72a17ae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.1
+      value: -9.03
       objectReference: {fileID: 0}
     - target: {fileID: 6324549861527460393, guid: 64092d3a64eb2a44d8b5523de72a17ae, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8803,7 +8803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3413113489769885942, guid: 93011a9ea1458284f9c990a8222a7821, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -689.1514
+      value: -681.51
       objectReference: {fileID: 0}
     - target: {fileID: 3413113489769885942, guid: 93011a9ea1458284f9c990a8222a7821, type: 3}
       propertyPath: m_LocalPosition.y
@@ -44556,7 +44556,7 @@ EdgeCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
@@ -44564,8 +44564,8 @@ EdgeCollider2D:
   - {x: -14.528348, y: -8.453572}
   - {x: -8.593662, y: -4.6761746}
   - {x: -7.7814555, y: -2.8368173}
-  - {x: -12.535872, y: -1.5712845}
-  - {x: -12.726535, y: 0.60436296}
+  - {x: -12.369383, y: -1.5712845}
+  - {x: -12.626745, y: 2.1911502}
   - {x: -12.343218, y: 2.651552}
   - {x: -6.525523, y: 2.7450986}
   - {x: -6.391733, y: 6.591654}
@@ -44657,8 +44657,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 454946626}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -164.22763, y: -8.148273, z: 0}
-  m_LocalScale: {x: 0.27930257, y: 0.27930257, z: 0.27930257}
+  m_LocalPosition: {x: -159.67, y: -7.36, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.27930257}
   m_Children: []
   m_Father: {fileID: 687906878}
   m_RootOrder: 9
@@ -54096,7 +54096,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726508041}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 239.7, y: -1.2991698, z: -8}
+  m_LocalPosition: {x: -129.14, y: -6.22917, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1656098073}
