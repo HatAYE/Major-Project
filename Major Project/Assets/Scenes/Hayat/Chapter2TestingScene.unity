@@ -41620,11 +41620,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 60ff99a5fcb77d44d85a8730617fdef2, type: 2}
-  isGlobal: 1
-  blendDistance: 0
-  weight: 1
-  priority: 0
 --- !u!114 &726508046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41637,54 +41632,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 726508044}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 0
-  antialiasingMode: 0
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
 --- !u!114 &726508047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41731,8 +41678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2874b3dccd8e7e438a4560cc1ef0f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depthChangeRate: 5
-  vignetteChangeRate: 0.9
   totalTime: 1
 --- !u!114 &726508049
 MonoBehaviour:
@@ -43245,6 +43190,10 @@ PrefabInstance:
     - target: {fileID: 4555716069781831598, guid: 954ab3b371114f54a806464276b598d6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555716069873277244, guid: 954ab3b371114f54a806464276b598d6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4555716070042689846, guid: 954ab3b371114f54a806464276b598d6, type: 3}
       propertyPath: m_IsActive
@@ -47775,6 +47724,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 755178454}
     m_Modifications:
+    - target: {fileID: 3413113489769885941, guid: 93011a9ea1458284f9c990a8222a7821, type: 3}
+      propertyPath: pushableObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3413113489769885941, guid: 93011a9ea1458284f9c990a8222a7821, type: 3}
+      propertyPath: pushableObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 8171416884765547273}
     - target: {fileID: 3413113489769885942, guid: 93011a9ea1458284f9c990a8222a7821, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -47823,7 +47780,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Respawn point (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3413113489769885947, guid: 93011a9ea1458284f9c990a8222a7821, type: 3}
+      propertyPath: pushableObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3413113489769885947, guid: 93011a9ea1458284f9c990a8222a7821, type: 3}
+      propertyPath: pushableObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 8171416884765547273}
+    m_RemovedComponents:
+    - {fileID: 3413113489769885941, guid: 93011a9ea1458284f9c990a8222a7821, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 93011a9ea1458284f9c990a8222a7821, type: 3}
 --- !u!4 &1313082383 stripped
 Transform:
