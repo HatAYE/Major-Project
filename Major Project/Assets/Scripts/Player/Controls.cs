@@ -113,7 +113,10 @@ public class Controls : MonoBehaviour
             canjump = true;
         }
         else ResetPlayerBools();
-        
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            essenceCollected = 4;
+        }
         collectedSparepart = false;
     }
     void OnCollisionEnter2D(Collision2D collision)
