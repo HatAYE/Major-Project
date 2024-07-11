@@ -7,10 +7,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 627213402, guid: eecbf716caf1ff84d98d2baf9b80617f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 627213402, guid: eecbf716caf1ff84d98d2baf9b80617f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1429791631
+      objectReference: {fileID: 0}
     - target: {fileID: 670790757, guid: eecbf716caf1ff84d98d2baf9b80617f, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: d9e3801247be9f24e841e309bd24ca92, type: 2}
+    - target: {fileID: 1280436799, guid: eecbf716caf1ff84d98d2baf9b80617f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280436799, guid: eecbf716caf1ff84d98d2baf9b80617f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1429791631
+      objectReference: {fileID: 0}
     - target: {fileID: 6604639712379751650, guid: eecbf716caf1ff84d98d2baf9b80617f, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 20.505007
@@ -65,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6604639712379751662, guid: eecbf716caf1ff84d98d2baf9b80617f, type: 3}
       propertyPath: m_Name
-      value: Princess 4
+      value: Princess 4 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6604639712379751663, guid: eecbf716caf1ff84d98d2baf9b80617f, type: 3}
       propertyPath: m_Sprite
