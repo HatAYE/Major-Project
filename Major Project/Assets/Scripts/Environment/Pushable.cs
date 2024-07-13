@@ -14,6 +14,8 @@ public class Pushable : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Vector3 originalPosition;
     Controls player;
+    [SerializeField] Material outlineMaterial;
+    Material originalMaterial;
 
     public bool conditionalOnSize;
     void Start()
@@ -22,6 +24,7 @@ public class Pushable : MonoBehaviour
         player= FindObjectOfType<Controls>();
         initialMass= rb.mass;
         originalPosition = transform.position;
+        originalMaterial= GetComponent<SpriteRenderer>().material;
     }
 
     // Update is called once per frame
@@ -29,9 +32,11 @@ public class Pushable : MonoBehaviour
     {
         if (!beingHeld)
         {
+            GetComponent<SpriteRenderer>().material = originalMaterial;
             if (rb.velocity== Vector2.zero)
             rb.mass = initialMass;
         }
+        else GetComponent<SpriteRenderer>().material=outlineMaterial;
         if (gotLetGo)
         {
             if (rb.velocity != Vector2.zero)
