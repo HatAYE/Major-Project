@@ -17,6 +17,7 @@ public class GrimReaper : MonoBehaviour
     bool refused;
     bool accepted;
     bool canInteract;
+    bool playerEnteredRadius;
 
     [SerializeField] Volume postProcessVolume;
     Bloom bloomEffect;
@@ -42,7 +43,8 @@ public class GrimReaper : MonoBehaviour
     }
 
     void Update()
-    {   
+    {
+        StartInteraction();
     }
     void CheckEssenceCount(string eventName)
     {
@@ -120,7 +122,39 @@ public class GrimReaper : MonoBehaviour
         time = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    private void OnTriggerStay2D(Collider2D collision)
+
+    void StartInteraction()
+    {
+        if(playerEnteredRadius)
+        {
+            if (canInteract == false)
+            {
+                player.onEssenceCollection += () =>
+                {
+                    transform.GetChild(0).gameObject.SetActive(true);
+                    transform.GetChild(0).GetComponent<Animator>().SetTrigger("appear");
+                    if (controller != null)
+                    {
+                        //play talking animation
+                        controller.BeginDialogue();
+                        controller.OnDialogueEnd += () => canInteract = true;
+                    }
+                };
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.E))
+                {
+                    if (controller != null)
+                    {
+                        controller.NewConversation(interactionConvo);
+                        controller.BeginDialogue();
+                    }
+                }
+            }
+        }
+    }
+   /* private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out Controls player))
         {
@@ -151,5 +185,13 @@ public class GrimReaper : MonoBehaviour
             }
             
         }
+    }*/
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject== player.gameObject)
+        {
+            playerEnteredRadius = true;
+        }
+
     }
 }

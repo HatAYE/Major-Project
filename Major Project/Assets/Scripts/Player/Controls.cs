@@ -44,7 +44,7 @@ public class Controls : MonoBehaviour
 
     #region crouch variables
     [HideInInspector] public bool isCrouching;
-    float crouchSpeed;
+    float crouchSpeed=4;
     Vector2 crouchHeight;
     Vector2 colOffset;
     Vector2 normalHeight;
@@ -88,7 +88,7 @@ public class Controls : MonoBehaviour
         crouchHeight = new Vector2(boxCollider.size.x, 1.18f);
         colOffset = new Vector2(boxCollider.offset.x, -0.1262648f);
 
-        crouchSpeed = playerSpeed / 2;
+        //crouchSpeed = playerSpeed / 2;
         sprintingSpeed = playerSpeed * 2;
 
         currentPushingRange = originalPushingRange;
@@ -184,6 +184,7 @@ public class Controls : MonoBehaviour
         isHoldingObject = false;
         letGoOfObject = false;
         canjump = false;
+        isfalling = false;
     }
     public IEnumerator AddEssence()
     {
@@ -262,7 +263,7 @@ public class Controls : MonoBehaviour
             jumpCount++;
         }
 
-        if (!isGrounded && rb.velocity.y <= 0)
+        if (!isGrounded)
         {
             isfalling = true;
         }
@@ -316,7 +317,7 @@ public class Controls : MonoBehaviour
     void Crouch()
     {
         //crouchRay= Physics2D.Raycast(transform.position, Vector2.up * transform.localScale.x, 1.5f, aboveObject);
-        Collider2D crouchCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, 1, 0), new Vector2(boxCollider.size.x, 1), 1f, aboveObject);
+        Collider2D crouchCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, 1, 0), new Vector2(boxCollider.size.x/2, 1), 1f, aboveObject);
         if (Input.GetKeyDown(crouch) || Input.GetKeyDown(KeyCode.C))
         {
             if (!isCrouching)
@@ -456,6 +457,6 @@ public class Controls : MonoBehaviour
         }
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.up * transform.localScale.x* 1.5f);
         if (boxCollider!=null)
-        Gizmos.DrawWireCube(transform.position + new Vector3(0, 1, 0), new Vector3(boxCollider.size.x, 1f, 0f)) ;
+        Gizmos.DrawWireCube(transform.position + new Vector3(0, 1, 0), new Vector3(boxCollider.size.x/2, 1f, 0f)) ;
     }
 }
