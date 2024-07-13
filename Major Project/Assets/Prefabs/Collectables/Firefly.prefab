@@ -147,10 +147,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1429791631
-  m_SortingLayer: 16
+  m_SortingLayer: 20
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: dd77ef96272b3044c99b61f4643fb977, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.88235295}
+  m_Color: {r: 0.29622638, g: 1, b: 0.91130763, a: 0.88235295}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -177,6 +177,7 @@ MonoBehaviour:
   playerRadius: 6.69
   timeBetweenTargets: 2.36
   inPlayerRadius: 0
+  colorDuration: 1
 --- !u!58 &1254457361626999412
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -18,8 +18,16 @@ public class Fireflies : MonoBehaviour
     bool followingPlayer;
     [SerializeField] bool inPlayerRadius;
     Controls player;
+
+    SpriteRenderer spriteRenderer;
+    Color originalColor;
+    float colorDuration = 1f;
+    bool changedColor;
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
+
         initialPosition = transform.position;
         player= FindObjectOfType<Controls>();
         followingSpeed = fireflySpeed * 0.5f;
@@ -29,7 +37,10 @@ public class Fireflies : MonoBehaviour
     void Update()
     {
         if (gameObject.GetComponent<Essence>().collected==true)
-        followingPlayer = true;
+        {
+            if (!changedColor) StartCoroutine(LerpColor());
+            followingPlayer = true;
+        }
 
         if (followingPlayer)
         {
@@ -89,6 +100,20 @@ public class Fireflies : MonoBehaviour
         {
             targetPosition = (Vector2)initialPosition + Random.insideUnitCircle * fireflyRadius;
         }
+    }
+
+    IEnumerator LerpColor()
+    {
+        float time = 0;
+
+        while (time < colorDuration)
+        {
+            spriteRenderer.color = Color.Lerp(originalColor, Color.white, time / colorDuration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        spriteRenderer.color = Color.white;
     }
     void OnDrawGizmos()
     {
