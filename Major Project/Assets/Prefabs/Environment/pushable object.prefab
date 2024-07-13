@@ -69,7 +69,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1728150129
-  m_SortingLayer: 9
+  m_SortingLayer: 19
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -151,7 +151,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1728150129
-  m_SortingLayer: 9
+  m_SortingLayer: 19
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -330,5 +330,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   massWhenHeld: 1
+  gotLetGo: 0
   beingHeld: 0
   rb: {fileID: 0}
+  originalPosition: {x: 0, y: 0, z: 0}
+  outlineMaterial: {fileID: 2100000, guid: ebb0ef76d525f4d49992d3806ad4b5d1, type: 2}
+  conditionalOnSize: 0

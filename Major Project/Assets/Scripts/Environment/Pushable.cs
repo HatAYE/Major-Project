@@ -32,11 +32,11 @@ public class Pushable : MonoBehaviour
     {
         if (!beingHeld)
         {
-            //GetComponent<SpriteRenderer>().material = originalMaterial;
+            GetComponent<SpriteRenderer>().material = originalMaterial;
             if (rb.velocity== Vector2.zero)
             rb.mass = initialMass;
         }
-        //else GetComponent<SpriteRenderer>().material=outlineMaterial;
+        else GetComponent<SpriteRenderer>().material=outlineMaterial;
         if (gotLetGo)
         {
             if (rb.velocity != Vector2.zero)
