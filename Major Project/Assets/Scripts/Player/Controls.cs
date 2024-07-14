@@ -123,7 +123,7 @@ public class Controls : MonoBehaviour
             essenceCollected = 4;
         }
         collectedSparepart = false;
-        if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(380, -6, 0);
+        if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(224, -10, 0);
     }
     void OnCollisionEnter2D(Collision2D collision)
     {

@@ -64,7 +64,7 @@ public class InteractionHandler : MonoBehaviour
             }
         }
         currentInteractable = nearestInteractable;
-        if (interactionUI != null && currentInteractable != null) { interactionUI.transform.position = Camera.main.WorldToScreenPoint(currentInteractable.transform.position); }
+        if (interactionUI != null && currentInteractable != null) { interactionUI.transform.position = Camera.main.WorldToScreenPoint(transform.position+new Vector3(0,1.4f,0)); }
     }
 
     IEnumerator FadeUI(float startAlpha, float targetAlpha, float duration)
