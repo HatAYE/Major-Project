@@ -16,7 +16,7 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] GameObject choiceOptionButtonPrefab;
     public bool inDialogue => dialogueWindow.activeSelf;
     public static DialogueUI Instance { get; private set; }
-
+    Action skipDialogueAction;
     private void Awake()
     {
         if (Instance == null) { Instance = this; } else { Destroy(this); }
@@ -28,7 +28,16 @@ public class DialogueUI : MonoBehaviour
         choiceWindow.SetActive(false);
         characterImage.gameObject.SetActive(false);
     }
-
+    void Update()
+    {
+        if (inDialogue && skipDialogueAction != null)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E))
+            {
+                skipDialogueAction.Invoke();
+            }
+        }
+    }
     public void ShowMessage(string actor, string message, Action onContinue, Sprite avatar = null)
     {
         choiceWindow.SetActive(false);
@@ -41,6 +50,7 @@ public class DialogueUI : MonoBehaviour
         nextLineButton.enabled = true;
         nextLineButton.onClick.RemoveAllListeners();
         nextLineButton.onClick.AddListener(() => onContinue());
+        skipDialogueAction = onContinue;
     }
 
     void UpdateGameState()

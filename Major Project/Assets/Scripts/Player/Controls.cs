@@ -37,7 +37,7 @@ public class Controls : MonoBehaviour
     [HideInInspector] public bool isHoldingObject;
     bool letGoOfObject;
     GameObject holdObject;
-    [HideInInspector] public float originalPushingRange=.8f;
+    [HideInInspector] public float originalPushingRange=.4f;
     public float currentPushingRange;
     public float enlargedPushingRange = 1;
     #endregion
@@ -95,10 +95,16 @@ public class Controls : MonoBehaviour
 
         isGrounded = true;
     }
+    [SerializeField] float offset;
     void Update()
     {
-        if (movingRight==false) hit = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, currentPushingRange, LayerMask.GetMask("Pushable"));
-        else hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, currentPushingRange, LayerMask.GetMask("Pushable"));
+        if (movingRight==false) hit = Physics2D.CircleCast((Vector2)transform.position + Vector2.left * offset, currentPushingRange, Vector2.left, LayerMask.GetMask("Pushable"));
+        else hit = Physics2D.CircleCast((Vector2)transform.position + Vector2.right * offset, currentPushingRange, Vector2.right, LayerMask.GetMask("Pushable"));
+        if (hit.collider != null)
+        {
+            Debug.Log("Hit: " + hit.collider.gameObject.name);
+            // Handle the collision or interaction with the "Pushable" object here
+        }
 
         if (essenceText != null)
         essenceText.text = essenceCollected.ToString();
@@ -118,6 +124,7 @@ public class Controls : MonoBehaviour
             essenceCollected = 4;
         }
         collectedSparepart = false;
+        if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(220, -17.5f, 0);
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -271,12 +278,11 @@ public class Controls : MonoBehaviour
     }
     void PushingAndPulling()
     {
-        if(hit.collider != null)
-        print(hit.collider.name);
         if (Input.GetKey(pushAndPull))
         {
             if (!isHoldingObject && hit.collider != null && hit.collider.TryGetComponent(out Pushable pushable))
             {
+                print("holding");
                 if(!pushable.conditionalOnSize)
                 {
                     isHoldingObject = true;
@@ -447,14 +453,13 @@ public class Controls : MonoBehaviour
     {
         Gizmos.color = Color.magenta;
 
-        if (movingRight)
-        {
-            Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.right * transform.localScale.x * currentPushingRange);
-        }
-        else
-        {
-            Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.left * transform.localScale.x * currentPushingRange);
-        }
+        Vector2 direction = movingRight ? Vector2.right : Vector2.left;
+        Vector2 origin = (Vector2)transform.position + Vector2.right * offset + direction;
+
+        //Gizmos.DrawWireSphere(origin, currentPushingRange);
+        if (movingRight == false) Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.left * offset, currentPushingRange);
+        else Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.right * offset, currentPushingRange);
+
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.up * transform.localScale.x* 1.5f);
         if (boxCollider!=null)
         Gizmos.DrawWireCube(transform.position + new Vector3(0, 1, 0), new Vector3(boxCollider.size.x/2, 1f, 0f)) ;
