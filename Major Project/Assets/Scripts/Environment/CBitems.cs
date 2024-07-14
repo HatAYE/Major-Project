@@ -7,6 +7,16 @@ public class CBitems : MonoBehaviour
     [HideInInspector] public bool isfalling;
     public ConveyerBelt conveyer;
     [HideInInspector] public bool playerOnItem;
+    [SerializeField] float timer;
+    [SerializeField] float maxTimer=100;
+    private void Update()
+    {
+        if (timer < maxTimer)
+        {
+            timer += 0.05f;
+        }
+        else Destroy(gameObject);
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
 

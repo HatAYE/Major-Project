@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ConveyerBelt : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class ConveyerBelt : MonoBehaviour
     [SerializeField] Vector3 direction;
     [SerializeField] GameObject[] prefabs;
     [SerializeField] float instantiatingPause;
-    public List<GameObject> items= new List<GameObject>();
+    [SerializeField] public List<GameObject> items= new List<GameObject>();
     bool instantiaed;
     float timer;
     Controls player;
@@ -24,21 +25,24 @@ public class ConveyerBelt : MonoBehaviour
         {
             StartCoroutine(InstantiatingItems());
         }
-        foreach(GameObject item in items)
+        for(int i = 0; i<items.Count; i++)
         {
-            if (timer< 10)
+            if (timer < 10)
             {
-                item.GetComponent<CBitems>().conveyer = this;
-                if (item.GetComponent<CBitems>().isfalling!=true)
+                if (items[i] == null) items.Remove(items[i]);
+                else
                 {
-                    //item.GetComponent<Rigidbody2D>().velocity += direction * speed * Time.deltaTime;
-                    item.transform.position += direction * speed * Time.deltaTime;
-                    if (item.GetComponent <CBitems>().playerOnItem==true)
+                    items[i].GetComponent<CBitems>().conveyer = this;
+                    if (items[i].GetComponent<CBitems>().isfalling != true)
                     {
-                        player.transform.position += direction * speed * Time.deltaTime;
+                        items[i].transform.position += direction * speed * Time.deltaTime;
+                        if (items[i].GetComponent<CBitems>().playerOnItem == true)
+                        {
+                            player.transform.position += direction * speed * Time.deltaTime;
+                        }
                     }
+                    timer = 0;
                 }
-                timer = 0;
             }
         }
     }

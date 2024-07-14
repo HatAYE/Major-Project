@@ -103,7 +103,6 @@ public class Controls : MonoBehaviour
         if (hit.collider != null)
         {
             Debug.Log("Hit: " + hit.collider.gameObject.name);
-            // Handle the collision or interaction with the "Pushable" object here
         }
 
         if (essenceText != null)
@@ -124,7 +123,7 @@ public class Controls : MonoBehaviour
             essenceCollected = 4;
         }
         collectedSparepart = false;
-        if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(220, -17.5f, 0);
+        if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(380, -6, 0);
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
