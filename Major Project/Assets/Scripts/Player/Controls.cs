@@ -37,7 +37,7 @@ public class Controls : MonoBehaviour
     [HideInInspector] public bool isHoldingObject;
     bool letGoOfObject;
     GameObject holdObject;
-    [HideInInspector] public float originalPushingRange=.4f;
+    [HideInInspector] public float originalPushingRange=.47f;
     public float currentPushingRange;
     public float enlargedPushingRange = 1;
     #endregion
@@ -98,12 +98,8 @@ public class Controls : MonoBehaviour
     [SerializeField] float offset;
     void Update()
     {
-        if (movingRight==false) hit = Physics2D.CircleCast((Vector2)transform.position + Vector2.left * offset, currentPushingRange, Vector2.left, LayerMask.GetMask("Pushable"));
-        else hit = Physics2D.CircleCast((Vector2)transform.position + Vector2.right * offset, currentPushingRange, Vector2.right, LayerMask.GetMask("Pushable"));
-        if (hit.collider != null)
-        {
-            Debug.Log("Hit: " + hit.collider.gameObject.name);
-        }
+        if (movingRight==false) hit = Physics2D.CircleCast((Vector2)transform.position + Vector2.left * offset, currentPushingRange, Vector2.left,.01f, LayerMask.GetMask("Pushable"));
+        else hit = Physics2D.CircleCast((Vector2)transform.position + Vector2.right * offset, currentPushingRange, Vector2.right,.01f, LayerMask.GetMask("Pushable"));
 
         if (essenceText != null)
         essenceText.text = essenceCollected.ToString();
@@ -123,7 +119,7 @@ public class Controls : MonoBehaviour
             essenceCollected = 4;
         }
         collectedSparepart = false;
-        if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(224, -10, 0);
+        if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(172, -7, 0);
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
