@@ -14,22 +14,27 @@ public class GrimReaper : MonoBehaviour
     [SerializeField] Conversation acceptConvo;
     [SerializeField] Conversation rejectConvo;
     [SerializeField] Conversation interactionConvo;
+    [SerializeField] Conversation secondConvo;
     bool refused;
     bool accepted;
     bool canInteract;
-    bool playerEnteredRadius;
+    [SerializeField] bool playerEnteredRadius;
 
     [SerializeField] Volume postProcessVolume;
     Bloom bloomEffect;
     float target = 50f;
     float changeRate= 30;
+    [SerializeField] GameObject essenceObject;
+    [SerializeField] bool finishedFirstInteraction;
     void Start()
     {
         player=FindObjectOfType<Controls>();
         controller = new DialogueController(firstConvo);
         controller.OnEventTrigger += CheckEssenceCount;
         controller.OnEventTrigger += TransitionToNextLevel;
-      //  essences = FindObjectsOfType<Essence>().Length;
+        controller.OnEventTrigger += GiveEssence;
+        controller.OnEventTrigger += ReaperLeaves;
+        //  essences = FindObjectsOfType<Essence>().Length;
 
         #region post processing set up
         if (postProcessVolume != null)
@@ -44,7 +49,11 @@ public class GrimReaper : MonoBehaviour
 
     void Update()
     {
-        StartInteraction();
+        if(!finishedFirstInteraction)
+        {
+            StartInteraction();
+        }
+        
     }
     void CheckEssenceCount(string eventName)
     {
@@ -102,7 +111,54 @@ public class GrimReaper : MonoBehaviour
             }
         }
     }
+    bool gaveEssence;
+    void GiveEssence(string eventName)
+    {
+        if (eventName == "give essence")
+        {
+            canInteract = false;
+            StartCoroutine(ShowEssenceObject());
+            StartCoroutine(player.AddEssence());
 
+            controller.OnDialogueEnd += () =>
+            {
+                if (!gaveEssence)
+                {
+                    if (secondConvo != null)
+                    {
+                        print("hello");
+                        controller.NewConversation(secondConvo);
+                        controller.BeginDialogue();
+                        //controller.OnDialogueEnd += () => canInteract = true;
+                        gaveEssence = true;
+                    }
+                }
+            };
+
+        }
+    }
+    void ReaperLeaves(string eventName)
+    {
+        if (eventName == "leave")
+        {
+            StartCoroutine(LeaveAnimation());
+        }
+    }
+    IEnumerator LeaveAnimation()
+    {
+        transform.GetChild(0).GetComponent<Animator>().SetTrigger("leave");
+        yield return new WaitForSeconds(0.5f);
+        gameObject.SetActive(false);
+    }
+    IEnumerator ShowEssenceObject()
+    {
+        if(essenceObject!=null)
+        {
+            essenceObject.SetActive(true);
+            yield return new WaitForSeconds(4);
+            essenceObject.SetActive(false);
+        }
+    }
     void ChangeEffects()
     {
         target = 0 + changeRate;
@@ -129,17 +185,15 @@ public class GrimReaper : MonoBehaviour
         {
             if (canInteract == false)
             {
-                player.onEssenceCollection += () =>
+                if (GameManager.instance.currentLevel == 1)
                 {
-                    transform.GetChild(0).gameObject.SetActive(true);
-                    transform.GetChild(0).GetComponent<Animator>().SetTrigger("appear");
-                    if (controller != null)
+                    player.onEssenceCollection += () =>
                     {
-                        //play talking animation
-                        controller.BeginDialogue();
-                        controller.OnDialogueEnd += () => canInteract = true;
-                    }
-                };
+                        StartFirstDialogue();
+                    };
+                }
+                else StartFirstDialogue();
+                finishedFirstInteraction = true;
             }
             else
             {
@@ -154,6 +208,19 @@ public class GrimReaper : MonoBehaviour
             }
         }
     }
+
+    void StartFirstDialogue()
+    {
+        transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(0).GetComponent<Animator>().SetTrigger("appear");
+        if (controller != null)
+        {
+            //play talking animation
+            controller.BeginDialogue();
+            controller.OnDialogueEnd += () => canInteract = true;
+        }
+    }
+
    /* private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out Controls player))
@@ -193,5 +260,12 @@ public class GrimReaper : MonoBehaviour
             playerEnteredRadius = true;
         }
 
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject == player.gameObject)
+        {
+            playerEnteredRadius = false;
+        }
     }
 }

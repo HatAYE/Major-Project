@@ -95,11 +95,10 @@ public class Controls : MonoBehaviour
 
         isGrounded = true;
     }
-    [SerializeField] float offset;
     void Update()
     {
-        if (movingRight==false) hit = Physics2D.CircleCast((Vector2)transform.position + Vector2.left * offset, currentPushingRange, Vector2.left,.01f, LayerMask.GetMask("Pushable"));
-        else hit = Physics2D.CircleCast((Vector2)transform.position + Vector2.right * offset, currentPushingRange, Vector2.right,.01f, LayerMask.GetMask("Pushable"));
+        if (movingRight==false) hit = Physics2D.CircleCast((Vector2)transform.position + Vector2.left, currentPushingRange, Vector2.left,.01f, LayerMask.GetMask("Pushable"));
+        else hit = Physics2D.CircleCast((Vector2)transform.position + Vector2.right, currentPushingRange, Vector2.right,.01f, LayerMask.GetMask("Pushable"));
 
         if (essenceText != null)
         essenceText.text = essenceCollected.ToString();
@@ -449,11 +448,11 @@ public class Controls : MonoBehaviour
         Gizmos.color = Color.magenta;
 
         Vector2 direction = movingRight ? Vector2.right : Vector2.left;
-        Vector2 origin = (Vector2)transform.position + Vector2.right * offset + direction;
+        Vector2 origin = (Vector2)transform.position + Vector2.right + direction;
 
         //Gizmos.DrawWireSphere(origin, currentPushingRange);
-        if (movingRight == false) Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.left * offset, currentPushingRange);
-        else Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.right * offset, currentPushingRange);
+        if (movingRight == false) Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.left, currentPushingRange);
+        else Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.right, currentPushingRange);
 
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.up * transform.localScale.x* 1.5f);
         if (boxCollider!=null)

@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: GR_lvl2_convo2
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: 6bd88103-f78e-4d58-9e89-7d367dbae384
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: -948
+      y: 384
+      width: 86.400024
+      height: 40
+    name: Start
+  nodes:
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
+  - id: 4
+  edges:
+  - id: 5
+  - id: 6
+  - id: 7
+  - id: 8
+  - id: 9
+  properties:
+  - id: 10
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 22e10b25-0fb7-40ea-947d-e39ccff198b0
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: -198.40001
+          y: 355.2
+          width: 208
+          height: 148.79999
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
+        useActorProfile: 1
+        message: So how was the fall? hope not too long!
+    00000001:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 022616dc-0bc4-4783-ba63-0a3871c1bc0e
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 90.399994
+          y: 355.2
+          width: 208.00002
+          height: 148.79999
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
+        useActorProfile: 1
+        message: A huge change in scenery here isn't it? You'll find all types if
+          nonsense in this place, I suggest you look around
+    00000002:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 6e18abc7-40bc-47de-b831-36faf806ae22
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: -760
+          y: 355.2
+          width: 208
+          height: 177.59998
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: dd26e9b85d6c1fd43bc57e85cc12a809, type: 2}
+        useActorProfile: 1
+        message: You feel the muffly noise fade away, as now you can clealy hear
+          what the skeleton got to say
+    00000003:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 1b17e492-c936-4417-8259-87c7901bee36
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: -481.59998
+          y: 355.2
+          width: 208
+          height: 148.79999
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
+        useActorProfile: 1
+        message: There you go, these muscial notes do wonders
+    00000004:
+      type: {class: EventNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: e14011ff-a851-4550-8659-6802ad5937c2
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 354.40002
+          y: 355.2
+          width: 181.59998
+          height: 100.79999
+        stopsFlow: 0
+        eventGuid: a4d03e62-9b24-452b-8fc9-bd952c7ebb80
+        eventName: leave
+    00000005:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 22e10b25-0fb7-40ea-947d-e39ccff198b0
+          port: next
+        input:
+          node: 022616dc-0bc4-4783-ba63-0a3871c1bc0e
+          port: previous
+    00000006:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 6bd88103-f78e-4d58-9e89-7d367dbae384
+          port: next
+        input:
+          node: 6e18abc7-40bc-47de-b831-36faf806ae22
+          port: previous
+    00000007:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 6e18abc7-40bc-47de-b831-36faf806ae22
+          port: next
+        input:
+          node: 1b17e492-c936-4417-8259-87c7901bee36
+          port: previous
+    00000008:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 1b17e492-c936-4417-8259-87c7901bee36
+          port: next
+        input:
+          node: 22e10b25-0fb7-40ea-947d-e39ccff198b0
+          port: previous
+    00000009:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 022616dc-0bc4-4783-ba63-0a3871c1bc0e
+          port: next
+        input:
+          node: e14011ff-a851-4550-8659-6802ad5937c2
+          port: previous
+    0000000A:
+      type: {class: EventProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: a4d03e62-9b24-452b-8fc9-bd952c7ebb80
+        name: leave

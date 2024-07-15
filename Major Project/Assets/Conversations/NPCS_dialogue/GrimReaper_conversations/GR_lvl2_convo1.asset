@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: GR_lvl2_convo1
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: 6bd88103-f78e-4d58-9e89-7d367dbae384
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: -562.39996
+      y: 404.8
+      width: 86.39996
+      height: 40
+    name: Start
+  nodes:
+  - id: 0
+  - id: 1
+  - id: 2
+  edges:
+  - id: 3
+  - id: 4
+  - id: 5
+  properties:
+  - id: 6
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: c5e831af-fbe8-4aa9-9db8-2cf21c1a46ce
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: -404.8
+          y: 384.8
+          width: 208
+          height: 134.40002
+        actor: 
+        actorProfile: {fileID: 11400000, guid: dd26e9b85d6c1fd43bc57e85cc12a809, type: 2}
+        useActorProfile: 1
+        message: It's the skeleton guy.. again. You see him moving his mouth but
+          you still can't hear anything
+    00000001:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 6acb287a-b129-478a-a139-15b98bc4d3f5
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: -148
+          y: 384.8
+          width: 208
+          height: 148.79999
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: dd26e9b85d6c1fd43bc57e85cc12a809, type: 2}
+        useActorProfile: 1
+        message: He finally noticed your confused expression
+    00000002:
+      type: {class: EventNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: e217e968-dde0-4aa2-8fae-f310e6e97cd1
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 128.8
+          y: 404.8
+          width: 182.4
+          height: 100.79999
+        stopsFlow: 0
+        eventGuid: 6b9a5721-735d-45ae-82e4-97b18c20d47f
+        eventName: give essence
+    00000003:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 6bd88103-f78e-4d58-9e89-7d367dbae384
+          port: next
+        input:
+          node: c5e831af-fbe8-4aa9-9db8-2cf21c1a46ce
+          port: previous
+    00000004:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: c5e831af-fbe8-4aa9-9db8-2cf21c1a46ce
+          port: next
+        input:
+          node: 6acb287a-b129-478a-a139-15b98bc4d3f5
+          port: previous
+    00000005:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 6acb287a-b129-478a-a139-15b98bc4d3f5
+          port: next
+        input:
+          node: e217e968-dde0-4aa2-8fae-f310e6e97cd1
+          port: previous
+    00000006:
+      type: {class: EventProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 6b9a5721-735d-45ae-82e4-97b18c20d47f
+        name: give essence
