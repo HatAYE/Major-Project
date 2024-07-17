@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class Controls : MonoBehaviour
 {
     RaycastHit2D hit;
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     [HideInInspector] public bool controlsAvaialble;
     private BoxCollider2D boxCollider;
     [SerializeField] KeyCode left=KeyCode.A;
