@@ -34,5 +34,9 @@ public class Projectile : MonoBehaviour
             if(gotDeflected)
             parentEnemy.GetComponent<FlyingEnemy>().gotHit = true;
         }
+        if(collision.gameObject==player.gameObject)
+        {
+            player.GetComponent<HealthSystem>().Damage();
+        }
     }
 }

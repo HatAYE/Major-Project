@@ -47,6 +47,13 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    
+    public void Damage()
+    {
+        currentHealth--;
+    }
+    public void Heal()
+    {
+        currentHealth++;
+    }
 
 }

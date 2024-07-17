@@ -18,14 +18,15 @@ public class GrimReaper : MonoBehaviour
     bool refused;
     bool accepted;
     bool canInteract;
-    [SerializeField] bool playerEnteredRadius;
+    bool playerEnteredRadius;
+    bool finishedFirstInteraction;
 
     [SerializeField] Volume postProcessVolume;
     Bloom bloomEffect;
     float target = 50f;
     float changeRate= 30;
     [SerializeField] GameObject essenceObject;
-    [SerializeField] bool finishedFirstInteraction;
+    
     void Start()
     {
         player=FindObjectOfType<Controls>();
