@@ -285,6 +285,9 @@ public class Controls : MonoBehaviour
                     pushable.rb.mass = pushable.massWhenHeld;
                     pushable.GetComponent<FixedJoint2D>().enabled = true;
                     pushable.GetComponent<FixedJoint2D>().connectedBody = rb;
+
+                    if(pushable.GetComponent<ElementType>()!=null)
+                    pushable.transform.position = new Vector3(pushable.transform.position.x, pushable.transform.position.y+0.5f, pushable.transform.position.z);
                 }
                 else
                 {

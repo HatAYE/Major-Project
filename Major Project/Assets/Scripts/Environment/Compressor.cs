@@ -8,21 +8,17 @@ public class Compressor : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] float secondsPause;
-    //float time;
-    //[SerializeField] float totalTime;
-    [SerializeField] float distance;
+    [SerializeField] Vector3 platformDirection;
     Vector3 originalPos;
-    [SerializeField] bool goingUp;
+    bool goingUp;
     Vector3 targetPos;
-    [SerializeField] Vector2 direction;
-    Controls player;
+    [SerializeField] Vector2 playerForceDirection;
     Collider2D col;
     [SerializeField] Collider2D hardCollider;
     void Start()
     {
         originalPos = transform.position;
-        targetPos = transform.position + new Vector3(distance, 0, 0);
-        player=FindObjectOfType<Controls>();
+        targetPos = transform.position + platformDirection;
         col = GetComponent<Collider2D>();
         StartCoroutine(MovePlate());
 
@@ -31,30 +27,11 @@ public class Compressor : MonoBehaviour
     RaycastHit2D hit;
     void FixedUpdate()
     {
-        /*hit= Physics2D.Raycast(originalPos, targetPos, 3f);
-        print(hit.collider.gameObject.name);
-        if(!goingUp)
-        {
-            print("goiing up");
-            if(hit.collider== player.gameObject)
-            {
-                player.GetComponent<Rigidbody2D>().AddForce(direction);
-                print("psuhed player");
-            }
-            
-        }*/
         hardCollider.gameObject.transform.position = transform.position;
     }
 
     IEnumerator MovePlate()
     {
-        /*while (time < totalTime)
-        {
-            time += Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, transform.position + new Vector3(distance, 0, 0), time / totalTime);
-            yield return null;
-        }
-        time = 0;*/
         while (true)
         {
             if (goingUp == false)
@@ -102,7 +79,7 @@ public class Compressor : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Controls player))
         {
-            player.rb.AddForce(direction);
+            player.rb.AddForce(playerForceDirection);
 
         }
     }
