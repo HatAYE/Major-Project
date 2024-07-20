@@ -36,7 +36,7 @@ public class Controls : MonoBehaviour
     #region push and pull variables
     [HideInInspector] public bool isHoldingObject;
     bool letGoOfObject;
-    GameObject holdObject;
+    [HideInInspector] public GameObject holdObject;
     [HideInInspector] public float originalPushingRange=.47f;
     public float currentPushingRange;
     public float enlargedPushingRange = 1;

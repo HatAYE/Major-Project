@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: IceQueenRejection
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: 1d8ed80b-21cf-4b13-82c5-29bdfdbf08d5
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: 100
+      y: 100
+      width: 100
+      height: 100
+    name: Start
+  nodes:
+  - id: 0
+  - id: 1
+  - id: 2
+  edges:
+  - id: 3
+  - id: 4
+  - id: 5
+  properties: []
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 564432de-c039-4b86-a02f-2882e2744e7f
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 514.4
+          y: -71.2
+          width: 208
+          height: 134.4
+        actor: ice quen
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: I just gave you one!
+    00000001:
+      type: {class: RandomFlowNode, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 10b71c65-ea44-44d3-a21c-1e2bb5266da0
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 241.59999
+          y: 63.199997
+          width: 146.4
+          height: 76.8
+    00000002:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 8fb9c938-9b2d-4682-bdad-a7bfc39dbe42
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 514.4
+          y: 100
+          width: 208
+          height: 148.79999
+        actor: ice quen
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: tsk, what happened to the last one?
+    00000003:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 1d8ed80b-21cf-4b13-82c5-29bdfdbf08d5
+          port: next
+        input:
+          node: 10b71c65-ea44-44d3-a21c-1e2bb5266da0
+          port: previous
+    00000004:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 10b71c65-ea44-44d3-a21c-1e2bb5266da0
+          port: next
+        input:
+          node: 564432de-c039-4b86-a02f-2882e2744e7f
+          port: previous
+    00000005:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 10b71c65-ea44-44d3-a21c-1e2bb5266da0
+          port: next
+        input:
+          node: 8fb9c938-9b2d-4682-bdad-a7bfc39dbe42
+          port: previous

@@ -12,7 +12,7 @@ public class InteractionHandler : MonoBehaviour
     List<Interactable> registeredInteractables = new List<Interactable>();
     Interactable currentInteractable;
     [SerializeField] KeyCode interactionButton = KeyCode.E;
-    [SerializeField] CanvasGroup interactionUI;
+    public CanvasGroup interactionUI;
     [SerializeField] float UIFadeDuration;
     Coroutine fadeCoroutine;
 

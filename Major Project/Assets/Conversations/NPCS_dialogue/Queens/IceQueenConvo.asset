@@ -1,0 +1,271 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: IceQueenConvo
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: 36a4c6dc-856d-4dfb-ad5f-c86243401e1a
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: 100
+      y: 100
+      width: 100
+      height: 100
+    name: Start
+  nodes:
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
+  - id: 4
+  - id: 5
+  - id: 6
+  - id: 7
+  - id: 8
+  edges:
+  - id: 9
+  - id: 10
+  - id: 11
+  - id: 12
+  - id: 13
+  - id: 14
+  - id: 15
+  - id: 16
+  - id: 17
+  properties:
+  - id: 18
+  - id: 19
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 349bf2eb-294b-409a-b214-392d0c7ca1f9
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 264
+          y: 64.8
+          width: 208
+          height: 149.59999
+        actor: ice quen
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: Hello little one, what do you need?
+    00000001:
+      type: {class: ChoiceNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: d5f21a29-bb73-4d81-950d-d41f3e6ffc4b
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 542.4
+          y: 4
+          width: 208
+          height: 214.4
+        actor: 
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: 
+        options:
+        - guid: yes
+          label: Can I have some ice?
+        - guid: no
+          label: Can I have some water?
+        - guid: 1fb45b3e-7487-4a45-b448-e82a696e3645
+          label: You're pretty
+        - guid: 992d5107-3e75-445b-94bf-2d64f81fa252
+          label: Nothing
+    00000002:
+      type: {class: EventNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 5071d9b7-ed11-4467-8c2b-8ac28dbb8616
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 863.2
+          y: -96.8
+          width: 182.40002
+          height: 100.8
+        stopsFlow: 0
+        eventGuid: 9c7a1cbf-e9e9-4375-8409-7d3f2ed381e0
+        eventName: requested ice
+    00000003:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: b704fff2-1d67-4498-91da-be980f7de88c
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 904
+          y: 331.2
+          width: 208.00006
+          height: 135.20001
+        actor: Actor name
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: 'I know '
+    00000004:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 8cf26cd7-ccd7-4235-8a1e-9e8be04db406
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 524
+          y: 624.8
+          width: 208
+          height: 134.40002
+        actor: Actor name
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: Then don't waste my time
+    00000005:
+      type: {class: RandomFlowNode, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 40ba6afd-896e-4d1c-8343-d98d47e97941
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 524
+          y: 364.8
+          width: 147.20001
+          height: 76.79999
+    00000006:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 0b4cadd7-99ad-468c-9b21-9f6de079015e
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 820.8
+          y: 624.8
+          width: 208
+          height: 134.40002
+        actor: Actor name
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: Are you testing my patience?
+    00000007:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: c714db8e-8e95-44c7-816a-2cf39181ba93
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1089.5442
+          y: 559.1362
+          width: NaN
+          height: NaN
+        actor: Actor name
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: Hmph
+    00000008:
+      type: {class: EventNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: f5c22201-3744-41cb-81c8-5502d01aa424
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 885.60004
+          y: 98.399994
+          width: 182.40002
+          height: 100.80002
+        stopsFlow: 0
+        eventGuid: 93c11c9b-c30b-4c1b-877f-5a0a3c1b343b
+        eventName: requested water
+    00000009:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 36a4c6dc-856d-4dfb-ad5f-c86243401e1a
+          port: next
+        input:
+          node: 349bf2eb-294b-409a-b214-392d0c7ca1f9
+          port: previous
+    0000000A:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 349bf2eb-294b-409a-b214-392d0c7ca1f9
+          port: next
+        input:
+          node: d5f21a29-bb73-4d81-950d-d41f3e6ffc4b
+          port: previous
+    0000000B:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: d5f21a29-bb73-4d81-950d-d41f3e6ffc4b
+          port: yes
+        input:
+          node: 5071d9b7-ed11-4467-8c2b-8ac28dbb8616
+          port: previous
+    0000000C:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 40ba6afd-896e-4d1c-8343-d98d47e97941
+          port: next
+        input:
+          node: 8cf26cd7-ccd7-4235-8a1e-9e8be04db406
+          port: previous
+    0000000D:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 40ba6afd-896e-4d1c-8343-d98d47e97941
+          port: next
+        input:
+          node: 0b4cadd7-99ad-468c-9b21-9f6de079015e
+          port: previous
+    0000000E:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 40ba6afd-896e-4d1c-8343-d98d47e97941
+          port: next
+        input:
+          node: c714db8e-8e95-44c7-816a-2cf39181ba93
+          port: previous
+    0000000F:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: d5f21a29-bb73-4d81-950d-d41f3e6ffc4b
+          port: 1fb45b3e-7487-4a45-b448-e82a696e3645
+        input:
+          node: b704fff2-1d67-4498-91da-be980f7de88c
+          port: previous
+    00000010:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: d5f21a29-bb73-4d81-950d-d41f3e6ffc4b
+          port: 992d5107-3e75-445b-94bf-2d64f81fa252
+        input:
+          node: 40ba6afd-896e-4d1c-8343-d98d47e97941
+          port: previous
+    00000011:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: d5f21a29-bb73-4d81-950d-d41f3e6ffc4b
+          port: no
+        input:
+          node: f5c22201-3744-41cb-81c8-5502d01aa424
+          port: previous
+    00000012:
+      type: {class: EventProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 9c7a1cbf-e9e9-4375-8409-7d3f2ed381e0
+        name: requested ice
+    00000013:
+      type: {class: EventProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 93c11c9b-c30b-4c1b-877f-5a0a3c1b343b
+        name: requested water
