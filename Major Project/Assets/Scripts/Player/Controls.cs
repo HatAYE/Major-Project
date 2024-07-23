@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class Controls : MonoBehaviour
 {
-    RaycastHit2D hit;
+    [HideInInspector]RaycastHit2D hit;
     public Rigidbody2D rb;
     [HideInInspector] public bool controlsAvaialble;
     private BoxCollider2D boxCollider;
@@ -35,7 +35,7 @@ public class Controls : MonoBehaviour
 
     #region push and pull variables
     [HideInInspector] public bool isHoldingObject;
-    bool letGoOfObject;
+    [HideInInspector] bool letGoOfObject;
     [HideInInspector] public GameObject holdObject;
     [HideInInspector] public float originalPushingRange=.47f;
     public float currentPushingRange;
@@ -118,7 +118,7 @@ public class Controls : MonoBehaviour
             essenceCollected = 4;
         }
         collectedSparepart = false;
-        if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(172, -7, 0);
+        if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(102, 47, 0);
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -320,7 +320,7 @@ public class Controls : MonoBehaviour
     void Crouch()
     {
         //crouchRay= Physics2D.Raycast(transform.position, Vector2.up * transform.localScale.x, 1.5f, aboveObject);
-        Collider2D crouchCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, 1, 0), new Vector2(boxCollider.size.x/2, 1), 1f, aboveObject);
+        Collider2D crouchCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, 1, 0), new Vector2(boxCollider.size.x/2, 0.5f), 1f, aboveObject);
         if (Input.GetKeyDown(crouch) || Input.GetKeyDown(KeyCode.C))
         {
             if (!isCrouching)
@@ -459,6 +459,6 @@ public class Controls : MonoBehaviour
 
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.up * transform.localScale.x* 1.5f);
         if (boxCollider!=null)
-        Gizmos.DrawWireCube(transform.position + new Vector3(0, 1, 0), new Vector3(boxCollider.size.x/2, 1f, 0f)) ;
+        Gizmos.DrawWireCube(transform.position + new Vector3(0, 1, 0), new Vector3(boxCollider.size.x/2, 0.5f, 0f)) ;
     }
 }

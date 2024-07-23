@@ -6,13 +6,14 @@ public class ElementalPlate : MonoBehaviour
 {
     ElementType type;
     Element thisElement;
-    SpriteRenderer spriteRenderer;
-
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Sprite newSprite;
+    [HideInInspector] public bool solved;
     void Start()
     {
         type = GetComponent<ElementType>();
         thisElement = GetComponent<ElementType>().objectElement;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -24,8 +25,9 @@ public class ElementalPlate : MonoBehaviour
                 {
                     Destroy(collision.gameObject);
                     spriteRenderer.color =Color.green;
-                    //deactivate collider
                     GetComponent<Collider2D>().enabled = false;
+                    spriteRenderer.sprite = newSprite;
+                    solved = true;
                 }
                 else
                 {

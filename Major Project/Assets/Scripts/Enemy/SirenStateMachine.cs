@@ -31,16 +31,16 @@ public class SirenStateMachine : Enemy
     IEnumerator EnemyBehavior()
     {
         yield return BeginDialogueCoroutine();
-        
+        player.gameObject.GetComponent<BlockAreas>().BlockArea();
         yield return new WaitUntil(() => currentState == EnemyState.attack);
-        player.inCombat = true;
+        //player.inCombat = true;
         // attack logic
         yield return AttackRoutine();
 
-        player.inCombat = false;
+        //player.inCombat = false;
         // dialogue ending
         yield return FinalDialogueCoroutine();
-
+        player.gameObject.GetComponent<BlockAreas>().UnlockArea();
         yield return new WaitUntil(() => currentState == EnemyState.die);
         // go home
         DieState();

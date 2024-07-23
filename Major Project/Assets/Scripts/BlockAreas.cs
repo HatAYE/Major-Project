@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlockAreas : MonoBehaviour
 {
-    GameObject[] blockAreas;
+    [HideInInspector] public GameObject[] blockAreas;
     Controls player;
     void Start()
     {
@@ -16,16 +16,16 @@ public class BlockAreas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.inCombat)
+        /*if (player.inCombat)
         {
             BlockArea();
         }
         else if(!player.inCombat)
         {
             UnlockArea();
-        }
+        }*/
     }
-    void BlockArea()
+    public void BlockArea()
     {
         if (blockAreas != null)
         {
@@ -36,7 +36,7 @@ public class BlockAreas : MonoBehaviour
         }
     }
 
-    void UnlockArea()
+    public void UnlockArea()
     {
         if (blockAreas != null)
         {
