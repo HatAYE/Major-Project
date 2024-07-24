@@ -4506,6 +4506,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire queen
       objectReference: {fileID: 0}
+    - target: {fileID: 8654332377185639813, guid: 19dd6bc8bf08057418a2b2d5bd757086, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8654332377185639834, guid: 19dd6bc8bf08057418a2b2d5bd757086, type: 3}
       propertyPath: m_RootOrder
       value: 61
@@ -5173,7 +5177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5764185294299571577, guid: 06c38a922963bcf4bb20d5c592b30dc4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06c38a922963bcf4bb20d5c592b30dc4, type: 3}
@@ -5262,7 +5266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6324549861527460393, guid: 64092d3a64eb2a44d8b5523de72a17ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -98.12
+      value: -93.93
       objectReference: {fileID: 0}
     - target: {fileID: 6324549861527460393, guid: 64092d3a64eb2a44d8b5523de72a17ae, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5467,6 +5471,14 @@ PrefabInstance:
       propertyPath: hardCollider
       value: 
       objectReference: {fileID: 528466153}
+    - target: {fileID: 7064451699231084332, guid: 237afa0f2cada214380f5c6357a456d2, type: 3}
+      propertyPath: playerForceDirection.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7064451699231084332, guid: 237afa0f2cada214380f5c6357a456d2, type: 3}
+      propertyPath: playerForceDirection.y
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7064451699231084334, guid: 237afa0f2cada214380f5c6357a456d2, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -5664,7 +5676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7949103437182072136, guid: e1082d41fb72c204f846c44d81854a41, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7949103437182072138, guid: e1082d41fb72c204f846c44d81854a41, type: 3}
       propertyPath: m_RootOrder

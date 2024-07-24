@@ -68,13 +68,6 @@ public class Compressor : MonoBehaviour
             yield return null;
         }
     }
-    /*private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.TryGetComponent(out Controls player))
-        {
-            player.GetComponent<Rigidbody2D>().AddForce(direction);
-        }
-    }*/
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out Controls player))

@@ -88,14 +88,14 @@ public class SirenStateMachine : Enemy
     IEnumerator AttackRoutine()
     {
         Vector2 attackDirection = player.transform.position;
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 1; i++)
         {
             yield return new WaitForSeconds(1.5f);
             for (int j = 0; j < 3; j++)
             {
                 animator.SetTrigger("attack");
                 GameObject projectile = Instantiate(attackPrefab, transform.position, Quaternion.identity);
-                Vector2 targetDirection = ((Vector3) attackDirection - projectile.transform.position).normalized;
+                Vector2 targetDirection = ((Vector3) attackDirection + new Vector3(0,2f,0)).normalized;
 
                 Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
                 projectileRb.velocity = targetDirection * 8;
