@@ -10,6 +10,7 @@ public class ElementalPlate : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Sprite newSprite;
     [HideInInspector] public bool solved;
+    [HideInInspector] public bool gotChecked;
     void Start()
     {
         type = GetComponent<ElementType>();

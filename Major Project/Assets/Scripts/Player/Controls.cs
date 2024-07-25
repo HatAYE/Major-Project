@@ -10,8 +10,8 @@ using UnityEngine.UI;
 public class Controls : MonoBehaviour
 {
     [HideInInspector]RaycastHit2D hit;
-    public Rigidbody2D rb;
-    [HideInInspector] public bool controlsAvaialble;
+    [HideInInspector] public Rigidbody2D rb;
+     public bool controlsAvaialble;
     private BoxCollider2D boxCollider;
     [SerializeField] KeyCode left=KeyCode.A;
     [SerializeField] KeyCode right=KeyCode.D;
@@ -221,7 +221,8 @@ public class Controls : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    rb.velocity = new Vector2(-sprintingSpeed, rb.velocity.y);
+                    rb.velocity 
+                        = new Vector2(-sprintingSpeed, rb.velocity.y);
                 }
                 else 
                 rb.velocity = new Vector2(-playerSpeed, rb.velocity.y); 
@@ -276,7 +277,6 @@ public class Controls : MonoBehaviour
         {
             if (!isHoldingObject && hit.collider != null && hit.collider.TryGetComponent(out Pushable pushable))
             {
-                print("holding");
                 if(!pushable.conditionalOnSize)
                 {
                     isHoldingObject = true;

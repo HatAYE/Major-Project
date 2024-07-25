@@ -14,7 +14,7 @@ public class QueensInteraction : MonoBehaviour
     DialogueController dialogueController;
     [SerializeField] Conversation startConvo;
     [SerializeField] Conversation rejectionConvo;
-    [SerializeField] Conversation IceQueenRejection;
+    [SerializeField] Conversation waterRejection;
 
     [SerializeField] GameObject iceObject;
     [SerializeField] GameObject fireObject;
@@ -23,7 +23,7 @@ public class QueensInteraction : MonoBehaviour
     [SerializeField] float timer;
     [SerializeField] float objectResetTimer = 100;
     GameObject currentObject;
-    float distance;
+    GameObject currentFireObject;
     [SerializeField] bool canInteract;
     void Start()
     {
@@ -85,6 +85,7 @@ public class QueensInteraction : MonoBehaviour
         {
             currentObject = null;
         }
+        if (currentFireObject == null) currentFireObject = null;
     }
     [SerializeField] bool rejected;
     void GiveObject(string eventName)
@@ -98,7 +99,8 @@ public class QueensInteraction : MonoBehaviour
             else
             {
                 rejected = false;
-                StartCoroutine(Refuse(rejectionConvo));
+                
+                dialogueController.OnDialogueEnd += () => StartCoroutine(Refuse(rejectionConvo));
             }
         }
 
@@ -117,29 +119,34 @@ public class QueensInteraction : MonoBehaviour
         }
         else if (eventName == "requested water")
         {
-            if (player.holdObject != null && player.holdObject.GetComponent<ElementType>() != null)
+            if (player.holdObject != null && player.holdObject.GetComponent<ElementType>() != null && player.holdObject.GetComponent<ElementType>().objectElement == Element.Fire || currentFireObject != null)
             {
-                if (player.holdObject.GetComponent<ElementType>().objectElement == Element.Fire)
+                if (currentFireObject != null)
+                {
+                    Destroy(currentFireObject);
+                    currentFireObject = null;
+                }
+                else if (player.holdObject != null)
                 {
                     Destroy(player.holdObject);
                     player.holdObject = null;
-                    if (currentObject == null)
-                    {
-                        currentObject = Instantiate(waterObject, transform.position, Quaternion.identity);
-                    }
-                    else
-                    {
-                        rejected = false;
-                        dialogueController.OnDialogueEnd += () => StartCoroutine(Refuse(rejectionConvo));
-                    }
-
+                }
+                
+                if (currentObject == null)
+                {
+                    currentObject = Instantiate(waterObject, transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    rejected = false;
+                    dialogueController.OnDialogueEnd += () => StartCoroutine(Refuse(rejectionConvo));
                 }
 
             }
             else
             {
                 rejected = false;
-                dialogueController.OnDialogueEnd += () => StartCoroutine(Refuse(IceQueenRejection));
+                dialogueController.OnDialogueEnd += () => StartCoroutine(Refuse(waterRejection));
             }
         }
 
@@ -149,6 +156,7 @@ public class QueensInteraction : MonoBehaviour
     {
         if (!rejected)
         {
+            dialogueController.OnDialogueEnd = null;
             dialogueController.NewConversation(convo); 
             canInteract = false;
             dialogueController.BeginDialogue();
@@ -157,5 +165,16 @@ public class QueensInteraction : MonoBehaviour
             yield return null;
         }
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.TryGetComponent(out ElementType obj))
+        {
+            if(obj.objectElement == Element.Fire)
+            {
+                currentFireObject = obj.gameObject;
+            }
+        }
     }
 }
