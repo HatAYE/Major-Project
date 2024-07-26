@@ -82,7 +82,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6324549861527460393}
-  - component: {fileID: 6324549861527460395}
+  - component: {fileID: 6761450073930819474}
   - component: {fileID: 6324549861527460391}
   - component: {fileID: 6324549861527460394}
   - component: {fileID: 6324549861527460397}
@@ -119,8 +119,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &6324549861527460395
-BoxCollider2D:
+--- !u!70 &6761450073930819474
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -132,19 +132,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009896517, y: 0.024044156}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.4655128, y: 1.5203278}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.69, y: 1.48}
+  m_Direction: 0
 --- !u!61 &6324549861527460391
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -204,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac592ab5f3b9a4a4695adea368c5e827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   controlsAvaialble: 0
   left: 97
   right: 100
@@ -219,6 +210,7 @@ MonoBehaviour:
   isfalling: 0
   isGrounded: 0
   isHoldingObject: 0
+  holdObject: {fileID: 0}
   originalPushingRange: 0.8
   currentPushingRange: 0
   enlargedPushingRange: 1
@@ -358,6 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2efe7fa379f6f43ab364bcff256185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockAreas: []
 --- !u!114 &6966439377142431845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,7 +592,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2089313083
-  m_SortingLayer: 18
+  m_SortingLayer: 19
   m_SortingOrder: 10
   m_Sprite: {fileID: -7943117089789246206, guid: 001045cc9eb179d4ab95df8e5b774446, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

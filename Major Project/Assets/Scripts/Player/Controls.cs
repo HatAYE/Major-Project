@@ -11,8 +11,8 @@ public class Controls : MonoBehaviour
 {
     [HideInInspector]RaycastHit2D hit;
     [HideInInspector] public Rigidbody2D rb;
-     public bool controlsAvaialble;
-    private BoxCollider2D boxCollider;
+    [HideInInspector] public bool controlsAvaialble;
+    private CapsuleCollider2D capsuleCollider;
     [SerializeField] KeyCode left=KeyCode.A;
     [SerializeField] KeyCode right=KeyCode.D;
     public KeyCode jump;
@@ -83,10 +83,10 @@ public class Controls : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         hj= GetComponent<HingeJoint2D>();
         controlsAvaialble = true;
-        boxCollider = GetComponent<BoxCollider2D>();
-        normalHeight = boxCollider.size;
-        crouchHeight = new Vector2(boxCollider.size.x, 1.18f);
-        colOffset = new Vector2(boxCollider.offset.x, -0.1262648f);
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
+        normalHeight = capsuleCollider.size;
+        crouchHeight = new Vector2(capsuleCollider.size.x, 1.18f);
+        colOffset = new Vector2(capsuleCollider.offset.x, -0.1262648f);
 
         //crouchSpeed = playerSpeed / 2;
         sprintingSpeed = playerSpeed * 2;
@@ -118,7 +118,7 @@ public class Controls : MonoBehaviour
             essenceCollected = 4;
         }
         collectedSparepart = false;
-        if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(102, 47, 0);
+        if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(72.8f, -5.5f, 0);
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -320,22 +320,22 @@ public class Controls : MonoBehaviour
     void Crouch()
     {
         //crouchRay= Physics2D.Raycast(transform.position, Vector2.up * transform.localScale.x, 1.5f, aboveObject);
-        Collider2D crouchCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, 1, 0), new Vector2(boxCollider.size.x/2, 0.5f), 1f, aboveObject);
+        Collider2D crouchCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, 1, 0), new Vector2(capsuleCollider.size.x/2, 0.5f), 1f, aboveObject);
         if (Input.GetKeyDown(crouch) || Input.GetKeyDown(KeyCode.C))
         {
             if (!isCrouching)
             {
                 AudioManager.Instance.PlaySound(AudioManager.Instance.SFXSource, AudioManager.Instance.crouchingSoundEffect);
-                boxCollider.size = crouchHeight;
-                boxCollider.offset = colOffset;
+                capsuleCollider.size = crouchHeight;
+                capsuleCollider.offset = colOffset;
                 isCrouching = true;
             }
             else
             {
                 if (crouchCollider == null)
                 {
-                    boxCollider.size = normalHeight;
-                    boxCollider.offset = normalColOffset;
+                    capsuleCollider.size = normalHeight;
+                    capsuleCollider.offset = normalColOffset;
                     isCrouching = false;
                 }
                 else if (crouchCollider.gameObject.layer == aboveObject) return;
@@ -458,7 +458,7 @@ public class Controls : MonoBehaviour
         else Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.right, currentPushingRange);
 
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.up * transform.localScale.x* 1.5f);
-        if (boxCollider!=null)
-        Gizmos.DrawWireCube(transform.position + new Vector3(0, 1, 0), new Vector3(boxCollider.size.x/2, 0.5f, 0f)) ;
+        if (capsuleCollider!=null)
+        Gizmos.DrawWireCube(transform.position + new Vector3(0, 1, 0), new Vector3(capsuleCollider.size.x/2, 0.5f, 0f)) ;
     }
 }

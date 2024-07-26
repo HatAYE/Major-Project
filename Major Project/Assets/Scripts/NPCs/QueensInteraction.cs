@@ -1,11 +1,5 @@
-using Conversa.Demo.Scripts;
 using Conversa.Runtime;
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading;
-using UnityEditor;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class QueensInteraction : MonoBehaviour
