@@ -2279,7 +2279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 190256140124696000, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -35.73364
+      value: -110.9
       objectReference: {fileID: 0}
     - target: {fileID: 190256140124696000, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2331,7 +2331,7 @@ PrefabInstance:
       objectReference: {fileID: 951679610}
     - target: {fileID: 190256140124696003, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
       propertyPath: m_Name
-      value: Grim reaper
+      value: Grim reaper lvl2 interaction
       objectReference: {fileID: 0}
     - target: {fileID: 190256140124696003, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
       propertyPath: m_IsActive
@@ -3960,6 +3960,10 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2261553282224161337, guid: 0ac9f00e55ffaab41a9733b4fe7a6b3f, type: 3}
+      propertyPath: currentLevel
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2261553282224161338, guid: 0ac9f00e55ffaab41a9733b4fe7a6b3f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -5383,7 +5387,7 @@ PrefabInstance:
       objectReference: {fileID: 2024818575}
     - target: {fileID: 6324549861527460397, guid: 64092d3a64eb2a44d8b5523de72a17ae, type: 3}
       propertyPath: playerSpeed
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6324549861527460397, guid: 64092d3a64eb2a44d8b5523de72a17ae, type: 3}
       propertyPath: pushAndPull

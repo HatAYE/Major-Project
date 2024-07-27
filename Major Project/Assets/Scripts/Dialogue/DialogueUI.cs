@@ -17,6 +17,7 @@ public class DialogueUI : MonoBehaviour
     public bool inDialogue => dialogueWindow.activeSelf;
     public static DialogueUI Instance { get; private set; }
     Action skipDialogueAction;
+    public bool canSkipDialogue;
     private void Awake()
     {
         if (Instance == null) { Instance = this; } else { Destroy(this); }
@@ -27,14 +28,18 @@ public class DialogueUI : MonoBehaviour
         dialogueWindow.SetActive(false);
         choiceWindow.SetActive(false);
         characterImage.gameObject.SetActive(false);
+        canSkipDialogue = true;
     }
     void Update()
     {
         if (inDialogue && skipDialogueAction != null)
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E))
+            if(canSkipDialogue)
             {
-                skipDialogueAction.Invoke();
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E))
+                {
+                    SkipDialogue();
+                }
             }
         }
     }
@@ -97,5 +102,10 @@ public class DialogueUI : MonoBehaviour
         characterImage.sprite = null;
         characterImage.gameObject.SetActive(false);
         UpdateGameState();
+    }
+
+    public void SkipDialogue()
+    {
+        skipDialogueAction.Invoke();
     }
 }
