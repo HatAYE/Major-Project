@@ -1,10 +1,5 @@
 using Conversa.Runtime;
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading;
-using UnityEditor;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class QueensInteraction : MonoBehaviour
@@ -13,7 +8,7 @@ public class QueensInteraction : MonoBehaviour
     DialogueController dialogueController;
     [SerializeField] Conversation startConvo;
     [SerializeField] Conversation rejectionConvo;
-    [SerializeField] Conversation IceQueenRejection;
+    [SerializeField] Conversation waterRejection;
 
     [SerializeField] GameObject iceObject;
     [SerializeField] GameObject fireObject;
@@ -22,12 +17,14 @@ public class QueensInteraction : MonoBehaviour
     [SerializeField] float timer;
     [SerializeField] float objectResetTimer = 100;
     GameObject currentObject;
-    float distance;
+    GameObject currentFireObject;
+    [SerializeField] bool canInteract;
     void Start()
     {
         player=FindObjectOfType<Controls>();
         dialogueController = new DialogueController(startConvo);
         dialogueController.OnEventTrigger += GiveObject;
+        canInteract = true;
     }
 
     // Update is called once per frame
@@ -41,11 +38,13 @@ public class QueensInteraction : MonoBehaviour
                 player.GetComponent<InteractionHandler>().interactionUI.transform.position = Camera.main.WorldToScreenPoint(player.transform.position + new Vector3(0, 1.4f, 0));
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E)&&canInteract)
             {
+                canInteract = false;
                 player.GetComponent<InteractionHandler>().interactionUI.gameObject.SetActive(false);
                 dialogueController.NewConversation(startConvo);
                 dialogueController.BeginDialogue();
+                dialogueController.OnDialogueEnd += () => canInteract = true;
             }
         }
         else
@@ -80,8 +79,9 @@ public class QueensInteraction : MonoBehaviour
         {
             currentObject = null;
         }
+        if (currentFireObject == null) currentFireObject = null;
     }
-    bool rejected;
+    [SerializeField] bool rejected;
     void GiveObject(string eventName)
     {
         if(eventName== "requested ice")
@@ -92,20 +92,13 @@ public class QueensInteraction : MonoBehaviour
             }
             else
             {
-                dialogueController.OnDialogueEnd += () =>
-                {
-                    if(!rejected)
-                    {
-                        dialogueController.NewConversation(rejectionConvo);
-                        dialogueController.BeginDialogue();
-                        dialogueController.OnDialogueEnd += () => rejected = true;
-                    }
-                };
+                rejected = false;
+                
+                dialogueController.OnDialogueEnd += () => StartCoroutine(Refuse(rejectionConvo));
             }
-            rejected = false;
         }
 
-        if (eventName == "requested flame")
+        else if (eventName == "requested flame")
         {
             if (currentObject == null)
             {
@@ -113,94 +106,69 @@ public class QueensInteraction : MonoBehaviour
             }
             else
             {
-                dialogueController.OnDialogueEnd += () =>
-                {
-                    if (!rejected)
-                    {
-                        dialogueController.NewConversation(rejectionConvo);
-                        dialogueController.BeginDialogue();
-                        dialogueController.OnDialogueEnd += () => rejected = true;
-                    }
-                };
+                rejected = false;
+                dialogueController.OnDialogueEnd += () => StartCoroutine(Refuse(rejectionConvo));
             }
-            rejected = false;
-        }
 
-        if (eventName == "requested water")
+        }
+        else if (eventName == "requested water")
         {
-            //dialogueController.OnDialogueEnd += () =>
-            // {
-            if (player.holdObject != null && player.holdObject.GetComponent<ElementType>() != null)
+            if (player.holdObject != null && player.holdObject.GetComponent<ElementType>() != null && player.holdObject.GetComponent<ElementType>().objectElement == Element.Fire || currentFireObject != null)
             {
-                if (player.holdObject.GetComponent<ElementType>().objectElement == Element.Fire)
+                if (currentFireObject != null)
+                {
+                    Destroy(currentFireObject);
+                    currentFireObject = null;
+                }
+                else if (player.holdObject != null)
                 {
                     Destroy(player.holdObject);
                     player.holdObject = null;
-                    if (currentObject == null)
-                    {
-                        currentObject = Instantiate(waterObject, transform.position, Quaternion.identity);
-                    }
-                    else
-                    {
-                        dialogueController.OnDialogueEnd += () =>
-                        {
-                            if (!rejected)
-                            {
-                                dialogueController.NewConversation(rejectionConvo);
-                                dialogueController.BeginDialogue();
-                                dialogueController.OnDialogueEnd += () => rejected = true;
-                            }
-                        };
-                    }
-
+                }
+                
+                if (currentObject == null)
+                {
+                    currentObject = Instantiate(waterObject, transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    rejected = false;
+                    dialogueController.OnDialogueEnd += () => StartCoroutine(Refuse(rejectionConvo));
                 }
 
             }
             else
             {
-                dialogueController.OnDialogueEnd += () =>
-                {
-                    if (!rejected)
-                    {
-                        dialogueController.NewConversation(IceQueenRejection);
-                        dialogueController.BeginDialogue();
-                        dialogueController.OnDialogueEnd += () => rejected = true;
-                    }
-                };
                 rejected = false;
+                dialogueController.OnDialogueEnd += () => StartCoroutine(Refuse(waterRejection));
             }
-
-            // };
         }
+
+
+    }
+    IEnumerator Refuse(Conversation convo)
+    {
+        if (!rejected)
+        {
+            dialogueController.OnDialogueEnd = null;
+            dialogueController.NewConversation(convo); 
+            canInteract = false;
+            dialogueController.BeginDialogue();
+            canInteract = true;
+            rejected = true;
+            yield return null;
+        }
+
     }
 
-    /*void GiveFlame(string eventName)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (eventName == "requested flame")
+        if(collision.TryGetComponent(out ElementType obj))
         {
-
-        }
-    }
-
-    void GiveWater(string eventName)
-    {
-        if (eventName == "requested water")
-        {
-            dialogueController.OnDialogueEnd += () =>
+            if(obj.objectElement == Element.Fire)
             {
-                if (player.holdObject != null)
-                {
-                    if (player.holdObject.GetComponent<ElementType>() != null&& player.holdObject.GetComponent<ElementType>().objectElement== Element.Ice)
-                    {
-                        //instantiate water
-                    }
-                }
-            };
+                currentFireObject = obj.gameObject;
+            }
         }
-    }*/
-
-    void DestroyDitchedObject()
-    {
-
     }
 }

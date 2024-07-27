@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
                     break;
                 case gameStates.playing:
                     Time.timeScale = 1;
-                    pl.controlsAvaialble = true;
+                    //pl.controlsAvaialble = true;
                     break;
                 case gameStates.paused:
                 case gameStates.gameover:
@@ -84,5 +84,9 @@ public class GameManager : MonoBehaviour
     public void ChangeState(gameStates state)
     {
         currenState = state;
+        if(state== gameStates.playing)
+        {
+            pl.controlsAvaialble = true;
+        }
     }
 }

@@ -127,7 +127,6 @@ public class GrimReaper : MonoBehaviour
                 {
                     if (secondConvo != null)
                     {
-                        print("hello");
                         controller.NewConversation(secondConvo);
                         controller.BeginDialogue();
                         //controller.OnDialogueEnd += () => canInteract = true;

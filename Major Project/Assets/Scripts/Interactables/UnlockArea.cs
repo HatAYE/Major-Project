@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class UnlockArea : MonoBehaviour
 {
-    ElementalPlate[] plates;
+    [SerializeField] ElementalPlate[] plates;
     BlockAreas blockAreas;
+    [SerializeField] int numOfSolvedPlates;
     void Start()
     {
         blockAreas= FindObjectOfType<BlockAreas>();
@@ -17,12 +18,25 @@ public class UnlockArea : MonoBehaviour
     {
         for(int i = 0; i < plates.Length; i++)
         {
-            if (plates[i].solved==false)
+            if (plates[i].solved == false)
             {
                 return;
             }
-            blockAreas.UnlockArea();
-            //give second memory
+            if (plates[i].solved == true && !plates[i].gotChecked)
+            {
+                numOfSolvedPlates++;
+                plates[i].gotChecked = true;
+                return;
+
+            }
+
+            if (numOfSolvedPlates== plates.Length)
+            {
+                blockAreas.UnlockArea();
+                //give second memory
+                enabled = false;
+            }
+            
         }
     }
 }
