@@ -15,7 +15,7 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI dialogueLine;
     [SerializeField] Button nextLineButton;
     [SerializeField] GameObject choiceOptionButtonPrefab;
-    [SerializeField] float timePerWord = 0.1f;
+    public float timePerWord = 0.1f;
     public bool inDialogue => dialogueWindow.activeSelf;
     public static DialogueUI Instance { get; private set; }
     Action skipDialogueAction;

@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
     public AudioSource musicSource;
     public AudioSource SFXSource;
+    public AudioSource extraSFXSource;
     [SerializeField] AudioMixer audioMixer;
 
     float musicFadeDuration = 1.0f;
@@ -54,7 +55,11 @@ public class AudioManager : MonoBehaviour
     [Header(">>>      Princesses and sirens      <<<")] 
     public AudioClip princessSinging;
 
-
+    [Header(">>>      Environment soundeffects      <<<")]
+    public AudioClip respawnSoundeffect;
+    public AudioClip platformBling1;
+    public AudioClip platformBling2;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -72,6 +77,8 @@ public class AudioManager : MonoBehaviour
 
         musicSource = transform.GetChild(0).GetComponent<AudioSource>();
         SFXSource= transform.GetChild(1).GetComponent<AudioSource>();
+        if (transform.GetChild(2).GetComponent<AudioSource>() != null)
+            extraSFXSource = transform.GetChild(2).GetComponent<AudioSource>();
         CheckLevel();
     }
 

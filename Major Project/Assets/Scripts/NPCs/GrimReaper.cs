@@ -20,7 +20,7 @@ public class GrimReaper : MonoBehaviour
     bool refused;
     bool accepted;
     bool canInteract;
-    bool playerEnteredRadius;
+    [SerializeField] bool playerEnteredRadius;
     bool finishedFirstInteraction;
 
     [SerializeField] Volume postProcessVolume;
@@ -201,6 +201,7 @@ public class GrimReaper : MonoBehaviour
             if(director!=null)
             {
                 canInteract = false;
+                dialogueUI.timePerWord = 0.3f;
                 GameManager.instance.ChangeState(gameStates.frozen);
                 director.Play();
                 dialogueUI.canSkipDialogue = false;

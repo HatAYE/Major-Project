@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 0}
   SFXSource: {fileID: 0}
+  extraSFXSource: {fileID: 0}
   audioMixer: {fileID: 24100000, guid: 0aebad16196ecc14e80841c07c57c5dd, type: 2}
   lvl1Soundtrack: {fileID: 8300000, guid: 819cbc2c28b871b408055471bcc3c4a5, type: 3}
   lvl2Soundtrack:
@@ -92,6 +93,9 @@ MonoBehaviour:
   muffledPushAndPullWood: {fileID: 8300000, guid: 58daa461e2c9401419260bc42f368a22, type: 3}
   muffledCrouchingSoundEffect: {fileID: 8300000, guid: 3829de7a9ea3ea147becc7c68917d8d1, type: 3}
   princessSinging: {fileID: 8300000, guid: c831db2fb0ac2fb47bf7c0ab443f0796, type: 3}
+  respawnSoundeffect: {fileID: 8300000, guid: e58e57756f69b714a9129d0cdf079fbe, type: 3}
+  platformBling1: {fileID: 8300000, guid: 50eab9ec7fd236346bd003bfb6126c8a, type: 3}
+  platformBling2: {fileID: 8300000, guid: 8bf0938942a294145ba44dc37f7208b3, type: 3}
 --- !u!1 &8440616821268793858
 GameObject:
   m_ObjectHideFlags: 0
