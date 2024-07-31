@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: princess
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: edfa214d-0aa6-4c8d-a7df-9a986f980f0e
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: -644.8
+      y: 20.800003
+      width: 86.400024
+      height: 40
+    name: Start
+  nodes:
+  - id: 0
+  edges:
+  - id: 1
+  properties: []
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 1f65acd0-b1a2-4341-8a71-b02c2ea25d42
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: -440
+          y: -46.4
+          width: 208.00002
+          height: 134.4
+        actor: Princess
+        actorProfile: {fileID: 11400000, guid: 4ee703a32c9ae874397bdb17e4fe7950, type: 2}
+        useActorProfile: 1
+        message: You've arrived!
+    00000001:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: edfa214d-0aa6-4c8d-a7df-9a986f980f0e
+          port: next
+        input:
+          node: 1f65acd0-b1a2-4341-8a71-b02c2ea25d42
+          port: previous

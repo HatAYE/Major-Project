@@ -9,6 +9,7 @@ public class ConveyerBelt : MonoBehaviour
     [SerializeField] GameObject[] prefabs;
     [SerializeField] float instantiatingPause;
     [SerializeField] public List<GameObject> items= new List<GameObject>();
+    [SerializeField] float automaticDestroyTimer;
     bool instantiaed;
     float timer;
     Controls player;
@@ -31,6 +32,7 @@ public class ConveyerBelt : MonoBehaviour
                 if (items[i] == null) items.Remove(items[i]);
                 else
                 {
+                    items[i].GetComponent<CBitems>().maxTimer = automaticDestroyTimer;
                     items[i].GetComponent<CBitems>().conveyer = this;
                     if (items[i].GetComponent<CBitems>().isfalling != true)
                     {

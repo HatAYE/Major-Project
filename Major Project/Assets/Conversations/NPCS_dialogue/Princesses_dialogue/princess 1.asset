@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: princess 1
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: edfa214d-0aa6-4c8d-a7df-9a986f980f0e
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: -644.8
+      y: 20.800003
+      width: 86.400024
+      height: 40
+    name: Start
+  nodes:
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
+  edges:
+  - id: 4
+  - id: 5
+  - id: 6
+  - id: 7
+  properties: []
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 1f65acd0-b1a2-4341-8a71-b02c2ea25d42
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: -462
+          y: -23
+          width: 208
+          height: 135
+        actor: Princess
+        actorProfile: {fileID: 11400000, guid: d60aacdcc0e03254bb1261b7eeeecd34, type: 2}
+        useActorProfile: 1
+        message: OH!
+    00000001:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 9dd2b6e5-aa9a-4a6e-a2a0-f698ef0202dc
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: -198
+          y: -23
+          width: 208
+          height: 135
+        actor: Princess 1
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: A new face
+    00000002:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 30c84ef5-773c-4bf4-aceb-85cbb1df8d91
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 68
+          y: -23
+          width: 208
+          height: 135
+        actor: Princess 1
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: Yet a familiar energy
+    00000003:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 11c5041f-5106-4c52-8a77-7374334c638a
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 346
+          y: -23
+          width: 208
+          height: 135
+        actor: Princess 1
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: Welcome to Wonderland!
+    00000004:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: edfa214d-0aa6-4c8d-a7df-9a986f980f0e
+          port: next
+        input:
+          node: 1f65acd0-b1a2-4341-8a71-b02c2ea25d42
+          port: previous
+    00000005:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 1f65acd0-b1a2-4341-8a71-b02c2ea25d42
+          port: next
+        input:
+          node: 9dd2b6e5-aa9a-4a6e-a2a0-f698ef0202dc
+          port: previous
+    00000006:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 9dd2b6e5-aa9a-4a6e-a2a0-f698ef0202dc
+          port: next
+        input:
+          node: 30c84ef5-773c-4bf4-aceb-85cbb1df8d91
+          port: previous
+    00000007:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 30c84ef5-773c-4bf4-aceb-85cbb1df8d91
+          port: next
+        input:
+          node: 11c5041f-5106-4c52-8a77-7374334c638a
+          port: previous

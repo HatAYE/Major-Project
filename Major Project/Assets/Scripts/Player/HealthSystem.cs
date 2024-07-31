@@ -21,6 +21,11 @@ public class HealthSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            hp++;
+            currentHealth++;
+        }
         if (currentHealth>hp)
         {
             currentHealth = hp;
@@ -29,6 +34,7 @@ public class HealthSystem : MonoBehaviour
         if(currentHealth<= 0 && hp>=1)
         {
             GetComponent<Controls>().Respawn();
+            currentHealth = hp;
         }
 
         for (int i = 0; i < HPUI.Length; i++)
@@ -47,13 +53,13 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    public void Damage()
+    public void Damage(int damageAmount)
     {
-        currentHealth--;
+        currentHealth-=damageAmount;
     }
-    public void Heal()
+    public void Heal(int healAmount)
     {
-        currentHealth++;
+        currentHealth+=healAmount;
     }
 
 }

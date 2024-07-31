@@ -1,0 +1,304 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: princess 5
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: edfa214d-0aa6-4c8d-a7df-9a986f980f0e
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: -507
+      y: 22
+      width: 86
+      height: 40
+    name: Start
+  nodes:
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
+  - id: 4
+  - id: 5
+  - id: 6
+  - id: 7
+  - id: 8
+  - id: 9
+  - id: 10
+  edges:
+  - id: 11
+  - id: 12
+  - id: 13
+  - id: 14
+  - id: 15
+  - id: 16
+  - id: 17
+  - id: 18
+  - id: 19
+  - id: 20
+  properties: []
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 1f65acd0-b1a2-4341-8a71-b02c2ea25d42
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: -357
+          y: -15
+          width: 208
+          height: 135
+        actor: Princess
+        actorProfile: {fileID: 11400000, guid: 9dcea5bcfd8eaf14caec21c1c696d622, type: 2}
+        useActorProfile: 1
+        message: HEHEHE, helloo
+    00000001:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 64a0507f-70e9-4889-9691-f71778a1adaf
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: -64
+          y: -15
+          width: 208
+          height: 150
+        actor: Princess 5
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: I remember an old face talking about someone like you
+    00000002:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 82fb9aaf-6033-4a8a-b856-23415868ff0d
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 219
+          y: -15
+          width: 208
+          height: 150
+        actor: Princess 5
+        actorProfile: {fileID: 11400000, guid: 4ee703a32c9ae874397bdb17e4fe7950, type: 2}
+        useActorProfile: 1
+        message: I can't tell if  seeing you here is bravery or carelessness
+    00000003:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 9f3d1b7f-08c1-411b-8780-bd842c0020d4
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 504
+          y: -15
+          width: 208
+          height: 165
+        actor: Princess 5
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: anyways, I live here, so please do not intrude my space and move
+          ahead.
+    00000004:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 59dd2e1b-7549-4103-95f4-c3ade193af72
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1024
+          y: -30
+          width: 208
+          height: 150
+        actor: Princess 5
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: Ohh... Dear sister not again!
+    00000005:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 13cf7172-06db-4446-baf6-d02e18fda090
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1308
+          y: -30
+          width: 208
+          height: 165
+        actor: Princess 5
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: 'I''m sorry for what I said..., '
+    00000006:
+      type: {class: ChoiceNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: d260ada2-6fda-4684-88cc-d66011d0010b
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 744
+          y: -46
+          width: 208
+          height: 166
+        actor: Princess 5
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: 
+        options:
+        - guid: yes
+          label: (Tell her about her sister)
+        - guid: no
+          label: (Don't say anything)
+    00000007:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 5b649699-640c-404f-906b-bd8c7a6622ea
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1592
+          y: -30
+          width: 208
+          height: 135
+        actor: Princess 5
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: Thank you, and also becareful up ahead, there's another one of those
+          Sirens luring up ahead.
+    00000008:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 2e72b0ad-8ed3-4367-a195-4b55afbe97dc
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 952
+          y: 205
+          width: 208
+          height: 135
+        actor: Princess 5
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: Shoo now!
+    00000009:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 45a9f2a5-4c33-40cb-8de2-df0621caf003
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1232
+          y: 205
+          width: 208
+          height: 135
+        actor: Princess 5
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: Are you trying to hide from those sirens here?
+    0000000A:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 7d95a736-273e-416f-aac3-0db3322a9f02
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1516
+          y: 205
+          width: 208
+          height: 135
+        actor: Princess 5
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: pretty sure you dealt with all of them, I haven't seen any around
+          otherwise.
+    0000000B:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: edfa214d-0aa6-4c8d-a7df-9a986f980f0e
+          port: next
+        input:
+          node: 1f65acd0-b1a2-4341-8a71-b02c2ea25d42
+          port: previous
+    0000000C:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 1f65acd0-b1a2-4341-8a71-b02c2ea25d42
+          port: next
+        input:
+          node: 64a0507f-70e9-4889-9691-f71778a1adaf
+          port: previous
+    0000000D:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 64a0507f-70e9-4889-9691-f71778a1adaf
+          port: next
+        input:
+          node: 82fb9aaf-6033-4a8a-b856-23415868ff0d
+          port: previous
+    0000000E:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 82fb9aaf-6033-4a8a-b856-23415868ff0d
+          port: next
+        input:
+          node: 9f3d1b7f-08c1-411b-8780-bd842c0020d4
+          port: previous
+    0000000F:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 59dd2e1b-7549-4103-95f4-c3ade193af72
+          port: next
+        input:
+          node: 13cf7172-06db-4446-baf6-d02e18fda090
+          port: previous
+    00000010:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 9f3d1b7f-08c1-411b-8780-bd842c0020d4
+          port: next
+        input:
+          node: d260ada2-6fda-4684-88cc-d66011d0010b
+          port: previous
+    00000011:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: d260ada2-6fda-4684-88cc-d66011d0010b
+          port: yes
+        input:
+          node: 59dd2e1b-7549-4103-95f4-c3ade193af72
+          port: previous
+    00000012:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 45a9f2a5-4c33-40cb-8de2-df0621caf003
+          port: next
+        input:
+          node: 7d95a736-273e-416f-aac3-0db3322a9f02
+          port: previous
+    00000013:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 2e72b0ad-8ed3-4367-a195-4b55afbe97dc
+          port: next
+        input:
+          node: 45a9f2a5-4c33-40cb-8de2-df0621caf003
+          port: previous
+    00000014:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: d260ada2-6fda-4684-88cc-d66011d0010b
+          port: no
+        input:
+          node: 2e72b0ad-8ed3-4367-a195-4b55afbe97dc
+          port: previous

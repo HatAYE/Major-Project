@@ -7,6 +7,7 @@ public class SirenStateMachine : Enemy
     [SerializeField] Conversation startingConvo;
     [SerializeField] Conversation endingConvo;
     [SerializeField] Collider2D rightTrigger;
+    [SerializeField] Vector2 projectileOffset;
     DialogueController dialogueController = new DialogueController();
     GameObject musicTrails;
     Animator animator;
@@ -16,14 +17,15 @@ public class SirenStateMachine : Enemy
         musicTrails = transform.GetChild(1).gameObject;
         AudioManager.Instance.PlaySound(gameObject.GetComponent<AudioSource>(), AudioManager.Instance.princessSinging);
         animator = GetComponent<Animator>();
+        player.onPlayerDeath += ActivateMusicTrails;
     }
 
     protected override void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I)) print(currentState);
         if (playerInRadius)
         {
-            
-            StartCoroutine(EnemyBehavior());
+            startingCoroutine = StartCoroutine(EnemyBehavior());
             playerInRadius = false;
         }
     }
@@ -58,7 +60,12 @@ public class SirenStateMachine : Enemy
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);*/
         
     }
-
+    void ActivateMusicTrails()
+    {
+        musicTrails.gameObject.SetActive(true);
+        StartCoroutine(musicTrails.GetComponent<MusicTrail>().FadeInMusicTrails());
+        StartCoroutine(AudioManager.Instance.FadeIn(gameObject.GetComponent<AudioSource>(), AudioManager.Instance.princessSinging));
+    }
     IEnumerator BeginDialogueCoroutine()
     {
         areaDetector.SetActive(false);
@@ -87,7 +94,8 @@ public class SirenStateMachine : Enemy
     }
     IEnumerator AttackRoutine()
     {
-        Vector2 attackDirection = player.transform.position;
+        Vector2 attackDirection = (player.transform.position - transform.position).normalized;
+
         for (int i = 0; i < 2; i++)
         {
             yield return new WaitForSeconds(1.5f);
@@ -95,8 +103,8 @@ public class SirenStateMachine : Enemy
             {
                 animator.SetTrigger("attack");
                 GameObject projectile = Instantiate(attackPrefab, transform.position, Quaternion.identity);
-                Vector2 targetDirection = ((Vector3) attackDirection + new Vector3(0,6f,0)).normalized;
-
+                Vector2 targetDirection = (attackDirection + projectileOffset).normalized;
+                print("target direction " + targetDirection);
                 Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
                 projectileRb.velocity = targetDirection * 8;
                 projectile.GetComponent<Projectile>().parentEnemy = gameObject;
@@ -122,6 +130,7 @@ public class SirenStateMachine : Enemy
         }
         if (!gaveHeart)
         {
+            player.onEssenceCollection -= musicTrails.GetComponent<MusicTrail>().UpdateMusicTrail;
             StartCoroutine(player.AddEssence());
             gaveHeart = true;
         }
@@ -145,7 +154,9 @@ public class SirenStateMachine : Enemy
     }
     protected override void DieState()
     {
-        
+        player.onPlayerDeath -= ActivateMusicTrails;
+        player.onPlayerDeath -= ResetStateMachine;
+        player.onEssenceCollection -= musicTrails.GetComponent<MusicTrail>().UpdateMusicTrail;
         attacked =false;
         Destroy(areaDetector);
         Destroy(gameObject);

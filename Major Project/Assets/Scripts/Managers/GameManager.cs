@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I)) print("game state is " + currenState); 
         if (pl != null)
         {
             switch (currenState)

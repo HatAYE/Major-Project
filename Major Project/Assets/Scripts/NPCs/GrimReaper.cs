@@ -1,6 +1,8 @@
 using Conversa.Runtime;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -18,7 +20,7 @@ public class GrimReaper : MonoBehaviour
     bool refused;
     bool accepted;
     bool canInteract;
-    bool playerEnteredRadius;
+    [SerializeField] bool playerEnteredRadius;
     bool finishedFirstInteraction;
 
     [SerializeField] Volume postProcessVolume;
@@ -26,7 +28,9 @@ public class GrimReaper : MonoBehaviour
     float target = 50f;
     float changeRate= 30;
     [SerializeField] GameObject essenceObject;
-    
+
+    PlayableDirector director;
+    DialogueUI dialogueUI;
     void Start()
     {
         player=FindObjectOfType<Controls>();
@@ -36,7 +40,7 @@ public class GrimReaper : MonoBehaviour
         controller.OnEventTrigger += GiveEssence;
         controller.OnEventTrigger += ReaperLeaves;
         //  essences = FindObjectsOfType<Essence>().Length;
-
+        dialogueUI=FindObjectOfType<DialogueUI>();
         #region post processing set up
         if (postProcessVolume != null)
         {
@@ -46,6 +50,8 @@ public class GrimReaper : MonoBehaviour
             }
         }
         #endregion
+
+        if (GetComponent<PlayableDirector>() != null) director = GetComponent<PlayableDirector>();
     }
 
     void Update()
@@ -149,13 +155,14 @@ public class GrimReaper : MonoBehaviour
         transform.GetChild(0).GetComponent<Animator>().SetTrigger("leave");
         yield return new WaitForSeconds(0.5f);
         gameObject.SetActive(false);
+        Destroy(gameObject);
     }
     IEnumerator ShowEssenceObject()
     {
         if(essenceObject!=null)
         {
             essenceObject.SetActive(true);
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(6);
             essenceObject.SetActive(false);
         }
     }
@@ -178,34 +185,55 @@ public class GrimReaper : MonoBehaviour
         time = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-
+    IEnumerator SecondsPause(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        if (controller != null)
+        {
+            controller.BeginDialogue();
+            finishedFirstInteraction = true;
+        }
+    }
     void StartInteraction()
     {
         if(playerEnteredRadius)
         {
-            if (canInteract == false)
+            if(director!=null)
             {
-                if (GameManager.instance.currentLevel == 1)
-                {
-                    player.onEssenceCollection += () =>
-                    {
-                        StartFirstDialogue();
-                    };
-                }
-                else StartFirstDialogue();
-                finishedFirstInteraction = true;
+                canInteract = false;
+                dialogueUI.timePerWord = 0.3f;
+                GameManager.instance.ChangeState(gameStates.frozen);
+                director.Play();
+                dialogueUI.canSkipDialogue = false;
+                StartCoroutine(SecondsPause(3));
             }
             else
             {
-                if (Input.GetKey(KeyCode.E))
+                if (canInteract == false)
                 {
-                    if (controller != null)
+                    if (GameManager.instance.currentLevel == 1)
                     {
-                        controller.NewConversation(interactionConvo);
-                        controller.BeginDialogue();
+                        player.onEssenceCollection += () =>
+                        {
+                            StartFirstDialogue();
+                        };
+                    }
+                    else StartFirstDialogue();
+                    finishedFirstInteraction = true;
+                }
+                else
+                {
+                    if (Input.GetKey(KeyCode.E))
+                    {
+                        if (controller != null)
+                        {
+                            controller.NewConversation(interactionConvo);
+                            controller.BeginDialogue();
+                        }
                     }
                 }
             }
+           
         }
     }
 
@@ -221,38 +249,6 @@ public class GrimReaper : MonoBehaviour
         }
     }
 
-   /* private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent(out Controls player))
-        {
-            if (canInteract==false)
-            {
-                player.onEssenceCollection += () =>
-                {
-                    transform.GetChild(0).gameObject.SetActive(true);
-                    transform.GetChild(0).GetComponent<Animator>().SetTrigger("appear");
-                    if (controller != null)
-                    {
-                        //play talking animation
-                        controller.BeginDialogue();
-                        controller.OnDialogueEnd += () => canInteract = true;
-                    }
-                };
-            }
-            else
-            {
-                if (Input.GetKey(KeyCode.E))
-                {
-                    if (controller != null)
-                    {
-                        controller.NewConversation(interactionConvo);
-                        controller.BeginDialogue();
-                    }
-                }
-            }
-            
-        }
-    }*/
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject== player.gameObject)

@@ -88,7 +88,7 @@ public class QueensInteraction : MonoBehaviour
         {
             if (currentObject==null)
             {
-                currentObject= Instantiate(iceObject, transform.position, Quaternion.identity);
+                currentObject= Instantiate(iceObject,player.transform.position + new Vector3(3,0,0), Quaternion.identity);
             }
             else
             {
@@ -102,7 +102,7 @@ public class QueensInteraction : MonoBehaviour
         {
             if (currentObject == null)
             {
-                currentObject = Instantiate(fireObject, transform.position, Quaternion.identity);
+                currentObject = Instantiate(fireObject, player.transform.position + new Vector3(-3, 0, 0), Quaternion.identity);
             }
             else
             {
@@ -128,7 +128,7 @@ public class QueensInteraction : MonoBehaviour
                 
                 if (currentObject == null)
                 {
-                    currentObject = Instantiate(waterObject, transform.position, Quaternion.identity);
+                    currentObject = Instantiate(waterObject, player.transform.position + new Vector3(3, 0, 0), Quaternion.identity);
                 }
                 else
                 {

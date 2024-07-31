@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: GR_lvl4_convo1
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: 7bc290ce-d26f-43c4-b7c4-1d245d20a9e0
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: 100
+      y: 100
+      width: 100
+      height: 100
+    name: Start
+  nodes:
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
+  edges:
+  - id: 4
+  - id: 5
+  - id: 6
+  - id: 7
+  properties:
+  - id: 8
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: e82b5f19-7fd9-4ad3-9993-68bf8b9c4ba2
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 262.40002
+          y: 65.600006
+          width: 208
+          height: 148.79999
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
+        useActorProfile: 1
+        message: Ah, Its been quite the long journey for a little soul like you
+    00000001:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 4f1095f3-ba21-4a93-9786-ef4415c3c40c
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 540.8
+          y: 65.600006
+          width: 208
+          height: 163.19998
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
+        useActorProfile: 1
+        message: You might wanna speed things up, if you wanna get back to happy
+          sunshine living world!
+    00000002:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 9ebab9e0-cff9-4505-b525-3de1b1eb093f
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 774.4
+          y: 65.600006
+          width: 208
+          height: 134.4
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
+        useActorProfile: 1
+        message: Goodluck~
+    00000003:
+      type: {class: EventNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 3cd032d9-1acf-4a73-ac22-7145b0409ba8
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1006.4
+          y: 65.600006
+          width: 181.60004
+          height: 100.79999
+        stopsFlow: 0
+        eventGuid: 77591a11-c80a-4f8e-b143-3816b8116b0f
+        eventName: leave
+    00000004:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 7bc290ce-d26f-43c4-b7c4-1d245d20a9e0
+          port: next
+        input:
+          node: e82b5f19-7fd9-4ad3-9993-68bf8b9c4ba2
+          port: previous
+    00000005:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: e82b5f19-7fd9-4ad3-9993-68bf8b9c4ba2
+          port: next
+        input:
+          node: 4f1095f3-ba21-4a93-9786-ef4415c3c40c
+          port: previous
+    00000006:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 4f1095f3-ba21-4a93-9786-ef4415c3c40c
+          port: next
+        input:
+          node: 9ebab9e0-cff9-4505-b525-3de1b1eb093f
+          port: previous
+    00000007:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 9ebab9e0-cff9-4505-b525-3de1b1eb093f
+          port: next
+        input:
+          node: 3cd032d9-1acf-4a73-ac22-7145b0409ba8
+          port: previous
+    00000008:
+      type: {class: EventProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 77591a11-c80a-4f8e-b143-3816b8116b0f
+        name: leave

@@ -11,14 +11,14 @@ public class Controls : MonoBehaviour
 {
     [HideInInspector]RaycastHit2D hit;
     [HideInInspector] public Rigidbody2D rb;
-    [HideInInspector] public bool controlsAvaialble;
+    public bool controlsAvaialble;
     private CapsuleCollider2D capsuleCollider;
     [SerializeField] KeyCode left=KeyCode.A;
     [SerializeField] KeyCode right=KeyCode.D;
     public KeyCode jump;
     [SerializeField] KeyCode pushAndPull;
     [SerializeField] KeyCode crouch;
-    [HideInInspector] public bool inCombat=false;
+    public bool inCombat=false;
     #region movement variables
     [SerializeField] float playerSpeed;
     [HideInInspector] public bool movingRight;
@@ -74,6 +74,7 @@ public class Controls : MonoBehaviour
 
     #region Respawning
     [SerializeField] Transform respawnPoint;
+    public Action onPlayerDeath;
     PauseMenu pauseMenu;
     #endregion
     void Start()
@@ -118,7 +119,10 @@ public class Controls : MonoBehaviour
             essenceCollected = 4;
         }
         collectedSparepart = false;
-        if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(72.8f, -5.5f, 0);
+        if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(210.3f, 3.1f, 0);
+
+        if (Input.GetKeyDown(KeyCode.B)) transform.position = new Vector3(570f, -8, 0);
+        if (Input.GetKeyDown(KeyCode.R)) Respawn();
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -195,6 +199,7 @@ public class Controls : MonoBehaviour
     }
     public void Respawn()
     {
+        onPlayerDeath?.Invoke();
         ResetPlayerBools();
         transform.position = respawnPoint.position;
         foreach(Pushable obj in respawnPoint.gameObject.GetComponent<RespawnPoint>().pushableObjects)

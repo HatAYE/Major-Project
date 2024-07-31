@@ -1,5 +1,132 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2438492853853327859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 935193669565498181}
+  - component: {fileID: 2110871154796041842}
+  m_Layer: 0
+  m_Name: Extra sound source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &935193669565498181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2438492853853327859}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8440616819934398151}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &2110871154796041842
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2438492853853327859}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 8109374109696983603, guid: 0aebad16196ecc14e80841c07c57c5dd, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8440616819934398149
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,6 +157,7 @@ Transform:
   m_Children:
   - {fileID: 8440616821268793861}
   - {fileID: 8440616821581760427}
+  - {fileID: 935193669565498181}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 0}
   SFXSource: {fileID: 0}
+  extraSFXSource: {fileID: 0}
   audioMixer: {fileID: 24100000, guid: 0aebad16196ecc14e80841c07c57c5dd, type: 2}
   lvl1Soundtrack: {fileID: 8300000, guid: 819cbc2c28b871b408055471bcc3c4a5, type: 3}
   lvl2Soundtrack:
@@ -92,6 +221,9 @@ MonoBehaviour:
   muffledPushAndPullWood: {fileID: 8300000, guid: 58daa461e2c9401419260bc42f368a22, type: 3}
   muffledCrouchingSoundEffect: {fileID: 8300000, guid: 3829de7a9ea3ea147becc7c68917d8d1, type: 3}
   princessSinging: {fileID: 8300000, guid: c831db2fb0ac2fb47bf7c0ab443f0796, type: 3}
+  respawnSoundeffect: {fileID: 8300000, guid: e58e57756f69b714a9129d0cdf079fbe, type: 3}
+  platformBling1: {fileID: 8300000, guid: 50eab9ec7fd236346bd003bfb6126c8a, type: 3}
+  platformBling2: {fileID: 8300000, guid: 8bf0938942a294145ba44dc37f7208b3, type: 3}
 --- !u!1 &8440616821268793858
 GameObject:
   m_ObjectHideFlags: 0
