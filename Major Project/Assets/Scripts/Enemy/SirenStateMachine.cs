@@ -16,14 +16,15 @@ public class SirenStateMachine : Enemy
         musicTrails = transform.GetChild(1).gameObject;
         AudioManager.Instance.PlaySound(gameObject.GetComponent<AudioSource>(), AudioManager.Instance.princessSinging);
         animator = GetComponent<Animator>();
+        player.onPlayerDeath += ActivateMusicTrails;
     }
 
     protected override void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I)) print(currentState);
         if (playerInRadius)
         {
-            
-            StartCoroutine(EnemyBehavior());
+            startingCoroutine = StartCoroutine(EnemyBehavior());
             playerInRadius = false;
         }
     }
@@ -58,7 +59,12 @@ public class SirenStateMachine : Enemy
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);*/
         
     }
-
+    void ActivateMusicTrails()
+    {
+        StartCoroutine(musicTrails.GetComponent<MusicTrail>().FadeInMusicTrails());
+        musicTrails.gameObject.SetActive(true);
+        StartCoroutine(AudioManager.Instance.FadeIn(gameObject.GetComponent<AudioSource>(), AudioManager.Instance.princessSinging));
+    }
     IEnumerator BeginDialogueCoroutine()
     {
         areaDetector.SetActive(false);

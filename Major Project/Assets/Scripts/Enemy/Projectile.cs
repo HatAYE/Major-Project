@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public bool gotDeflected;
     GameObject player;
     Rigidbody2D rb;
+    bool damaged;
     public Rigidbody2D Rb { get => rb; }
 
     private void Start()
@@ -36,7 +37,11 @@ public class Projectile : MonoBehaviour
         }
         if(collision.gameObject==player.gameObject)
         {
-            player.GetComponent<HealthSystem>().Damage();
+            if(!damaged)
+            {
+                player.GetComponent<HealthSystem>().Damage(1);
+                damaged = true;
+            }
         }
     }
 }

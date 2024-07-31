@@ -14,12 +14,14 @@ public abstract class Enemy : MonoBehaviour , IResettable
     }
     protected Controls player;
     protected EnemyState currentState=EnemyState.idle;
+    protected Coroutine startingCoroutine;
     [HideInInspector] public bool playerInRadius;
     [HideInInspector] public GameObject areaDetector;
 
     protected virtual void Start()
     {
         player= FindObjectOfType<Controls>();
+        player.onPlayerDeath += ResetStateMachine;
         currentState= EnemyState.idle;
         //player.inCombat = false;
     }
@@ -61,5 +63,12 @@ public abstract class Enemy : MonoBehaviour , IResettable
         {
             animator.SetTrigger("Idle");
         }
+    }
+    void ResetStateMachine()
+    {
+        StopAllCoroutines();
+        areaDetector.SetActive(true);
+        currentState =EnemyState.idle;
+        print("current coroutine is " + startingCoroutine);
     }
 }

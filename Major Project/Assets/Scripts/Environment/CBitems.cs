@@ -8,7 +8,7 @@ public class CBitems : MonoBehaviour
     public ConveyerBelt conveyer;
     [HideInInspector] public bool playerOnItem;
     [SerializeField] float timer;
-    [SerializeField] float maxTimer=100;
+    public float maxTimer=100;
     private void Update()
     {
         if (timer < maxTimer)

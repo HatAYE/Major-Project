@@ -77,8 +77,7 @@ public class AudioManager : MonoBehaviour
 
         musicSource = transform.GetChild(0).GetComponent<AudioSource>();
         SFXSource= transform.GetChild(1).GetComponent<AudioSource>();
-        if (transform.GetChild(2).GetComponent<AudioSource>() != null)
-            extraSFXSource = transform.GetChild(2).GetComponent<AudioSource>();
+        extraSFXSource = transform.GetChild(2).GetComponent<AudioSource>();
         CheckLevel();
     }
 
