@@ -30,7 +30,7 @@ public class MusicTrail : MonoBehaviour
         }*/
     }
     int trailIndex;
-    void UpdateMusicTrail()
+    public void UpdateMusicTrail()
     {
         if (trailIndex < trails.Length)
         {

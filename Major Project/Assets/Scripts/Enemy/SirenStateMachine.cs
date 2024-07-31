@@ -7,6 +7,7 @@ public class SirenStateMachine : Enemy
     [SerializeField] Conversation startingConvo;
     [SerializeField] Conversation endingConvo;
     [SerializeField] Collider2D rightTrigger;
+    [SerializeField] Vector2 projectileOffset;
     DialogueController dialogueController = new DialogueController();
     GameObject musicTrails;
     Animator animator;
@@ -61,8 +62,8 @@ public class SirenStateMachine : Enemy
     }
     void ActivateMusicTrails()
     {
-        StartCoroutine(musicTrails.GetComponent<MusicTrail>().FadeInMusicTrails());
         musicTrails.gameObject.SetActive(true);
+        StartCoroutine(musicTrails.GetComponent<MusicTrail>().FadeInMusicTrails());
         StartCoroutine(AudioManager.Instance.FadeIn(gameObject.GetComponent<AudioSource>(), AudioManager.Instance.princessSinging));
     }
     IEnumerator BeginDialogueCoroutine()
@@ -93,7 +94,8 @@ public class SirenStateMachine : Enemy
     }
     IEnumerator AttackRoutine()
     {
-        Vector2 attackDirection = player.transform.position;
+        Vector2 attackDirection = (player.transform.position - transform.position).normalized;
+
         for (int i = 0; i < 2; i++)
         {
             yield return new WaitForSeconds(1.5f);
@@ -101,8 +103,8 @@ public class SirenStateMachine : Enemy
             {
                 animator.SetTrigger("attack");
                 GameObject projectile = Instantiate(attackPrefab, transform.position, Quaternion.identity);
-                Vector2 targetDirection = ((Vector3) attackDirection + new Vector3(0,6f,0)).normalized;
-
+                Vector2 targetDirection = (attackDirection + projectileOffset).normalized;
+                print("target direction " + targetDirection);
                 Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
                 projectileRb.velocity = targetDirection * 8;
                 projectile.GetComponent<Projectile>().parentEnemy = gameObject;
@@ -128,6 +130,7 @@ public class SirenStateMachine : Enemy
         }
         if (!gaveHeart)
         {
+            player.onEssenceCollection -= musicTrails.GetComponent<MusicTrail>().UpdateMusicTrail;
             StartCoroutine(player.AddEssence());
             gaveHeart = true;
         }
@@ -151,7 +154,9 @@ public class SirenStateMachine : Enemy
     }
     protected override void DieState()
     {
-        
+        player.onPlayerDeath -= ActivateMusicTrails;
+        player.onPlayerDeath -= ResetStateMachine;
+        player.onEssenceCollection -= musicTrails.GetComponent<MusicTrail>().UpdateMusicTrail;
         attacked =false;
         Destroy(areaDetector);
         Destroy(gameObject);

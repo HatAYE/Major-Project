@@ -39,7 +39,7 @@ public abstract class Enemy : MonoBehaviour , IResettable
                 AttackingState();
                 break;
             case EnemyState.die:
-                //player.inCombat = false;
+                player.onPlayerDeath -= ResetStateMachine;
                 DieState();
                 break;
         }
@@ -64,11 +64,11 @@ public abstract class Enemy : MonoBehaviour , IResettable
             animator.SetTrigger("Idle");
         }
     }
-    void ResetStateMachine()
+    protected void ResetStateMachine()
     {
+        if(startingCoroutine!=null)
         StopAllCoroutines();
         areaDetector.SetActive(true);
         currentState =EnemyState.idle;
-        print("current coroutine is " + startingCoroutine);
     }
 }

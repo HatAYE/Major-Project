@@ -11762,11 +11762,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5226252162898688274, guid: ba78d5be5438be844ac5524a887d2fc3, type: 3}
       propertyPath: m_SortingLayer
-      value: 19
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 5226252162898688274, guid: ba78d5be5438be844ac5524a887d2fc3, type: 3}
       propertyPath: m_SortingLayerID
       value: -1728150129
+      objectReference: {fileID: 0}
+    - target: {fileID: 5226252162898688275, guid: ba78d5be5438be844ac5524a887d2fc3, type: 3}
+      propertyPath: projectileOffset.x
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 9040753356728195865, guid: ba78d5be5438be844ac5524a887d2fc3, type: 3}
       propertyPath: m_Size.x
@@ -17483,8 +17487,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -16.27697, y: 0.015872478}
-  - {x: -14.899284, y: 0.5560367}
+  - {x: -16.6417, y: 0.24224305}
+  - {x: -13.407684, y: 1.4136152}
   - {x: -10.963882, y: 1.2606599}
   - {x: -7.46122, y: 0.76080227}
   - {x: -5.260254, y: -1.2326336}
@@ -66680,9 +66684,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Siren 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1584847785371850172, guid: 5d95fa63af15bde4283ce036bc4fdc94, type: 3}
+      propertyPath: projectileOffset.x
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1584847785371850173, guid: 5d95fa63af15bde4283ce036bc4fdc94, type: 3}
       propertyPath: m_SortingLayer
-      value: 19
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1584847785371850173, guid: 5d95fa63af15bde4283ce036bc4fdc94, type: 3}
       propertyPath: m_SortingLayerID
@@ -70776,11 +70784,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6086009687444207706, guid: 1b131a2f66966fd458e75880419332ec, type: 3}
       propertyPath: m_SortingLayer
-      value: 19
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 6086009687444207706, guid: 1b131a2f66966fd458e75880419332ec, type: 3}
       propertyPath: m_SortingLayerID
       value: -1728150129
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086009687444207707, guid: 1b131a2f66966fd458e75880419332ec, type: 3}
+      propertyPath: projectileOffset.x
+      value: -1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6086009687444208036, guid: 1b131a2f66966fd458e75880419332ec, type: 3}
       propertyPath: m_Name
@@ -76654,23 +76666,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3573826047648742077, guid: bfda94f2dbb29cf4c968c6c1094b57e3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.16499339
+      value: 0.2681334
       objectReference: {fileID: 0}
     - target: {fileID: 3573826047648742077, guid: bfda94f2dbb29cf4c968c6c1094b57e3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.16499339
+      value: 0.2681334
       objectReference: {fileID: 0}
     - target: {fileID: 3573826047648742077, guid: bfda94f2dbb29cf4c968c6c1094b57e3, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.16499339
+      value: 0.2681334
       objectReference: {fileID: 0}
     - target: {fileID: 3573826047648742077, guid: bfda94f2dbb29cf4c968c6c1094b57e3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 198.99
+      value: 199.77
       objectReference: {fileID: 0}
     - target: {fileID: 3573826047648742077, guid: bfda94f2dbb29cf4c968c6c1094b57e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.64
+      value: -2.27
       objectReference: {fileID: 0}
     - target: {fileID: 3573826047648742077, guid: bfda94f2dbb29cf4c968c6c1094b57e3, type: 3}
       propertyPath: m_LocalPosition.z

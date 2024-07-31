@@ -119,9 +119,9 @@ public class Controls : MonoBehaviour
             essenceCollected = 4;
         }
         collectedSparepart = false;
-        if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(78.7f, -5.8f, 0);
+        if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(210.3f, 3.1f, 0);
 
-        if (Input.GetKeyDown(KeyCode.B)) transform.position = new Vector3(-24, -8.1f, 0);
+        if (Input.GetKeyDown(KeyCode.B)) transform.position = new Vector3(570f, -8, 0);
         if (Input.GetKeyDown(KeyCode.R)) Respawn();
     }
     void OnCollisionEnter2D(Collision2D collision)
