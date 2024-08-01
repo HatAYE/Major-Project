@@ -62,8 +62,8 @@ MonoBehaviour:
           width: 208
           height: 135
         actor: Princess 1
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: d60aacdcc0e03254bb1261b7eeeecd34, type: 2}
+        useActorProfile: 1
         message: A new face
     00000002:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
@@ -71,13 +71,13 @@ MonoBehaviour:
         <Guid>k__BackingField: 30c84ef5-773c-4bf4-aceb-85cbb1df8d91
         <NodeRect>k__BackingField:
           serializedVersion: 2
-          x: 68
+          x: 67
           y: -23
           width: 208
           height: 135
         actor: Princess 1
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: d60aacdcc0e03254bb1261b7eeeecd34, type: 2}
+        useActorProfile: 1
         message: Yet a familiar energy
     00000003:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
@@ -90,8 +90,8 @@ MonoBehaviour:
           width: 208
           height: 135
         actor: Princess 1
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: d60aacdcc0e03254bb1261b7eeeecd34, type: 2}
+        useActorProfile: 1
         message: Welcome to Wonderland!
     00000004:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}

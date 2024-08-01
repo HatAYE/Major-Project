@@ -45,6 +45,7 @@ MonoBehaviour:
   - id: 18
   - id: 19
   - id: 20
+  - id: 21
   properties: []
   stickyNotes: []
   groups: []
@@ -75,8 +76,8 @@ MonoBehaviour:
           width: 208
           height: 150
         actor: Princess 5
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 9dcea5bcfd8eaf14caec21c1c696d622, type: 2}
+        useActorProfile: 1
         message: I remember an old face talking about someone like you
     00000002:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
@@ -89,7 +90,7 @@ MonoBehaviour:
           width: 208
           height: 150
         actor: Princess 5
-        actorProfile: {fileID: 11400000, guid: 4ee703a32c9ae874397bdb17e4fe7950, type: 2}
+        actorProfile: {fileID: 11400000, guid: 9dcea5bcfd8eaf14caec21c1c696d622, type: 2}
         useActorProfile: 1
         message: I can't tell if  seeing you here is bravery or carelessness
     00000003:
@@ -103,8 +104,8 @@ MonoBehaviour:
           width: 208
           height: 165
         actor: Princess 5
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 9dcea5bcfd8eaf14caec21c1c696d622, type: 2}
+        useActorProfile: 1
         message: anyways, I live here, so please do not intrude my space and move
           ahead.
     00000004:
@@ -118,8 +119,8 @@ MonoBehaviour:
           width: 208
           height: 150
         actor: Princess 5
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 9dcea5bcfd8eaf14caec21c1c696d622, type: 2}
+        useActorProfile: 1
         message: Ohh... Dear sister not again!
     00000005:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
@@ -132,8 +133,8 @@ MonoBehaviour:
           width: 208
           height: 165
         actor: Princess 5
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 9dcea5bcfd8eaf14caec21c1c696d622, type: 2}
+        useActorProfile: 1
         message: 'I''m sorry for what I said..., '
     00000006:
       type: {class: ChoiceNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
@@ -146,8 +147,8 @@ MonoBehaviour:
           width: 208
           height: 166
         actor: Princess 5
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 9dcea5bcfd8eaf14caec21c1c696d622, type: 2}
+        useActorProfile: 1
         message: 
         options:
         - guid: yes
@@ -165,8 +166,8 @@ MonoBehaviour:
           width: 208
           height: 135
         actor: Princess 5
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 9dcea5bcfd8eaf14caec21c1c696d622, type: 2}
+        useActorProfile: 1
         message: Thank you, and also becareful up ahead, there's another one of those
           Sirens luring up ahead.
     00000008:
@@ -180,8 +181,8 @@ MonoBehaviour:
           width: 208
           height: 135
         actor: Princess 5
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 9dcea5bcfd8eaf14caec21c1c696d622, type: 2}
+        useActorProfile: 1
         message: Shoo now!
     00000009:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
@@ -194,8 +195,8 @@ MonoBehaviour:
           width: 208
           height: 135
         actor: Princess 5
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 9dcea5bcfd8eaf14caec21c1c696d622, type: 2}
+        useActorProfile: 1
         message: Are you trying to hide from those sirens here?
     0000000A:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
@@ -208,8 +209,8 @@ MonoBehaviour:
           width: 208
           height: 135
         actor: Princess 5
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 9dcea5bcfd8eaf14caec21c1c696d622, type: 2}
+        useActorProfile: 1
         message: pretty sure you dealt with all of them, I haven't seen any around
           otherwise.
     0000000B:
@@ -301,4 +302,13 @@ MonoBehaviour:
           port: no
         input:
           node: 2e72b0ad-8ed3-4367-a195-4b55afbe97dc
+          port: previous
+    00000015:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 13cf7172-06db-4446-baf6-d02e18fda090
+          port: next
+        input:
+          node: 5b649699-640c-404f-906b-bd8c7a6622ea
           port: previous
