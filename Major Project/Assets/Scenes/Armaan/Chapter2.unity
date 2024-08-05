@@ -216,6 +216,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pushable object (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1767116302486663308, guid: 5006645824b65704984b2631d6aa13b7, type: 3}
+      propertyPath: m_Constraints
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1767116302486663311, guid: 5006645824b65704984b2631d6aa13b7, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -11768,6 +11772,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1728150129
       objectReference: {fileID: 0}
+    - target: {fileID: 5226252162898688275, guid: ba78d5be5438be844ac5524a887d2fc3, type: 3}
+      propertyPath: startingConvo
+      value: 
+      objectReference: {fileID: 11400000, guid: 9800cfcaae91101449b8c842e1c76bd3, type: 2}
     - target: {fileID: 5226252162898688275, guid: ba78d5be5438be844ac5524a887d2fc3, type: 3}
       propertyPath: projectileOffset.x
       value: 1.2
@@ -66685,6 +66693,10 @@ PrefabInstance:
       value: Siren 1
       objectReference: {fileID: 0}
     - target: {fileID: 1584847785371850172, guid: 5d95fa63af15bde4283ce036bc4fdc94, type: 3}
+      propertyPath: startingConvo
+      value: 
+      objectReference: {fileID: 11400000, guid: d07fd31ef1acc6349bc02b58c3da0355, type: 2}
+    - target: {fileID: 1584847785371850172, guid: 5d95fa63af15bde4283ce036bc4fdc94, type: 3}
       propertyPath: projectileOffset.x
       value: 0.5
       objectReference: {fileID: 0}
@@ -70790,6 +70802,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1728150129
       objectReference: {fileID: 0}
+    - target: {fileID: 6086009687444207707, guid: 1b131a2f66966fd458e75880419332ec, type: 3}
+      propertyPath: startingConvo
+      value: 
+      objectReference: {fileID: 11400000, guid: d929fa69738e47b4aaf1d2cbc4dc51d9, type: 2}
     - target: {fileID: 6086009687444207707, guid: 1b131a2f66966fd458e75880419332ec, type: 3}
       propertyPath: projectileOffset.x
       value: -1.2

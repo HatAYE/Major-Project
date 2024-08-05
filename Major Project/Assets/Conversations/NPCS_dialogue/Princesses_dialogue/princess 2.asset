@@ -48,7 +48,7 @@ MonoBehaviour:
           width: 208
           height: 135
         actor: Princess
-        actorProfile: {fileID: 11400000, guid: 4ee703a32c9ae874397bdb17e4fe7950, type: 2}
+        actorProfile: {fileID: 11400000, guid: 514fad73dba06164da897cad7b346002, type: 2}
         useActorProfile: 1
         message: Excuse me...
     00000001:
@@ -62,8 +62,8 @@ MonoBehaviour:
           width: 208
           height: 135
         actor: Princess 2
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 514fad73dba06164da897cad7b346002, type: 2}
+        useActorProfile: 1
         message: I'm sorry, but I didn't expect visitors
     00000002:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
@@ -76,8 +76,8 @@ MonoBehaviour:
           width: 208
           height: 135
         actor: Princess 2
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 514fad73dba06164da897cad7b346002, type: 2}
+        useActorProfile: 1
         message: I prefer staying here by myself, this is my comfort zone.
     00000003:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
@@ -90,8 +90,8 @@ MonoBehaviour:
           width: 208
           height: 135
         actor: Princess 2
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 514fad73dba06164da897cad7b346002, type: 2}
+        useActorProfile: 1
         message: It truly is beautiful, it truly is me...
     00000004:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}

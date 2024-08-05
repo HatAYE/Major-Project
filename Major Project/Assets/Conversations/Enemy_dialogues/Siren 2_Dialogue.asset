@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: Siren 2_Dialogue
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: 9f82608f-3962-43bf-bbe2-4109a4e4841b
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: 100
+      y: 100
+      width: 100
+      height: 100
+    name: Start
+  nodes:
+  - id: 0
+  edges:
+  - id: 1
+  properties: []
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 289.6
+          y: 100
+          width: 208
+          height: 134.4
+        actor: siren
+        actorProfile: {fileID: 11400000, guid: ceec3f0d5db86534c85e7c42aa70b0d7, type: 2}
+        useActorProfile: 1
+        message: hi im gonna eat you
+    00000001:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 9f82608f-3962-43bf-bbe2-4109a4e4841b
+          port: next
+        input:
+          node: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
+          port: previous
