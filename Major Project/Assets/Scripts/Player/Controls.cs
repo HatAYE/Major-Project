@@ -193,6 +193,7 @@ public class Controls : MonoBehaviour
     }
     public IEnumerator AddEssence()
     {
+        AudioManager.Instance.PlaySound(AudioManager.Instance.extraSFXSource, AudioManager.Instance.essenceCollection);
         essenceCollected++;
         onEssenceCollection?.Invoke();
         yield return null;

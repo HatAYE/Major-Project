@@ -59,6 +59,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip respawnSoundeffect;
     public AudioClip platformBling1;
     public AudioClip platformBling2;
+    public AudioClip essenceCollection;
     
     private void Awake()
     {
