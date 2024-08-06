@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShrinkingAndEnlarging : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class ShrinkingAndEnlarging : MonoBehaviour
     Vector2 shrinkingSize;
     Vector2 regularSize;
     public Vector2 largeSize;
+    [SerializeField] Sprite[] sizeUI = new Sprite[3];
+    [SerializeField] Image uiObject;
     void Start()
     {
         regularSize= transform.localScale;
@@ -28,10 +31,12 @@ public class ShrinkingAndEnlarging : MonoBehaviour
                 }
                 else if (currentSize == regularSize)
                 {
+                    uiObject.sprite = sizeUI[0];
                     SwitchSize(shrinkingSize);
                 }
                 else if (currentSize == largeSize)
                 {
+                    uiObject.sprite = sizeUI[1];
                     SwitchSize(regularSize);
                     GetComponent<Controls>().currentPushingRange = GetComponent<Controls>().originalPushingRange;
                 }
@@ -41,11 +46,13 @@ public class ShrinkingAndEnlarging : MonoBehaviour
                 //move to next size
                 if (currentSize == shrinkingSize)
                 {
+                    uiObject.sprite = sizeUI[1];
                     SwitchSize(regularSize);
                     GetComponent<Controls>().currentPushingRange = GetComponent<Controls>().originalPushingRange;
                 }
                 else if (currentSize == regularSize)
                 {
+                    uiObject.sprite = sizeUI[2];
                     SwitchSize(largeSize);
                     GetComponent<Controls>().currentPushingRange = GetComponent<Controls>().enlargedPushingRange;
                 }
