@@ -4,51 +4,67 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
+using UnityEngineInternal;
 
 public class TriggerImage : MonoBehaviour
 {
-    [SerializeField] Image image;
+    [SerializeField] Sprite image;
     [SerializeField] Conversation conversation;
     [SerializeField] float dialogueWait;
-    RawImage memoryImage;
+    [SerializeField] RawImage memoryImage;
+    [SerializeField] GameObject memoryCanvasObject;
     PlayableDirector timeline;
-    DialogueUI dialogueUI;
     DialogueController controller;
+    bool addedEssence;
     void Start()
     {
-        memoryImage= GameObject.Find("Memory image").GetComponent<RawImage>();
+        memoryCanvasObject.SetActive(false);
         timeline = GetComponent<PlayableDirector>();
-        dialogueUI=FindObjectOfType<DialogueUI>();
+        if(conversation!=null)
         controller = new DialogueController(conversation);
         timeline.stopped += Deactivate;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.TryGetComponent(out Controls player))
         {
+            if(!addedEssence)
+            {
+                StartCoroutine(player.AddEssence());
+                addedEssence = true; 
+            }
+            
             StartCoroutine(ShowImage());
         }
     }
 
     IEnumerator ShowImage()
     {
+        memoryCanvasObject.SetActive(true);
         GameManager.instance.ChangeState(gameStates.frozen);
-        dialogueUI.canSkipDialogue = false;
+        memoryImage.texture = image.texture;
         timeline.Play();
         yield return new WaitForSeconds(dialogueWait);
-        controller.BeginDialogue();
 
     }
 
     void Deactivate(PlayableDirector director)
     {
-        GameManager.instance.ChangeState(gameStates.playing);
-        gameObject.SetActive(false);
+        memoryCanvasObject.SetActive(false);
+        if (conversation != null)
+        {
+            controller.BeginDialogue();
+            controller.OnDialogueEnd += () =>
+            {
+                GameManager.instance.ChangeState(gameStates.playing);
+                Destroy(gameObject);
+            };
+
+        }
+        else
+        {
+            GameManager.instance.ChangeState(gameStates.playing);
+            Destroy(gameObject);
+        }
     }
 }
