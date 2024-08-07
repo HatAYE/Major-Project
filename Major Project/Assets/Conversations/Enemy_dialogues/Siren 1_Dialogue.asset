@@ -24,10 +24,15 @@ MonoBehaviour:
     name: Start
   nodes:
   - id: 0
-  edges:
   - id: 1
+  - id: 2
+  edges:
+  - id: 3
+  - id: 4
+  - id: 5
   properties: []
-  stickyNotes: []
+  stickyNotes:
+  - id: 6
   groups: []
   references:
     version: 1
@@ -37,15 +42,43 @@ MonoBehaviour:
         <Guid>k__BackingField: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
         <NodeRect>k__BackingField:
           serializedVersion: 2
-          x: 289.6
+          x: 289
           y: 100
           width: 208
-          height: 134.4
+          height: 135
         actor: siren
         actorProfile: {fileID: 11400000, guid: 9a1ae71760d728a439f1686ee4e037b0, type: 2}
         useActorProfile: 1
-        message: hi im gonna eat you
+        message: Ahh.., A visitor!
     00000001:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 3b46566f-8042-46aa-a5d5-73ad5c81b257
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 585
+          y: 100
+          width: 208
+          height: 135
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: 9a1ae71760d728a439f1686ee4e037b0, type: 2}
+        useActorProfile: 1
+        message: what brings you to this boring place
+    00000002:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 98fe7c67-c777-4141-8009-c5b93ed34b0b
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 862
+          y: 100
+          width: 208
+          height: 135
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: 9a1ae71760d728a439f1686ee4e037b0, type: 2}
+        useActorProfile: 1
+        message: never mind that, I shall have my entertainment from you
+    00000003:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
@@ -54,3 +87,33 @@ MonoBehaviour:
         input:
           node: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
           port: previous
+    00000004:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
+          port: next
+        input:
+          node: 3b46566f-8042-46aa-a5d5-73ad5c81b257
+          port: previous
+    00000005:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 3b46566f-8042-46aa-a5d5-73ad5c81b257
+          port: next
+        input:
+          node: 98fe7c67-c777-4141-8009-c5b93ed34b0b
+          port: previous
+    00000006:
+      type: {class: StickyNoteData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        guid: 00f5cbfa-2272-424a-a89a-6720c18000e2
+        rect:
+          serializedVersion: 2
+          x: -1252
+          y: 1434
+          width: 100
+          height: 100
+        title: New title
+        contents: New content

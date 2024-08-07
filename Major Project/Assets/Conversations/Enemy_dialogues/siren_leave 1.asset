@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
-  m_Name: siren_leave
+  m_Name: siren_leave 1
   m_EditorClassIdentifier: 
   version: 1.0
   startNode:
@@ -42,9 +42,9 @@ MonoBehaviour:
           width: NaN
           height: NaN
         actor: Actor name
-        actorProfile: {fileID: 11400000, guid: 7fe69b7c84d010d448228dfb96a6b08d, type: 2}
+        actorProfile: {fileID: 11400000, guid: 9a1ae71760d728a439f1686ee4e037b0, type: 2}
         useActorProfile: 1
-        message: whatever idc
+        message: Ughhh, you are no fun
     00000001:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
