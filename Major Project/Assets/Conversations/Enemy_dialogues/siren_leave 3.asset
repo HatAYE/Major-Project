@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
-  m_Name: Siren 2_Dialogue
+  m_Name: siren_leave 3
   m_EditorClassIdentifier: 
   version: 1.0
   startNode:
-    <Guid>k__BackingField: 9f82608f-3962-43bf-bbe2-4109a4e4841b
+    <Guid>k__BackingField: cc2a6898-c3fe-424f-bd75-b12a86ffa219
     <NodeRect>k__BackingField:
       serializedVersion: 2
       x: 100
@@ -40,93 +40,92 @@ MonoBehaviour:
     00000000:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
       data:
-        <Guid>k__BackingField: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
+        <Guid>k__BackingField: 01eed823-b8dc-4fd8-83e9-df0e941fed18
         <NodeRect>k__BackingField:
           serializedVersion: 2
-          x: 288
-          y: 100
-          width: 208
-          height: 135
-        actor: siren
-        actorProfile: {fileID: 11400000, guid: ceec3f0d5db86534c85e7c42aa70b0d7, type: 2}
+          x: 270.41156
+          y: 125.62428
+          width: NaN
+          height: NaN
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: c8cd7cbd7fbb2a6419b9c5c76f718a03, type: 2}
         useActorProfile: 1
-        message: How dare you!
+        message: You have a greater wish than mine
     00000001:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
       data:
-        <Guid>k__BackingField: 62d95645-a8be-4925-8298-f8ebbcdb3a7c
+        <Guid>k__BackingField: 9325ffdb-60a9-4978-9929-888785ad4aa9
         <NodeRect>k__BackingField:
           serializedVersion: 2
-          x: 558
-          y: 100
+          x: 516
+          y: 126
           width: 208
           height: 135
         actor: Actor name
-        actorProfile: {fileID: 11400000, guid: ceec3f0d5db86534c85e7c42aa70b0d7, type: 2}
+        actorProfile: {fileID: 11400000, guid: c8cd7cbd7fbb2a6419b9c5c76f718a03, type: 2}
         useActorProfile: 1
-        message: You, dare to disturb my serenade!
+        message: and a will.., but...
     00000002:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
       data:
-        <Guid>k__BackingField: 38272966-bfaf-4195-8fdc-3c2bf6a3863b
+        <Guid>k__BackingField: 5123dc9f-bb79-4de6-8d43-aad28fddbe57
         <NodeRect>k__BackingField:
           serializedVersion: 2
-          x: 1061
-          y: 100
-          width: 208
-          height: 165
-        actor: Actor name
-        actorProfile: {fileID: 11400000, guid: ceec3f0d5db86534c85e7c42aa70b0d7, type: 2}
-        useActorProfile: 1
-        message: Consider this your one chance to prove your worth. Amuse me, or
-          suffer the consequences
-    00000003:
-      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
-      data:
-        <Guid>k__BackingField: 86e38280-7f52-48d8-96f6-ca193894885a
-        <NodeRect>k__BackingField:
-          serializedVersion: 2
-          x: 809
-          y: 100
+          x: 758
+          y: 126
           width: 208
           height: 135
         actor: Actor name
-        actorProfile: {fileID: 11400000, guid: ceec3f0d5db86534c85e7c42aa70b0d7, type: 2}
+        actorProfile: {fileID: 11400000, guid: c8cd7cbd7fbb2a6419b9c5c76f718a03, type: 2}
         useActorProfile: 1
-        message: "you\u2019ll wish you had never set foot in my garden."
+        message: 'Sorry..., not my place to speak. '
+    00000003:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 2c9ac79b-58c4-455a-a037-3a4efff77a5c
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1004
+          y: 126
+          width: 208
+          height: 135
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: c8cd7cbd7fbb2a6419b9c5c76f718a03, type: 2}
+        useActorProfile: 1
+        message: I see why he wants you to see this.
     00000004:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
-          node: 9f82608f-3962-43bf-bbe2-4109a4e4841b
+          node: cc2a6898-c3fe-424f-bd75-b12a86ffa219
           port: next
         input:
-          node: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
+          node: 01eed823-b8dc-4fd8-83e9-df0e941fed18
           port: previous
     00000005:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
-          node: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
+          node: 01eed823-b8dc-4fd8-83e9-df0e941fed18
           port: next
         input:
-          node: 62d95645-a8be-4925-8298-f8ebbcdb3a7c
+          node: 9325ffdb-60a9-4978-9929-888785ad4aa9
           port: previous
     00000006:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
-          node: 86e38280-7f52-48d8-96f6-ca193894885a
+          node: 9325ffdb-60a9-4978-9929-888785ad4aa9
           port: next
         input:
-          node: 38272966-bfaf-4195-8fdc-3c2bf6a3863b
+          node: 5123dc9f-bb79-4de6-8d43-aad28fddbe57
           port: previous
     00000007:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
-          node: 62d95645-a8be-4925-8298-f8ebbcdb3a7c
+          node: 5123dc9f-bb79-4de6-8d43-aad28fddbe57
           port: next
         input:
-          node: 86e38280-7f52-48d8-96f6-ca193894885a
+          node: 2c9ac79b-58c4-455a-a037-3a4efff77a5c
           port: previous

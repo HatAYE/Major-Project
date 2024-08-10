@@ -85,14 +85,14 @@ MonoBehaviour:
         <Guid>k__BackingField: 82fb9aaf-6033-4a8a-b856-23415868ff0d
         <NodeRect>k__BackingField:
           serializedVersion: 2
-          x: 219
+          x: 220
           y: -15
           width: 208
           height: 150
         actor: Princess 5
         actorProfile: {fileID: 11400000, guid: 9dcea5bcfd8eaf14caec21c1c696d622, type: 2}
         useActorProfile: 1
-        message: I can't tell if  seeing you here is bravery or carelessness
+        message: I can't tell if seeing you here is bravery or carelessness
     00000003:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
       data:
@@ -121,7 +121,7 @@ MonoBehaviour:
         actor: Princess 5
         actorProfile: {fileID: 11400000, guid: 9dcea5bcfd8eaf14caec21c1c696d622, type: 2}
         useActorProfile: 1
-        message: Ohh... Dear sister not again!
+        message: Ohh... Dear sister, not again!
     00000005:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
       data:
@@ -168,8 +168,8 @@ MonoBehaviour:
         actor: Princess 5
         actorProfile: {fileID: 11400000, guid: 9dcea5bcfd8eaf14caec21c1c696d622, type: 2}
         useActorProfile: 1
-        message: Thank you, and also becareful up ahead, there's another one of those
-          Sirens luring up ahead.
+        message: Thank you, and also, be careful up ahead, there's another one of
+          those Sirens luring up ahead.
     00000008:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
       data:

@@ -17,15 +17,21 @@ MonoBehaviour:
     <Guid>k__BackingField: 9f82608f-3962-43bf-bbe2-4109a4e4841b
     <NodeRect>k__BackingField:
       serializedVersion: 2
-      x: 100
-      y: 100
-      width: 100
-      height: 100
+      x: 158
+      y: 145
+      width: 86
+      height: 40
     name: Start
   nodes:
   - id: 0
-  edges:
   - id: 1
+  - id: 2
+  - id: 3
+  edges:
+  - id: 4
+  - id: 5
+  - id: 6
+  - id: 7
   properties: []
   stickyNotes: []
   groups: []
@@ -37,15 +43,58 @@ MonoBehaviour:
         <Guid>k__BackingField: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
         <NodeRect>k__BackingField:
           serializedVersion: 2
-          x: 289.6
-          y: 100
+          x: 330
+          y: 130
           width: 208
-          height: 134.4
+          height: 180
         actor: siren
         actorProfile: {fileID: 11400000, guid: c8cd7cbd7fbb2a6419b9c5c76f718a03, type: 2}
         useActorProfile: 1
-        message: hi im gonna eat you
+        message: I have grown weary of this Wonderland, a kingdom that once delighted
+          me but now only bores.
     00000001:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: f8aa38ff-1ae0-404a-9166-9cd70e54082c
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 616
+          y: 100
+          width: 208
+          height: 135
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: c8cd7cbd7fbb2a6419b9c5c76f718a03, type: 2}
+        useActorProfile: 1
+        message: I seek a way out, a new realm where I can truly thrive.
+    00000002:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 01e9b039-4630-4245-898f-9f0579195ddd
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 882
+          y: 130
+          width: 208
+          height: 150
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: c8cd7cbd7fbb2a6419b9c5c76f718a03, type: 2}
+        useActorProfile: 1
+        message: Your essence..., Just what I need to reach that realm.
+    00000003:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: e8c57ec7-4f43-4fb7-b04c-8f48d3cee327
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 1142
+          y: 145
+          width: 208
+          height: 135
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: c8cd7cbd7fbb2a6419b9c5c76f718a03, type: 2}
+        useActorProfile: 1
+        message: First I will have you, then I shall deal with that damn reaper.
+    00000004:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
@@ -53,4 +102,31 @@ MonoBehaviour:
           port: next
         input:
           node: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
+          port: previous
+    00000005:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: f93463d6-cd4b-4f6c-a74a-e9015fe5a901
+          port: next
+        input:
+          node: f8aa38ff-1ae0-404a-9166-9cd70e54082c
+          port: previous
+    00000006:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: f8aa38ff-1ae0-404a-9166-9cd70e54082c
+          port: next
+        input:
+          node: 01e9b039-4630-4245-898f-9f0579195ddd
+          port: previous
+    00000007:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 01e9b039-4630-4245-898f-9f0579195ddd
+          port: next
+        input:
+          node: e8c57ec7-4f43-4fb7-b04c-8f48d3cee327
           port: previous

@@ -118726,6 +118726,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 922190656}
     m_Modifications:
+    - target: {fileID: 220828971, guid: fb4073e863b49cf4f9d19c8f69af8b7a, type: 3}
+      propertyPath: automaticDestroyTimer
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 802187236, guid: fb4073e863b49cf4f9d19c8f69af8b7a, type: 3}
       propertyPath: m_UsedByEffector
       value: 1
