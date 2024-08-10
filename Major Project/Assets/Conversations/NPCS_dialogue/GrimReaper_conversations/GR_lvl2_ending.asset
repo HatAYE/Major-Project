@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: GR_lvl2_ending
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: 6bd88103-f78e-4d58-9e89-7d367dbae384
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: -592.8
+      y: 126.399994
+      width: 86.399994
+      height: 40
+    name: Start
+  nodes:
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
+  - id: 4
+  edges:
+  - id: 5
+  - id: 6
+  - id: 7
+  - id: 8
+  - id: 9
+  properties:
+  - id: 10
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: EventNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 355d658b-b7d5-4bae-95e8-73a8d5703995
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 634.4
+          y: 77.600006
+          width: 181.59998
+          height: 100.79999
+        stopsFlow: 0
+        eventGuid: cd624d39-e004-470e-866b-f180ba4f44df
+        eventName: transition
+    00000001:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 900be89a-6d2f-40b4-b3c9-14f10e11449b
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: -457.59998
+          y: 77.600006
+          width: 207.99998
+          height: 177.6
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
+        useActorProfile: 1
+        message: "Haste makes waste, so I rarely hurry. But if a ferret were about
+          to dart up my dress, I\u2019d run!"
+    00000002:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: fbdf8b9d-9137-4b91-b431-d4ee00530828
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: -176.8
+          y: 77.600006
+          width: 208
+          height: 148.79999
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
+        useActorProfile: 1
+        message: as said by a grinning cat but anyways~
+    00000003:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 75f0be6e-6073-44c6-9434-c148e4461175
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 80
+          y: 77.600006
+          width: 207.99998
+          height: 163.19998
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
+        useActorProfile: 1
+        message: Did you enjoy wonderland? I hope so! because its time to move on
+          to another place
+    00000004:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 5609fd1c-88ff-41bc-b034-c489d847e57b
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 352.80002
+          y: 77.600006
+          width: 207.99997
+          height: 148.79999
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
+        useActorProfile: 1
+        message: that is if you want to become alive again~
+    00000005:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 6bd88103-f78e-4d58-9e89-7d367dbae384
+          port: next
+        input:
+          node: 900be89a-6d2f-40b4-b3c9-14f10e11449b
+          port: previous
+    00000006:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 900be89a-6d2f-40b4-b3c9-14f10e11449b
+          port: next
+        input:
+          node: fbdf8b9d-9137-4b91-b431-d4ee00530828
+          port: previous
+    00000007:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: fbdf8b9d-9137-4b91-b431-d4ee00530828
+          port: next
+        input:
+          node: 75f0be6e-6073-44c6-9434-c148e4461175
+          port: previous
+    00000008:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 75f0be6e-6073-44c6-9434-c148e4461175
+          port: next
+        input:
+          node: 5609fd1c-88ff-41bc-b034-c489d847e57b
+          port: previous
+    00000009:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: 5609fd1c-88ff-41bc-b034-c489d847e57b
+          port: next
+        input:
+          node: 355d658b-b7d5-4bae-95e8-73a8d5703995
+          port: previous
+    0000000A:
+      type: {class: EventProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: cd624d39-e004-470e-866b-f180ba4f44df
+        name: transition
