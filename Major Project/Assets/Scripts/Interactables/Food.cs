@@ -13,11 +13,12 @@ public class Food : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject==player.gameObject)
+        if (collision.gameObject.TryGetComponent(out Controls pl))
         {
             if (!tookEffect)
             {
-                player.currentHealth += healthEffect;
+                player.Heal(healthEffect);
+                StartCoroutine(pl.AddEssence());
                 Destroy(gameObject);
                 tookEffect = true;
             }

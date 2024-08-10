@@ -6,6 +6,7 @@ public class BouncingEnemy : Enemy
 {
     [SerializeField] float jumpForce;
     [SerializeField] float jumpPause;
+    [SerializeField] bool damaged;
     Rigidbody2D rb;
     bool attacking;
     Collider2D triggerCol;
@@ -66,7 +67,18 @@ public class BouncingEnemy : Enemy
     {
         if (collision.gameObject == player.gameObject)
         {
-            player.GetComponent<HealthSystem>().currentHealth -= 1;
+            if(!damaged)
+            {
+                player.GetComponent<HealthSystem>().Damage(1);
+                damaged = true;
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject == player.gameObject)
+        {
+            damaged = false;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -74,6 +86,13 @@ public class BouncingEnemy : Enemy
         if (collision.gameObject.CompareTag("Ground"))
         {
             triggerCol.enabled = true;
+        }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Pushable"))
+        {
+            Collider2D otherCollider = collision.collider;
+
+            // Ignore collision between this object and the pushable object
+            Physics2D.IgnoreCollision(nonTriggerCol, otherCollider, true);
         }
     }
     private void OnDrawGizmos()
