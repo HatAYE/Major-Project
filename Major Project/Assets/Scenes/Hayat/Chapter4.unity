@@ -44679,7 +44679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 190256140124696003, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 190256140402886462, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
       propertyPath: m_IsActive
@@ -50916,6 +50916,8 @@ PlayableDirector:
     value: {fileID: 1117403538}
   - key: {fileID: -234232169794517859, guid: 0ffb201b31cbb2348a106f5dfe5c7ada, type: 2}
     value: {fileID: 164663895}
+  - key: {fileID: -4560615345023865205, guid: 0ffb201b31cbb2348a106f5dfe5c7ada, type: 2}
+    value: {fileID: 1726790603}
   m_ExposedReferences:
     m_References: []
 --- !u!61 &1726790601 stripped
@@ -50923,6 +50925,18 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 190256140124696002, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
   m_PrefabInstance: {fileID: 1458039679}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1726790602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726790599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8955b3ee49c805e478301caecf66268e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1726790603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50938,6 +50952,7 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: c3b86a4241eb4f640a7b582600e94a7e, type: 2}
+    - {fileID: 11400000, guid: 89454c52dd1c3904796c5f2928f5d3ac, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -50948,6 +50963,20 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1726790602}
+          m_TargetAssemblyTypeName: LoadLevel, Assembly-CSharp
+          m_MethodName: LoadNextScene
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 

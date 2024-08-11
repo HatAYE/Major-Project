@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         if (pl != null) pl.essenceCollected = 0;
         currentLevel = SceneManager.GetActiveScene().buildIndex;
         AudioManager.Instance.CheckLevel();
-        ChangeState(gameStates.playing);
+        if (pl != null) ChangeState(gameStates.playing);
 
     }
 
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
     public void ChangeState(gameStates state)
     {
         currenState = state;
-        if(state== gameStates.playing)
+        if(state== gameStates.playing && pl != null)
         {
             pl.controlsAvaialble = true;
         }

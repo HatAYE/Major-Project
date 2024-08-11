@@ -16,7 +16,7 @@ public class TimelineSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (director.state == PlayState.Playing)
+        if (director.state == PlayState.Playing && GameManager.instance != null)
         {
             GameManager.instance.ChangeState(gameStates.frozen);
         }
@@ -29,6 +29,7 @@ public class TimelineSettings : MonoBehaviour
 
     void Deactivate(PlayableDirector director)
     {
+        if(GameManager.instance != null)
         GameManager.instance.ChangeState(gameStates.playing);
         gameObject.SetActive(false);
     }
