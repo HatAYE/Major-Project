@@ -12,7 +12,8 @@ public class Controls : MonoBehaviour
 {
     [HideInInspector]RaycastHit2D hit;
     [HideInInspector] public Rigidbody2D rb;
-    public bool controlsAvaialble;
+    [HideInInspector] public bool controlsAvaialble;
+    [SerializeField] Animator jumpAnimator;
     private CapsuleCollider2D capsuleCollider;
     [SerializeField] KeyCode left=KeyCode.A;
     [SerializeField] KeyCode right=KeyCode.D;
@@ -267,6 +268,7 @@ public class Controls : MonoBehaviour
         if (Input.GetKeyDown(jump) && jumpCount == 0 && !isCrouching)
         {
             isGrounded = false;
+            jumpAnimator.SetTrigger("jumped");
             rb.AddForce(new Vector2(0, jumpForce));
             jumpCount++;
         }
