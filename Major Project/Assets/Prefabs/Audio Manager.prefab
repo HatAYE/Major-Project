@@ -184,7 +184,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2a40c8e8116a2dd40a985106d0942b74, type: 3}
   - {fileID: 8300000, guid: 87fe1bbcac2542943ad64e6af4477f3c, type: 3}
   - {fileID: 8300000, guid: f66f0884e92ca734db584deff96605b8, type: 3}
-  lvl3Soundtrack: {fileID: 0}
+  lvl3Soundtrack: {fileID: 8300000, guid: c491543b7a9c52943879ceec1d77a16c, type: 3}
   lvl4Soundtrack: {fileID: 0}
   mainMenuAudio: {fileID: 8300000, guid: 6d860d3a8ab1a6f4badf4bbc0d43c146, type: 3}
   grassSoundEffects:
@@ -221,10 +221,12 @@ MonoBehaviour:
   muffledPushAndPullWood: {fileID: 8300000, guid: 58daa461e2c9401419260bc42f368a22, type: 3}
   muffledCrouchingSoundEffect: {fileID: 8300000, guid: 3829de7a9ea3ea147becc7c68917d8d1, type: 3}
   princessSinging: {fileID: 8300000, guid: c831db2fb0ac2fb47bf7c0ab443f0796, type: 3}
+  princessBattleMusic: {fileID: 8300000, guid: 02d38c0851cde8442848e22171d62cfb, type: 3}
   respawnSoundeffect: {fileID: 8300000, guid: e58e57756f69b714a9129d0cdf079fbe, type: 3}
   platformBling1: {fileID: 8300000, guid: 50eab9ec7fd236346bd003bfb6126c8a, type: 3}
   platformBling2: {fileID: 8300000, guid: 8bf0938942a294145ba44dc37f7208b3, type: 3}
   essenceCollection: {fileID: 8300000, guid: 9baeca6f6f5b631439bd256b5bc6c65f, type: 3}
+  currentMusic: {fileID: 0}
 --- !u!1 &8440616821268793858
 GameObject:
   m_ObjectHideFlags: 0

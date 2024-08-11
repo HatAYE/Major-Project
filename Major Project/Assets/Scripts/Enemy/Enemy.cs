@@ -17,13 +17,14 @@ public abstract class Enemy : MonoBehaviour , IResettable
     protected Coroutine startingCoroutine;
     [HideInInspector] public bool playerInRadius;
     [HideInInspector] public GameObject areaDetector;
-
+    protected AudioClip battleMusic;
+    public AudioClip ogMusic;
     protected virtual void Start()
     {
         player= FindObjectOfType<Controls>();
         player.onPlayerDeath += ResetStateMachine;
         currentState= EnemyState.idle;
-        //player.inCombat = false;
+        ogMusic = AudioManager.Instance.musicSource.clip;
     }
 
     protected virtual void Update()
@@ -31,11 +32,9 @@ public abstract class Enemy : MonoBehaviour , IResettable
         switch (currentState)
         {
             case EnemyState.idle:
-                //player.inCombat = false;
                 IdleState();
                 break;
             case EnemyState.attack:
-                //player.inCombat= true;
                 AttackingState();
                 break;
             case EnemyState.die:
@@ -48,12 +47,10 @@ public abstract class Enemy : MonoBehaviour , IResettable
     protected abstract void IdleState();
     protected abstract void AttackingState();
     protected abstract void DieState();
-   // protected abstract IEnumerator EnemyBehavior();
     protected void TransitionToState(EnemyState newState)
     {
         currentState = newState;
     }
-
     public void ResetState()
     {
         gameObject.SetActive(true);
@@ -63,6 +60,7 @@ public abstract class Enemy : MonoBehaviour , IResettable
         {
             animator.SetTrigger("Idle");
         }
+        AudioManager.Instance.PlaySound(AudioManager.Instance.musicSource, ogMusic);
     }
     protected void ResetStateMachine()
     {
@@ -70,5 +68,11 @@ public abstract class Enemy : MonoBehaviour , IResettable
         StopAllCoroutines();
         areaDetector.SetActive(true);
         currentState =EnemyState.idle;
+        Animator animator = GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.SetTrigger("Idle");
+        }
+        AudioManager.Instance.PlaySound(AudioManager.Instance.musicSource, ogMusic);
     }
 }
