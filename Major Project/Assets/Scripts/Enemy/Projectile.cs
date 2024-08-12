@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        if (Vector2.Distance(transform.position, player.transform.position) < 1)
+        if (Vector2.Distance(transform.position, player.transform.position) < .5f)
         {
             if(!gotDeflected)
             Destroy(gameObject);

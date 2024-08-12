@@ -148,9 +148,14 @@ public class PlayerAudio : MonoBehaviour
     int audioIndex;
     void UpdateSoundtrack()
     {
+        SirenStateMachine[] sirens = FindObjectsOfType<SirenStateMachine>();
         if (audioIndex<5)
         {
             AudioManager.Instance.PlaySound(AudioManager.Instance.musicSource, AudioManager.Instance.lvl2Soundtrack[audioIndex]);
+            foreach(SirenStateMachine siren in sirens)
+            {
+                siren.ogMusic = AudioManager.Instance.lvl2Soundtrack[audioIndex];
+            }
         }
         audioIndex++;
     }

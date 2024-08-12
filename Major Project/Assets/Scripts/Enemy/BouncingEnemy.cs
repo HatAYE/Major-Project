@@ -15,7 +15,8 @@ public class BouncingEnemy : Enemy
     {
         base.Start();
         rb=GetComponent<Rigidbody2D>();
-        
+        ogMusic = AudioManager.Instance.musicSource.clip;
+
         Collider2D[] colliders = GetComponents<Collider2D>();
         foreach (Collider2D collider in colliders)
         {

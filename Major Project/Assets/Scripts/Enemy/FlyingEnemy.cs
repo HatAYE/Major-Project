@@ -14,6 +14,7 @@ public class FlyingEnemy : Enemy
     protected override void Start()
     {
         base.Start();
+        ogMusic = AudioManager.Instance.musicSource.clip;
         controller = new DialogueController(conversation);
     }
 

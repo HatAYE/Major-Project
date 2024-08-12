@@ -18,11 +18,12 @@ public class SirenStateMachine : Enemy
         AudioManager.Instance.PlaySound(gameObject.GetComponent<AudioSource>(), AudioManager.Instance.princessSinging);
         animator = GetComponent<Animator>();
         player.onPlayerDeath += ActivateMusicTrails;
+        battleMusic= AudioManager.Instance.princessBattleMusic;
+        ogMusic = AudioManager.Instance.musicSource.clip;
     }
 
     protected override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I)) print(currentState);
         if (playerInRadius)
         {
             startingCoroutine = StartCoroutine(EnemyBehavior());
@@ -32,21 +33,20 @@ public class SirenStateMachine : Enemy
     
     IEnumerator EnemyBehavior()
     {
+        AudioManager.Instance.PlaySound(AudioManager.Instance.musicSource, battleMusic);
         yield return BeginDialogueCoroutine();
         player.gameObject.GetComponent<BlockAreas>().BlockArea();
         yield return new WaitUntil(() => currentState == EnemyState.attack);
-        //player.inCombat = true;
         // attack logic
         yield return AttackRoutine();
 
-        //player.inCombat = false;
         // dialogue ending
         yield return FinalDialogueCoroutine();
+        AudioManager.Instance.PlaySound(AudioManager.Instance.musicSource, ogMusic);
         player.gameObject.GetComponent<BlockAreas>().UnlockArea();
         yield return new WaitUntil(() => currentState == EnemyState.die);
         // go home
         DieState();
-        // any logic for resuming player control
     }
     protected override void IdleState()
     {
@@ -104,7 +104,6 @@ public class SirenStateMachine : Enemy
                 animator.SetTrigger("attack");
                 GameObject projectile = Instantiate(attackPrefab, transform.position, Quaternion.identity);
                 Vector2 targetDirection = (attackDirection + projectileOffset).normalized;
-                print("target direction " + targetDirection);
                 Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
                 projectileRb.velocity = targetDirection * 8;
                 projectile.GetComponent<Projectile>().parentEnemy = gameObject;

@@ -54,13 +54,14 @@ public class AudioManager : MonoBehaviour
 
     [Header(">>>      Princesses and sirens      <<<")] 
     public AudioClip princessSinging;
+    public AudioClip princessBattleMusic;
 
     [Header(">>>      Environment soundeffects      <<<")]
     public AudioClip respawnSoundeffect;
     public AudioClip platformBling1;
     public AudioClip platformBling2;
     public AudioClip essenceCollection;
-    
+
     private void Awake()
     {
         if (Instance == null)
@@ -75,13 +76,11 @@ public class AudioManager : MonoBehaviour
     }
     void Start()
     {
-
         musicSource = transform.GetChild(0).GetComponent<AudioSource>();
         SFXSource= transform.GetChild(1).GetComponent<AudioSource>();
         extraSFXSource = transform.GetChild(2).GetComponent<AudioSource>();
         CheckLevel();
     }
-
     public void CheckLevel()
     {
         if (GameManager.instance.currentLevel == 0)

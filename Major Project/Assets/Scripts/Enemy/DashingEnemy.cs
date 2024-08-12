@@ -12,6 +12,7 @@ public class DashingEnemy : Enemy
     protected override void Start()
     {
         base.Start();
+        ogMusic = AudioManager.Instance.musicSource.clip;
     }
 
     // Update is called once per frame
