@@ -18,7 +18,7 @@ public abstract class Enemy : MonoBehaviour , IResettable
     [HideInInspector] public bool playerInRadius;
     [HideInInspector] public GameObject areaDetector;
     protected AudioClip battleMusic;
-    public AudioClip ogMusic;
+    [HideInInspector] public AudioClip ogMusic;
     protected Animator animator;
     protected virtual void Start()
     {
