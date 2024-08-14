@@ -212,6 +212,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 513957873}
     m_Modifications:
+    - target: {fileID: 1439553210219489060, guid: 1991d94cda96e6946bbeedd41c3674ea, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5211288019182801156, guid: 1991d94cda96e6946bbeedd41c3674ea, type: 3}
       propertyPath: m_SortingLayer
       value: 19
@@ -13000,6 +13004,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1923716382}
     m_Modifications:
+    - target: {fileID: 4167351343799633243, guid: ba78d5be5438be844ac5524a887d2fc3, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4167351343799633243, guid: ba78d5be5438be844ac5524a887d2fc3, type: 3}
       propertyPath: MaxDistance
       value: 14.240051
@@ -102862,6 +102870,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7457525326433249056, guid: 973fb4c77a175d149a80dac81106374d, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 973fb4c77a175d149a80dac81106374d, type: 3}
 --- !u!4 &546450313 stripped
@@ -103753,6 +103765,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 513957873}
     m_Modifications:
+    - target: {fileID: 2365327502951991503, guid: 7cd71f24224eb7f4f8cd216a60d7c6fc, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8897758298396065516, guid: 7cd71f24224eb7f4f8cd216a60d7c6fc, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -114068,6 +114084,10 @@ PrefabInstance:
       value: 8.784238
       objectReference: {fileID: 0}
     - target: {fileID: 7254320403197897204, guid: 5d95fa63af15bde4283ce036bc4fdc94, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7254320403197897204, guid: 5d95fa63af15bde4283ce036bc4fdc94, type: 3}
       propertyPath: MaxDistance
       value: 17.095554
       objectReference: {fileID: 0}
@@ -118356,6 +118376,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1923716382}
     m_Modifications:
+    - target: {fileID: 2677353426268931091, guid: 1b131a2f66966fd458e75880419332ec, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2677353427870511568, guid: 1b131a2f66966fd458e75880419332ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.8
@@ -144910,6 +144934,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6075923380369487424, guid: 6e2f11585d6744d4e9b122b953987796, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e2f11585d6744d4e9b122b953987796, type: 3}
 --- !u!4 &1379721923 stripped
@@ -162671,6 +162699,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 513957873}
     m_Modifications:
+    - target: {fileID: 303135439, guid: eecbf716caf1ff84d98d2baf9b80617f, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6604639712379751660, guid: eecbf716caf1ff84d98d2baf9b80617f, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -167197,6 +167229,10 @@ PrefabInstance:
       propertyPath: muffled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8440616819934398148, guid: ad6dc6534367ccc4a8775064f8271691, type: 3}
+      propertyPath: princessSinging
+      value: 
+      objectReference: {fileID: 8300000, guid: 6513262dc6a78544983f0b69ba76516b, type: 3}
     - target: {fileID: 8440616819934398149, guid: ad6dc6534367ccc4a8775064f8271691, type: 3}
       propertyPath: m_Name
       value: Audio Manager

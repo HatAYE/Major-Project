@@ -19,6 +19,7 @@ public abstract class Enemy : MonoBehaviour , IResettable
     [HideInInspector] public GameObject areaDetector;
     protected AudioClip battleMusic;
     public AudioClip ogMusic;
+    protected Animator animator;
     protected virtual void Start()
     {
         player= FindObjectOfType<Controls>();
@@ -68,10 +69,9 @@ public abstract class Enemy : MonoBehaviour , IResettable
         StopAllCoroutines();
         areaDetector.SetActive(true);
         currentState =EnemyState.idle;
-        Animator animator = GetComponent<Animator>();
         if (animator != null)
         {
-            animator.SetTrigger("Idle");
+            animator.SetTrigger("idle");
         }
         AudioManager.Instance.PlaySound(AudioManager.Instance.musicSource, ogMusic);
     }

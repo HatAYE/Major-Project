@@ -8,9 +8,10 @@ public class BouncingEnemy : Enemy
     [SerializeField] float jumpPause;
     [SerializeField] bool damaged;
     Rigidbody2D rb;
-    bool attacking;
+    [SerializeField] bool attacking;
     Collider2D triggerCol;
     Collider2D nonTriggerCol;
+    Animator animator;
     protected override void Start()
     {
         base.Start();
@@ -28,6 +29,8 @@ public class BouncingEnemy : Enemy
             else triggerCol = collider;
         }
         triggerCol.enabled = false;
+
+        animator=transform.GetChild(0).GetComponent<Animator>();
     }
 
     protected override void Update()
@@ -38,6 +41,8 @@ public class BouncingEnemy : Enemy
             StartCoroutine(Attack());
         }
         else currentState = EnemyState.idle;
+
+        animator.SetBool("attacking", attacking);
     }
     protected override void AttackingState()
     {
