@@ -201,6 +201,7 @@ public class Controls : MonoBehaviour
     }
     public void Respawn()
     {
+        print("im respawning");
         onPlayerDeath?.Invoke();
         ResetPlayerBools();
         transform.position = respawnPoint.position;

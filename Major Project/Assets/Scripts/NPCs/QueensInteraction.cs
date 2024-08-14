@@ -30,7 +30,7 @@ public class QueensInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(transform.position, player.transform.position) < 5)
+        if (Vector2.Distance(transform.position, player.transform.position) < 2.5f)
         {
             if (player.GetComponent<InteractionHandler>() != null)
             {
