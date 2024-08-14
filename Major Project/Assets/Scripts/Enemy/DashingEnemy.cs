@@ -71,7 +71,7 @@ public class DashingEnemy : Enemy
     {
         damaged = false;
         intiatedAttack = false;
-        animator.SetTrigger("idle");
+       //animator.SetTrigger("idle");
     }
     protected override void DieState()
     {
