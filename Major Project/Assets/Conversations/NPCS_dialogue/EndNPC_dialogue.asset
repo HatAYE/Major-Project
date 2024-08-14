@@ -52,8 +52,8 @@ MonoBehaviour:
           width: 208
           height: 134.40001
         actor: Actor name
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 675e1c773cdccf648ae0925c542bac00, type: 2}
+        useActorProfile: 1
         message: That was harsh huh..
     00000001:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
@@ -61,13 +61,13 @@ MonoBehaviour:
         <Guid>k__BackingField: 02186fd3-07b3-4bbc-a7a9-a069f7d05b3e
         <NodeRect>k__BackingField:
           serializedVersion: 2
-          x: 484.80002
+          x: 481.6
           y: 72.8
-          width: 207.99997
+          width: 208.00003
           height: 163.2
         actor: Actor name
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 675e1c773cdccf648ae0925c542bac00, type: 2}
+        useActorProfile: 1
         message: no matter what you do, or could've done, death will catch up
     00000002:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
@@ -80,8 +80,8 @@ MonoBehaviour:
           width: 208
           height: 134.40001
         actor: Actor name
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 675e1c773cdccf648ae0925c542bac00, type: 2}
+        useActorProfile: 1
         message: dwelling on it will only hurt you more
     00000003:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
@@ -94,8 +94,8 @@ MonoBehaviour:
           width: 207.99994
           height: 134.40001
         actor: Actor name
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 675e1c773cdccf648ae0925c542bac00, type: 2}
+        useActorProfile: 1
         message: But you know... you're not fully gone
     00000004:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
@@ -108,8 +108,8 @@ MonoBehaviour:
           width: 208
           height: 134.40001
         actor: Actor name
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 675e1c773cdccf648ae0925c542bac00, type: 2}
+        useActorProfile: 1
         message: Whatever you did during your lifetime lives on. your memory stays
           alive even if you are not
     00000005:
@@ -123,8 +123,8 @@ MonoBehaviour:
           width: 208
           height: 134.40001
         actor: Actor name
-        actorProfile: {fileID: 0}
-        useActorProfile: 0
+        actorProfile: {fileID: 11400000, guid: 675e1c773cdccf648ae0925c542bac00, type: 2}
+        useActorProfile: 1
         message: It is best you find peace in what happened
     00000006:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
