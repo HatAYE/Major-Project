@@ -1,7 +1,22 @@
 fileFormatVersion: 2
 guid: d9fd4929d2492e1498ac909ad6ae6d10
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 8252040816204505701
+    second: intiate_attack_pin_0
+  - first:
+      213: 5302091898415513079
+    second: intiate_attack_pin_1
+  - first:
+      213: -5110965885362530408
+    second: intiate_attack_pin_2
+  - first:
+      213: -4406718880639005221
+    second: intiate_attack_pin_3
+  - first:
+      213: 5212068591093366446
+    second: intiate_attack_pin_4
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -41,7 +56,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -114,7 +129,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: intiate_attack_pin_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 642
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 562e4e1b663258270800000000000000
+      internalID: 8252040816204505701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: intiate_attack_pin_1
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 642
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fd788b6d70d49940800000000000000
+      internalID: 5302091898415513079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: intiate_attack_pin_2
+      rect:
+        serializedVersion: 2
+        x: 1284
+        y: 642
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89793d73b933219b0800000000000000
+      internalID: -5110965885362530408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: intiate_attack_pin_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdd418e968038d2c0800000000000000
+      internalID: -4406718880639005221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: intiate_attack_pin_4
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 0
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eae3715d4ccf45840800000000000000
+      internalID: 5212068591093366446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

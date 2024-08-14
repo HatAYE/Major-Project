@@ -13,6 +13,9 @@ public class DashingEnemy : Enemy
     {
         base.Start();
         ogMusic = AudioManager.Instance.musicSource.clip;
+        animator= transform.GetChild(0).GetComponent<Animator>();
+        player.onPlayerDeath += resetBools;
+        //animator.SetTrigger("idle");
     }
 
     // Update is called once per frame
@@ -21,6 +24,11 @@ public class DashingEnemy : Enemy
         if (playerInRadius)
         {
             StartCoroutine(Attack());
+            if (!intiatedAttack)
+            {
+                animator.SetTrigger("attack");
+                intiatedAttack = true;
+            }
         }
     }
     protected override void IdleState()
@@ -30,8 +38,10 @@ public class DashingEnemy : Enemy
     protected override void AttackingState()
     {
     }
+    [SerializeField] bool intiatedAttack;
     IEnumerator Attack()
     {
+        
         if (!dashRight)
         {
             if (Vector3.Distance(transform.position, pos1.transform.position) >= 0.1f)
@@ -57,16 +67,35 @@ public class DashingEnemy : Enemy
             }
         }
     }
+    void resetBools()
+    {
+        damaged = false;
+        intiatedAttack = false;
+        animator.SetTrigger("idle");
+    }
     protected override void DieState()
     {
 
     }
+    bool damaged;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject==player.gameObject)
+        if (collision.gameObject.TryGetComponent(out HealthSystem player))
         {
-            player.GetComponent<HealthSystem>().currentHealth -= 1;
+            if(!damaged)
+            {
+                player.Damage(1);
+                damaged = true;
+            }
         }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out HealthSystem player))
+        {
+            damaged = false;
+        }
+
     }
 
 }
