@@ -7,6 +7,8 @@ public class StartMenu : MonoBehaviour
 {
     static bool introPlayed;
     [SerializeField] GameObject intro;
+    [SerializeField] GameObject mainButtonsGroup;
+    [SerializeField] GameObject levelsButtonsGroup;
     void Start()
     {
         
@@ -19,6 +21,7 @@ public class StartMenu : MonoBehaviour
         {
             intro.gameObject.SetActive(false);
         }
+        levelsButtonsGroup.SetActive(false);
     }
 
     public void StartGame()
@@ -31,9 +34,15 @@ public class StartMenu : MonoBehaviour
         SceneManager.LoadScene(lastScene, LoadSceneMode.Single);
     }
 
-    public void Credit()
+    public void PickLevel()
     {
-
+        mainButtonsGroup.SetActive(false);
+        levelsButtonsGroup.SetActive(true );
+    }
+    public void BackButton()
+    {
+        mainButtonsGroup.SetActive(true);
+        levelsButtonsGroup.SetActive(false);
     }
 
     public void Exit()

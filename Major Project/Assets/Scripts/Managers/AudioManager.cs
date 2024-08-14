@@ -87,14 +87,10 @@ public class AudioManager : MonoBehaviour
         {
             PlaySound(musicSource, mainMenuAudio);
         }
-        else if (GameManager.instance.currentLevel == 1)
+        else if (GameManager.instance.currentLevel == 1|| GameManager.instance.currentLevel == 2)
         {
             PlaySound(musicSource, lvl1Soundtrack);
         }
-        /*else if (GameManager.instance.currentLevel == 2)
-        {
-            PlaySound(musicSource, lvl2Soundtrack);
-        }*/
         else if (GameManager.instance.currentLevel == 3)
         {
             PlaySound(musicSource, lvl3Soundtrack);
@@ -102,6 +98,12 @@ public class AudioManager : MonoBehaviour
         else if (GameManager.instance.currentLevel == 4)
         {
             PlaySound(musicSource, lvl4Soundtrack);
+        }
+        else if (GameManager.instance.currentLevel == 5)
+        {
+            musicSource.clip = null;
+            SFXSource.clip = null;
+            extraSFXSource.clip = null;
         }
     }
 
