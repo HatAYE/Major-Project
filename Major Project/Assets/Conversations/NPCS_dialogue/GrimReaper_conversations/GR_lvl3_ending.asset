@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
-  m_Name: GR_lvl2_ending
+  m_Name: GR_lvl3_ending
   m_EditorClassIdentifier: 
   version: 1.0
   startNode:
@@ -27,15 +27,13 @@ MonoBehaviour:
   - id: 1
   - id: 2
   - id: 3
-  - id: 4
   edges:
+  - id: 4
   - id: 5
   - id: 6
   - id: 7
-  - id: 8
-  - id: 9
   properties:
-  - id: 10
+  - id: 8
   stickyNotes: []
   groups: []
   references:
@@ -46,9 +44,9 @@ MonoBehaviour:
         <Guid>k__BackingField: 355d658b-b7d5-4bae-95e8-73a8d5703995
         <NodeRect>k__BackingField:
           serializedVersion: 2
-          x: 634.4
+          x: 347.2
           y: 77.600006
-          width: 181.59998
+          width: 182.40002
           height: 100.79999
         stopsFlow: 0
         eventGuid: cd624d39-e004-470e-866b-f180ba4f44df
@@ -66,8 +64,7 @@ MonoBehaviour:
         actor: Actor name
         actorProfile: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
         useActorProfile: 1
-        message: "Haste makes waste, so I rarely hurry. But if a ferret were about
-          to dart up my dress, I\u2019d run!"
+        message: Oh hey, you managed to defeat.. household items
     00000002:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
       data:
@@ -81,37 +78,22 @@ MonoBehaviour:
         actor: Actor name
         actorProfile: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
         useActorProfile: 1
-        message: as said by a grinning cat but anyways~
+        message: IMPRESSIVE.. i guess
     00000003:
       type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
       data:
         <Guid>k__BackingField: 75f0be6e-6073-44c6-9434-c148e4461175
         <NodeRect>k__BackingField:
           serializedVersion: 2
-          x: 80
+          x: 88
           y: 77.600006
           width: 207.99998
           height: 163.19998
         actor: Actor name
         actorProfile: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
         useActorProfile: 1
-        message: Did you enjoy wonderland? I hope so! because its time to move on
-          to another place
+        message: how about we get out of this place? touch some grass maybe
     00000004:
-      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
-      data:
-        <Guid>k__BackingField: 5609fd1c-88ff-41bc-b034-c489d847e57b
-        <NodeRect>k__BackingField:
-          serializedVersion: 2
-          x: 352.80002
-          y: 77.600006
-          width: 207.99997
-          height: 148.79999
-        actor: Actor name
-        actorProfile: {fileID: 11400000, guid: a240cd17915067649bee4a8a1bbde72e, type: 2}
-        useActorProfile: 1
-        message: that is if you want to go back home~
-    00000005:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
@@ -120,7 +102,7 @@ MonoBehaviour:
         input:
           node: 900be89a-6d2f-40b4-b3c9-14f10e11449b
           port: previous
-    00000006:
+    00000005:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
@@ -129,7 +111,7 @@ MonoBehaviour:
         input:
           node: fbdf8b9d-9137-4b91-b431-d4ee00530828
           port: previous
-    00000007:
+    00000006:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
@@ -138,25 +120,16 @@ MonoBehaviour:
         input:
           node: 75f0be6e-6073-44c6-9434-c148e4461175
           port: previous
-    00000008:
+    00000007:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
           node: 75f0be6e-6073-44c6-9434-c148e4461175
           port: next
         input:
-          node: 5609fd1c-88ff-41bc-b034-c489d847e57b
-          port: previous
-    00000009:
-      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
-      data:
-        output:
-          node: 5609fd1c-88ff-41bc-b034-c489d847e57b
-          port: next
-        input:
           node: 355d658b-b7d5-4bae-95e8-73a8d5703995
           port: previous
-    0000000A:
+    00000008:
       type: {class: EventProperty, ns: Conversa.Runtime.Properties, asm: Conversa.Runtime}
       data:
         <Guid>k__BackingField: cd624d39-e004-470e-866b-f180ba4f44df

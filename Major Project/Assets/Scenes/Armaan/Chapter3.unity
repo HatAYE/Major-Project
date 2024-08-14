@@ -631,6 +631,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4587960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4587961}
+  - component: {fileID: 4587962}
+  m_Layer: 0
+  m_Name: block
+  m_TagString: Ground
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4587961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4587960}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -76.9, y: -17.2, z: 0}
+  m_LocalScale: {x: 2.65, y: 1.6877, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1749094523}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &4587962
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4587960}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 10.49, y: 8.53}
+  m_EdgeRadius: 0
 --- !u!1 &9803426
 GameObject:
   m_ObjectHideFlags: 0
@@ -9881,6 +9938,115 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &332659887
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 190256140124696000, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_RootOrder
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140124696000, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -80.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140124696000, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140124696000, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140124696000, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140124696000, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140124696000, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140124696000, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140124696000, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140124696000, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140124696000, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140124696001, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: firstConvo
+      value: 
+      objectReference: {fileID: 11400000, guid: 23a0d770c455911429db8c6ca50bfde1, type: 2}
+    - target: {fileID: 190256140124696001, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: postProcessVolume
+      value: 
+      objectReference: {fileID: 357857201}
+    - target: {fileID: 190256140124696002, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_Size.x
+      value: 149.68231
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140124696002, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_Size.y
+      value: 68.57074
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140124696002, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_Offset.x
+      value: -29.511003
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140124696002, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_Offset.y
+      value: 25.437332
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140124696003, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_Name
+      value: Grim reaper
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140124696003, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140402886460, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_SortingLayer
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140402886460, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140402886460, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -984546257
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140402886461, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140402886461, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -26.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 190256140402886462, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
 --- !u!1 &334260766
 GameObject:
   m_ObjectHideFlags: 0
@@ -10513,6 +10679,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &357857201 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 777755757716195744, guid: b6bf1bd521b78e54fabe7852c2c04c29, type: 3}
+  m_PrefabInstance: {fileID: 1557237332}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &368354779
 GameObject:
   m_ObjectHideFlags: 0
@@ -59855,6 +60032,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1557237332
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7561234360037464467, guid: b6bf1bd521b78e54fabe7852c2c04c29, type: 3}
+      propertyPath: m_RootOrder
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561234360037464467, guid: b6bf1bd521b78e54fabe7852c2c04c29, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.046774
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561234360037464467, guid: b6bf1bd521b78e54fabe7852c2c04c29, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.1777735
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561234360037464467, guid: b6bf1bd521b78e54fabe7852c2c04c29, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -34.920757
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561234360037464467, guid: b6bf1bd521b78e54fabe7852c2c04c29, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561234360037464467, guid: b6bf1bd521b78e54fabe7852c2c04c29, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561234360037464467, guid: b6bf1bd521b78e54fabe7852c2c04c29, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561234360037464467, guid: b6bf1bd521b78e54fabe7852c2c04c29, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561234360037464467, guid: b6bf1bd521b78e54fabe7852c2c04c29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561234360037464467, guid: b6bf1bd521b78e54fabe7852c2c04c29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561234360037464467, guid: b6bf1bd521b78e54fabe7852c2c04c29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561234360037464469, guid: b6bf1bd521b78e54fabe7852c2c04c29, type: 3}
+      propertyPath: m_Name
+      value: Grim Reaper post processing
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b6bf1bd521b78e54fabe7852c2c04c29, type: 3}
 --- !u!1 &1558956372
 GameObject:
   m_ObjectHideFlags: 0
@@ -61294,6 +61528,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: flying enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3174835080356638123, guid: 6f4cb96ab7dce0e47b3512e219ec2138, type: 3}
+      propertyPath: grimReaper
+      value: 
+      objectReference: {fileID: 1749094520}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f4cb96ab7dce0e47b3512e219ec2138, type: 3}
 --- !u!1 &1618629307
@@ -64900,6 +65138,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1749094520 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 190256140124696003, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+  m_PrefabInstance: {fileID: 332659887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1749094523 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 190256140124696000, guid: e0c9cdea2909e3248aac7af848d399c9, type: 3}
+  m_PrefabInstance: {fileID: 332659887}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1749349471
 GameObject:
   m_ObjectHideFlags: 0

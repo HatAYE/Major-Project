@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FlyingEnemy : Enemy
 {
+    [SerializeField] GameObject grimReaper;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] Conversation conversation;
     [SerializeField] float attackPause;
@@ -116,6 +117,7 @@ public class FlyingEnemy : Enemy
     protected override void DieState()
     {
         //PLAY ANIMATION
+        grimReaper.SetActive(true);
         currentState = EnemyState.die;
         Destroy(areaDetector);
         Destroy(gameObject);
