@@ -24,8 +24,10 @@ MonoBehaviour:
     name: Start
   nodes:
   - id: 0
-  edges:
   - id: 1
+  edges:
+  - id: 2
+  - id: 3
   properties: []
   stickyNotes: []
   groups: []
@@ -44,8 +46,22 @@ MonoBehaviour:
         actor: Actor name
         actorProfile: {fileID: 0}
         useActorProfile: 0
-        message: rawr xD
+        message: You think you can escape my gusts
     00000001:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: f5839b37-460b-4055-9b30-94caa63e3ecc
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 450
+          y: 26
+          width: 208
+          height: 135
+        actor: Actor name
+        actorProfile: {fileID: 0}
+        useActorProfile: 0
+        message: Feel the chill in the air?
+    00000002:
       type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
       data:
         output:
@@ -53,4 +69,13 @@ MonoBehaviour:
           port: next
         input:
           node: ff6b431c-b711-48f2-ae21-0f054281f2b2
+          port: previous
+    00000003:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: ff6b431c-b711-48f2-ae21-0f054281f2b2
+          port: next
+        input:
+          node: f5839b37-460b-4055-9b30-94caa63e3ecc
           port: previous
