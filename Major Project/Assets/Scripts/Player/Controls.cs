@@ -111,7 +111,6 @@ public class Controls : MonoBehaviour
             Jumping();
             PushingAndPulling();
             Crouch();
-            DeflectingShield();
             Swinging();
             canjump = true;
         }
@@ -352,18 +351,7 @@ public class Controls : MonoBehaviour
         }
     }
 
-    void DeflectingShield()
-    {
-        //SHIELD WILL BE ACTIVATED ONLY AT CHAPTER 3
-        if (transform.GetChild(1).gameObject!=null)
-        {
-            if (Input.GetKey(KeyCode.J))
-            {
-                transform.GetChild(1).gameObject.SetActive(true);
-            }
-            else transform.GetChild(1).gameObject.SetActive(false);
-        }
-    }
+    
 
     #region Swinging
     void Swinging()

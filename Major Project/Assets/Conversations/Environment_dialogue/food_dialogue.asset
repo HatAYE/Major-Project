@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e373d802544f3b90f235c7efebe5e1, type: 3}
+  m_Name: food_dialogue
+  m_EditorClassIdentifier: 
+  version: 1.0
+  startNode:
+    <Guid>k__BackingField: f3ace81c-3cc6-4856-982d-c7652c4180df
+    <NodeRect>k__BackingField:
+      serializedVersion: 2
+      x: 100
+      y: 100
+      width: 100
+      height: 100
+    name: Start
+  nodes:
+  - id: 0
+  edges:
+  - id: 1
+  properties: []
+  stickyNotes: []
+  groups: []
+  references:
+    version: 1
+    00000000:
+      type: {class: MessageNode, ns: Conversa.Runtime.Nodes, asm: Conversa.Runtime}
+      data:
+        <Guid>k__BackingField: 16ee03b6-dcd6-4e68-88bf-0ba64ccb4005
+        <NodeRect>k__BackingField:
+          serializedVersion: 2
+          x: 244.8
+          y: 72.8
+          width: 208
+          height: 134.40001
+        actor: Actor name
+        actorProfile: {fileID: 11400000, guid: dd26e9b85d6c1fd43bc57e85cc12a809, type: 2}
+        useActorProfile: 1
+        message: You notice your health improving, try looking for more of these
+    00000001:
+      type: {class: EdgeData, ns: Conversa.Runtime, asm: Conversa.Runtime}
+      data:
+        output:
+          node: f3ace81c-3cc6-4856-982d-c7652c4180df
+          port: next
+        input:
+          node: 16ee03b6-dcd6-4e68-88bf-0ba64ccb4005
+          port: previous
