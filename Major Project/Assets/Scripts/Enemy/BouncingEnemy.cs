@@ -12,6 +12,7 @@ public class BouncingEnemy : Enemy
     Collider2D triggerCol;
     Collider2D nonTriggerCol;
     Animator animator;
+    bool playedAudio;
     protected override void Start()
     {
         base.Start();
@@ -31,16 +32,35 @@ public class BouncingEnemy : Enemy
         triggerCol.enabled = false;
 
         animator=transform.GetChild(0).GetComponent<Animator>();
-    }
 
+        battleMusic = AudioManager.Instance.enemyBattleMusic;
+    }
+    bool playedAudio2IDC;
     protected override void Update()
     {
         Physics2D.IgnoreCollision(nonTriggerCol, player.GetComponent<Collider2D>(), true);
         if (playerInRadius)
         {
+            playedAudio = false;
             StartCoroutine(Attack());
+            if(!playedAudio2IDC)
+            {
+                StartCoroutine(AudioManager.Instance.FadeIn(AudioManager.Instance.musicSource, battleMusic));
+                playedAudio2IDC = true;
+            }
+            //AudioManager.Instance.PlaySound(AudioManager.Instance.musicSource, battleMusic);
         }
-        else currentState = EnemyState.idle;
+        else
+        {
+            currentState = EnemyState.idle;
+            if (!playedAudio)
+            {
+                StartCoroutine(AudioManager.Instance.FadeIn(AudioManager.Instance.musicSource, ogMusic));
+               // AudioManager.Instance.PlaySound(AudioManager.Instance.musicSource, ogMusic);
+                playedAudio = true;
+                playedAudio2IDC = false;
+            }
+        }
 
         animator.SetBool("attacking", attacking);
     }

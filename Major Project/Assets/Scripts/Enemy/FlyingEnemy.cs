@@ -12,11 +12,14 @@ public class FlyingEnemy : Enemy
     [HideInInspector] public bool gotHit;
     DialogueController controller;
     bool startDialogue;
+    bool playedAudio;
     protected override void Start()
     {
         base.Start();
         ogMusic = AudioManager.Instance.musicSource.clip;
         controller = new DialogueController(conversation);
+        battleMusic = AudioManager.Instance.enemyBattleMusic;
+        player.onPlayerDeath += resetEnemy;
     }
 
     protected override void Update()
@@ -24,9 +27,24 @@ public class FlyingEnemy : Enemy
 
         if (playerInRadius && !startDialogue)
         {
-            StartCoroutine(EnemyBehavior()); ;
+            StartCoroutine(EnemyBehavior());
+            StartCoroutine(AudioManager.Instance.FadeIn(AudioManager.Instance.musicSource, battleMusic));
             startDialogue = true;
         }
+        if (!playerInRadius && !playedAudio)
+        {
+            StartCoroutine(AudioManager.Instance.FadeIn(AudioManager.Instance.musicSource, ogMusic));
+            playedAudio = true;
+        }
+    }
+    void resetEnemy()
+    {
+        StopAllCoroutines();
+        playerInRadius = false;
+        startDialogue = false;
+        playedAudio = false;
+        isAttacking = false;
+        currentState = EnemyState.idle;
     }
     IEnumerator EnemyBehavior()
     {
@@ -39,7 +57,9 @@ public class FlyingEnemy : Enemy
             AttackingState();
             yield return null;
         }
-            DieState();
+        transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.red;
+        yield return StartCoroutine(AudioManager.Instance.FadeIn(AudioManager.Instance.musicSource, ogMusic));
+        DieState();
     }
     protected override void IdleState()
     {

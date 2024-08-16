@@ -52,9 +52,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioClip muffledCrouchingSoundEffect;
     [EndIf]
 
-    [Header(">>>      Princesses and sirens      <<<")] 
+    [Header(">>>      Princesses and enemies      <<<")] 
     public AudioClip princessSinging;
     public AudioClip princessBattleMusic;
+    public AudioClip enemyBattleMusic;
 
     [Header(">>>      Environment soundeffects      <<<")]
     public AudioClip respawnSoundeffect;

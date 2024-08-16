@@ -8,14 +8,14 @@ public class DashingEnemy : Enemy
     [SerializeField] GameObject pos2;
     [SerializeField] float speed;
     bool dashRight;
-    
+    bool playedAudio;
     protected override void Start()
     {
         base.Start();
         ogMusic = AudioManager.Instance.musicSource.clip;
         animator= transform.GetChild(0).GetComponent<Animator>();
         player.onPlayerDeath += resetBools;
-        //animator.SetTrigger("idle");
+        battleMusic = AudioManager.Instance.enemyBattleMusic;
     }
 
     // Update is called once per frame
@@ -23,12 +23,22 @@ public class DashingEnemy : Enemy
     {
         if (playerInRadius)
         {
+            playedAudio = false;
             StartCoroutine(Attack());
             if (!intiatedAttack)
             {
                 animator.SetTrigger("attack");
                 intiatedAttack = true;
+                StartCoroutine(AudioManager.Instance.FadeIn(AudioManager.Instance.musicSource, battleMusic));
+                //AudioManager.Instance.PlaySound(AudioManager.Instance.musicSource, battleMusic);
             }
+        }
+        if(!playerInRadius && !playedAudio)
+        {
+            StartCoroutine(AudioManager.Instance.FadeIn(AudioManager.Instance.musicSource, ogMusic));
+            //AudioManager.Instance.PlaySound(AudioManager.Instance.musicSource, ogMusic);
+            intiatedAttack = false;
+            playedAudio = true;
         }
     }
     protected override void IdleState()

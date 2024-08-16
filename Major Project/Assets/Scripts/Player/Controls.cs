@@ -111,7 +111,6 @@ public class Controls : MonoBehaviour
             Jumping();
             PushingAndPulling();
             Crouch();
-            DeflectingShield();
             Swinging();
             canjump = true;
         }
@@ -121,9 +120,9 @@ public class Controls : MonoBehaviour
             essenceCollected = 4;
         }
         collectedSparepart = false;
-        if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(-77.8f, 3.5f, 0);
+        //if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(-77.8f, 3.5f, 0);
 
-        if (Input.GetKeyDown(KeyCode.B)) transform.position = new Vector3(-55.28f, -3.16f, 0);
+        //if (Input.GetKeyDown(KeyCode.B)) transform.position = new Vector3(-55.28f, -3.16f, 0);
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -227,12 +226,11 @@ public class Controls : MonoBehaviour
             isMoving = true;
             if (!isCrouching)
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+                /*if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    rb.velocity 
-                        = new Vector2(-sprintingSpeed, rb.velocity.y);
+                    rb.velocity = new Vector2(-sprintingSpeed, rb.velocity.y);
                 }
-                else 
+                else */
                 rb.velocity = new Vector2(-playerSpeed, rb.velocity.y); 
             } 
 
@@ -248,11 +246,11 @@ public class Controls : MonoBehaviour
             isMoving = true;
             if (!isCrouching)
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+                /*if (Input.GetKey(KeyCode.LeftShift))
                 {
                     rb.velocity = new Vector2(sprintingSpeed, rb.velocity.y);
                 }
-                else 
+                else */
                 rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
                 
             }
@@ -352,18 +350,7 @@ public class Controls : MonoBehaviour
         }
     }
 
-    void DeflectingShield()
-    {
-        //SHIELD WILL BE ACTIVATED ONLY AT CHAPTER 3
-        if (transform.GetChild(1).gameObject!=null)
-        {
-            if (Input.GetKey(KeyCode.J))
-            {
-                transform.GetChild(1).gameObject.SetActive(true);
-            }
-            else transform.GetChild(1).gameObject.SetActive(false);
-        }
-    }
+    
 
     #region Swinging
     void Swinging()
