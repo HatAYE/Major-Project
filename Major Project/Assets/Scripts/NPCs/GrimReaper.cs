@@ -31,6 +31,7 @@ public class GrimReaper : MonoBehaviour
 
     PlayableDirector director;
     DialogueUI dialogueUI;
+    [SerializeField] GameObject nextLineButton;
     void Start()
     {
         player=FindObjectOfType<Controls>();
@@ -202,6 +203,7 @@ public class GrimReaper : MonoBehaviour
             {
                 canInteract = false;
                 dialogueUI.timePerWord = 0.3f;
+                nextLineButton.SetActive(false);
                 GameManager.instance.ChangeState(gameStates.frozen);
                 director.Play();
                 dialogueUI.canSkipDialogue = false;

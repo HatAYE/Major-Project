@@ -57,6 +57,7 @@ public class FlyingEnemy : Enemy
             AttackingState();
             yield return null;
         }
+        transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.red;
         yield return StartCoroutine(AudioManager.Instance.FadeIn(AudioManager.Instance.musicSource, ogMusic));
         DieState();
     }

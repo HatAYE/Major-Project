@@ -60,6 +60,10 @@ public class CameraZoomOut : MonoBehaviour
             {
                 if (currentCoroutine != null)
                     StopCoroutine(currentCoroutine);
+                if(enterArea.GetComponent<AdvancedCameraZoomOut>() != null)
+                    currentCoroutine = StartCoroutine(ZoomCamera(enterArea.GetComponent<AdvancedCameraZoomOut>().zoomoutAmount, rightTargetPosition));
+
+                else
                 currentCoroutine = StartCoroutine(ZoomCamera(zoomOutSize, rightTargetPosition));
                 zoomedOut = true;
                 return;
@@ -72,7 +76,12 @@ public class CameraZoomOut : MonoBehaviour
             {
                 if (currentCoroutine != null)
                     StopCoroutine(currentCoroutine);
-                currentCoroutine = StartCoroutine(ZoomCamera(zoomOutSize, leftTargetPosition));
+
+                if (secondEntry.GetComponent<AdvancedCameraZoomOut>() != null)
+                    currentCoroutine = StartCoroutine(ZoomCamera(secondEntry.GetComponent<AdvancedCameraZoomOut>().zoomoutAmount, leftTargetPosition));
+
+                else
+                    currentCoroutine = StartCoroutine(ZoomCamera(zoomOutSize, leftTargetPosition));
                 zoomedOut = true;
                 return;
             }
