@@ -12,7 +12,7 @@ public class Controls : MonoBehaviour
 {
     [HideInInspector]RaycastHit2D hit;
     [HideInInspector] public Rigidbody2D rb;
-    [HideInInspector] public bool controlsAvaialble;
+     public bool controlsAvaialble;
     [SerializeField] Animator jumpAnimator;
     private CapsuleCollider2D capsuleCollider;
     [SerializeField] KeyCode left=KeyCode.A;
@@ -120,7 +120,7 @@ public class Controls : MonoBehaviour
             essenceCollected = 4;
         }
         collectedSparepart = false;
-        //if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(-77.8f, 3.5f, 0);
+        //if (Input.GetKeyDown(KeyCode.V)) transform.position = new Vector3(353.67f, -0.83f, 0);
 
         //if (Input.GetKeyDown(KeyCode.B)) transform.position = new Vector3(-55.28f, -3.16f, 0);
     }
@@ -200,7 +200,6 @@ public class Controls : MonoBehaviour
     }
     public void Respawn()
     {
-        print("im respawning");
         onPlayerDeath?.Invoke();
         ResetPlayerBools();
         transform.position = respawnPoint.position;

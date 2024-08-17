@@ -591,6 +591,7 @@ MonoBehaviour:
   conversation: {fileID: 11400000, guid: b44120c40ddd6a443b20c77319b521f8, type: 2}
   singleInteraction: 0
   pauseBeforeDialogue: 7
+  ENDNPC: 1
 --- !u!212 &23644581
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -49868,6 +49869,10 @@ PrefabInstance:
     - target: {fileID: 6324549861527460396, guid: 64092d3a64eb2a44d8b5523de72a17ae, type: 3}
       propertyPath: m_Name
       value: player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324549861527460396, guid: 64092d3a64eb2a44d8b5523de72a17ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6324549861527460397, guid: 64092d3a64eb2a44d8b5523de72a17ae, type: 3}
       propertyPath: jump

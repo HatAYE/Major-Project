@@ -19,7 +19,7 @@ public class GrimReaper : MonoBehaviour
     [SerializeField] Conversation secondConvo;
     bool refused;
     bool accepted;
-    bool canInteract;
+    [SerializeField] bool canInteract;
     [SerializeField] bool playerEnteredRadius;
     bool finishedFirstInteraction;
 
@@ -61,6 +61,8 @@ public class GrimReaper : MonoBehaviour
         {
             StartInteraction();
         }
+        if(GameManager.instance.currentLevel==1)
+        InteractWithGR();
         
     }
     void CheckEssenceCount(string eventName)
@@ -207,6 +209,7 @@ public class GrimReaper : MonoBehaviour
                 GameManager.instance.ChangeState(gameStates.frozen);
                 director.Play();
                 dialogueUI.canSkipDialogue = false;
+                controller.OnDialogueEnd += () => player.controlsAvaialble = false;
                 StartCoroutine(SecondsPause(3));
             }
             else
@@ -223,7 +226,7 @@ public class GrimReaper : MonoBehaviour
                     else StartFirstDialogue();
                     finishedFirstInteraction = true;
                 }
-                else
+                /*else
                 {
                     if (Input.GetKey(KeyCode.E))
                     {
@@ -233,9 +236,24 @@ public class GrimReaper : MonoBehaviour
                             controller.BeginDialogue();
                         }
                     }
-                }
+                }*/
             }
            
+        }
+    }
+
+    void InteractWithGR()
+    {
+        if(playerEnteredRadius && canInteract && interactionConvo != null)
+        {
+            if (Input.GetKey(KeyCode.E))
+            {
+                if (controller != null)
+                {
+                    controller.NewConversation(interactionConvo);
+                    controller.BeginDialogue();
+                }
+            }
         }
     }
 

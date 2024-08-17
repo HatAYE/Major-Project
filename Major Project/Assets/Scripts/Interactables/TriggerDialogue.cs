@@ -10,6 +10,7 @@ public class TriggerDialogue : MonoBehaviour
     [SerializeField] bool singleInteraction;
     [SerializeField] float pauseBeforeDialogue;
     DialogueController controller;
+    [SerializeField] bool ENDNPC;
     void Start()
     {
         controller = new DialogueController(conversation);
@@ -23,6 +24,17 @@ public class TriggerDialogue : MonoBehaviour
             controller.BeginDialogue();
             if (singleInteraction)
                 controller.OnDialogueEnd += () => Destroy(gameObject);
+            else
+            {
+                controller.OnDialogueEnd += () =>
+                {
+                    if (ENDNPC)
+                    {
+                        Controls player = FindObjectOfType<Controls>();
+                        player.controlsAvaialble = false;
+                    }
+                };
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
