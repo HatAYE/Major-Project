@@ -8028,8 +8028,8 @@ EdgeCollider2D:
   m_Points:
   - {x: 4.0783997, y: -2.5825655}
   - {x: 0.86050415, y: -2.5756333}
-  - {x: 0.8880005, y: -4.049879}
-  - {x: -0.7128906, y: -4.0465016}
+  - {x: 0.8708496, y: -3.9082797}
+  - {x: -0.7043152, y: -3.926356}
   - {x: -0.7050171, y: -3.6853201}
   - {x: 0.09820557, y: -3.345372}
   - {x: 0.099853516, y: -2.1760013}
@@ -8702,7 +8702,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1274239220, guid: cdf130c33a2768542a0d4616400e1073, type: 3}
       propertyPath: massWhenHeld
-      value: 1.25
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1274239220, guid: cdf130c33a2768542a0d4616400e1073, type: 3}
       propertyPath: outlineMaterial
@@ -8742,7 +8742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7629303062592252576, guid: cdf130c33a2768542a0d4616400e1073, type: 3}
       propertyPath: m_GravityScale
-      value: 1.5
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 7629303062592252577, guid: cdf130c33a2768542a0d4616400e1073, type: 3}
       propertyPath: m_Size.y
@@ -13085,7 +13085,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1274239220, guid: cdf130c33a2768542a0d4616400e1073, type: 3}
       propertyPath: massWhenHeld
-      value: 1.25
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1274239220, guid: cdf130c33a2768542a0d4616400e1073, type: 3}
       propertyPath: outlineMaterial
@@ -13125,7 +13125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7629303062592252576, guid: cdf130c33a2768542a0d4616400e1073, type: 3}
       propertyPath: m_GravityScale
-      value: 1.5
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 7629303062592252577, guid: cdf130c33a2768542a0d4616400e1073, type: 3}
       propertyPath: m_Size.y
@@ -63032,6 +63032,7 @@ MonoBehaviour:
   conversation: {fileID: 11400000, guid: e0b8de6a44e470e45ba852183437beb4, type: 2}
   singleInteraction: 1
   pauseBeforeDialogue: 0
+  ENDNPC: 0
 --- !u!1 &990850124
 GameObject:
   m_ObjectHideFlags: 0
